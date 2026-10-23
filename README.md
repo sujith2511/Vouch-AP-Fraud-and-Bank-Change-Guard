@@ -91,8 +91,8 @@ ORDER BY at;
 
 | Person | Owns |
 |---|---|
-| **Ayushi** | Core system: tables, state machine, roles and `can()`, audit log, gateway, API, Bright Data module, Azure deployment, UI wiring, Coinbase gateway if time allows |
-| **Sujith** | Agent loop and tools, prompt-injection defense, learned-policy loop, Apify module, eval runner |
+| **Ayushi** | Core system: tables, state machine, roles and `can()`, separation of duties, audit log and "why?" query, gateway, API, Azure deployment and tracing, UI wiring, Coinbase gateway if time allows |
+| **Sujith** | Agent and web intelligence: agent loop and tools on Azure OpenAI or AI Foundry, Bright Data vendor verification, Apify impersonation search and fallback, prompt-injection defense, learned-policy loop, eval runner |
 | **Xanath** | Seed data and answer key, labeled eval set, Figma UI design, demo script and pitch, Devpost submission, sponsor liaison |
 
 ## Agent tools
