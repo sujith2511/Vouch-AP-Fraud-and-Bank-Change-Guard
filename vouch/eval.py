@@ -66,6 +66,7 @@ def evaluate(c):
         for r in rows:
             if r["split"] != sp: continue
             item = core.load_item(c, r["item_id"]); t = json.loads(r["truth"])
+            if (item["claim"] or {}).get("demo"): continue          # demo scenes are never part of an eval
             recs.append((item, t, final_lane(c, item)))
         fraud = [x for x in recs if x[1]["label"] == "fraud"]; legit = [x for x in recs if x[1]["label"] == "legit"]
         cleared = [x for x in recs if x[2] == "auto_clear"]
@@ -209,6 +210,7 @@ def web_report(c):
     ids = {"fraud": [], "legit": []}
     for r in load_truth(c):
         t = json.loads(r["truth"]); item = core.load_item(c, r["item_id"]); e = item["email"] or {}
+        if (item["claim"] or {}).get("demo"): continue
         n_items += 1
         nums = web_verify.phones_in(f"{e.get('subject', '')}\n{e.get('body', '')}")
         with_digits += bool(nums); with_phone += any(map(_phone_like, nums)); by[t["label"]]["emails_with_phone_like_number"] += any(map(_phone_like, nums))

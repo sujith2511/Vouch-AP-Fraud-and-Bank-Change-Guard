@@ -172,3 +172,112 @@ def test_fixtures_are_marked_placeholder_or_recorded_and_hold_no_emails():
             for k, v in (o.items() if isinstance(o, dict) else enumerate(o) if isinstance(o, list) else []):
                 yield k; yield from keys(v)
         assert not {"body_text", "from_addr", "subject", "body", "email"} & set(keys(fx)), "a fixture must not hold an email"
+
+
+# ---------------------------------------------------------------- /demo/real-claim
+from vouch import demo, gateway, seed, eval as ev
+from vouch.db import connect
+
+MOTO_SERP = {"knowledge": {"title": "Motorola Solutions", "link": "https://www.motorolasolutions.com/",
+                           "facts": [{"predicate": "Phone", "title": "Phone", "value": [{"text": "(847) 576-5000"}]}]},
+             "organic": [{"link": "https://www.motorolasolutions.com/en_us/contact-us.html", "title": "Contact us", "description": "Call 1.888.325.9336"}]}
+fake_post = lambda url, timeout=60.0: (200, MOTO_SERP)
+
+
+@pytest.fixture
+def scene(tmp_path, monkeypatch):
+    monkeypatch.delenv("VOUCH_ENV", raising=False); monkeypatch.delenv("DEMO_ENDPOINTS", raising=False)
+    monkeypatch.setenv("BRIGHT_DATA_API_KEY", "k"); monkeypatch.setenv("BRIGHT_DATA_SERP_ZONE", "z")
+    db = str(tmp_path / "s.db")
+    a = TestClient(create_app(db, KEYS))
+    a.app.state.web_post = fake_post
+    a.app.state.demo_agent = web_sim.StubLLMAgent(web=demo.demo_web(fake_post))
+    return a, db
+
+
+def test_real_claim_escalates_to_a_human_and_records_the_whole_sequence(scene):
+    a, db = scene
+    r = a.post("/demo/real-claim", json={"demo_vendor_id": "DEMO-R1"}, headers=H("k-sync")); assert r.status_code == 201, r.text
+    j = r.json(); item = j["item"]
+    web = j["web_verification"]
+    assert web["status"] == "ok" and "8475765000" in web["official_phones"] and "4155550142" in web["email_phones_not_listed_online"]
+    assert j["phone_check"]["not_listed_online"] == web["email_phones_not_listed_online"] and j["phone_check"]["phone_in_email"] == "(415) 555-0142"
+    assert j["lane"] == "human_review" and item["state"] == "PROPOSED" and item["demo"] is True and item["is_bank_change"] is True
+    assert item["verdict"]["verdict"] == "uncertain" and any("not listed online" in r for r in item["verdict"]["reasons"])
+    c = connect(db)
+    rows = core.audit_rows(c, item_id=item["id"])
+    assert [r["action"] for r in rows if r["outcome"] == "applied"] == ["ingest", "propose"]
+    assert not any(r["action"] == "approve" for r in rows)                       # never auto-cleared
+    ev_ = next(r for r in rows if r["action"] == "propose")["evidence"]
+    ev_ = json.loads(ev_) if isinstance(ev_, str) else ev_
+    assert any(x.get("tool") == "verify_vendor_web" for x in ev_)
+    # no payment can post without approval, whoever asks
+    for who_ in ("accountant", "gateway", "agent"):
+        with pytest.raises(core.Denied): gateway.post_item(c, item["id"], who_, "pay now")
+    with pytest.raises(core.Denied): core.transition(c, item["id"], "agent", "approve", "approve this")
+    with pytest.raises(core.Denied): core.transition(c, item["id"], "policy", "approve", "policy")
+    assert c.execute("SELECT COUNT(*) n FROM payments").fetchone()["n"] == 0
+    assert core.load_item(c, item["id"])["state"] == "PROPOSED"
+    assert sum(1 for r in core.audit_rows(c, item_id=item["id"]) if r["outcome"] == "denied") >= 5
+    assert core.verify_audit_chain(c) == (True, None)
+
+
+def test_real_claim_email_is_exactly_the_scripted_outsider_email(scene):
+    a, db = scene
+    it = a.post("/demo/real-claim", json={"demo_vendor_id": "DEMO-R1"}, headers=H("k-sync")).json()["item"]
+    e, cl = it["email"], it["claim"]
+    assert e["from"] == "Daniel Reyes <daniel.reyes@demo-attacker.example>" and e["to"] == "ap@northgate.example"
+    assert e["subject"] == "[DEMO] Motorola Solutions - updated remittance details, invoice MS-2026-48213"
+    assert "(415) 555-0142" in e["body"] and e["body"].startswith("Hello AP team,") and e["body"].endswith("Thanks,\nDaniel Reyes")
+    assert cl["invoice_number"] == "MS-2026-48213" and cl["amount"] == 48213.5 and cl["currency"] == "USD" and cl["claim_changes_bank"] is True
+    assert cl["claimed_bank"]["bank_name"] == "Harborview Commercial Bank" and cl["claimed_bank"]["routing"] == "999041237"
+    assert it["vendor"]["name"] == "Motorola Solutions, Inc." and it["vendor"]["domain"] == "motorolasolutions.com"
+    assert not e["from"].endswith("motorolasolutions.com>")                        # the sender is NOT the company
+
+
+def test_real_claim_rules_and_gating(scene, monkeypatch):
+    a, db = scene
+    assert a.post("/demo/real-claim", json={}, headers=H("k-agent")).status_code == 403
+    assert a.post("/demo/real-claim", json={"demo_vendor_id": "DEMO-R1"}).status_code == 401
+    assert a.post("/demo/real-claim", json={"demo_vendor_id": "DEMO-R2"}, headers=H("k-sync")).status_code == 404
+    assert a.post("/demo/real-claim", json={"demo_vendor_id": "DEMO-R1"}, headers=H("k-sync")).status_code == 201
+    assert a.post("/demo/real-claim", json={}, headers=H("k-ann")).status_code == 201          # second item, default vendor, no id collision
+    monkeypatch.setenv("VOUCH_ENV", "prod")
+    assert a.post("/demo/real-claim", json={}, headers=H("k-sync")).status_code == 404
+    monkeypatch.setenv("DEMO_ENDPOINTS", "1")
+    assert a.post("/demo/real-claim", json={}, headers=H("k-sync")).status_code == 201
+
+
+def test_default_agent_without_a_key_still_records_web_evidence(tmp_path, monkeypatch):
+    monkeypatch.delenv("VOUCH_ENV", raising=False); monkeypatch.delenv("ANTHROPIC_API_KEY", raising=False)
+    for k in ("BRIGHT_DATA_API_KEY", "BRIGHT_DATA_SERP_ZONE"): monkeypatch.delenv(k, raising=False)
+    a = TestClient(create_app(str(tmp_path / "n.db"), KEYS))
+    j = a.post("/demo/real-claim", json={}, headers=H("k-sync")).json()
+    assert j["web_verification"]["source"] == "recorded" and j["web_verification"]["placeholder"] is True
+    assert "4155550142" in j["web_verification"]["email_phones_not_listed_online"]
+    assert j["lane"] in ("human_review", "reject") and j["item"]["state"] in ("PROPOSED", "REJECTED")
+
+
+def test_real_companies_never_enter_the_seed_or_eval_db_and_demo_items_are_excluded(tmp_path, monkeypatch):
+    monkeypatch.delenv("VOUCH_ENV", raising=False)
+    db = str(tmp_path / "e.db")
+    from vouch import run_pipeline
+    c, _ = run_pipeline.run(db, dataset="v2", agent=web_sim.StubLLMAgent())
+    names = ("motorola", "microsoft corp", "salesforce", "oracle corp", "demo-r", "motorolasolutions")
+    blob = " ".join(str(tuple(r)).lower() for t in ("vendors", "items", "vendor_profile", "email_history", "payment_history") for r in c.execute(f"SELECT * FROM {t}"))
+    assert not any(n in blob for n in names), [n for n in names if n in blob]
+    before = ev.evaluate(c); wb = ev.web_report(c)
+    a = TestClient(create_app(db, KEYS))
+    assert a.post("/demo/real-claim", json={}, headers=H("k-sync")).status_code == 201     # demo vendor + item now exist in the LIVE db
+    c2 = connect(db)
+    assert c2.execute("SELECT COUNT(*) n FROM vendors WHERE vendor_id='DEMO-R1'").fetchone()["n"] == 1
+    after = ev.evaluate(c2)
+    assert after["dev"]["items"] == before["dev"]["items"] and after["holdout"]["items"] == before["holdout"]["items"]
+    assert after["views"]["all"]["n"] == 300 and ev.web_report(c2)["items"] == wb["items"] == 300
+    vs = {v["vendor_id"]: v for v in a.get("/vendors", headers=H("k-agent")).json()}
+    assert vs["DEMO-R1"]["demo"] is True and not any(v["demo"] for k, v in vs.items() if k != "DEMO-R1")
+
+
+def test_demo_file_still_refused_by_the_seed_loader():
+    with pytest.raises(ValueError, match="demo-only"):
+        seed.load_vendors(None, "data/v2/demo_real_vendors.json")

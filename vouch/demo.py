@@ -114,3 +114,111 @@ def verify_demo_vendor(demo_vendor_id, email_text="", post=None, fixture_dir=Non
     web_verify._cache.pop((vendor["name"], vendor["domain"].lower()), None)     # a saved response must never be served as a later live result
     return {**r, "demo_vendor_id": demo_vendor_id, "source": "recorded", "simulated": False, "placeholder": bool(fx.get("placeholder")),
             "recorded_at": fx.get("recorded_at"), "live_attempt": live_status}
+
+
+# ---------------------------------------------------------------- scene: an outsider claims a real company changed its bank (DEMO ONLY)
+# The scenario text lives here, in code, and nowhere under data/. It is never loaded into the seed/eval DB; the vendor of record is inserted
+# into the LIVE DB only, flagged demo=true.
+ATTACKER_FROM = "Daniel Reyes <daniel.reyes@demo-attacker.example>"
+CLAIM_BANK = {"bank_name": "Harborview Commercial Bank", "routing": "999041237", "account": "TEST-00417731", "account_name": "Motorola Solutions Inc"}
+CLAIM_INVOICE, CLAIM_AMOUNT, CLAIM_PHONE = "MS-2026-48213", 48213.50, "(415) 555-0142"
+CLAIM_SUBJECT = "[DEMO] Motorola Solutions - updated remittance details, invoice MS-2026-48213"
+CLAIM_BODY = """Hello AP team,
+
+I handle collections follow-ups for a number of Motorola Solutions accounts. I was told that Motorola Solutions, Inc. has moved its receivables to a new bank, and that outstanding invoice MS-2026-48213 for $48,213.50 should be paid to the new account below instead of the one you have on file.
+
+Bank: Harborview Commercial Bank
+Routing: 999041237
+Account: TEST-00417731
+Account name: Motorola Solutions Inc
+
+Please confirm the change by calling me directly on (415) 555-0142. There is no need to contact Motorola's regular accounts team, as they are not handling this change.
+
+Thanks,
+Daniel Reyes"""
+REAL_CLAIM_VENDOR = "DEMO-R1"
+
+
+def is_demo_vendor(conn, vendor_id):
+    r = conn.execute("SELECT profile FROM vendor_profile WHERE vendor_id=?", (vendor_id,)).fetchone()
+    return bool(r and json.loads(r["profile"]).get("demo"))
+
+
+def ensure_demo_vendor(conn, demo_vendor_id):
+    """Vendor of record for a demo company: live DB only, flagged demo=true (profile). Idempotent. The bank on file is the demo file's FAKE test bank."""
+    c = get_company(demo_vendor_id)
+    if conn.execute("SELECT 1 FROM vendors WHERE vendor_id=?", (demo_vendor_id,)).fetchone():
+        return demo_vendor_id
+    pays = c["sf_payments"]["payments"]
+    amounts = sorted(p["amount"] for p in pays if p.get("amount"))
+    typical = float(amounts[len(amounts) // 2]) if amounts else 10000.0
+    b = c["bank"]
+    conn.execute("BEGIN IMMEDIATE")
+    try:
+        conn.execute("INSERT INTO vendors(vendor_id,name,domain,typical_amount,bank_name,bank_routing,bank_account,phone,split) VALUES(?,?,?,?,?,?,?,?,NULL)",
+                     (demo_vendor_id, c["legal_name"], company_domain(c), typical, "Demo Test Bank", b["routing"], b["account"], company_phone(c)))
+        conn.execute("INSERT INTO vendor_profile(vendor_id, profile) VALUES(?,?)",
+                     (demo_vendor_id, json.dumps({"demo": True, "note": "real public company, demo only; bank details are fake test values"})))
+        for p in pays[:10]:
+            conn.execute("INSERT INTO payment_history(vendor_id,voucher,po,fiscal_year,po_date,amount,name_as_paid,department) VALUES(?,?,?,?,?,?,?,?)",
+                         (demo_vendor_id, p.get("voucher"), p.get("po"), p.get("fiscal_year"), p.get("po_date"), p.get("amount"), p.get("name_as_paid"), p.get("department")))
+        conn.execute("COMMIT")
+    except Exception:
+        conn.execute("ROLLBACK"); raise
+    return demo_vendor_id
+
+
+def demo_web(post=None):
+    """The `web` callable for LLMAgent: the demo companies via verify_demo_vendor (live, else recorded); anything else the normal function."""
+    def web(vendor, email_text=""):
+        for c in companies():
+            if company_domain(c) == (vendor.get("domain") or "").lower():
+                return verify_demo_vendor(c["demo_vendor_id"], email_text, post=post)
+        return web_verify.verify_vendor_web(vendor, email_text, post=post)
+    return web
+
+
+class WebEvidenceAgent:
+    """Wraps an agent without its own web check (the rule-based one) so the audit log still records the web verification as evidence."""
+    def __init__(self, inner, web):
+        self.inner, self.web = inner, web
+
+    def investigate(self, item, client):
+        d = self.inner.investigate(item, client)
+        v, e = item["vendor"] or {}, item["email"] or {}
+        r = self.web({"name": v.get("name"), "domain": v.get("domain"), "phone": None}, f"{e.get('subject', '')}\n{e.get('body', '')}")
+        d.evidence = list(d.evidence or []) + [{"tool": "verify_vendor_web", "result": r}]
+        if d.verdict == "legit" and (r.get("email_phones_not_listed_online") or r.get("status") != "ok"):
+            d.verdict, d.reasons = "uncertain", list(d.reasons) + ["web check: callback number not listed online or vendor not verifiable"]
+        return d
+
+
+def real_claim(conn, db_path, demo_vendor_id=REAL_CLAIM_VENDOR, agent=None, post=None):
+    """Create ONE work item from the outsider's email and run it through the normal pipeline (ingest -> agent -> policy lane).
+    Returns (item_id, lane, web_verification)."""
+    if demo_vendor_id != REAL_CLAIM_VENDOR:
+        raise LookupError(f"no scripted scene for {demo_vendor_id!r}")
+    ensure_demo_vendor(conn, demo_vendor_id)
+    n = conn.execute("SELECT COUNT(*) n FROM items WHERE id LIKE 'DEMO-RC-%'").fetchone()["n"] + 1
+    item_id = f"DEMO-RC-{n:03d}"
+    email = {"from": ATTACKER_FROM, "reply_to": "daniel.reyes@demo-attacker.example", "to": "ap@northgate.example", "cc": [],
+             "auth": {"spf": "pass", "dkim": "pass", "dmarc": "pass"}, "subject": CLAIM_SUBJECT, "body": CLAIM_BODY, "demo": True}
+    claim = {"invoice_number": CLAIM_INVOICE, "amount": CLAIM_AMOUNT, "currency": "USD", "claimed_bank": dict(CLAIM_BANK),
+             "claim_changes_bank": True, "change_type": "new_account", "demo": True}
+    core.ingest_item(conn, item_id=item_id, vendor_id=demo_vendor_id, email=email, claim=claim, actor="sync", actor_id="demo")
+    web = demo_web(post)
+    if agent is None:
+        import os
+        if os.environ.get("ANTHROPIC_API_KEY"):
+            from .llm_agent import LLMAgent
+            agent = LLMAgent(web=web)
+        else:
+            agent = WebEvidenceAgent(RuleBasedAgent(), web)
+    lane = "none"
+    try:
+        run_agent(agent, LocalClient(db_path, actor_id="demo-agent"), item_id)
+        lane = core.apply_policy(conn, item_id)
+    except Exception as ex:      # an agent failure must not bypass the rulebook; the item stays NEW and the failure is audited
+        core.record_denied(conn, actor="agent", action="propose", item_id=item_id, reason=repr(ex)[:300], code="AGENT_ERROR", state="NEW", vendor_id=demo_vendor_id)
+    return item_id, lane, web({"name": get_company(demo_vendor_id)["legal_name"], "domain": company_domain(get_company(demo_vendor_id)), "phone": company_phone(get_company(demo_vendor_id))},
+                              f"{CLAIM_SUBJECT}\n{CLAIM_BODY}")

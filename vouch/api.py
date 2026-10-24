@@ -167,7 +167,7 @@ def create_app(db_path=None, keys=None):
         for r in rows:
             prof = json.loads(r["profile"]) if r["profile"] else {}
             out.append({"vendor_id": r["vendor_id"], "name": r["name"], "domain": r["domain"], "typical_amount": r["typical_amount"], "phone": r["phone"],
-                        "registered": r["vendor_id"] != "UNKNOWN", "country": prof.get("country"), "currency": prof.get("currency"), "industry": prof.get("industry"),
+                        "registered": r["vendor_id"] != "UNKNOWN", "demo": bool(prof.get("demo")), "country": prof.get("country"), "currency": prof.get("currency"), "industry": prof.get("industry"),
                         "bank": core._mask({"bank_name": r["bank_name"], "routing": r["bank_routing"], "account": r["bank_account"]}), "items": r["items"]})
         return out
 
@@ -283,6 +283,26 @@ def create_app(db_path=None, keys=None):
         except LookupError as e:
             raise HTTPException(409, str(e))
         return {"lane": lane, "item": public_item(core.load_item(c, item_id))}
+
+    @app.post("/demo/real-claim", status_code=201)
+    def demo_real_claim(body: dict = None, who=Depends(auth), c=Depends(conn_dep)):
+        """Demo scene: an OUTSIDER claims a real company changed its bank. One work item through the normal pipeline; the response carries the
+        web verification (official phone on the web vs the number in the email). Demo vendor of record lives in the live DB only (demo=true)."""
+        _demo_enabled()
+        if who["role"] not in ("sync", "accountant"):
+            aid = core.record_denied(c, actor=who["role"], action="ingest", item_id=None, reason="demo real-claim", code="ACTOR_NOT_ALLOWED",
+                                     detail="only sync/accountant keys may trigger the demo scene", actor_id=who["user"])
+            raise HTTPException(403, {"code": "ACTOR_NOT_ALLOWED", "message": "only sync/accountant keys may trigger the demo scene", "audit_id": aid})
+        from . import demo, web_verify
+        vid = (body or {}).get("demo_vendor_id", demo.REAL_CLAIM_VENDOR)
+        try:
+            item_id, lane, web = demo.real_claim(c, app.state.db_path, vid, agent=getattr(app.state, "demo_agent", None), post=getattr(app.state, "web_post", None))
+        except LookupError as e:
+            raise HTTPException(404, str(e))
+        item = public_item(core.load_item(c, item_id)); item["demo"] = True
+        return {"lane": lane, "item": item, "web_verification": web,
+                "phone_check": {"phone_in_email": demo.CLAIM_PHONE, "official_phones_on_web": web.get("official_phones"),
+                                "not_listed_online": web.get("email_phones_not_listed_online"), "source": web.get("source")}}
 
     return app
 

@@ -158,8 +158,8 @@ def _no_shield(subject, body):
 class StubLLMAgent(LLMAgent):
     """The real LLMAgent code (render, _guard) with a stub in place of the model: `legit` for everything, so any stricter outcome comes from
     the code-level guard. No web lookup for fictional vendors (the default). --agent vouch.web_sim:StubLLMAgent"""
-    def __init__(self, verdict="legit"):
-        super().__init__(anthropic_client=StubLLM(verdict), model="stub", shield=_no_shield)
+    def __init__(self, verdict="legit", web=None):
+        super().__init__(anthropic_client=StubLLM(verdict), model="stub", shield=_no_shield, web=web)
 
 
 class StubWebAgent(SimWebMixin, StubLLMAgent):

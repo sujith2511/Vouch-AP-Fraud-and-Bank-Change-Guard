@@ -57,3 +57,52 @@ def test_eval_and_pipeline_never_reference_the_demo_file():
     for f in Path("vouch").glob("*.py"):
         # seed.py names the file only to refuse it; demo.py (live demo code, never the seed/eval path) is the only module that reads it
         assert "demo_real_vendors" not in f.read_text() or f.name in ("seed.py", "demo.py")
+
+
+# ---- every data file, fixture and module (not just the jsonl sets): the real companies may appear only where they must
+def _strict_names():
+    """Legal names, domains and the distinctive single words. 'microsoft'/'oracle' alone are ordinary product words (mailer strings), so those
+    two are matched only as the company's legal name or domain."""
+    names = set()
+    for c in CO:
+        names |= {c["legal_name"].lower().replace(",", "").replace(".", ""), c["website"]["final_url"].split("//")[1].split("/")[0].replace("www.", "").lower()}
+        names |= {w.lower() for w in re.split(r"[ ,.]+", c["legal_name"]) if len(w) >= 6 and w.lower() not in ("solutions", "microsoft", "oracle", "corp")}
+    return names
+
+
+# allowed: the demo file itself, the recorded/placeholder web-verification fixtures, prose docs, and the live-demo module vouch/demo.py
+ALLOWED_DATA = ("data/v2/demo_real_vendors.json", "data/v2/web_verify_fixtures/")
+
+
+def _tracked_text_files(root, suffixes):
+    out = []
+    for f in Path(root).rglob("*"):
+        rel = str(f)
+        if not f.is_file() or f.suffix not in suffixes or rel.startswith(("data/raw", "data/local")) or "__pycache__" in rel:
+            continue
+        out.append(f)
+    return out
+
+
+def test_no_data_file_or_fixture_mentions_the_real_companies_except_the_allowed_ones():
+    names = _strict_names()
+    hits = []
+    for f in _tracked_text_files("data", {".json", ".jsonl", ".csv", ".txt"}) + _tracked_text_files("tests", {".json", ".jsonl", ".csv", ".txt"}):
+        rel = str(f)
+        if rel.startswith(ALLOWED_DATA): continue
+        t = f.read_text().lower()
+        hits += [(rel, n) for n in names if n in t]
+    assert hits == [], hits
+
+
+def test_only_vouch_demo_py_mentions_the_real_companies_in_code():
+    # microsoft.com is excluded here only: prompt_shields.py cites Azure documentation URLs on that domain
+    names = _strict_names() - {"microsoft.com"}
+    hits = [(str(f), n) for f in Path("vouch").glob("*.py") if f.name != "demo.py" for n in names if n in f.read_text().lower()]
+    assert hits == [], hits
+
+
+def test_web_verify_fixtures_hold_no_email_records():
+    for f in Path("data/v2/web_verify_fixtures").glob("*.json"):
+        t = json.loads(f.read_text())
+        assert t["demo_vendor_id"] and "serp" in t and not {"body_text", "from_addr", "claimed_bank", "subject"} & set(t)
