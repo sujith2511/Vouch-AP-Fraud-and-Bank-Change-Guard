@@ -64,6 +64,35 @@ python -m vouch.eval --db run.db --json eval_results_v2.json
 - Ground truth is read only by `vouch.eval`, from `<db>.evalkey`. It is not in the DB, the API or any tool output (`tests/test_v2_backend.py` checks this).
 - Full numbers (per scenario, per difficulty, per fuzzer): `eval_results_v2.json`.
 
+## Web verification (Bright Data): what is simulated, live, recorded
+`vouch/web_verify.py` (Sujith) looks a vendor up on the public web and compares the official phone with numbers in the email. It skips fictional vendors, so on the eval set it never ran. Three layers now exist, and every result says which one it is:
+
+| layer | where | label | when |
+|---|---|---|---|
+| **live** | `web_verify.verify_vendor_web` -> Bright Data SERP | `"source": "live"` | real demo companies, when `BRIGHT_DATA_API_KEY` and `BRIGHT_DATA_SERP_ZONE` are set and the call succeeds |
+| **recorded** | `data/v2/web_verify_fixtures/<id>.json`, replayed through the same function | `"source": "recorded"`, plus `"placeholder": true` until real data is recorded | real demo companies, key missing or call blocked/failed (`live_attempt` says why) |
+| **simulated** | `vouch/web_sim.py`: directory built from `data/v2/vendors.v2.json`, replayed through the same function | `"simulated": true` on every result and in the results file | fictional v2 vendors, only with `--web sim` |
+
+The simulated official phone is the vendor's phone on file, so it shows the plumbing and the guard working; it says nothing about how the live web behaves. A blocked, empty, error or not_configured result is never reassurance (`LLMAgent._guard` escalates it).
+
+**Eval with the simulated web** (default is off, so existing results do not change):
+```
+python -m vouch.run_pipeline --dataset v2 --agent vouch.llm_agent:LLMAgent --web sim --db run_websim.db
+python -m vouch.eval --db run_websim.db --web sim        # writes eval_results_v2_llm_websim.json (simulated_web: true) and compares with eval_results_v2_llm.json
+```
+**That real-agent run has not been done yet** (no API key where this was built); it has to be run by whoever has `ANTHROPIC_API_KEY`. The code path was verified with a stub in place of the model (`--agent vouch.web_sim:StubLLMAgent`): the real `LLMAgent` guard and web check run, the model always says "legit", so every stricter outcome comes from the code. Stub numbers (not committed, not the LLM): the web check escalated 232 of 284 items for an "unlisted phone number", but 209 of those flagged only long digit runs. `web_verify.PHONE_RE` has no digit boundaries, so PO and invoice numbers such as `000053180001` read as phone numbers. Counting only real phone numbers (bounded pattern, scratch run, `web_verify.py` unchanged) 75 of 300 emails contain one, and only 3 get flagged, all fraud, none legit. Suggested one-line fix for Sujith: wrap the pattern in `(?<!\d)...(?!\d)`.
+
+**Demo endpoints** (same rule as `/demo/inject`: on unless `VOUCH_ENV=prod`, or `DEMO_ENDPOINTS=1`; any valid key may GET, only sync/accountant keys may POST):
+- `GET /demo/verify/{DEMO-R1..R4}`: official phones, official site, phone-on-file match and status for the real demo companies (domain = host of the file's `website.final_url`).
+- `POST /demo/real-claim {"demo_vendor_id": "DEMO-R1"}`: an outsider emails that Motorola Solutions moved its bank and asks the AP team to call a number that is not on the company's web listings. One work item runs through the normal pipeline (state machine, `can()`, audit log, agent and guards). The vendor of record is inserted into the live DB only, flagged `demo`; the seed loader still refuses the demo file and eval ignores demo items. The response includes `web_verification` and a `phone_check` block (number in the email vs official numbers on the web). The scene's text lives in `vouch/demo.py`, nowhere under `data/`. Without `ANTHROPIC_API_KEY` the rule-based agent is used and the web result is recorded as evidence.
+
+**Recording real fixtures** (one paid search per company, overwrites the placeholders, writes a timestamp):
+```
+BRIGHT_DATA_API_KEY=... BRIGHT_DATA_SERP_ZONE=... python scripts/record_web_verify.py
+python scripts/record_web_verify.py --placeholders       # offline: rewrite the placeholders
+```
+Env vars: `BRIGHT_DATA_API_KEY`, `BRIGHT_DATA_SERP_ZONE` (SERP API zone, full JSON), `ANTHROPIC_API_KEY` (LLM agent), `DEMO_ENDPOINTS`, `VOUCH_ENV`.
+
 ## Not done / known limits
 Azure deploy files exist but were not run (no credentials). Coinbase testnet rail not built (interface in `vouch/rails.py`). In-process the `gateway` actor guard is a seatbelt, not a sandbox: the real boundaries are API-key roles and the DB triggers. SQLite means a single replica.
 
