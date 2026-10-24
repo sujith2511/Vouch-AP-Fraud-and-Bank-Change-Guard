@@ -98,6 +98,39 @@ def test_bank_change_without_notice_still_needs_callback(v2):
     assert d.kind == "ask" or d.verdict != "legit"
 
 
+REMIT_CHANGE = first(lambda v: v.get("change_type") == "remit_address_only")
+SPLIT_PAIR = first(lambda v: v["truth"]["scenario"] == "kickback_threshold_splitting" and v["truth"].get("pair_with"))
+
+
+def test_non_bank_change_request_is_never_legit(v2):
+    d, _, _ = decide(v2, REMIT_CHANGE, [submit(verdict="legit")])
+    assert d.verdict == "uncertain" and any("change to vendor details" in r for r in d.reasons)
+
+
+def test_vendor_queue_shows_the_other_half_of_a_split_invoice(v2):
+    from vouch.llm_agent import vendor_queue
+    client = LocalClient(v2)
+    q = vendor_queue(client, client.get_item(SPLIT_PAIR))
+    ids = {x["id"] for x in q["items"]}
+    assert RAW[SPLIT_PAIR]["truth"]["pair_with"] in ids and SPLIT_PAIR not in ids
+    assert "truth" not in json.dumps(q) and "expected_lane" not in json.dumps(q)
+
+
+def test_vendor_queue_leaves_out_unrelated_invoices():
+    from vouch.llm_agent import _related
+    mine = {"invoice_number": "A1", "po": "P1", "amount": 1000.0}
+    assert _related(mine, {"invoice_number": "A1", "po": None, "amount": 5.0})       # same number: duplicate
+    assert _related(mine, {"invoice_number": "A9", "po": "P1", "amount": 5.0})       # same PO
+    assert _related(mine, {"invoice_number": "A9", "po": "P2", "amount": 1200.0})    # similar amount: split pattern
+    assert not _related(mine, {"invoice_number": "A9", "po": "P2", "amount": 4000.0})
+
+
+def test_vendor_queue_is_offered_as_a_tool(v2):
+    d, llm, _ = decide(v2, SPLIT_PAIR, [tool_use("read_vendor_queue")], [submit(verdict="fraud", reasons=["split invoice"])])
+    assert "read_vendor_queue" in {t["name"] for t in llm.requests[0]["tools"]}
+    assert any(x["tool"] == "read_vendor_queue" for x in d.evidence)
+
+
 def test_email_history_tool_is_slim(v2):
     d, llm, _ = decide(v2, GENUINE_BANK_CHANGE, [tool_use("read_email_history")], [submit(verdict="legit")])
     result = json.loads(llm.requests[1]["messages"][2]["content"][0]["content"])
