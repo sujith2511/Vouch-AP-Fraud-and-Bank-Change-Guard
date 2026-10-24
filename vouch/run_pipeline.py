@@ -15,15 +15,20 @@ def load_agent(spec):
     return getattr(importlib.import_module(mod), cls)()
 
 
-def run(db_path, emails_path, vendors_path="data/vendors.json", agent=None, limit=None, fresh=True):
+def run(db_path, emails_path=None, vendors_path="data/vendors.json", agent=None, limit=None, fresh=True, dataset=None, which="emails"):
+    """dataset: 'v1' (default; or env VOUCH_DATASET) or 'v2'. For v2, emails_path overrides the file chosen by `which` (emails|dev|holdout)."""
     agent = agent or RuleBasedAgent()
-    if fresh and os.path.exists(db_path):
-        for suf in ("", "-wal", "-shm"):
+    if fresh:
+        for suf in ("", "-wal", "-shm", ".evalkey"):
             if os.path.exists(db_path + suf): os.remove(db_path + suf)
     init_db(db_path).close()
     c = connect(db_path)
-    seed.load_vendors(c, vendors_path)
-    n = seed.ingest_emails(c, emails_path, limit)
+    if seed.dataset_version(dataset) == "v2":
+        seed.load_vendors_v2(c)
+        n = seed.ingest_emails_v2(c, db_path, which, limit, emails_path=emails_path)
+    else:
+        seed.load_vendors(c, vendors_path)
+        n = seed.ingest_emails(c, emails_path or "data/emails.jsonl", limit)
     client, stats = LocalClient(db_path), {"items": n, "agent_errors": 0, "lanes": {}}
     for it in core.list_items(c, "NEW", limit=100000):
         try:
@@ -38,12 +43,13 @@ def run(db_path, emails_path, vendors_path="data/vendors.json", agent=None, limi
 
 
 def main():
-    ap = argparse.ArgumentParser(); ap.add_argument("--emails", default="data/emails.jsonl"); ap.add_argument("--db", default="run.db")
+    ap = argparse.ArgumentParser(); ap.add_argument("--emails", default=None); ap.add_argument("--dataset", default=None, help="v1 (default) or v2; env VOUCH_DATASET")
+    ap.add_argument("--which", default="emails", choices=["emails", "dev", "holdout"], help="v2 only"); ap.add_argument("--db", default="run.db")
     ap.add_argument("--vendors", default="data/vendors.json"); ap.add_argument("--agent", default="stub"); ap.add_argument("--limit", type=int)
     a = ap.parse_args()
-    if not os.path.exists(a.emails):
-        raise SystemExit(f"{a.emails} not found (generate it with scripts/generate_emails.py, or use data/fixtures/emails_fixture.jsonl)")
-    t = time.time(); c, stats = run(a.db, a.emails, a.vendors, load_agent(a.agent), a.limit)
+    if a.emails and not os.path.exists(a.emails):
+        raise SystemExit(f"{a.emails} not found (v1: data/fixtures/emails_fixture.jsonl; v2: data/v2/emails.jsonl)")
+    t = time.time(); c, stats = run(a.db, a.emails, a.vendors, load_agent(a.agent), a.limit, dataset=a.dataset, which=a.which)
     print(stats, f"{time.time() - t:.1f}s -> {a.db}")
 
 
