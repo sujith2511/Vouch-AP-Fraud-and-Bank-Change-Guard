@@ -1,34 +1,36 @@
 {
  "agent": "vouch.llm_agent:LLMAgent",
  "model": "claude-haiku-4-5",
+ "agent_commit": "3c2cb35",
+ "run": "final: all 300 v2 emails in one run, scored per split",
+ "cost_usd": 5.47,
+ "seconds": 5367,
+ "model_calls": 611,
  "layers": [
   "Azure AI Content Safety Prompt Shields",
   "keyword + workflow-command guard",
+  "computed_checks (invoice-number jump, split under approval limit)",
   "code guard (stricter only)",
   "rulebook / policy lane"
  ],
  "web_verification": "Bright Data (not exercised: all v2 vendors use reserved .example domains)",
- "note": "dev and holdout were run with different agent versions; holdout was run once, after all tuning, and is the headline.",
+ "tuning_note": "Prompt and guards were tuned on dev only. The holdout was also scored once on an earlier version (e71654b: lane 0.861, fraud auto-cleared 1/51); this file reports the final version.",
  "dev": {
-  "agent_commit": "287c5c0",
-  "cost_usd": 3.07,
-  "seconds": 2900,
   "items": 192,
   "fraud": 89,
   "legit": 103,
-  "fraud_caught": "86/89",
-  "fraud_rejected_outright": "41/89",
+  "fraud_caught": "87/89",
+  "fraud_rejected_outright": "36/89",
   "false_blocks_on_legit": "0/103",
-  "legit_sent_to_human": "60/103",
-  "auto_clear_count": 46,
-  "auto_clear_precision": 0.9348,
+  "legit_sent_to_human": "63/103",
+  "auto_clear_count": 42,
+  "auto_clear_precision": 0.9524,
   "FRAUD_AUTO_CLEARED": [
    "C0251",
-   "C0296",
-   "C0297"
+   "C0252"
   ],
-  "lane_accuracy": 0.812,
-  "verdict_accuracy": 0.729,
+  "lane_accuracy": 0.901,
+  "verdict_accuracy": 0.693,
   "by_type": {
    "amount_spike_real_reason": {
     "n": 8,
@@ -80,21 +82,21 @@
    },
    "fake_vendor_onboarding": {
     "n": 5,
-    "lane_acc": 0.2,
+    "lane_acc": 0.6,
     "fraud_caught": 5,
     "auto_cleared": 0
    },
    "inflated_invoice_just_under_1_5x": {
     "n": 6,
-    "lane_acc": 0.833,
-    "fraud_caught": 5,
-    "auto_cleared": 1
+    "lane_acc": 0.667,
+    "fraud_caught": 4,
+    "auto_cleared": 2
    },
    "international_vendor": {
     "n": 8,
-    "lane_acc": 0.75,
+    "lane_acc": 1.0,
     "fraud_caught": null,
-    "auto_cleared": 6
+    "auto_cleared": 8
    },
    "invoice_sequence_anomaly": {
     "n": 5,
@@ -104,9 +106,9 @@
    },
    "kickback_threshold_splitting": {
     "n": 4,
-    "lane_acc": 0.5,
-    "fraud_caught": 2,
-    "auto_cleared": 2
+    "lane_acc": 1.0,
+    "fraud_caught": 4,
+    "auto_cleared": 0
    },
    "legit_bank_change_callback": {
     "n": 8,
@@ -122,25 +124,25 @@
    },
    "lookalike_domain": {
     "n": 6,
-    "lane_acc": 1.0,
+    "lane_acc": 0.833,
     "fraud_caught": 6,
     "auto_cleared": 0
    },
    "partial_split": {
     "n": 6,
-    "lane_acc": 1.0,
-    "fraud_caught": null,
-    "auto_cleared": 4
-   },
-   "payment_reminder": {
-    "n": 6,
-    "lane_acc": 0.5,
+    "lane_acc": 0.833,
     "fraud_caught": null,
     "auto_cleared": 3
    },
+   "payment_reminder": {
+    "n": 6,
+    "lane_acc": 1.0,
+    "fraud_caught": null,
+    "auto_cleared": 0
+   },
    "phantom_vendor": {
     "n": 5,
-    "lane_acc": 0.0,
+    "lane_acc": 0.4,
     "fraud_caught": 5,
     "auto_cleared": 0
    },
@@ -158,9 +160,9 @@
    },
    "portal_notification": {
     "n": 6,
-    "lane_acc": 0.667,
+    "lane_acc": 0.833,
     "fraud_caught": null,
-    "auto_cleared": 4
+    "auto_cleared": 5
    },
    "prompt_injection": {
     "n": 10,
@@ -170,15 +172,15 @@
    },
    "recurring_subscription": {
     "n": 6,
-    "lane_acc": 0.5,
+    "lane_acc": 1.0,
     "fraud_caught": null,
-    "auto_cleared": 1
+    "auto_cleared": 4
    },
    "remit_address_change": {
     "n": 5,
-    "lane_acc": 0.0,
+    "lane_acc": 1.0,
     "fraud_caught": null,
-    "auto_cleared": 5
+    "auto_cleared": 0
    },
    "routine": {
     "n": 13,
@@ -220,19 +222,19 @@
   "by_difficulty": {
    "easy": {
     "n": 42,
-    "lane_acc": 0.762,
+    "lane_acc": 0.881,
     "fraud_caught": 11,
-    "auto_cleared": 24
+    "auto_cleared": 23
    },
    "hard": {
     "n": 74,
-    "lane_acc": 0.851,
-    "fraud_caught": 37,
-    "auto_cleared": 11
+    "lane_acc": 0.919,
+    "fraud_caught": 38,
+    "auto_cleared": 8
    },
    "medium": {
     "n": 76,
-    "lane_acc": 0.803,
+    "lane_acc": 0.895,
     "fraud_caught": 38,
     "auto_cleared": 11
    }
@@ -240,9 +242,9 @@
   "by_fuzzer": {
    "(none)": {
     "n": 171,
-    "lane_acc": 0.789,
-    "fraud_caught": 65,
-    "auto_cleared": 46
+    "lane_acc": 0.889,
+    "fraud_caught": 66,
+    "auto_cleared": 42
    },
    "hyphenation": {
     "n": 8,
@@ -280,36 +282,34 @@
   "views": {
    "hard": {
     "items": 74,
-    "lane_accuracy": 0.851,
+    "lane_accuracy": 0.919,
     "verdict_accuracy": 0.73,
-    "fraud_auto_cleared": "3/40"
+    "fraud_auto_cleared": "2/40"
    },
    "fraud_no_bank_change": {
     "items": 35,
-    "lane_accuracy": 0.771,
-    "verdict_accuracy": 0.629,
-    "fraud_auto_cleared": "3/35"
-   }
+    "lane_accuracy": 0.857,
+    "verdict_accuracy": 0.657,
+    "fraud_auto_cleared": "2/35"
+   },
+   "auto_clearable_legit_auto_cleared": "37/40"
   }
  },
  "holdout": {
-  "agent_commit": "e71654b",
-  "cost_usd": 1.9,
-  "seconds": 1763,
   "items": 108,
   "fraud": 51,
   "legit": 57,
   "fraud_caught": "50/51",
-  "fraud_rejected_outright": "18/51",
+  "fraud_rejected_outright": "17/51",
   "false_blocks_on_legit": "0/57",
-  "legit_sent_to_human": "45/57",
-  "auto_clear_count": 13,
-  "auto_clear_precision": 0.9231,
+  "legit_sent_to_human": "40/57",
+  "auto_clear_count": 18,
+  "auto_clear_precision": 0.9444,
   "FRAUD_AUTO_CLEARED": [
-   "C0283"
+   "C0263"
   ],
-  "lane_accuracy": 0.861,
-  "verdict_accuracy": 0.639,
+  "lane_accuracy": 0.898,
+  "verdict_accuracy": 0.667,
   "by_type": {
    "amount_spike_real_reason": {
     "n": 4,
@@ -355,13 +355,13 @@
    },
    "fake_invoice_compromised_domain_real_bank": {
     "n": 3,
-    "lane_acc": 1.0,
-    "fraud_caught": 3,
-    "auto_cleared": 0
+    "lane_acc": 0.667,
+    "fraud_caught": 2,
+    "auto_cleared": 1
    },
    "fake_vendor_onboarding": {
     "n": 3,
-    "lane_acc": 0.0,
+    "lane_acc": 0.667,
     "fraud_caught": 3,
     "auto_cleared": 0
    },
@@ -373,15 +373,15 @@
    },
    "international_vendor": {
     "n": 4,
-    "lane_acc": 0.75,
+    "lane_acc": 1.0,
     "fraud_caught": null,
-    "auto_cleared": 3
+    "auto_cleared": 4
    },
    "invoice_sequence_anomaly": {
     "n": 3,
-    "lane_acc": 0.667,
-    "fraud_caught": 2,
-    "auto_cleared": 1
+    "lane_acc": 1.0,
+    "fraud_caught": 3,
+    "auto_cleared": 0
    },
    "kickback_threshold_splitting": {
     "n": 4,
@@ -409,9 +409,9 @@
    },
    "partial_split": {
     "n": 3,
-    "lane_acc": 0.667,
+    "lane_acc": 1.0,
     "fraud_caught": null,
-    "auto_cleared": 2
+    "auto_cleared": 3
    },
    "payment_reminder": {
     "n": 3,
@@ -421,21 +421,21 @@
    },
    "phantom_vendor": {
     "n": 3,
-    "lane_acc": 0.333,
+    "lane_acc": 0.0,
     "fraud_caught": 3,
     "auto_cleared": 0
    },
    "po_matched": {
     "n": 5,
-    "lane_acc": 0.8,
+    "lane_acc": 1.0,
     "fraud_caught": null,
-    "auto_cleared": 2
+    "auto_cleared": 3
    },
    "po_mismatch_legit": {
     "n": 4,
-    "lane_acc": 1.0,
+    "lane_acc": 0.75,
     "fraud_caught": null,
-    "auto_cleared": 0
+    "auto_cleared": 1
    },
    "portal_notification": {
     "n": 3,
@@ -463,9 +463,9 @@
    },
    "routine": {
     "n": 7,
-    "lane_acc": 0.857,
+    "lane_acc": 1.0,
     "fraud_caught": null,
-    "auto_cleared": 3
+    "auto_cleared": 4
    },
    "services_never_ordered_no_po": {
     "n": 3,
@@ -501,9 +501,9 @@
   "by_difficulty": {
    "easy": {
     "n": 23,
-    "lane_acc": 0.739,
+    "lane_acc": 0.87,
     "fraud_caught": 8,
-    "auto_cleared": 7
+    "auto_cleared": 10
    },
    "hard": {
     "n": 53,
@@ -513,17 +513,17 @@
    },
    "medium": {
     "n": 32,
-    "lane_acc": 0.844,
+    "lane_acc": 0.875,
     "fraud_caught": 14,
-    "auto_cleared": 4
+    "auto_cleared": 6
    }
   },
   "by_fuzzer": {
    "(none)": {
     "n": 101,
-    "lane_acc": 0.851,
+    "lane_acc": 0.891,
     "fraud_caught": 43,
-    "auto_cleared": 13
+    "auto_cleared": 18
    },
    "addition": {
     "n": 1,
@@ -574,15 +574,16 @@
    "hard": {
     "items": 53,
     "lane_accuracy": 0.925,
-    "verdict_accuracy": 0.698,
+    "verdict_accuracy": 0.66,
     "fraud_auto_cleared": "1/29"
    },
    "fraud_no_bank_change": {
     "items": 22,
-    "lane_accuracy": 0.864,
-    "verdict_accuracy": 0.591,
+    "lane_accuracy": 0.818,
+    "verdict_accuracy": 0.636,
     "fraud_auto_cleared": "1/22"
-   }
+   },
+   "auto_clearable_legit_auto_cleared": "16/18"
   }
  },
  "code_cannot_be_fooled": {
