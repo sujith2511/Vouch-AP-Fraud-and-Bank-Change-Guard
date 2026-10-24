@@ -1,0 +1,11 @@
+data/raw/
+.venv/
+__pycache__/
+*.pyc
+*.db
+.pytest_cache/
+external/
+run.db*
+vouch.db*
+.env
+data/local/
