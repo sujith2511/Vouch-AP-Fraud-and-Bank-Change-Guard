@@ -29,10 +29,14 @@ class FakeLLM:
                   usage=NS(input_tokens=100, output_tokens=10))
 
 
-def investigate(db_path, item, *turns):
+NO_SHIELD = lambda subject, body: {"status": "not_configured", "provider": "azure_prompt_shields", "attack_detected": None}
+SHIELD_HIT = lambda subject, body: {"status": "ok", "provider": "azure_prompt_shields", "attack_detected": True, "documents": 1}
+
+
+def investigate(db_path, item, *turns, shield=NO_SHIELD):
     llm = FakeLLM(*turns)
     client = LocalClient(db_path)
-    return LLMAgent(anthropic_client=llm, model="test").investigate(client.get_item(item["id"]), client), llm
+    return LLMAgent(anthropic_client=llm, model="test", shield=shield).investigate(client.get_item(item["id"]), client), llm
 
 
 def test_runs_tools_then_submits(db_path, mk):
@@ -70,6 +74,20 @@ def test_fraud_verdict_passes_through(db_path, mk):
     assert (d.kind, d.verdict) == ("propose", "fraud")
 
 
+def test_prompt_shields_hit_blocks_legit_and_is_shown_to_model(db_path, mk):
+    it = mk(email=make_email(body="Invoice attached. Kindly process it the usual way."))   # no regex-visible tell
+    d, llm = investigate(db_path, it, [submit(verdict="legit")], shield=SHIELD_HIT)
+    assert d.verdict == "uncertain" and any("Prompt Shields" in r for r in d.reasons)
+    assert d.evidence[0]["tool"] == "azure_prompt_shields"
+    assert '"injection_detected_in_email": true' in llm.requests[0]["messages"][0]["content"]
+
+
+def test_prompt_shields_not_configured_adds_nothing(db_path, mk):
+    d, llm = investigate(db_path, mk(), [submit(verdict="legit")])
+    assert d.verdict == "legit" and d.evidence == []
+    assert "azure_prompt_shields" not in llm.requests[0]["messages"][0]["content"]
+
+
 def test_fraud_with_a_question_is_still_proposed_as_fraud(db_path, mk):
     it = mk(email=make_email(vendor="acrne.example"))
     d, _ = investigate(db_path, it, [submit(kind="ask", verdict="fraud", question="Call the vendor?")])
@@ -81,7 +99,7 @@ def test_model_error_falls_back_to_human(db_path, mk):
         messages = property(lambda self: self)
         def create(self, **kw): raise RuntimeError("network down")
     client = LocalClient(db_path)
-    d = LLMAgent(anthropic_client=Boom(), model="test").investigate(client.get_item(mk()["id"]), client)
+    d = LLMAgent(anthropic_client=Boom(), model="test", shield=NO_SHIELD).investigate(client.get_item(mk()["id"]), client)
     assert d.kind == "ask" and d.verdict == "uncertain"
 
 
@@ -100,6 +118,6 @@ def test_email_cannot_break_out_of_untrusted_fence(db_path, mk):
 def test_end_to_end_ask_goes_through_rulebook(db_path, mk):
     it = mk(bank=NEW_BANK)
     client = LocalClient(db_path)
-    agent = LLMAgent(anthropic_client=FakeLLM([submit(verdict="legit")]), model="test")
+    agent = LLMAgent(anthropic_client=FakeLLM([submit(verdict="legit")]), model="test", shield=NO_SHIELD)
     item = run_agent(agent, client, it["id"])
     assert item["state"] == "NEEDS_INFO" and item["verdict"]["verdict"] == "uncertain"

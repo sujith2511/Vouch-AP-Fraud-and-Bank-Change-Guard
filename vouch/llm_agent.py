@@ -5,16 +5,19 @@ The model investigates with the read-only tools and ends with submit_decision. I
 post: whatever it decides is only a proposal that core.can() and the policy lane still judge.
 
 Prompt-injection defence, in layers:
+  0. Azure AI Content Safety Prompt Shields scans the email first (when configured, see prompt_shields.py);
   1. the email is wrapped in <untrusted_email> and any attempt to close that tag from inside the email is neutralised;
   2. the system prompt says the email is data, and that text addressed to an AI is itself a fraud signal;
   3. _guard() in code can only make the verdict STRICTER (an injection-looking email or an off-domain sender is never 'legit');
   4. the rulebook (core.can / policy_check) ignores agent free text entirely.
 
-Config (.env or environment): ANTHROPIC_API_KEY, VOUCH_MODEL (default claude-haiku-4-5).
+Config (.env or environment): ANTHROPIC_API_KEY, VOUCH_MODEL (default claude-haiku-4-5),
+optional AZURE_CONTENT_SAFETY_ENDPOINT + AZURE_CONTENT_SAFETY_KEY.
 """
 import json, logging, os
 from pathlib import Path
 
+from . import prompt_shields
 from .agent_interface import INJECTION, AgentDecision
 
 log = logging.getLogger("vouch.llm_agent")
@@ -93,7 +96,7 @@ def _fence(text):
     return str(text or "").replace("<untrusted_email", "<untrusted-email").replace("</untrusted_email", "</untrusted-email")
 
 
-def render_item(item):
+def render_item(item, scan=None):
     """The task message. Structured facts first; the raw email last, fenced as untrusted."""
     e, claim, v = item["email"] or {}, item["claim"] or {}, item["vendor"] or {}
     facts = {
@@ -103,14 +106,17 @@ def render_item(item):
         "is_bank_change": item.get("is_bank_change"),
         "email_headers": {"from": e.get("from"), "reply_to": e.get("reply_to"), "auth": e.get("auth")},
     }
+    if scan and scan.get("status") != "not_configured":
+        facts["azure_prompt_shields"] = {"status": scan["status"], "injection_detected_in_email": scan.get("attack_detected")}
     return (f"Work item {item['id']}.\n\nStructured facts (from our systems, trustworthy):\n"
             f"{json.dumps(facts, indent=1, default=str)}\n\n"
             f"<untrusted_email>\nSubject: {_fence(e.get('subject'))}\n\n{_fence(e.get('body'))}\n</untrusted_email>")
 
 
 class LLMAgent:
-    def __init__(self, anthropic_client=None, model=None, max_turns=MAX_TURNS):
+    def __init__(self, anthropic_client=None, model=None, max_turns=MAX_TURNS, shield=None):
         load_env()
+        self.shield = shield or prompt_shields.shield_email
         self.model = model or os.environ.get("VOUCH_MODEL", DEFAULT_MODEL)
         if anthropic_client is None:
             import anthropic
@@ -133,8 +139,10 @@ class LLMAgent:
     def investigate(self, item, client):
         tools = self._tools_for(item, client)
         specs = [t for t in READ_TOOLS if t["name"] in tools] + [SUBMIT_TOOL]
-        messages = [{"role": "user", "content": render_item(item)}]
-        evidence = []
+        e = item["email"] or {}
+        scan = self.shield(e.get("subject"), e.get("body"))
+        evidence = [] if scan.get("status") == "not_configured" else [{"tool": "azure_prompt_shields", "result": scan}]
+        messages = [{"role": "user", "content": render_item(item, scan)}]
         try:
             for _ in range(self.max_turns):
                 resp = self.llm.messages.create(model=self.model, max_tokens=2048, system=SYSTEM, tools=specs, messages=messages)
@@ -186,6 +194,9 @@ class LLMAgent:
         flags = []
         if INJECTION.search(f"{e.get('subject', '')} {e.get('body', '')}"):
             flags.append("email contains text addressed to an AI/system (possible prompt injection)")
+        shield = next((x["result"] for x in evidence if x["tool"] == "azure_prompt_shields"), None)
+        if shield and shield.get("attack_detected"):
+            flags.append("Azure Prompt Shields detected injected instructions in the email")
         dom = next((x["result"] for x in evidence if x["tool"] == "check_domain"), None)
         if dom and not dom.get("exact_match"):
             flags.append(f"sender domain {dom.get('sender_domain')} is not the vendor domain {dom.get('vendor_domain')}")
