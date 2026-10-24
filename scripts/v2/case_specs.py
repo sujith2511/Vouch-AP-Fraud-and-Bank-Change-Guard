@@ -399,12 +399,14 @@ def b_credit(v, r, sc, k, i, n):
 
 def b_benign_dup(v, r, sc, k, i, n):
     c, diff = _legit_core(v, r, sc, k, i, n)
-    ps = [p for p in PAYS[v["vendor_id"]] if p["doc_type"] == "invoice" and p["paid_date"] >= "2026-07-01"] or PAYS[v["vendor_id"]][-3:]
+    recent = [p for p in PAYS[v["vendor_id"]] if p["doc_type"] == "invoice" and p["paid_date"] >= "2026-08-20"]
+    ps = recent or [p for p in PAYS[v["vendor_id"]] if p["doc_type"] == "invoice"][-3:]
     p = r.choice(ps)
     invoice_block(c, v, r, p["amount"], p["po_number"], number=p["invoice_number"])
+    c["invoice"]["date"], c["invoice"]["due_date"] = p["invoice_date"], p["due_date"]      # the ORIGINAL invoice dates, not today's
     c["sub_variant"] = "resend_already_paid"; c["surface_features"] = ["invoice_number_already_paid"]
     c["snapshot_extra"]["prior_payment_of_this_invoice"] = {"invoice_number": p["invoice_number"], "paid_date": p["paid_date"], "amount": p["amount"]}
-    c["narrative"] = [f"The vendor resends invoice {p['invoice_number']} because they did not see a remittance advice yet. It was in fact already paid on {p['paid_date']} (the vendor does not know). Polite, says 'second copy' and asks for status. Does NOT ask to pay twice."]
+    c["narrative"] = [f"The vendor resends invoice {p['invoice_number']} (originally dated {p['invoice_date']}) because while reconciling their ledger their accounts-receivable could not match a payment to it. It was in fact paid on {p['paid_date']} (the vendor does not know). Polite, says 'second copy' and asks AP to confirm the payment date or reference. Does NOT ask to pay twice."]
     c["verdict"] = "legit"
     return c
 
@@ -863,6 +865,7 @@ def finalize(cases):
         if c["attrs"]["thread"] == "reply_all_cc" or (c["attrs"]["thread"] == "forward" and r.random() < 0.3):
             c["cc"] = [r.choice(OUR_AP["cc_pool"])] + ([v["second_contact"]["email"]] if (v.get("in_master") and r.random() < 0.5) else [])
         if v["in_master"] is False and c["cc"]: c["cc"] = c["cc"][:1]
+        c["cc"] = [x for x in c["cc"] if x.lower() != c["from_addr"].lower()]          # nobody CCs themselves
         # sent_at / received_at
         c["sent_at"] = c["sent_local"].isoformat(timespec="seconds") + c["tz"]
         c["received_at"] = (utc_of(c["sent_local"], c["tz"]) + timedelta(seconds=r.randint(2, 90))).isoformat(timespec="seconds").replace("+00:00", "Z")

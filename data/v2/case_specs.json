@@ -14610,9 +14610,9 @@
   "lookalike_fuzzer": null,
   "attachments": [
    {
-    "filename": "INV-02123.pdf",
+    "filename": "INV-02120.pdf",
     "type": "invoice_pdf",
-    "extracted_text": "INVOICE INV-02123\nFoxglove Robotics LLC\nBill to: Northgate Municipal, Accounts Payable\nInvoice date: 2026-10-01   Due: 2026-11-30\nPO: 000098098601\n  Robot cell maintenance                                 948.10\n  Programming hours                                      927.89\nTOTAL (USD): 1,875.99\nRemit to: account on file",
+    "extracted_text": "INVOICE INV-02120\nFoxglove Robotics LLC\nBill to: Northgate Municipal, Accounts Payable\nInvoice date: 2025-03-05   Due: 2025-05-04\nPO: 000089818001\n  Robot cell maintenance                               3,428.89\n  Programming hours                                    3,355.82\nTOTAL (USD): 6,784.71\nRemit to: account on file",
     "metadata": {
      "pages": 1,
      "created_by": "Roundcube Webmail",
@@ -14621,20 +14621,20 @@
    }
   ],
   "invoice": {
-   "number": "INV-02123",
-   "po": "000098098601",
-   "amount": 1875.99,
+   "number": "INV-02120",
+   "po": "000089818001",
+   "amount": 6784.71,
    "currency": "USD",
-   "date": "2026-10-01",
-   "due_date": "2026-11-30",
+   "date": "2025-03-05",
+   "due_date": "2025-05-04",
    "line_items": [
     {
      "description": "Robot cell maintenance",
-     "amount": 948.1
+     "amount": 3428.89
     },
     {
      "description": "Programming hours",
-     "amount": 927.89
+     "amount": 3355.82
     }
    ]
   },
@@ -14642,13 +14642,13 @@
   "change_type": null,
   "claim_changes_bank": false,
   "narrative": [
-   "The vendor resends invoice INV-02123 because they did not see a remittance advice yet. It was in fact already paid on 2026-07-14 (the vendor does not know). Polite, says 'second copy' and asks for status. Does NOT ask to pay twice."
+   "The vendor resends invoice INV-02120 (originally dated 2025-03-05) because while reconciling their ledger their accounts-receivable could not match a payment to it. It was in fact paid on 2025-05-01 (the vendor does not know). Polite, says 'second copy' and asks AP to confirm the payment date or reference. Does NOT ask to pay twice."
   ],
   "snapshot_extra": {
    "prior_payment_of_this_invoice": {
-    "invoice_number": "INV-02123",
-    "paid_date": "2026-07-14",
-    "amount": 1875.99
+    "invoice_number": "INV-02120",
+    "paid_date": "2025-05-01",
+    "amount": 6784.71
    }
   },
   "notes": {},
@@ -14679,7 +14679,7 @@
   "cc": [],
   "sent_at": "2026-10-01T10:45:01-07:00",
   "received_at": "2026-10-01T17:46:21Z",
-  "thread_id": "T-c6878a78f0",
+  "thread_id": "T-a6789db63f",
   "in_reply_to": null,
   "message_id": "<6c3f3b1a717343ed2ee1@foxglove-robotics-llc.example>",
   "received_hops": [
@@ -14784,9 +14784,9 @@
    ],
    "payment_method_on_file": "ACH",
    "prior_payment_of_this_invoice": {
-    "invoice_number": "INV-02123",
-    "paid_date": "2026-07-14",
-    "amount": 1875.99
+    "invoice_number": "INV-02120",
+    "paid_date": "2025-05-01",
+    "amount": 6784.71
    }
   },
   "sent_local": "2026-10-01T10:45:01"
@@ -14819,9 +14819,9 @@
   "lookalike_fuzzer": null,
   "attachments": [
    {
-    "filename": "1699.pdf",
+    "filename": "1697.pdf",
     "type": "invoice_pdf",
-    "extracted_text": "INVOICE 1699\nLumen Systems LLC\nBill to: Northgate Municipal, Accounts Payable\nInvoice date: 2026-09-29   Due: 2026-10-14\n  Managed services, September                            865.21\n  Hardware: network switch                               134.79\nTOTAL (USD): 1,000.00\nRemit to: account on file",
+    "extracted_text": "INVOICE 1697\nLumen Systems LLC\nBill to: Northgate Municipal, Accounts Payable\nInvoice date: 2026-06-03   Due: 2026-06-18\n  Managed services, September                            420.49\n  Hardware: network switch                                65.51\nTOTAL (USD): 486.00\nRemit to: account on file",
     "metadata": {
      "pages": 1,
      "created_by": "Outlook Web App",
@@ -14830,20 +14830,20 @@
    }
   ],
   "invoice": {
-   "number": "1699",
+   "number": "1697",
    "po": null,
-   "amount": 1000.0,
+   "amount": 486.0,
    "currency": "USD",
-   "date": "2026-09-29",
-   "due_date": "2026-10-14",
+   "date": "2026-06-03",
+   "due_date": "2026-06-18",
    "line_items": [
     {
      "description": "Managed services, September",
-     "amount": 865.21
+     "amount": 420.49
     },
     {
      "description": "Hardware: network switch",
-     "amount": 134.79
+     "amount": 65.51
     }
    ]
   },
@@ -14851,13 +14851,13 @@
   "change_type": null,
   "claim_changes_bank": false,
   "narrative": [
-   "The vendor resends invoice 1699 because they did not see a remittance advice yet. It was in fact already paid on 2026-07-10 (the vendor does not know). Polite, says 'second copy' and asks for status. Does NOT ask to pay twice."
+   "The vendor resends invoice 1697 (originally dated 2026-06-03) because while reconciling their ledger their accounts-receivable could not match a payment to it. It was in fact paid on 2026-06-20 (the vendor does not know). Polite, says 'second copy' and asks AP to confirm the payment date or reference. Does NOT ask to pay twice."
   ],
   "snapshot_extra": {
    "prior_payment_of_this_invoice": {
-    "invoice_number": "1699",
-    "paid_date": "2026-07-10",
-    "amount": 1000.0
+    "invoice_number": "1697",
+    "paid_date": "2026-06-20",
+    "amount": 486.0
    }
   },
   "notes": {},
@@ -14888,7 +14888,7 @@
   "cc": [],
   "sent_at": "2026-10-01T13:27:39-07:00",
   "received_at": "2026-10-01T20:28:23Z",
-  "thread_id": "T-f21b6b9002",
+  "thread_id": "T-d08ef972e0",
   "in_reply_to": null,
   "message_id": "<69d65891386f0941cb6b@lumen-systems-llc.example>",
   "received_hops": [
@@ -14993,9 +14993,9 @@
    ],
    "payment_method_on_file": "check",
    "prior_payment_of_this_invoice": {
-    "invoice_number": "1699",
-    "paid_date": "2026-07-10",
-    "amount": 1000.0
+    "invoice_number": "1697",
+    "paid_date": "2026-06-20",
+    "amount": 486.0
    }
   },
   "sent_local": "2026-10-01T13:27:39"
@@ -15032,9 +15032,9 @@
   "lookalike_fuzzer": null,
   "attachments": [
    {
-    "filename": "INV-02023.pdf",
+    "filename": "INV-02026.pdf",
     "type": "invoice_pdf",
-    "extracted_text": "INVOICE INV-02023\nPINNACLE SUPPLY GROUP\nBill to: Northgate Municipal, Accounts Payable\nInvoice date: 2026-09-27   Due: 2026-10-27\nPO: 000095596501\n  Fasteners assortment                                10,685.20\n  Freight and handling                                 1,736.30\nTOTAL (USD): 12,421.50\nRemit to: account on file",
+    "extracted_text": "INVOICE INV-02026\nPINNACLE SUPPLY GROUP\nBill to: Northgate Municipal, Accounts Payable\nInvoice date: 2026-06-30   Due: 2026-07-30\nPO: 000095596501\n  Fasteners assortment                                18,103.72\n  Freight and handling                                 2,941.78\nTOTAL (USD): 21,045.50\nRemit to: account on file",
     "metadata": {
      "pages": 1,
      "created_by": "Outlook Web App",
@@ -15043,20 +15043,20 @@
    }
   ],
   "invoice": {
-   "number": "INV-02023",
+   "number": "INV-02026",
    "po": "000095596501",
-   "amount": 12421.5,
+   "amount": 21045.5,
    "currency": "USD",
-   "date": "2026-09-27",
-   "due_date": "2026-10-27",
+   "date": "2026-06-30",
+   "due_date": "2026-07-30",
    "line_items": [
     {
      "description": "Fasteners assortment",
-     "amount": 10685.2
+     "amount": 18103.72
     },
     {
      "description": "Freight and handling",
-     "amount": 1736.3
+     "amount": 2941.78
     }
    ]
   },
@@ -15064,13 +15064,13 @@
   "change_type": null,
   "claim_changes_bank": false,
   "narrative": [
-   "The vendor resends invoice INV-02023 because they did not see a remittance advice yet. It was in fact already paid on 2026-07-23 (the vendor does not know). Polite, says 'second copy' and asks for status. Does NOT ask to pay twice."
+   "The vendor resends invoice INV-02026 (originally dated 2026-06-30) because while reconciling their ledger their accounts-receivable could not match a payment to it. It was in fact paid on 2026-07-23 (the vendor does not know). Polite, says 'second copy' and asks AP to confirm the payment date or reference. Does NOT ask to pay twice."
   ],
   "snapshot_extra": {
    "prior_payment_of_this_invoice": {
-    "invoice_number": "INV-02023",
+    "invoice_number": "INV-02026",
     "paid_date": "2026-07-23",
-    "amount": 12421.5
+    "amount": 21045.5
    }
   },
   "notes": {},
@@ -15101,7 +15101,7 @@
   "cc": [],
   "sent_at": "2026-10-01T12:27:08-07:00",
   "received_at": "2026-10-01T19:27:10Z",
-  "thread_id": "T-9b48d2d60e",
+  "thread_id": "T-f7a8f00058",
   "in_reply_to": null,
   "message_id": "<ab79ad89c1d3fb1b6aea@pinnacle-supply-group.example>",
   "received_hops": [
@@ -15204,9 +15204,9 @@
    ],
    "payment_method_on_file": "ACH",
    "prior_payment_of_this_invoice": {
-    "invoice_number": "INV-02023",
+    "invoice_number": "INV-02026",
     "paid_date": "2026-07-23",
-    "amount": 12421.5
+    "amount": 21045.5
    }
   },
   "sent_local": "2026-10-01T12:27:08"
@@ -15241,9 +15241,9 @@
   "lookalike_fuzzer": null,
   "attachments": [
    {
-    "filename": "INV-00313.pdf",
+    "filename": "INV-00309.pdf",
     "type": "invoice_pdf",
-    "extracted_text": "INVOICE INV-00313\nORCHID TEXTILES INC.\nBill to: Northgate Municipal, Accounts Payable\nInvoice date: 2026-09-11   Due: 2026-10-11\nPO: 000098895601\n  Uniform order 3                                      2,915.32\n  Alterations                                          2,742.79\n  Shipping                                               982.85\n  Embroidery setup                                       959.04\nTOTAL (USD): 7,600.00\nRemit to: account on file",
+    "extracted_text": "INVOICE INV-00309\nORCHID TEXTILES INC.\nBill to: Northgate Municipal, Accounts Payable\nInvoice date: 2026-05-19   Due: 2026-06-18\nPO: 000094245201\n  Uniform order 3                                    152,186.81\n  Alterations                                        143,179.87\n  Shipping                                            51,306.92\n  Embroidery setup                                    50,064.04\nTOTAL (USD): 396,737.64\nRemit to: account on file",
     "metadata": {
      "pages": 1,
      "created_by": "Gmail",
@@ -15252,28 +15252,28 @@
    }
   ],
   "invoice": {
-   "number": "INV-00313",
-   "po": "000098895601",
-   "amount": 7600.0,
+   "number": "INV-00309",
+   "po": "000094245201",
+   "amount": 396737.64,
    "currency": "USD",
-   "date": "2026-09-11",
-   "due_date": "2026-10-11",
+   "date": "2026-05-19",
+   "due_date": "2026-06-18",
    "line_items": [
     {
      "description": "Uniform order 3",
-     "amount": 2915.32
+     "amount": 152186.81
     },
     {
      "description": "Alterations",
-     "amount": 2742.79
+     "amount": 143179.87
     },
     {
      "description": "Shipping",
-     "amount": 982.85
+     "amount": 51306.92
     },
     {
      "description": "Embroidery setup",
-     "amount": 959.04
+     "amount": 50064.04
     }
    ]
   },
@@ -15281,13 +15281,13 @@
   "change_type": null,
   "claim_changes_bank": false,
   "narrative": [
-   "The vendor resends invoice INV-00313 because they did not see a remittance advice yet. It was in fact already paid on 2026-07-16 (the vendor does not know). Polite, says 'second copy' and asks for status. Does NOT ask to pay twice."
+   "The vendor resends invoice INV-00309 (originally dated 2026-05-19) because while reconciling their ledger their accounts-receivable could not match a payment to it. It was in fact paid on 2026-06-25 (the vendor does not know). Polite, says 'second copy' and asks AP to confirm the payment date or reference. Does NOT ask to pay twice."
   ],
   "snapshot_extra": {
    "prior_payment_of_this_invoice": {
-    "invoice_number": "INV-00313",
-    "paid_date": "2026-07-16",
-    "amount": 7600.0
+    "invoice_number": "INV-00309",
+    "paid_date": "2026-06-25",
+    "amount": 396737.64
    }
   },
   "notes": {},
@@ -15320,7 +15320,7 @@
   ],
   "sent_at": "2026-09-14T11:06:41-07:00",
   "received_at": "2026-09-14T18:07:33Z",
-  "thread_id": "T-b7038f9998",
+  "thread_id": "T-bfc793e6cf",
   "in_reply_to": null,
   "message_id": "<0eb4c2875f9271f78516@orchid-textiles-inc.example>",
   "received_hops": [
@@ -15423,9 +15423,9 @@
    ],
    "payment_method_on_file": "ACH",
    "prior_payment_of_this_invoice": {
-    "invoice_number": "INV-00313",
-    "paid_date": "2026-07-16",
-    "amount": 7600.0
+    "invoice_number": "INV-00309",
+    "paid_date": "2026-06-25",
+    "amount": 396737.64
    }
   },
   "sent_local": "2026-09-14T11:06:41"
@@ -15460,7 +15460,7 @@
    {
     "filename": "breakdown.xlsx",
     "type": "spreadsheet",
-    "extracted_text": "Item,Amount\nFreight, route 15,2476.78\nPallet handling,2373.95\nFuel surcharge,1044.27",
+    "extracted_text": "Item,Amount\nFreight, route 15,4814.91\nPallet handling,4615.01\nFuel surcharge,2030.08",
     "metadata": {
      "sheets": 1,
      "encrypted": false
@@ -15468,24 +15468,24 @@
    }
   ],
   "invoice": {
-   "number": "26-1497",
+   "number": "26-1494",
    "po": "000093046502",
-   "amount": 5895.0,
+   "amount": 11460.0,
    "currency": "USD",
-   "date": "2026-10-12",
-   "due_date": "2026-11-11",
+   "date": "2026-04-28",
+   "due_date": "2026-05-28",
    "line_items": [
     {
      "description": "Freight, route 15",
-     "amount": 2476.78
+     "amount": 4814.91
     },
     {
      "description": "Pallet handling",
-     "amount": 2373.95
+     "amount": 4615.01
     },
     {
      "description": "Fuel surcharge",
-     "amount": 1044.27
+     "amount": 2030.08
     }
    ]
   },
@@ -15493,13 +15493,13 @@
   "change_type": null,
   "claim_changes_bank": false,
   "narrative": [
-   "The vendor resends invoice 26-1497 because they did not see a remittance advice yet. It was in fact already paid on 2026-08-06 (the vendor does not know). Polite, says 'second copy' and asks for status. Does NOT ask to pay twice."
+   "The vendor resends invoice 26-1494 (originally dated 2026-04-28) because while reconciling their ledger their accounts-receivable could not match a payment to it. It was in fact paid on 2026-05-28 (the vendor does not know). Polite, says 'second copy' and asks AP to confirm the payment date or reference. Does NOT ask to pay twice."
   ],
   "snapshot_extra": {
    "prior_payment_of_this_invoice": {
-    "invoice_number": "26-1497",
-    "paid_date": "2026-08-06",
-    "amount": 5895.0
+    "invoice_number": "26-1494",
+    "paid_date": "2026-05-28",
+    "amount": 11460.0
    }
   },
   "notes": {},
@@ -15530,7 +15530,7 @@
   "cc": [],
   "sent_at": "2026-10-14T09:53:16-07:00",
   "received_at": "2026-10-14T16:54:32Z",
-  "thread_id": "T-f1db0b6ed5",
+  "thread_id": "T-73ca3af5b1",
   "in_reply_to": null,
   "message_id": "<8cf87622325264f6afb3@pinnacle-logistics-group.example>",
   "received_hops": [
@@ -15634,9 +15634,9 @@
    ],
    "payment_method_on_file": "ACH",
    "prior_payment_of_this_invoice": {
-    "invoice_number": "26-1497",
-    "paid_date": "2026-08-06",
-    "amount": 5895.0
+    "invoice_number": "26-1494",
+    "paid_date": "2026-05-28",
+    "amount": 11460.0
    }
   },
   "sent_local": "2026-10-14T09:53:16"
@@ -15685,8 +15685,8 @@
    "po": "000102717101",
    "amount": 55.3,
    "currency": "USD",
-   "date": "2026-10-01",
-   "due_date": "2026-10-31",
+   "date": "2026-06-01",
+   "due_date": "2026-07-01",
    "line_items": [
     {
      "description": "Pump rebuild kit 2",
@@ -15698,7 +15698,7 @@
   "change_type": null,
   "claim_changes_bank": false,
   "narrative": [
-   "The vendor resends invoice A02424 because they did not see a remittance advice yet. It was in fact already paid on 2026-07-02 (the vendor does not know). Polite, says 'second copy' and asks for status. Does NOT ask to pay twice."
+   "The vendor resends invoice A02424 (originally dated 2026-06-01) because while reconciling their ledger their accounts-receivable could not match a payment to it. It was in fact paid on 2026-07-02 (the vendor does not know). Polite, says 'second copy' and asks AP to confirm the payment date or reference. Does NOT ask to pay twice."
   ],
   "snapshot_extra": {
    "prior_payment_of_this_invoice": {
@@ -15873,9 +15873,9 @@
   "lookalike_fuzzer": null,
   "attachments": [
    {
-    "filename": "INV-04122.pdf",
+    "filename": "INV-04123.pdf",
     "type": "invoice_pdf",
-    "extracted_text": "INVOICE INV-04122\nEMBER HAULAGE CORP.\nBill to: Northgate Municipal, Accounts Payable\nInvoice date: 2026-09-25   Due: 2026-10-25\nPO: 000091941202\n  Freight, route 37                                      311.00\n  Pallet handling                                        124.10\n  Detention charge                                        61.98\n  Fuel surcharge                                           0.28\nTOTAL (USD): 497.36\nRemit to: account on file",
+    "extracted_text": "INVOICE INV-04123\nEMBER HAULAGE CORP.\nBill to: Northgate Municipal, Accounts Payable\nInvoice date: 2026-06-15   Due: 2026-07-15\nPO: 000091941202\n  Freight, route 37                                    1,863.60\n  Pallet handling                                        743.62\n  Detention charge                                       371.40\n  Fuel surcharge                                           1.67\nTOTAL (USD): 2,980.29\nRemit to: account on file",
     "metadata": {
      "pages": 1,
      "created_by": "PDF generator",
@@ -15884,28 +15884,28 @@
    }
   ],
   "invoice": {
-   "number": "INV-04122",
+   "number": "INV-04123",
    "po": "000091941202",
-   "amount": 497.36,
+   "amount": 2980.29,
    "currency": "USD",
-   "date": "2026-09-25",
-   "due_date": "2026-10-25",
+   "date": "2026-06-15",
+   "due_date": "2026-07-15",
    "line_items": [
     {
      "description": "Freight, route 37",
-     "amount": 311.0
+     "amount": 1863.6
     },
     {
      "description": "Pallet handling",
-     "amount": 124.1
+     "amount": 743.62
     },
     {
      "description": "Detention charge",
-     "amount": 61.98
+     "amount": 371.4
     },
     {
      "description": "Fuel surcharge",
-     "amount": 0.28
+     "amount": 1.67
     }
    ]
   },
@@ -15913,13 +15913,13 @@
   "change_type": null,
   "claim_changes_bank": false,
   "narrative": [
-   "The vendor resends invoice INV-04122 because they did not see a remittance advice yet. It was in fact already paid on 2026-07-16 (the vendor does not know). Polite, says 'second copy' and asks for status. Does NOT ask to pay twice."
+   "The vendor resends invoice INV-04123 (originally dated 2026-06-15) because while reconciling their ledger their accounts-receivable could not match a payment to it. It was in fact paid on 2026-07-23 (the vendor does not know). Polite, says 'second copy' and asks AP to confirm the payment date or reference. Does NOT ask to pay twice."
   ],
   "snapshot_extra": {
    "prior_payment_of_this_invoice": {
-    "invoice_number": "INV-04122",
-    "paid_date": "2026-07-16",
-    "amount": 497.36
+    "invoice_number": "INV-04123",
+    "paid_date": "2026-07-23",
+    "amount": 2980.29
    }
   },
   "notes": {},
@@ -15950,8 +15950,8 @@
   "cc": [],
   "sent_at": "2026-09-29T16:55:54-07:00",
   "received_at": "2026-09-29T23:56:10Z",
-  "thread_id": "T-b6445944b7",
-  "in_reply_to": "<7e4061bc8c92f7bc@ember-haulage-corp.example>",
+  "thread_id": "T-3dba2a4876",
+  "in_reply_to": "<936c6fdc66629062@ember-haulage-corp.example>",
   "message_id": "<7ac87a4f2ef0473086e7@ember-haulage-corp.example>",
   "received_hops": [
    "from mail.ember-haulage-corp.example (mail.ember-haulage-corp.example [203.0.113.53]) by mx.northgate.example"
@@ -16053,9 +16053,9 @@
    ],
    "payment_method_on_file": "wire",
    "prior_payment_of_this_invoice": {
-    "invoice_number": "INV-04122",
-    "paid_date": "2026-07-16",
-    "amount": 497.36
+    "invoice_number": "INV-04123",
+    "paid_date": "2026-07-23",
+    "amount": 2980.29
    }
   },
   "sent_local": "2026-09-29T16:55:54"
@@ -16092,7 +16092,7 @@
    {
     "filename": "A01122.pdf",
     "type": "invoice_pdf",
-    "extracted_text": "INVOICE A01122\nPINNACLE SYSTEMS CORP.\nBill to: Northgate Municipal, Accounts Payable\nInvoice date: 2026-09-22   Due: 2026-11-21\nPO: 000094810201\n  Managed services, September                         17,996.11\n  License renewal                                     13,477.40\n  Hardware: network switch                             7,941.99\nTOTAL (USD): 39,415.50\nRemit to: account on file",
+    "extracted_text": "INVOICE A01122\nPINNACLE SYSTEMS CORP.\nBill to: Northgate Municipal, Accounts Payable\nInvoice date: 2026-06-23   Due: 2026-08-22\nPO: 000094810201\n  Managed services, September                         17,996.11\n  License renewal                                     13,477.40\n  Hardware: network switch                             7,941.99\nTOTAL (USD): 39,415.50\nRemit to: account on file",
     "metadata": {
      "pages": 1,
      "created_by": "PDF generator",
@@ -16105,8 +16105,8 @@
    "po": "000094810201",
    "amount": 39415.5,
    "currency": "USD",
-   "date": "2026-09-22",
-   "due_date": "2026-11-21",
+   "date": "2026-06-23",
+   "due_date": "2026-08-22",
    "line_items": [
     {
      "description": "Managed services, September",
@@ -16126,7 +16126,7 @@
   "change_type": null,
   "claim_changes_bank": false,
   "narrative": [
-   "The vendor resends invoice A01122 because they did not see a remittance advice yet. It was in fact already paid on 2026-08-27 (the vendor does not know). Polite, says 'second copy' and asks for status. Does NOT ask to pay twice."
+   "The vendor resends invoice A01122 (originally dated 2026-06-23) because while reconciling their ledger their accounts-receivable could not match a payment to it. It was in fact paid on 2026-08-27 (the vendor does not know). Polite, says 'second copy' and asks AP to confirm the payment date or reference. Does NOT ask to pay twice."
   ],
   "snapshot_extra": {
    "prior_payment_of_this_invoice": {
@@ -16306,7 +16306,7 @@
    {
     "filename": "26-3480.pdf",
     "type": "invoice_pdf",
-    "extracted_text": "INVOICE 26-3480\nCobalt Analytics\nBill to: Northgate Municipal, Accounts Payable\nInvoice date: 2026-09-13   Due: 2026-10-28\nPO: 000064298504\n  Data platform subscription                           1,578.69\n  Analyst hours                                          376.41\nTOTAL (USD): 1,955.10\nRemit to: account on file",
+    "extracted_text": "INVOICE 26-3480\nCobalt Analytics\nBill to: Northgate Municipal, Accounts Payable\nInvoice date: 2026-06-11   Due: 2026-07-26\nPO: 000064298504\n  Data platform subscription                           1,578.69\n  Analyst hours                                          376.41\nTOTAL (USD): 1,955.10\nRemit to: account on file",
     "metadata": {
      "pages": 1,
      "created_by": "PDF generator",
@@ -16319,8 +16319,8 @@
    "po": "000064298504",
    "amount": 1955.1,
    "currency": "USD",
-   "date": "2026-09-13",
-   "due_date": "2026-10-28",
+   "date": "2026-06-11",
+   "due_date": "2026-07-26",
    "line_items": [
     {
      "description": "Data platform subscription",
@@ -16336,7 +16336,7 @@
   "change_type": null,
   "claim_changes_bank": false,
   "narrative": [
-   "The vendor resends invoice 26-3480 because they did not see a remittance advice yet. It was in fact already paid on 2026-07-30 (the vendor does not know). Polite, says 'second copy' and asks for status. Does NOT ask to pay twice."
+   "The vendor resends invoice 26-3480 (originally dated 2026-06-11) because while reconciling their ledger their accounts-receivable could not match a payment to it. It was in fact paid on 2026-07-30 (the vendor does not know). Polite, says 'second copy' and asks AP to confirm the payment date or reference. Does NOT ask to pay twice."
   ],
   "snapshot_extra": {
    "prior_payment_of_this_invoice": {
@@ -16515,7 +16515,7 @@
    {
     "filename": "INV263468.pdf",
     "type": "invoice_pdf",
-    "extracted_text": "INVOICE INV263468\nTIDEWATER ANALYTICS LLC\nBill to: Northgate Municipal, Accounts Payable\nInvoice date: 2026-10-03   Due: 2026-11-02\nPO: 000100269001\n  Data platform subscription                           2,344.99\n  Custom report 23                                     1,253.87\nTOTAL (USD): 3,598.86\nRemit to: account on file",
+    "extracted_text": "INVOICE INV263468\nTIDEWATER ANALYTICS LLC\nBill to: Northgate Municipal, Accounts Payable\nInvoice date: 2026-06-30   Due: 2026-07-30\nPO: 000100269001\n  Data platform subscription                           2,344.99\n  Custom report 23                                     1,253.87\nTOTAL (USD): 3,598.86\nRemit to: account on file",
     "metadata": {
      "pages": 1,
      "created_by": "Microsoft Outlook 16.0",
@@ -16528,8 +16528,8 @@
    "po": "000100269001",
    "amount": 3598.86,
    "currency": "USD",
-   "date": "2026-10-03",
-   "due_date": "2026-11-02",
+   "date": "2026-06-30",
+   "due_date": "2026-07-30",
    "line_items": [
     {
      "description": "Data platform subscription",
@@ -16545,7 +16545,7 @@
   "change_type": null,
   "claim_changes_bank": false,
   "narrative": [
-   "The vendor resends invoice INV263468 because they did not see a remittance advice yet. It was in fact already paid on 2026-07-30 (the vendor does not know). Polite, says 'second copy' and asks for status. Does NOT ask to pay twice."
+   "The vendor resends invoice INV263468 (originally dated 2026-06-30) because while reconciling their ledger their accounts-receivable could not match a payment to it. It was in fact paid on 2026-07-30 (the vendor does not know). Polite, says 'second copy' and asks AP to confirm the payment date or reference. Does NOT ask to pay twice."
   ],
   "snapshot_extra": {
    "prior_payment_of_this_invoice": {
@@ -17159,8 +17159,7 @@
   "pair_with": null,
   "to": "ap@northgate.example",
   "cc": [
-   "ap-supervisor@northgate.example",
-   "lena.kimura@lumen-systems-llc.example"
+   "ap-supervisor@northgate.example"
   ],
   "sent_at": "2026-10-15T08:33:42-07:00",
   "received_at": "2026-10-15T15:33:46Z",
@@ -22251,8 +22250,7 @@
   "pair_with": null,
   "to": "ap@northgate.example",
   "cc": [
-   "ap-supervisor@northgate.example",
-   "samir.nguyen@halcyon-hydraulics-corp.example"
+   "ap-supervisor@northgate.example"
   ],
   "sent_at": "2026-10-01T08:12:27-07:00",
   "received_at": "2026-10-01T15:12:33Z",
@@ -22709,8 +22707,7 @@
   "pair_with": null,
   "to": "ap@northgate.example",
   "cc": [
-   "purchasing@northgate.example",
-   "andre.arslan@summit-systems-corp.example"
+   "purchasing@northgate.example"
   ],
   "sent_at": "2026-09-28T11:55:10+02:00",
   "received_at": "2026-09-28T09:55:39Z",
