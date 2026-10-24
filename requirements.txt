@@ -1,0 +1,9 @@
+fastapi
+uvicorn
+pytest
+httpx
+anthropic
+requests
+pandas
+pyarrow
+dnstwist

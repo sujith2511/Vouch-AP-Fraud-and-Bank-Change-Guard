@@ -1,0 +1,13 @@
+import pandas as pd, sys, re
+v = pd.read_csv(sys.argv[1], usecols=["Fiscal Year","Department","Purchase Order","Supplier & Other Non-Supplier Payees","Vouchers Paid","Voucher","data_as_of","Object"], dtype=str)
+v = v.rename(columns={"Fiscal Year":"fy","Department":"dept","Purchase Order":"po","Supplier & Other Non-Supplier Payees":"vendor","Vouchers Paid":"paid","Voucher":"voucher","data_as_of":"as_of","Object":"object"})
+v["paid"] = pd.to_numeric(v["paid"], errors="coerce")
+print(len(v), v.vendor.nunique(), v.fy.min(), v.fy.max())
+print(v.paid.describe())
+print("neg", (v.paid<0).sum(), "zero", (v.paid==0).sum(), "dupe voucher+vendor+paid", v.duplicated(["voucher","vendor","paid"]).sum())
+print(v.as_of.str[:10].value_counts().head(5))
+def key(s): return re.sub(r"[^a-z0-9]","",re.sub(r"\b(inc|llc|corp|co|ltd|incorporated|company|the)\b","",str(s).lower()))
+v["k"]=v.vendor.map(key)
+g=v.groupby("k").vendor.nunique(); print("keys with >1 spelling:",(g>1).sum(),"of",len(g))
+for k in g[g>1].index[:12]: print(k, list(v[v.k==k].vendor.unique())[:5])
+c=v[(v.paid>0)].groupby("vendor").size(); print("vendors>=6 payments:", (c>=6).sum(), " >=6 and <=200:", ((c>=6)&(c<=200)).sum())
