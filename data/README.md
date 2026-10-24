@@ -1,3 +1,12 @@
+# Vouch data
+
+> **Current dataset: v2 (`data/v2/`).** 300 labeled emails (192 dev / 108 holdout, split by vendor) across 31 fraud and legit scenarios, 60 vendors + 24 phantom suppliers,
+> 5,056 payments, 817 baseline emails per vendor. **Start with [`data/v2/DATASET_CARD.md`](v2/DATASET_CARD.md)** (schema, counts, quality results, known limits) and
+> [`data/v2/review_sample.md`](v2/review_sample.md). `truth` and `provenance` fields must never be shown to an agent.
+>
+> The sections below describe **v1** (`data/vendors.json`, `data/fixtures/`, `data/injections.json`), kept because the backend (`vouch/`) and its tests still load it.
+> `data/injections.json` is shared by both versions.
+
 # Vouch data: provenance, licenses, counts
 
 **Published data is fictionalized.** `data/vendors.json` (and the fixture emails) use fictional vendor names, `.example` domains and
