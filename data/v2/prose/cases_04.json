@@ -1,0 +1,68 @@
+{
+ "C0046": {
+  "subject": "Rechnung 26-2813 zu Bestellung 000087252801",
+  "body_text": "Guten Tag,\n\nanbei erhalten Sie unsere Rechnung 26-2813 über 6.677,75 € zur Bestellung 000087252801. Der Betrag liegt deutlich über unseren üblichen Monatsrechnungen. Der Grund ist ein Änderungsauftrag: Ihr Facility-Leiter hat im September zusätzliche Fahrten auf der Strecke 30 genehmigt, und die dadurch entstandenen Wartezeiten am Lager sind als Standgeld in Höhe von 1.607,35 € ausgewiesen. Die Frachtkosten für die Strecke selbst betragen 5.070,40 €. Die Genehmigung per E-Mail und die Lieferscheine finden Sie im Anhang zusammen mit der Aufstellung. Wenn Ihre Buchhaltung weitere Unterlagen benötigt, schicken wir diese gerne noch heute nach.\n\nAlle Lieferungen sind quittiert, und die Frachtmenge auf der Strecke entspricht der Bestellung. Bitte geben Sie uns kurz Bescheid, sobald die Rechnung bei Ihnen gebucht ist.\n\nMit freundlichen Grüßen\nPriya\n\nGesendet von meinem iPhone"
+ },
+ "C0047": {
+  "subject": "factura INV-03111 PO 000060843404",
+  "body_text": "Estimados señores\n\nadjunto la factura INV-03111 por $30,054.49 con el PO 000060843404. el importe es mayor que el habitual porque incluye una reparacion de emergencia fuera del contrato normal, la que su centro de operaciones solicito el martes por la noche. el resto son los cargos de circuitos de septiembre y el alquiler del equipo\n\nsaludos\nChen"
+ },
+ "C0048": {
+  "subject": "Re: invoice INV261121 - higher than usual",
+  "body_text": "Hello AP team...\n\nThanks for flagging it. Invoice INV261121 is for 2.968,89 €, against PO 000071794502, and it is higher than our usual monthly amount because of a change order... your facilities lead approved extra scope in early September, which added the network switch hardware (881,87 €) and the licence renewal (497,08 €) on top of the normal managed services for the month (1.589,94 €)... The approval email is forwarded in the attachment bundle along with the breakdown sheet, so your reviewer can match each line to the PO text... please let me know if something does not tie out and I will correct it the same day...\n\nRegards\n\nThis message is intended only for the addressee and may contain confidential material.",
+  "quoted_history": "On Tue, Oct 13, Accounts Payable wrote:\n> INV261121 is about two and a half times your usual invoice.\n> Could you tell us what changed and which PO it belongs to?\n> Thanks, AP"
+ },
+ "C0049": {
+  "subject": "Rechnung A01025 - Bestellung 000088015401",
+  "body_text": "Guten Tag,\n\nwie besprochen die Rechnung A01025 über 902,66 € zur Bestellung 000088015401. Der Betrag ist höher als sonst, weil ein Änderungsauftrag (zusätzliche Anfahrt und Inspektion), den Ihr Facility-Leiter freigegeben hat, mit abgerechnet wird. Die Freigabe liegt der Rechnung bei. Ihr Einkauf ist in Kopie.\n\nDanke\nSofia\n\nGesendet von meinem Android\n\nDiese E-Mail ist nur für den genannten Empfänger bestimmt.",
+  "quoted_history": "Am Do., 24. Sep., schrieb Einkauf:\n> Bitte stellen Sie den Zusatzeinsatz mit Inspektion unter der Bestellung 000088015401 in Rechnung.\n> Danke"
+ },
+ "C0050": {
+  "subject": "invoice MAR-3527 po 000083033802",
+  "body_text": "Dear Sir or Madam\n\nplease find attached invoice MAR-3527 for £4,393.69 against po 000083033802. this is higher than our usual invoices because it includes a rush delivery surcharge. your stores team asked us on the 17th to move the route 17 delivery forward by two days to meet the winter salt order so we had to put an extra vehicle on the road at short notice, and the detention charge is the waiting time at your depot gate while the unloading crew was reassigned. the delivery note signed by your depot supervisor is attached and shows both times. the base freight on the route is the same as normal, only the surcharge and the waiting time are extra. please let me know if you need anything else\n\nSincerely\nNikolai Whitfield\n+44 20 7946 0435\n\nSent from my Android"
+ },
+ "C0051": {
+  "subject": "INV262825 - PO 000039965601",
+  "body_text": "INV262825 for $11,554.99, PO 000039965601. This is larger than our normal monthly invoice because it includes the expedite fee for standing up the new analytics environment ahead of the original schedule. Your transit planning office asked on the 5th for access two weeks early, so we pulled the provisioning forward and billed the rush fee on top of the subscription term. The signed change request is attached with the invoice, so your reviewer can see who approved it and when. Everything else on the PO is unchanged, and nothing further will be billed for this item. Thx for the quick turnaround on this!\n\nHiro Iyer\nBilling Lead\nLumen Analytics, Inc.\n(415) 555-0152\n\nSent from Outlook for iOS"
+ },
+ "C0052": {
+  "subject": "INV-03247 annual renewal",
+  "body_text": "Hi\n\nHope you are well. INV-03247, $7,917.88, PO 000095209001 attched. This is the annual licence renewal for our sample tracking system, billed once a year, which is why it is bigger than the usual monthly batch invoices. The renewal covers the same 12 month term as last year and the quote that your lab manager signed in August is attached for reference. No other charges on it. If you need the signed quote in a different format let me know and I will resend it. The renewal certificate and the updated licence key list will be sent to your lab manager directly once this is booked. Thanks for processing it before the old term ends\n\nRegards"
+ },
+ "C0053": {
+  "subject": "Re: PO 000096846201 - invoice",
+  "body_text": "A01793 for $1,877.06, PO 000096846201. This is bigger than usual because of a change order, your facilities lead approved extra scope on the controller replacement on the east wing, they ask us to replace two more units and the approval email is in the attachment, with the breakdown. We finish the work on 14 October and the sign off paper is also included. The old units were taken away by our technician and are listed in the same attachment, in case your asset register needs the serial numbers. Please tell me if you need anything more to book this.\n\nKind regards\nPriya Castillo\nBilling Coordinator\nVantage Controls Group\nUnit 12, 410 Alder Court\n\nSent from my iPhone",
+  "quoted_history": "On Wed, Oct 14, Accounts Payable wrote:\n> Has the east wing controller work been finished? What is the final amount against PO 000096846201?\n> Thanks"
+ },
+ "C0054": {
+  "subject": "A02917 - custom report 3",
+  "body_text": "A02917 for $1,377.12. The amount is higher than our usual monthly invoice because your transit planning group approved a change order for added scope on custom report 3, adding two extra data sources to the analysis. The approval message is attached. There is no PO for this work item as it was agreed by email, and the data platform subscription and onboarding hours are the usual charges. Please advice if you need the approval in another form.\n\nThank you"
+ },
+ "C0055": {
+  "subject": "Re: INV260568 replacement unit",
+  "body_text": "Hello AP team...\n\nInvoice INV260568 for $1,943.16 against PO 000098093001 is attached... the amount is higher than usual because it includes a controller replacement that was a one-time purchase, authorised by phone on September 22 and confirmed by email the same afternoon by your building services manager... the unit failed in the east building and could not wait for the regular cycle... the confirmation email and the breakdown spreadsheet are attached so you can see the replacement unit separately from the service agreement fee... no other one-off items are planned this quarter... the unit is covered by the usual twelve month warranty and the warranty card is included in the attachment...\n\nThx\nLN\n\nSent from my Android",
+  "quoted_history": "On Mon, Sep 28, Accounts Payable wrote:\n> We see a controller replacement on your latest invoice. Who authorised it?\n> Thanks"
+ },
+ "C0056": {
+  "subject": "Fwd: BRA-1773",
+  "body_text": "Hope you are well. BRA-1773 for $7,222.51 under PO 000084095801, forwarded below. It is higher than normal as it includes the emergency advisory callout on Sept 18 outside our retainer. Please pay promptly if you can, thanks\n\nBest regards,\nHiro Alvarez\nBramble Partners",
+  "quoted_history": "From: Hana Nguyen\nSent: Friday, September 18\nTo: Hiro Alvarez\nSubject: emergency callout\n\nThe city office asked for an emergency session on the incident review today. We will bill it outside the retainer."
+ },
+ "C0057": {
+  "subject": "invoice INV263524 po 000075743902",
+  "body_text": "Dear Sir or Madam,\n\ninvoice INV263524 $1,535.28 po 000075743902 attached. this is installment 1 of 2 for this po, the on-site service call and part of the mobilization, the second invoice follows when the parts arrive. total order is about $3,070.56. please pay promptly as the crew is already booked\n\nSincerely\nFatima Okafor\nKestrel Industrial LLC\n\nSent from my iPhone\n\nThis email and its attachments are confidential and intended for the addressee only."
+ },
+ "C0058": {
+  "subject": "Factura WIL-0252 - PO 000076805801 (1 de 4)",
+  "body_text": "Hola,\n\nAdjunto la factura WIL-0252 por $14,159.87 correspondiente a la primera cuota de cuatro del PO 000076805801. El valor total de la orden es de aproximadamente $56,639.48 y la facturaremos en cuatro partes, una por cada hito entregado. Esta primera cuota cubre las horas de asesoría de mayo y el informe preliminar que ya fue aceptado por su oficina. Las siguientes facturas se enviarán a medida que se entreguen los demás hitos, así que no hace falta que hagan nada especial hasta entonces. Copio a nuestra coordinadora y a su supervisor para que todos tengan el mismo número de referencia. Si necesitan el acta de aceptación del primer hito, se las envío hoy mismo.\n\nSaludos,\nTamika Bianchi\nSenior Accountant\nWillow Partners Corp.\n(415) 555-0169\n\nEnviado desde mi iPhone\n\nRemit to: bank account on file with you.",
+  "quoted_history": "El mié., 23 sept., Accounts Payable escribió:\n> Por favor confirmen cómo van a facturar el PO 000076805801.\n> Gracias"
+ },
+ "C0059": {
+  "subject": "SI001951 po 000098633901 part 1 of 4",
+  "body_text": "hello ap team\n\nsorry for the early mail i am clearing my queue before a day on the road. invoice SI001951 for $339.88 is the first of four against po 000098633901, the route 18 run. the total for the po is about $1,359.52 and we are splitting it into four invoices because the four deliveries go out on different days and your receiving dock asked us to bill each one when it lands, not all at once. the other three will follow as each delivery is signed for. the delivery slip for the first run is attached to this invoice. nothing else is owing on this po at the moment\n\nBest\nAyo Lindqvist\nBilling\nQuarry Logistics Group\n(415) 555-0187"
+ },
+ "C0060": {
+  "subject": "Invoice WIL-1391 - PO 000092324002 (1 of 4)",
+  "body_text": "Dear Accounts Payable,\n\nPlease find attached invoice WIL-1391 for $8,169.00 against PO 000092324002. This is installment 1 of 4 for the managed services order, total value about $32,676.00. Remaining invoices follow quarterly as each service period is delivered. Please do not pay the full amount in one time, only this part.\n\nRespectfully,\nOleg\n\nSent from my iPhone"
+ }
+}

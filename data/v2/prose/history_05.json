@@ -1,0 +1,246 @@
+{
+ "H-V023-01": {
+  "subject": "Billing contacts",
+  "body_text": "Dear Accounts Payable,\n\nHope you are well. Hiro Alvarez is out on leave for the next several weeks. I will send invoices in the meantime. Nothing else changes.\n\nBest regards,\nHana Nguyen\nBramble Partners"
+ },
+ "H-V023-02": {
+  "subject": "Invoice BRA-1756",
+  "body_text": "Dear Accounts Payable,\n\nHope you are well. Invoice BRA-1756 for $16,845.00 is attached, PO 000096718001. Retainer for the advisory engagement, Q1.\n\nBest regards,\nHana Nguyen\nBramble Partners"
+ },
+ "H-V023-03": {
+  "subject": "BRA-1757",
+  "body_text": "Hope you are well. BRA-1757, $3,690.00, attached. Workshop facilitation, one day.\n\nBest regards,\nHana Nguyen\nBramble Partners"
+ },
+ "H-V023-04": {
+  "subject": "BRA-1758 / PO 000094252801",
+  "body_text": "Hope you are well. BRA-1758 for $2,336.00 against PO 000094252801. Document review hours.\n\nBest regards,\nHiro Alvarez\nBramble Partners"
+ },
+ "H-V023-05": {
+  "subject": "BRA-1759 PO 000101380401",
+  "body_text": "Hope you are well. BRA-1759, $3,431.00, PO 000101380401. Attached.\n\nBest regards,\nHana Nguyen\nBramble Partners"
+ },
+ "H-V023-06": {
+  "subject": "BRA-1760",
+  "body_text": "Hope you are well. BRA-1760 for $19,335.00, PO 000096718001. Attached. Advisory retainer, April.\n\nBest regards,\nHiro Alvarez\nBramble Partners"
+ },
+ "H-V023-07": {
+  "subject": "BRA-1761",
+  "body_text": "Dear Accounts Payable,\n\nHope you are well. Invoice BRA-1761, $2,115.00, PO 000094252801. Attached.\n\nBest regards,\nHiro Alvarez\nBramble Partners"
+ },
+ "H-V023-08": {
+  "subject": "BRA-1764",
+  "body_text": "Hope you are well. BRA-1764 for $2,038.00, PO 000094252801. Attached.\n\nBest regards,\nHiro Alvarez\nBramble Partners"
+ },
+ "H-V023-09": {
+  "subject": "BRA-1765",
+  "body_text": "Hope you are well. BRA-1765, $16,908.00, attached. May retainer.\n\nBest regards,\nHiro Alvarez\nBramble Partners"
+ },
+ "H-V023-10": {
+  "subject": "BRA-1759 payment",
+  "body_text": "Hope you are well. Checking BRA-1759, $3,431.00. Not received here. Can you confirm the payment date?\n\nBest regards,\nHiro Alvarez\nBramble Partners"
+ },
+ "H-V023-11": {
+  "subject": "BRA-1766 PO 000100354901",
+  "body_text": "Hope you are well. BRA-1766 for $2,356.00 against PO 000100354901. Attached.\n\nBest regards,\nHiro Alvarez\nBramble Partners"
+ },
+ "H-V023-12": {
+  "subject": "BRA-1760 payment",
+  "body_text": "Hope you are well. BRA-1760, $19,335.00, is still open on our ledger. Please advise.\n\nBest regards,\nHiro Alvarez\nBramble Partners"
+ },
+ "H-V023-13": {
+  "subject": "BRA-1769",
+  "body_text": "Hope you are well. BRA-1769 for $17,460.00, PO 000096718001, attached. June retainer.\n\nBest regards,\nHiro Alvarez\nBramble Partners"
+ },
+ "H-V023-14": {
+  "subject": "BRA-1766 status",
+  "body_text": "Hope you are well. Following up on BRA-1766, $2,356.00. Please let me know where it stands.\n\nBest regards,\nHiro Alvarez\nBramble Partners"
+ },
+ "H-V024-01": {
+  "subject": "Holiday hours",
+  "body_text": "Hello,\n\nA quick note to let you know that our dispatch office will be closed from the 24th through the 2nd for the holidays. Billing questions during those days will be answered when we return, and we thank you very much for your understanding. Wishing everyone on your team a lovely break.\n\nMany thanks,\nNoor"
+ },
+ "H-V024-02": {
+  "subject": "Invoice INV250347",
+  "body_text": "Hello,\n\nPlease find attached invoice INV250347 for CA$8,465.70 against PO 000096165401, covering the regular December lane service. As always, thank you for being such a pleasure to work with, and please let me know if the PO reference needs to be formatted differently on your side.\n\nMany thanks,\nJordan"
+ },
+ "H-V024-03": {
+  "subject": "Invoice INV250348 - PO 000096403401",
+  "body_text": "Hello,\n\nI am sending invoice INV250348 for CA$370,495.91, PO 000096403401. This is the annual fleet contract settlement that we discussed with your logistics team in the fall, and the supporting mileage summary is attached for your review. I would be glad to walk anyone through it if useful.\n\nMany thanks,\nNoor"
+ },
+ "H-V024-04": {
+  "subject": "Invoice INV260349",
+  "body_text": "Hello,\n\nAttached is invoice INV260349, CA$8,683.79, PO 000096165401, for the January lane service. Thank you again for the continued business.\n\nMany thanks,\nJordan"
+ },
+ "H-V024-05": {
+  "subject": "Payment of INV250348",
+  "body_text": "Hello,\n\nI hope you are having a good week. I wanted to politely check whether invoice INV250348 (CA$370,495.91) has been scheduled for payment. It is a large one and our treasury team asked me to confirm the timing, so any information would be gratefully received.\n\nMany thanks,\nJordan"
+ },
+ "H-V024-06": {
+  "subject": "Invoice INV260352",
+  "body_text": "Hello,\n\nPlease see invoice INV260352 for CA$8,683.79, PO 000096165401. This is the February lane service as usual. Thank you very much.\n\nMany thanks,\nJordan"
+ },
+ "H-V024-07": {
+  "subject": "Invoice INV260353 / PO 000094535601",
+  "body_text": "Hello,\n\nInvoice INV260353, CA$8,465.70, is attached against PO 000094535601. This is the cross-border run that was added to the schedule in February; the customs paperwork is included for your files.\n\nMany thanks,\nJordan"
+ },
+ "H-V024-08": {
+  "subject": "Invoice INV260354 - PO 000096403401",
+  "body_text": "Hello,\n\nI am pleased to send invoice INV260354 for CA$749,590.25 against PO 000096403401, the second half of the annual fleet contract. Jordan is travelling this week so I am sending it on behalf of the team, and the usual mileage summary is attached. Please do reach out with any questions at all.\n\nMany thanks,\nNoor"
+ },
+ "H-V024-09": {
+  "subject": "Invoice INV260355",
+  "body_text": "Hello,\n\nInvoice INV260355 for CA$8,683.79 is attached; it covers the March lane service. Thank you as always.\n\nMany thanks,\nNoor"
+ },
+ "H-V024-10": {
+  "subject": "Invoice INV260357",
+  "body_text": "Hello,\n\nPlease find invoice INV260357, CA$8,683.79, for the April lane service. I appreciate your help with these each month.\n\nMany thanks,\nJordan"
+ },
+ "H-V024-11": {
+  "subject": "Account statement",
+  "body_text": "Hello,\n\nAttached is our statement of account. There are two open invoices totalling CA$17,367.58. If anything looks different from your ledger I would be happy to reconcile it with whoever is easiest on your side.\n\nMany thanks,\nNoor"
+ },
+ "H-V025-01": {
+  "subject": "INVOICE TID-1387",
+  "body_text": "Hi,\n\ninvoice TID-1387 for USD 1,139.40 attached, PO 000069285501. thanks!!\n\nRegards,\nPriya Nakamura\nTidewater Logistics LLC"
+ },
+ "H-V025-02": {
+  "subject": "INVOICE TID-1389 SMALL ONE",
+  "body_text": "Hi,\n\nsmall one this time TID-1389 USD 36.81 for the pallet return fee.\n\nRegards,\nPriya Nakamura\nTidewater Logistics LLC"
+ },
+ "H-V025-03": {
+  "subject": "INVOICE TID-1390",
+  "body_text": "Hi,\n\npriya is out sick so i am sending TID-1390, USD 1,102.69, PO 000069285502. attached!\n\nRegards,\nViktor Ferreira\nTidewater Logistics LLC"
+ },
+ "H-V025-04": {
+  "subject": "INVOICE TID-1393 PO 000069285502",
+  "body_text": "Hi,\n\nTID-1393, USD 1,139.32 against PO 000069285502. attached. thanks so much\n\nRegards,\nPriya Nakamura\nTidewater Logistics LLC"
+ },
+ "H-V025-05": {
+  "subject": "TID-1393 PAYMENT?",
+  "body_text": "Hi,\n\nany word on TID-1393 USD 1,139.32? we are a small shop and cash is a bit tight this month, sorry to keep asking.\n\nRegards,\nPriya Nakamura\nTidewater Logistics LLC"
+ },
+ "H-V025-06": {
+  "subject": "INVOICE TID-1396",
+  "body_text": "Hi,\n\nTID-1396 USD 1,452.00 attached, no PO on this one it was a rush job by phone. thanks!\n\nRegards,\nPriya Nakamura\nTidewater Logistics LLC"
+ },
+ "H-V025-07": {
+  "subject": "INVOICE TID-1399",
+  "body_text": "Hi,\n\nTID-1399 USD 1,525.00 attached. regular monthly run. thanks!!\n\nRegards,\nPriya Nakamura\nTidewater Logistics LLC"
+ },
+ "H-V025-08": {
+  "subject": "TID-1399 STATUS",
+  "body_text": "Hi,\n\ncan you let me know if TID-1399 USD 1,525.00 is scheduled? thanks again\n\nRegards,\nPriya Nakamura\nTidewater Logistics LLC"
+ },
+ "H-V026-01": {
+  "subject": "Invoice INV-00575",
+  "body_text": "Afternoon,\n\nInvoice INV-00575 for $25.00, domain renewal fee. Attached.\n\nRegards"
+ },
+ "H-V026-02": {
+  "subject": "INV-00575 payment",
+  "body_text": "Afternoon,\n\nPlease confirm payment of INV-00575, $25.00. We do not see it.\n\nRegards"
+ },
+ "H-V026-03": {
+  "subject": "Invoice INV-00577 PO 000092701802",
+  "body_text": "Afternoon,\n\nInvoice INV-00577, $8,550.00, PO 000092701802. Server migration project, final milestone. Attached.\n\nRegards"
+ },
+ "H-V026-04": {
+  "subject": "Invoice INV-00578",
+  "body_text": "Afternoon,\n\nInvoice INV-00578, $850.00, PO 000090075902. Support hours. Attached.\n\nRegards"
+ },
+ "H-V026-05": {
+  "subject": "Invoice INV-00581",
+  "body_text": "Afternoon,\n\nInvoice INV-00581, $1,689.38. Hardware order, delivered Tuesday. Attached.\n\nRegards"
+ },
+ "H-V026-06": {
+  "subject": "Invoice INV-00582 PO 000101203501",
+  "body_text": "Afternoon,\n\nInvoice INV-00582, $900.00, PO 000101203501. Attached.\n\nRegards"
+ },
+ "H-V026-07": {
+  "subject": "INV-00578 status",
+  "body_text": "Afternoon,\n\nPlease confirm status of INV-00578, $850.00.\n\nRegards"
+ },
+ "H-V026-08": {
+  "subject": "Invoice INV-00583 PO 000097804601",
+  "body_text": "Afternoon,\n\nInvoice INV-00583, $2,795.63, PO 000097804601. Network equipment. Attached.\n\nRegards"
+ },
+ "H-V027-01": {
+  "subject": "INV242809",
+  "body_text": "INV242809 for $4,086.00, the data feed subscription for the second quarter. Invoice attached, thx!\n\nHiro Iyer\nBilling Lead\nLumen Analytics, Inc.\n(415) 555-0152"
+ },
+ "H-V027-02": {
+  "subject": "Net 30 reminder",
+  "body_text": "Just a friendly reminder that our terms are net 30, and invoices past due get the standard 1.5% monthly fee per our agreement. If you are within terms ignore this, thx!\n\nHiro Iyer\nBilling Lead\nLumen Analytics, Inc.\n(415) 555-0152"
+ },
+ "H-V027-03": {
+  "subject": "INV252811",
+  "body_text": "INV252811 for $3,782.69, annual data licence true-up. Attached, thx!\n\nHiro Iyer\nBilling Lead\nLumen Analytics, Inc.\n(415) 555-0152\n\nSent from Outlook for iOS"
+ },
+ "H-V027-04": {
+  "subject": "INV252811 status?",
+  "body_text": "Checking on INV252811 for $3,782.69, it is past 30 days on our books. Could you tell me when to expect it? thx\n\nSamir Moretti\nController\nLumen Analytics, Inc.\n(415) 555-0152\n\nSent from Outlook for iOS"
+ },
+ "H-V027-05": {
+  "subject": "INV252816",
+  "body_text": "INV252816 for $3,462.40, consulting hours for the dashboard rebuild. Attached! thx\n\nSamir Moretti\nController\nLumen Analytics, Inc.\n(415) 555-0152"
+ },
+ "H-V027-06": {
+  "subject": "INV252818 PO 000086683201",
+  "body_text": "INV252818, $5,128.80, PO 000086683201. Quarterly data refresh. Attached, thx!\n\nHiro Iyer\nBilling Lead\nLumen Analytics, Inc.\n(415) 555-0152"
+ },
+ "H-V027-07": {
+  "subject": "Payment of INV252818",
+  "body_text": "INV252818, $5,128.80: can you confirm the payment went out? Nothing in the bank yet. thx!\n\nSamir Moretti\nController\nLumen Analytics, Inc.\n(415) 555-0152\n\nSent from Outlook for iOS"
+ },
+ "H-V027-08": {
+  "subject": "INV262820 / PO 000094912501",
+  "body_text": "INV262820 for $3,670.40 under PO 000094912501, the annual data licence. Attached, thx!\n\nHiro Iyer\nBilling Lead\nLumen Analytics, Inc.\n(415) 555-0152\n\nSent from Outlook for iOS"
+ },
+ "H-V027-09": {
+  "subject": "INV262821 / PO 000099251601",
+  "body_text": "INV262821, $5,436.80, PO 000099251601. Quarterly data refresh for Q2. Attached, thx!\n\nHiro Iyer\nBilling Lead\nLumen Analytics, Inc.\n(415) 555-0152\n\nSent from Outlook for iOS"
+ },
+ "H-V028-01": {
+  "subject": "Invoice WIL-0233",
+  "body_text": "Hello,\n\nPlease find invoice WIL-0233 for 14175.00 attached. This is for the policy review we finish last month. Remit to: bank account on file with you.\n\nBest,\nTamika Bianchi\nSenior Accountant\nWillow Partners Corp.\n(415) 555-0169"
+ },
+ "H-V028-02": {
+  "subject": "Willow Partners billing: invoice WIL-0235",
+  "body_text": "Willow Partners Client Portal\n\nInvoice WIL-0235 (12810.00) is now available.\nOpen: https://clients.willow-partners-corp.example/invoices/WIL-0235\n\nRemit to the account on file. Automated message."
+ },
+ "H-V028-03": {
+  "subject": "Willow Partners billing: invoice WIL-0237",
+  "body_text": "Willow Partners Client Portal\n\nInvoice WIL-0237 (9870.00) is now available. PO: 000082828502\nOpen: https://clients.willow-partners-corp.example/invoices/WIL-0237\n\nRemit to the account on file. Automated message."
+ },
+ "H-V028-04": {
+  "subject": "Willow Partners billing: invoice WIL-0238",
+  "body_text": "Willow Partners Client Portal\n\nInvoice WIL-0238 (29342.50) is now available. PO: 000088422602\nOpen: https://clients.willow-partners-corp.example/invoices/WIL-0238\n\nRemit to the account on file. Automated message."
+ },
+ "H-V028-05": {
+  "subject": "Willow Partners billing: invoice WIL-0241",
+  "body_text": "Willow Partners Client Portal\n\nInvoice WIL-0241 (29342.50) is now available. PO: 000088422601\nOpen: https://clients.willow-partners-corp.example/invoices/WIL-0241\n\nRemit to the account on file. Automated message."
+ },
+ "H-V028-06": {
+  "subject": "Willow Partners billing: invoice WIL-0242",
+  "body_text": "Willow Partners Client Portal\n\nInvoice WIL-0242 (4680.00) is now available. PO: 000088422601\nOpen: https://clients.willow-partners-corp.example/invoices/WIL-0242\n\nRemit to the account on file. Automated message."
+ },
+ "H-V028-07": {
+  "subject": "Question about WIL-0241",
+  "body_text": "Hello,\n\nI am writing about invoice WIL-0241, 29342.50. We not see the payment yet, so maybe you can tell me the status? Remit to: bank account on file with you.\n\nBest,\nPaloma Lindgren\nOffice Manager\nWillow Partners Corp.\n(415) 555-0169"
+ },
+ "H-V028-08": {
+  "subject": "WIL-0242 status",
+  "body_text": "Hello,\n\nWe are checking on invoice WIL-0242 for 4680.00. It is still open in our books. Please tell me if you need something from us. Remit to: bank account on file with you.\n\nBest,\nTamika Bianchi\nSenior Accountant\nWillow Partners Corp.\n(415) 555-0169"
+ },
+ "H-V028-09": {
+  "subject": "Payment terms",
+  "body_text": "Hello,\n\nWe remind our payment terms is 30 days from the invoice date, and late payments have the fee as in contract. If you already paid please forget this message. Remit to: bank account on file with you.\n\nBest,\nPaloma Lindgren\nOffice Manager\nWillow Partners Corp.\n(415) 555-0169"
+ },
+ "H-V028-10": {
+  "subject": "Willow Partners billing: invoice WIL-0245",
+  "body_text": "Willow Partners Client Portal\n\nInvoice WIL-0245 (29342.50) is now available. PO: 000098942901\nOpen: https://clients.willow-partners-corp.example/invoices/WIL-0245\n\nRemit to the account on file. Automated message."
+ },
+ "H-V028-11": {
+  "subject": "Invoice WIL-0248 / PO 000098942902",
+  "body_text": "Hello,\n\nPlease find attached invoice WIL-0248 for 29342.50 under PO 000098942902. This is the quarterly retainer as before. Remit to: bank account on file with you.\n\nBest,\nPaloma Lindgren\nOffice Manager\nWillow Partners Corp.\n(415) 555-0169"
+ }
+}

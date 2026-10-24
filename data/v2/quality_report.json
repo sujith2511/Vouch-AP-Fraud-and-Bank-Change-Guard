@@ -1,0 +1,306 @@
+{
+ "n": 300,
+ "repetition": {
+  "cosine": {
+   "p50": 0.027,
+   "p90": 0.063,
+   "p99": 0.176,
+   "p99.9": 0.304,
+   "max": 0.623
+  },
+  "jaccard5": {
+   "p50": 0.0,
+   "p90": 0.0,
+   "p99": 0.025,
+   "p99.9": 0.099,
+   "max": 0.203
+  },
+  "pairs_cos_gt_0.6": 1,
+  "pairs_cos_gt_0.8": 0,
+  "pairs_jaccard_gt_0.2": 1,
+  "pairs_jaccard_gt_0.4": 0,
+  "top_cosine_pairs": [
+   [
+    "C0133",
+    "C0140",
+    0.623
+   ],
+   [
+    "C0131",
+    "C0142",
+    0.406
+   ],
+   [
+    "C0123",
+    "C0128",
+    0.398
+   ],
+   [
+    "C0057",
+    "C0143",
+    0.39
+   ],
+   [
+    "C0027",
+    "C0259",
+    0.38
+   ],
+   [
+    "C0098",
+    "C0110",
+    0.379
+   ],
+   [
+    "C0004",
+    "C0256",
+    0.378
+   ],
+   [
+    "C0019",
+    "C0213",
+    0.368
+   ]
+  ],
+  "top_jaccard_pairs": [
+   [
+    "C0008",
+    "C0250",
+    0.203
+   ],
+   [
+    "C0133",
+    "C0140",
+    0.195
+   ],
+   [
+    "C0006",
+    "C0257",
+    0.194
+   ],
+   [
+    "C0006",
+    "C0214",
+    0.194
+   ],
+   [
+    "C0057",
+    "C0143",
+    0.183
+   ],
+   [
+    "C0037",
+    "C0143",
+    0.181
+   ],
+   [
+    "C0012",
+    "C0217",
+    0.171
+   ],
+   [
+    "C0109",
+    "C0114",
+    0.159
+   ]
+  ],
+  "most_common_openings": [
+   [
+    "hello",
+    41
+   ],
+   [
+    "afternoon",
+    29
+   ],
+   [
+    "hello ap team",
+    25
+   ],
+   [
+    "greetings",
+    25
+   ],
+   [
+    "dear accounts payable",
+    23
+   ],
+   [
+    "hi",
+    22
+   ]
+  ],
+  "most_common_endings": [
+   [
+    "pinnacle logistics group | this message may contain confiden",
+    5
+   ],
+   [
+    "ember haulage corp. | (415) 555-0101",
+    5
+   ],
+   [
+    "jordan | sent from my iphone",
+    5
+   ],
+   [
+    "many thanks, | jordan",
+    4
+   ],
+   [
+    "6100 depot way | sent from outlook for ios",
+    4
+   ],
+   [
+    "sent from my iphone | this email and its attachments are con",
+    4
+   ]
+  ],
+  "distinct_openings": 70,
+  "distinct_endings": 231
+ },
+ "diversity": {
+  "scenario": {
+   "counts": {
+    "routine": 20,
+    "po_matched": 14,
+    "po_mismatch_legit": 10,
+    "amount_spike_real_reason": 12,
+    "partial_split": 9,
+    "credit_memo": 8,
+    "benign_duplicate_resend": 10,
+    "payment_reminder": 9,
+    "legit_bank_change_callback": 12,
+    "legit_bank_change_second_contact": 10,
+    "remit_address_change": 8,
+    "vendor_name_change_acquisition": 8,
+    "international_vendor": 12,
+    "recurring_subscription": 9,
+    "portal_notification": 9,
+    "lookalike_domain": 10,
+    "compromised_real_account": 9,
+    "thread_hijack": 9,
+    "executive_pressure": 8,
+    "fake_vendor_onboarding": 8,
+    "third_party_factoring_agent": 8,
+    "bank_country_mismatch": 8,
+    "split_account_routing_messages": 8,
+    "prompt_injection": 15,
+    "inflated_invoice_just_under_1_5x": 9,
+    "duplicate_altered_invoice_number": 8,
+    "fake_invoice_compromised_domain_real_bank": 8,
+    "services_never_ordered_no_po": 8,
+    "invoice_sequence_anomaly": 8,
+    "phantom_vendor": 8,
+    "kickback_threshold_splitting": 8
+   },
+   "entropy_bits": 4.91
+  },
+  "channel": {
+   "counts": {
+    "vendor": 201,
+    "lookalike": 28,
+    "freemail": 1,
+    "compromised": 38,
+    "exec_lookalike": 8,
+    "phantom": 16,
+    "third_party": 8
+   },
+   "entropy_bits": 1.62
+  },
+  "thread": {
+   "counts": {
+    "new": 211,
+    "reply_in_thread": 51,
+    "reply_all_cc": 20,
+    "forward": 18
+   },
+   "entropy_bits": 1.3
+  },
+  "register": {
+   "counts": {
+    "neutral": 68,
+    "non_native": 49,
+    "formal": 40,
+    "terse": 89,
+    "chatty": 45,
+    "portal_notification": 9
+   },
+   "entropy_bits": 2.38
+  },
+  "length": {
+   "counts": {
+    "short": 112,
+    "long": 51,
+    "medium": 122,
+    "oneline": 15
+   },
+   "entropy_bits": 1.71
+  },
+  "language": {
+   "counts": {
+    "en": 274,
+    "de": 7,
+    "es": 12,
+    "fr": 7
+   },
+   "entropy_bits": 0.56
+  },
+  "device_footer": {
+   "counts": {
+    "iphone": 74,
+    "desktop_sig": 41,
+    "none": 120,
+    "outlook_mobile": 25,
+    "android": 40
+   },
+   "entropy_bits": 2.11
+  },
+  "attachments": {
+   "counts": {
+    "invoice_pdf": 157,
+    "invoice_pdf+spreadsheet": 13,
+    "none": 86,
+    "spreadsheet": 7,
+    "signed_bank_form": 15,
+    "signed_bank_form+w9": 4,
+    "signed_bank_form+invoice_pdf": 5,
+    "w9+invoice_pdf": 6,
+    "w9": 2,
+    "w9+signed_bank_form": 5
+   },
+   "entropy_bits": 1.99
+  },
+  "vocab_size": 2992,
+  "body_words": {
+   "min": 13,
+   "median": 62,
+   "p90": 123,
+   "max": 163
+  },
+  "thread_structures": 6
+ },
+ "shortcut_audit": {
+  "majority_baseline": {
+   "label": 0.533,
+   "lane": 0.683
+  },
+  "artifact_only (length, lines, quoting, attachments, noise, hour, weekday, language, footer, cc, html, urgency)": {
+   "label": 0.737,
+   "lane": 0.66
+  },
+  "body_text_tfidf_only": {
+   "label": 0.91,
+   "lane": 0.76
+  },
+  "header_and_fact_features (REAL tells)": {
+   "label": 0.87,
+   "lane": 0.83
+  },
+  "text+header": {
+   "label": 0.91,
+   "lane": 0.833
+  },
+  "text+header on HARD cases only (label)": 0.827,
+  "text+header on EASY/MEDIUM cases only (label)": 0.971
+ }
+}

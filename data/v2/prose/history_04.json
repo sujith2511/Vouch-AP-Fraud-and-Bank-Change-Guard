@@ -1,0 +1,454 @@
+{
+ "H-V016-01": {
+  "subject": "year end cutoff",
+  "body_text": "hi team\n\nlast invoicing run before year end is the 19th anything delivered after goes on the january cycle same remit details as always\n\nmany thanks\nJoon Haas\n(415) 555-0127"
+ },
+ "H-V016-02": {
+  "subject": "billing contact",
+  "body_text": "Hi team\n\nluis whitfield will be out some weeks in august and i will handle invoices in the meantime no changes to anything else\n\nMany thanks\nJoon Haas\n(415) 555-0127"
+ },
+ "H-V016-03": {
+  "subject": "INV-02013 po 000095596501",
+  "body_text": "hi team\n\ninv-02013 17893.50 on po 000095596501 attached bulk fastener release\n\nmany thanks\nJoon Haas\n(415) 555-0127"
+ },
+ "H-V016-04": {
+  "subject": "INV-02014",
+  "body_text": "hi team\n\ninv-02014 18802.50 po 000095596501 attached delivery was monday\n\nmany thanks\nLuis Whitfield\n(415) 555-0127"
+ },
+ "H-V016-05": {
+  "subject": "INV-02015",
+  "body_text": "hi team\n\ninv-02015 10572.50 po 000095596501 attached\n\nmany thanks\nLuis Whitfield\n(415) 555-0127"
+ },
+ "H-V016-06": {
+  "subject": "INV-02016 po 000092880701",
+  "body_text": "hi team\n\ninv-02016 19239.50 against po 000092880701 attached\n\nmany thanks\nJoon Haas\n(415) 555-0127"
+ },
+ "H-V016-07": {
+  "subject": "INV-02017 po 000092880701",
+  "body_text": "hi team\n\nsecond one for the same po inv-02017 15859.50 attached\n\nmany thanks\nJoon Haas\n(415) 555-0127"
+ },
+ "H-V016-08": {
+  "subject": "INV-02018",
+  "body_text": "hi team\n\ninv-02018 10566.50 po 000095596501 attached\n\nmany thanks\nLuis Whitfield\n(415) 555-0127"
+ },
+ "H-V016-09": {
+  "subject": "status INV-02017",
+  "body_text": "hi team\n\ncan you check inv-02017 15859.50 we show it open past terms\n\nmany thanks\nLuis Whitfield\n(415) 555-0127"
+ },
+ "H-V016-10": {
+  "subject": "INV-02021",
+  "body_text": "hi team\n\ninv-02021 10377.00 po 000095596501 attached\n\nmany thanks\nLuis Whitfield\n(415) 555-0127"
+ },
+ "H-V016-11": {
+  "subject": "INV-02023",
+  "body_text": "hi team\n\ninv-02023 12421.50 po 000095596501 attached\n\nmany thanks\nLuis Whitfield\n(415) 555-0127"
+ },
+ "H-V016-12": {
+  "subject": "statement june",
+  "body_text": "hi team\n\nstatement attached six items open total 79036.50 tell me if anything does not match your books\n\nmany thanks\nLuis Whitfield\n(415) 555-0127"
+ },
+ "H-V016-13": {
+  "subject": "INV-02026",
+  "body_text": "hi team\n\ninv-02026 21045.50 po 000095596501 attached\n\nmany thanks\nLuis Whitfield\n(415) 555-0127"
+ },
+ "H-V016-14": {
+  "subject": "INV-02029",
+  "body_text": "hi team\n\ninv-02029 11560.00 po 000095596501 attached\n\nmany thanks\nLuis Whitfield\n(415) 555-0127"
+ },
+ "H-V016-15": {
+  "subject": "INV-02015 still open",
+  "body_text": "hi team\n\ninv-02015 10572.50 is still open on our side can you let me know the pay date\n\nmany thanks\nLuis Whitfield\n(415) 555-0127"
+ },
+ "H-V017-01": {
+  "subject": "Billing contact",
+  "body_text": "Dear Accounts Payable,\n\nMy colleague Samir Lindgren will help with invoices from January. You may see mails from him. Nothing else changes.\n\nThanks,\nHiro Duarte\n+1 416 555 0147"
+ },
+ "H-V017-02": {
+  "subject": "Out of office",
+  "body_text": "Dear Accounts Payable,\n\nI am out of the office from the 20th to the 31st. Samir Lindgren covers invoices and questions during that time. Our payment details remain the same.\n\nThanks,\nHiro Duarte\n+1 416 555 0147"
+ },
+ "H-V017-03": {
+  "subject": "W-8BEN-E",
+  "body_text": "Dear Accounts Payable,\n\nOur updated W-8BEN-E form is ready. Tell me if you want a copy for your files.\n\nThanks,\nHiro Duarte\n+1 416 555 0147"
+ },
+ "H-V017-04": {
+  "subject": "Quarry Textiles e-invoice 20-1969",
+  "body_text": "Quarry Textiles e-invoicing\n\nInvoice 20-1969 for CA$3,976.75 is available. PO: 000033628901\nhttps://einvoice.quarry-textiles-llc.example/20-1969\n\nAutomated notification - do not reply."
+ },
+ "H-V017-05": {
+  "subject": "Quarry Textiles e-invoice 20-1970",
+  "body_text": "Quarry Textiles e-invoicing\n\nInvoice 20-1970 for CA$1,272.32 is available. PO: 000034605701\nhttps://einvoice.quarry-textiles-llc.example/20-1970\n\nAutomated notification - do not reply."
+ },
+ "H-V017-06": {
+  "subject": "New invoice format",
+  "body_text": "Dear Accounts Payable,\n\nFrom March our invoices come from a new system and the PDF will look different. Numbers, PO field and remittance details stay as they are.\n\nThanks,\nHiro Duarte\n+1 416 555 0147"
+ },
+ "H-V017-07": {
+  "subject": "Quarry Textiles e-invoice 20-1971",
+  "body_text": "Quarry Textiles e-invoicing\n\nInvoice 20-1971 for CA$250.85 is available. PO: 000034640501\nhttps://einvoice.quarry-textiles-llc.example/20-1971\n\nAutomated notification - do not reply."
+ },
+ "H-V017-08": {
+  "subject": "Quarry Textiles e-invoice 20-1972",
+  "body_text": "Quarry Textiles e-invoicing\n\nInvoice 20-1972 for CA$3,976.75 is available. PO: 000033629501\nhttps://einvoice.quarry-textiles-llc.example/20-1972\n\nAutomated notification - do not reply."
+ },
+ "H-V017-09": {
+  "subject": "Quarry Textiles e-invoice 20-1973",
+  "body_text": "Quarry Textiles e-invoicing\n\nInvoice 20-1973 for CA$730.43 is available. PO: 000034605701\nhttps://einvoice.quarry-textiles-llc.example/20-1973\n\nAutomated notification - do not reply."
+ },
+ "H-V017-10": {
+  "subject": "Invoice 20-1975, PO 000030167903",
+  "body_text": "Dear Accounts Payable,\n\nInvoice 20-1975 for CA$6,066.81 is attached, PO 000030167903. It is the first half of the uniform order, the second half will follow when the fabric arrives. Please confirm receipt.\n\nThanks,\nHiro Duarte\n+1 416 555 0147"
+ },
+ "H-V017-11": {
+  "subject": "Quarry Textiles e-invoice 20-1978",
+  "body_text": "Quarry Textiles e-invoicing\n\nInvoice 20-1978 for CA$110.68 is available.\nhttps://einvoice.quarry-textiles-llc.example/20-1978\n\nAutomated notification - do not reply."
+ },
+ "H-V017-12": {
+  "subject": "Quarry Textiles e-invoice 20-1980",
+  "body_text": "Quarry Textiles e-invoicing\n\nInvoice 20-1980 for CA$6,066.82 is available. PO: 000030167904\nhttps://einvoice.quarry-textiles-llc.example/20-1980\n\nAutomated notification - do not reply."
+ },
+ "H-V018-01": {
+  "subject": "Change of bank account",
+  "body_text": "Hello,\n\nGranite Ridge is changing banks. The signed bank change form is attached and we posted the original to your office on Friday.\n\nNew bank: Tidewater National\nRouting number: 999510144\nAccount number: 00994926521\n\nThe old account ending 3454 will be closed after the final payments clear. Our reference is BC-2023-0120. Please call us at (415) 555-0194 to confirm these details before you update your records.\n\nThank you,\nDana Haddad\nBilling Manager\nGranite Ridge Corp.\n88 Quarry Lane, Suite 4"
+ },
+ "H-V018-02": {
+  "subject": "Billing team update",
+  "body_text": "Hello,\n\nMei Moretti, our Controller, will occasionally send statements and reminders on my behalf. Our payment instructions are not affected.\n\nThank you,\nDana Haddad\nBilling Manager\nGranite Ridge Corp.\n88 Quarry Lane, Suite 4"
+ },
+ "H-V018-03": {
+  "subject": "W-9 available",
+  "body_text": "Hello,\n\nA current W-9 is available for your vendor file. Reply if you would like us to send it. No other details have changed.\n\nThank you,\nDana Haddad\nBilling Manager\nGranite Ridge Corp.\n88 Quarry Lane, Suite 4"
+ },
+ "H-V018-04": {
+  "subject": "Invoice INV252079",
+  "body_text": "Hello,\n\nPlease find invoice INV252079 for USD 687.86 attached, PO 000098057601. The work was completed on December 4.\n\nThank you,\nDana Haddad\nBilling Manager\nGranite Ridge Corp.\n88 Quarry Lane, Suite 4"
+ },
+ "H-V018-05": {
+  "subject": "Invoice INV252079 status",
+  "body_text": "Hello,\n\nWe have not yet received payment for INV252079 (USD 687.86). Could you tell us the expected payment date?\n\nThank you,\nMei Moretti\nController\nGranite Ridge Corp.\n88 Quarry Lane, Suite 4"
+ },
+ "H-V018-06": {
+  "subject": "Statement of account",
+  "body_text": "Hello,\n\nAttached is our statement. One item is open, USD 687.86. Please let us know if it differs from your records.\n\nThank you,\nDana Haddad\nBilling Manager\nGranite Ridge Corp.\n88 Quarry Lane, Suite 4"
+ },
+ "H-V018-07": {
+  "subject": "Invoice INV262080",
+  "body_text": "Hello,\n\nInvoice INV262080 for USD 850.58 is attached, for the gutter repair at the depot.\n\nThank you,\nDana Haddad\nBilling Manager\nGranite Ridge Corp.\n88 Quarry Lane, Suite 4"
+ },
+ "H-V018-08": {
+  "subject": "Invoice INV262082 / PO 000093796602",
+  "body_text": "Hello,\n\nPlease see invoice INV262082, USD 186.41, against PO 000093796602.\n\nThank you,\nDana Haddad\nBilling Manager\nGranite Ridge Corp.\n88 Quarry Lane, Suite 4"
+ },
+ "H-V018-09": {
+  "subject": "Invoice INV262083 / PO 000095149601",
+  "body_text": "Hello,\n\nAttached is invoice INV262083 for USD 478.16, PO 000095149601, for the door hardware replacement.\n\nThank you,\nDana Haddad\nBilling Manager\nGranite Ridge Corp.\n88 Quarry Lane, Suite 4"
+ },
+ "H-V018-10": {
+  "subject": "Invoice INV262084",
+  "body_text": "Hello,\n\nInvoice INV262084 for USD 1,125.00 is attached. This is the flat monthly grounds maintenance fee.\n\nThank you,\nDana Haddad\nBilling Manager\nGranite Ridge Corp.\n88 Quarry Lane, Suite 4"
+ },
+ "H-V018-11": {
+  "subject": "Payment of INV262080",
+  "body_text": "Hello,\n\nPlease confirm whether invoice INV262080 (USD 850.58) has been paid. We cannot match it to a deposit.\n\nThank you,\nDana Haddad\nBilling Manager\nGranite Ridge Corp.\n88 Quarry Lane, Suite 4"
+ },
+ "H-V018-12": {
+  "subject": "Invoice INV262085 / PO 000101708401",
+  "body_text": "Hello,\n\nInvoice INV262085 for USD 478.76 is attached, against PO 000101708401.\n\nThank you,\nDana Haddad\nBilling Manager\nGranite Ridge Corp.\n88 Quarry Lane, Suite 4"
+ },
+ "H-V018-13": {
+  "subject": "Invoice INV262086",
+  "body_text": "Hello,\n\nPlease find invoice INV262086 attached, USD 592.03, for minor electrical repairs.\n\nThank you,\nDana Haddad\nBilling Manager\nGranite Ridge Corp.\n88 Quarry Lane, Suite 4"
+ },
+ "H-V018-14": {
+  "subject": "Invoice INV262087 / PO 000095026701",
+  "body_text": "Hello,\n\nInvoice INV262087, USD 429.97, PO 000095026701, is attached.\n\nThank you,\nDana Haddad\nBilling Manager\nGranite Ridge Corp.\n88 Quarry Lane, Suite 4"
+ },
+ "H-V018-15": {
+  "subject": "Invoice INV262090 / PO 000100481401",
+  "body_text": "Hello,\n\nAttached is invoice INV262090 for USD 3,936.21, against PO 000100481401. This covers the roof section repair completed April 15; photos are included.\n\nThank you,\nDana Haddad\nBilling Manager\nGranite Ridge Corp.\n88 Quarry Lane, Suite 4"
+ },
+ "H-V018-16": {
+  "subject": "Invoice INV262091 / PO 000099272401",
+  "body_text": "Hello,\n\nInvoice INV262091 for USD 429.97 is attached, PO 000099272401.\n\nThank you,\nDana Haddad\nBilling Manager\nGranite Ridge Corp.\n88 Quarry Lane, Suite 4"
+ },
+ "H-V019-01": {
+  "subject": "Change of bank details",
+  "body_text": "Please note that Orchid Partners Group has changed banks. The signed change form is attached and a paper copy was posted to you.\n\nBank: Banque Valmont\nIBAN: FR00ZZBK0522153814756660850\nBIC: ZZBKFRPP\n\nThe former account ending 9268 is closed for incoming payments from the date of this notice. Reference of this change: BC-2022-0875. Please telephone our office on +33 1 99 00 14 38 to verify before you modify our record.\n\nRespectfully,\nRosa Petrov\nOrchid Partners Group"
+ },
+ "H-V019-02": {
+  "subject": "Invoice SI002690",
+  "body_text": "SI002690, 108,62 €, purchase order 000086846101. Attached is the invoice for the monthly document archive service.\n\nRespectfully,\nRosa Petrov\nOrchid Partners Group"
+ },
+ "H-V019-03": {
+  "subject": "Invoice SI002693",
+  "body_text": "SI002693 for 8.576,22 €, order 000088870501. This is the project invoice for the audit support completed in June, timesheets attached.\n\nRespectfully,\nRosa Petrov\nOrchid Partners Group"
+ },
+ "H-V019-04": {
+  "subject": "Invoice SI002694",
+  "body_text": "SI002694, 3.001,65 €, order 000097276101. Advisory services for November as per our engagement letter.\n\nRespectfully,\nRosa Petrov\nOrchid Partners Group"
+ },
+ "H-V019-05": {
+  "subject": "Invoice SI002695",
+  "body_text": "SI002695 - 108,62 € - order 000100114201. Monthly archive service, January.\n\nRespectfully,\nRosa Petrov\nOrchid Partners Group"
+ },
+ "H-V019-06": {
+  "subject": "Invoice SI002696",
+  "body_text": "SI002696, 53,47 €, order 000099103301. Courier costs for the document transfer. Attached.\n\nRespectfully,\nDevon Doyle\nOrchid Partners Group"
+ },
+ "H-V019-07": {
+  "subject": "Invoice SI002698",
+  "body_text": "SI002698 for 3.001,65 €, order 000097276102. Advisory services for February.\n\nRespectfully,\nRosa Petrov\nOrchid Partners Group"
+ },
+ "H-V019-08": {
+  "subject": "Payment SI002698",
+  "body_text": "SI002698, 3.001,65 €. We have not received this payment yet. Please confirm if it has been released.\n\nRespectfully,\nRosa Petrov\nOrchid Partners Group"
+ },
+ "H-V019-09": {
+  "subject": "Invoice SI002699",
+  "body_text": "SI002699, 108,62 €, order 000100113101. Monthly archive service, April.\n\nRespectfully,\nDevon Doyle\nOrchid Partners Group"
+ },
+ "H-V019-10": {
+  "subject": "Invoice SI002700",
+  "body_text": "SI002700 for 530,66 €, order 000094558301. Translation of the contract annexes, as requested in May.\n\nRespectfully,\nRosa Petrov\nOrchid Partners Group"
+ },
+ "H-V019-11": {
+  "subject": "Payment SI002700",
+  "body_text": "SI002700, 530,66 €. Could you tell me the status of this payment? It is two weeks over our terms.\n\nRespectfully,\nRosa Petrov\nOrchid Partners Group"
+ },
+ "H-V019-12": {
+  "subject": "Follow-up SI002699",
+  "body_text": "SI002699, 108,62 €. Reminder that this small invoice is still open in our ledger.\n\nRespectfully,\nRosa Petrov\nOrchid Partners Group"
+ },
+ "H-V020-01": {
+  "subject": "A02898",
+  "body_text": "A02898 for USD 712.05, dashboard hosting for February. Attached.\n\nThank you"
+ },
+ "H-V020-02": {
+  "subject": "A02899",
+  "body_text": "A02899 for USD 1,193.66, data cleaning hours for the month. Attached.\n\nThank you"
+ },
+ "H-V020-03": {
+  "subject": "A02901 invoice",
+  "body_text": "A02901, USD 638.61, attached. This covers the quarterly report refresh requested by your office.\n\nThank you"
+ },
+ "H-V020-04": {
+  "subject": "A02903",
+  "body_text": "A02903 for USD 887.46 is attached. Model retraining, one session.\n\nThank you"
+ },
+ "H-V020-05": {
+  "subject": "A02904",
+  "body_text": "A02904, USD 698.89, attached. Dashboard hosting for March.\n\nThank you"
+ },
+ "H-V020-06": {
+  "subject": "A02901 payment",
+  "body_text": "A02901 for USD 638.61 appears unpaid on our side. Please confirm the payment date.\n\nThank you"
+ },
+ "H-V020-07": {
+  "subject": "A02905",
+  "body_text": "A02905 for USD 8,875.49. This is the completed analytics project invoice per the signed scope. Attached.\n\nThank you"
+ },
+ "H-V020-08": {
+  "subject": "A02906",
+  "body_text": "A02906, USD 626.76, attached. Dashboard hosting for April.\n\nThank you"
+ },
+ "H-V020-09": {
+  "subject": "Billing contact",
+  "body_text": "Please note that Morgan Duarte is on leave until the end of the month. Invoices and questions will be handled by Mei Haas. Our payment details are unchanged.\n\nThank you"
+ },
+ "H-V020-10": {
+  "subject": "A02907",
+  "body_text": "A02907 for USD 74.00, data export fee. Attached.\n\nThank you"
+ },
+ "H-V020-11": {
+  "subject": "A02908",
+  "body_text": "A02908 for USD 4,704.00. This is the annual platform licence. Attached.\n\nThank you"
+ },
+ "H-V020-12": {
+  "subject": "A02908 status",
+  "body_text": "A02908, USD 4,704.00, is still open on our ledger. Please advise whether payment is scheduled.\n\nThank you"
+ },
+ "H-V020-13": {
+  "subject": "A02909",
+  "body_text": "A02909 for USD 3,161.35, custom report work for the transit department. Attached.\n\nThank you"
+ },
+ "H-V020-14": {
+  "subject": "Billing contact update",
+  "body_text": "Please note Mei Haas is on leave through the end of May. Morgan Duarte resumes invoicing and can be reached at the usual address. No change to payment details.\n\nThank you"
+ },
+ "H-V020-15": {
+  "subject": "A02910",
+  "body_text": "A02910 for USD 467.98, dashboard hosting and a small data refresh. Attached.\n\nThank you"
+ },
+ "H-V020-16": {
+  "subject": "Holiday hours",
+  "body_text": "Our office is closed on Monday for the holiday and reopens Tuesday. Support requests received then are answered on Tuesday.\n\nThank you"
+ },
+ "H-V020-17": {
+  "subject": "A02911",
+  "body_text": "A02911 for USD 672.60, dashboard hosting for May. Attached.\n\nThank you"
+ },
+ "H-V021-01": {
+  "subject": "New invoice layout",
+  "body_text": "Hi there,\n\nHeads up, invoices from us look different from next month. PO number moves to the top of page one. Nothing else changes.\n\nKind regards,\nTamika Duarte\nBilling Lead, Cobalt Analytics\n300 Meridian Plaza, Floor 5"
+ },
+ "H-V021-02": {
+  "subject": "PO 000072124702 / inv 26-3454",
+  "body_text": "Hi there,\n\nPO 000072124702: invoice 26-3454, $16,025.63. Platform fees for Q1. Attached.\n\nKind regards,\nTamika Duarte\nBilling Lead, Cobalt Analytics\n300 Meridian Plaza, Floor 5\n\nSent from my iPhone"
+ },
+ "H-V021-03": {
+  "subject": "PO 000073469604 / inv 26-3455",
+  "body_text": "Hi there,\n\nPO 000073469604: invoice 26-3455, $9,000.00. Consulting block, March. Attached.\n\nKind regards,\nTamika Duarte\nBilling Lead, Cobalt Analytics\n300 Meridian Plaza, Floor 5\n\nSent from my iPhone"
+ },
+ "H-V021-04": {
+  "subject": "PO 000073469604 / inv 26-3456",
+  "body_text": "Hi there,\n\nPO 000073469604: invoice 26-3456, $20,212.98. Data integration milestone 2. Attached.\n\nKind regards,\nTamika Duarte\nBilling Lead, Cobalt Analytics\n300 Meridian Plaza, Floor 5\n\nSent from my iPhone"
+ },
+ "H-V021-05": {
+  "subject": "PO 000073918803 / inv 26-3457",
+  "body_text": "Hi there,\n\nPO 000073918803: invoice 26-3457, $8,063.14. Training sessions, two days. Attached.\n\nKind regards,\nTamika Duarte\nBilling Lead, Cobalt Analytics\n300 Meridian Plaza, Floor 5\n\nSent from my iPhone"
+ },
+ "H-V021-06": {
+  "subject": "PO 000097933001 / inv 26-3459",
+  "body_text": "Hi there,\n\nPO 000097933001: invoice 26-3459, $103,537.42. Phase 3 delivery. Acceptance sign-off attached.\n\nKind regards,\nTamika Duarte\nBilling Lead, Cobalt Analytics\n300 Meridian Plaza, Floor 5"
+ },
+ "H-V021-07": {
+  "subject": "PO 000097933001 / inv 26-3462",
+  "body_text": "Hi there,\n\nPO 000097933001: invoice 26-3462, $64,965.91. Phase 3 licences. Attached.\n\nKind regards,\nTamika Duarte\nBilling Lead, Cobalt Analytics\n300 Meridian Plaza, Floor 5"
+ },
+ "H-V021-08": {
+  "subject": "PO 000097933001 / inv 26-3463",
+  "body_text": "Hi there,\n\nPO 000097933001: invoice 26-3463, $48,599.46. Phase 3 support. Attached.\n\nKind regards,\nTamika Duarte\nBilling Lead, Cobalt Analytics\n300 Meridian Plaza, Floor 5"
+ },
+ "H-V021-09": {
+  "subject": "PO 000073469603 / inv 26-3464",
+  "body_text": "Hi there,\n\nPO 000073469603: invoice 26-3464, $4,879.61. Ad hoc analysis request. Attached.\n\nKind regards,\nTamika Duarte\nBilling Lead, Cobalt Analytics\n300 Meridian Plaza, Floor 5"
+ },
+ "H-V021-10": {
+  "subject": "inv 26-3467",
+  "body_text": "Hi there,\n\nNo PO on this one, it is a small expense recharge. Invoice 26-3467, $1,145.16. Attached.\n\nKind regards,\nTamika Duarte\nBilling Lead, Cobalt Analytics\n300 Meridian Plaza, Floor 5"
+ },
+ "H-V021-11": {
+  "subject": "PO 000097933001 / inv 26-3466",
+  "body_text": "Hi there,\n\nPO 000097933001: invoice 26-3466, $60,153.65. Phase 3 services. Attached.\n\nKind regards,\nTamika Duarte\nBilling Lead, Cobalt Analytics\n300 Meridian Plaza, Floor 5"
+ },
+ "H-V021-12": {
+  "subject": "inv 26-3470",
+  "body_text": "Hi there,\n\nInvoice 26-3470 for $55,598.35 attached. Tamika is traveling so I am sending it. PO is on page two of the PDF.\n\nKind regards,\nJoon Rahimi\nOffice Manager, Cobalt Analytics\n300 Meridian Plaza, Floor 5"
+ },
+ "H-V021-13": {
+  "subject": "PO 000067725102 / inv 26-3472",
+  "body_text": "Hi there,\n\nPO 000067725102: invoice 26-3472, $10,395.00. Annual subscription. Attached.\n\nKind regards,\nTamika Duarte\nBilling Lead, Cobalt Analytics\n300 Meridian Plaza, Floor 5\n\nSent from my iPhone"
+ },
+ "H-V021-14": {
+  "subject": "26-3462 status",
+  "body_text": "Hi there,\n\nStatus check on invoice 26-3462, $64,965.91. Please confirm it is in the queue.\n\nKind regards,\nTamika Duarte\nBilling Lead, Cobalt Analytics\n300 Meridian Plaza, Floor 5\n\nSent from my iPhone"
+ },
+ "H-V021-15": {
+  "subject": "PO 000073469604 / inv 26-3473",
+  "body_text": "Hi there,\n\nPO 000073469604: invoice 26-3473, $16,516.82. Consulting block, April. Attached.\n\nKind regards,\nTamika Duarte\nBilling Lead, Cobalt Analytics\n300 Meridian Plaza, Floor 5"
+ },
+ "H-V021-16": {
+  "subject": "PO 000073469604 / inv 26-3474",
+  "body_text": "Hi there,\n\nPO 000073469604: invoice 26-3474, $10,076.68. Data integration milestone 3. Attached.\n\nKind regards,\nTamika Duarte\nBilling Lead, Cobalt Analytics\n300 Meridian Plaza, Floor 5\n\nSent from my iPhone"
+ },
+ "H-V021-17": {
+  "subject": "Statement - May",
+  "body_text": "Hi there,\n\nStatement attached. 11 open items, total $383,931.20. Please send corrections if your ledger differs.\n\nKind regards,\nTamika Duarte\nBilling Lead, Cobalt Analytics\n300 Meridian Plaza, Floor 5\n\nSent from my iPhone"
+ },
+ "H-V021-18": {
+  "subject": "PO 000097933001 / inv 26-3476",
+  "body_text": "Hi there,\n\nPO 000097933001: invoice 26-3476, $57,786.51. Phase 3 services, May. Attached.\n\nKind regards,\nTamika Duarte\nBilling Lead, Cobalt Analytics\n300 Meridian Plaza, Floor 5"
+ },
+ "H-V021-19": {
+  "subject": "Payment 26-3463",
+  "body_text": "Hi there,\n\nInvoice 26-3463, $48,599.46. Not showing as received. Please confirm release date.\n\nKind regards,\nTamika Duarte\nBilling Lead, Cobalt Analytics\n300 Meridian Plaza, Floor 5\n\nSent from my iPhone"
+ },
+ "H-V021-20": {
+  "subject": "26-3467 status",
+  "body_text": "Hi there,\n\nFollowing up on invoice 26-3467, $1,145.16. Small, but still open.\n\nKind regards,\nTamika Duarte\nBilling Lead, Cobalt Analytics\n300 Meridian Plaza, Floor 5"
+ },
+ "H-V021-21": {
+  "subject": "PO 000073918803 / inv 26-3479",
+  "body_text": "Hi there,\n\nPO 000073918803: invoice 26-3479, $12,258.20. Training, June cohort. Attached.\n\nKind regards,\nTamika Duarte\nBilling Lead, Cobalt Analytics\n300 Meridian Plaza, Floor 5\n\nSent from my iPhone"
+ },
+ "H-V021-22": {
+  "subject": "PO 000064298504 / inv 26-3480",
+  "body_text": "Hi there,\n\nPO 000064298504: invoice 26-3480, $1,955.10. Software maintenance. Attached.\n\nKind regards,\nTamika Duarte\nBilling Lead, Cobalt Analytics\n300 Meridian Plaza, Floor 5\n\nSent from my iPhone"
+ },
+ "H-V021-23": {
+  "subject": "PO 000097933001 / inv 26-3481",
+  "body_text": "Hi there,\n\nPO 000097933001: invoice 26-3481, $60,644.46. Phase 3 services, June. Attached.\n\nKind regards,\nTamika Duarte\nBilling Lead, Cobalt Analytics\n300 Meridian Plaza, Floor 5\n\nSent from my iPhone"
+ },
+ "H-V021-24": {
+  "subject": "26-3467 again",
+  "body_text": "Hi there,\n\nSecond reminder on invoice 26-3467, $1,145.16. Please tell me what is blocking it.\n\nKind regards,\nTamika Duarte\nBilling Lead, Cobalt Analytics\n300 Meridian Plaza, Floor 5\n\nSent from my iPhone"
+ },
+ "H-V021-25": {
+  "subject": "Payment 26-3476",
+  "body_text": "Hi there,\n\nInvoice 26-3476, $57,786.51. Can you confirm it was paid? We cannot find the deposit.\n\nKind regards,\nTamika Duarte\nBilling Lead, Cobalt Analytics\n300 Meridian Plaza, Floor 5\n\nSent from my iPhone"
+ },
+ "H-V022-01": {
+  "subject": "Price list for next year",
+  "body_text": "Afternoon,\n\nOur updated rate card is attached, effective April 1. Rates go up about 2 percent. Banking details are not part of this notice and have not changed. Thx.\n\nSincerely,\nFatima Brandt\nMarlow Dynamics"
+ },
+ "H-V022-02": {
+  "subject": "Invoice MAR-1271 / PO 000075420102",
+  "body_text": "Afternoon,\n\nAttached is invoice MAR-1271 for CAD 38,728.75 against PO 000075420102. It is the milestone for the structural survey. Pls confirm receipt, thx.\n\nSincerely,\nFatima Brandt\nMarlow Dynamics"
+ },
+ "H-V022-03": {
+  "subject": "Invoice MAR-1272",
+  "body_text": "Afternoon,\n\nInvoice MAR-1272, CAD 12,036.22, PO 000075420102, attached. Site visit and inspection report. Thx.\n\nSincerely,\nFatima Brandt\nMarlow Dynamics"
+ },
+ "H-V022-04": {
+  "subject": "MAR-1271 payment",
+  "body_text": "Afternoon,\n\nPls can you tell me if MAR-1271 (CAD 38,728.75) is scheduled for payment? Thx.\n\nSincerely,\nFatima Brandt\nMarlow Dynamics"
+ },
+ "H-V022-05": {
+  "subject": "Invoice MAR-1273",
+  "body_text": "Afternoon,\n\nInvoice MAR-1273 for CAD 12,909.58, PO 000075420102, attached. Drawings revision package. Thx.\n\nSincerely,\nFatima Brandt\nMarlow Dynamics"
+ },
+ "H-V022-06": {
+  "subject": "Re: MAR-1273",
+  "body_text": "Afternoon,\n\nFollowing up on MAR-1273, CAD 12,909.58. It is past 30 days. Pls advise, thx.\n\nSincerely,\nFatima Brandt\nMarlow Dynamics"
+ },
+ "H-V022-07": {
+  "subject": "Invoice MAR-1274 PO 000094540601",
+  "body_text": "Afternoon,\n\nPls find invoice MAR-1274, CAD 15,510.62, PO 000094540601. Engineering support, September. Thx.\n\nSincerely,\nFatima Brandt\nMarlow Dynamics"
+ },
+ "H-V022-08": {
+  "subject": "Invoice MAR-1275",
+  "body_text": "Afternoon,\n\nInvoice MAR-1275 for CAD 14,480.29, PO 000094540601, attached. Engineering support, October. Fatima is away so I am sending. Thx.\n\nSincerely,\nNoor Arslan\nMarlow Dynamics"
+ },
+ "H-V022-09": {
+  "subject": "Invoice MAR-1276",
+  "body_text": "Afternoon,\n\nInvoice MAR-1276, CAD 15,513.82, PO 000094540601. Engineering support, November. Thx.\n\nSincerely,\nFatima Brandt\nMarlow Dynamics"
+ },
+ "H-V022-10": {
+  "subject": "Invoice MAR-1277",
+  "body_text": "Afternoon,\n\nInvoice MAR-1277 for CAD 23,674.13, PO 000094540601, attached. This includes the extra weekend inspection. Thx.\n\nSincerely,\nNoor Arslan\nMarlow Dynamics"
+ },
+ "H-V022-11": {
+  "subject": "Invoice MAR-1279",
+  "body_text": "Afternoon,\n\nInvoice MAR-1279, CAD 31,027.65, PO 000094540601, attached. Year end deliverables package. Thx.\n\nSincerely,\nNoor Arslan\nMarlow Dynamics"
+ },
+ "H-V022-12": {
+  "subject": "Invoice MAR-1281",
+  "body_text": "Afternoon,\n\nInvoice MAR-1281 for CAD 31,027.65, PO 000094540601, attached. Q1 deliverables package, same scope as the prior quarter. Thx.\n\nSincerely,\nFatima Brandt\nMarlow Dynamics"
+ },
+ "H-V022-13": {
+  "subject": "Rate card",
+  "body_text": "Afternoon,\n\nOur new rate card is attached for your files. Small increases only. Remit-to details are not affected. Thx.\n\nSincerely,\nFatima Brandt\nMarlow Dynamics"
+ },
+ "H-V022-14": {
+  "subject": "Invoice MAR-1282",
+  "body_text": "Afternoon,\n\nInvoice MAR-1282, CAD 10,146.06, PO 000094540601, attached. Thx.\n\nSincerely,\nFatima Brandt\nMarlow Dynamics"
+ },
+ "H-V022-15": {
+  "subject": "Invoice MAR-1284",
+  "body_text": "Afternoon,\n\nInvoice MAR-1284 for CAD 24,133.80, PO 000094540601, attached. Quarterly review package. Thx.\n\nSincerely,\nFatima Brandt\nMarlow Dynamics"
+ },
+ "H-V022-16": {
+  "subject": "Statement",
+  "body_text": "Afternoon,\n\nOur statement is attached with two open items totalling CAD 34,279.86. Pls tell me if you see any difference. Thx.\n\nSincerely,\nFatima Brandt\nMarlow Dynamics"
+ }
+}
