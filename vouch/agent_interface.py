@@ -37,9 +37,9 @@ class LocalClient:
         from .api import public_item
         return public_item(core.load_item(self.conn, item_id))
 
-    def list_items(self, state=None):
+    def list_items(self, state=None, vendor_id=None):
         from .api import public_item
-        return [public_item(i) for i in core.list_items(self.conn, state)]
+        return [public_item(i) for i in core.list_items(self.conn, state, vendor_id)]
 
     # read-only tools Sujith's agent wraps (same names as the tool list in the team plan)
     def read_vendor_history(self, vendor_id, limit=50): return tools_data.read_vendor_history(self.conn, vendor_id, limit)
@@ -64,7 +64,8 @@ class HttpClient:
         r.raise_for_status(); return r.json()
 
     def get_item(self, item_id): return self._ok(self.h.get(f"/items/{item_id}"))
-    def list_items(self, state=None): return self._ok(self.h.get("/items", params={"state": state} if state else {}))
+    def list_items(self, state=None, vendor_id=None):
+        return self._ok(self.h.get("/items", params={k: v for k, v in (("state", state), ("vendor_id", vendor_id)) if v}))
     def read_vendor_history(self, vendor_id, limit=50): return self._ok(self.h.get(f"/vendors/{vendor_id}", params={"limit": limit}))
     def compare_amounts(self, vendor_id, amount): return self._ok(self.h.get(f"/vendors/{vendor_id}/compare_amounts", params={"amount": amount}))
     def check_domain(self, vendor_id, sender): return self._ok(self.h.get(f"/vendors/{vendor_id}/check_domain", params={"sender": sender}))

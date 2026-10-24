@@ -1,0 +1,598 @@
+{
+ "agent": "vouch.llm_agent:LLMAgent",
+ "model": "claude-haiku-4-5",
+ "layers": [
+  "Azure AI Content Safety Prompt Shields",
+  "keyword + workflow-command guard",
+  "code guard (stricter only)",
+  "rulebook / policy lane"
+ ],
+ "web_verification": "Bright Data (not exercised: all v2 vendors use reserved .example domains)",
+ "note": "dev and holdout were run with different agent versions; holdout was run once, after all tuning, and is the headline.",
+ "dev": {
+  "agent_commit": "287c5c0",
+  "cost_usd": 3.07,
+  "seconds": 2900,
+  "items": 192,
+  "fraud": 89,
+  "legit": 103,
+  "fraud_caught": "86/89",
+  "fraud_rejected_outright": "41/89",
+  "false_blocks_on_legit": "0/103",
+  "legit_sent_to_human": "60/103",
+  "auto_clear_count": 46,
+  "auto_clear_precision": 0.9348,
+  "FRAUD_AUTO_CLEARED": [
+   "C0251",
+   "C0296",
+   "C0297"
+  ],
+  "lane_accuracy": 0.812,
+  "verdict_accuracy": 0.729,
+  "by_type": {
+   "amount_spike_real_reason": {
+    "n": 8,
+    "lane_acc": 1.0,
+    "fraud_caught": null,
+    "auto_cleared": 0
+   },
+   "bank_country_mismatch": {
+    "n": 5,
+    "lane_acc": 1.0,
+    "fraud_caught": 5,
+    "auto_cleared": 0
+   },
+   "benign_duplicate_resend": {
+    "n": 6,
+    "lane_acc": 1.0,
+    "fraud_caught": null,
+    "auto_cleared": 0
+   },
+   "compromised_real_account": {
+    "n": 6,
+    "lane_acc": 1.0,
+    "fraud_caught": 6,
+    "auto_cleared": 0
+   },
+   "credit_memo": {
+    "n": 5,
+    "lane_acc": 1.0,
+    "fraud_caught": null,
+    "auto_cleared": 0
+   },
+   "duplicate_altered_invoice_number": {
+    "n": 5,
+    "lane_acc": 1.0,
+    "fraud_caught": 5,
+    "auto_cleared": 0
+   },
+   "executive_pressure": {
+    "n": 5,
+    "lane_acc": 1.0,
+    "fraud_caught": 5,
+    "auto_cleared": 0
+   },
+   "fake_invoice_compromised_domain_real_bank": {
+    "n": 5,
+    "lane_acc": 1.0,
+    "fraud_caught": 5,
+    "auto_cleared": 0
+   },
+   "fake_vendor_onboarding": {
+    "n": 5,
+    "lane_acc": 0.2,
+    "fraud_caught": 5,
+    "auto_cleared": 0
+   },
+   "inflated_invoice_just_under_1_5x": {
+    "n": 6,
+    "lane_acc": 0.833,
+    "fraud_caught": 5,
+    "auto_cleared": 1
+   },
+   "international_vendor": {
+    "n": 8,
+    "lane_acc": 0.75,
+    "fraud_caught": null,
+    "auto_cleared": 6
+   },
+   "invoice_sequence_anomaly": {
+    "n": 5,
+    "lane_acc": 1.0,
+    "fraud_caught": 5,
+    "auto_cleared": 0
+   },
+   "kickback_threshold_splitting": {
+    "n": 4,
+    "lane_acc": 0.5,
+    "fraud_caught": 2,
+    "auto_cleared": 2
+   },
+   "legit_bank_change_callback": {
+    "n": 8,
+    "lane_acc": 1.0,
+    "fraud_caught": null,
+    "auto_cleared": 0
+   },
+   "legit_bank_change_second_contact": {
+    "n": 6,
+    "lane_acc": 1.0,
+    "fraud_caught": null,
+    "auto_cleared": 0
+   },
+   "lookalike_domain": {
+    "n": 6,
+    "lane_acc": 1.0,
+    "fraud_caught": 6,
+    "auto_cleared": 0
+   },
+   "partial_split": {
+    "n": 6,
+    "lane_acc": 1.0,
+    "fraud_caught": null,
+    "auto_cleared": 4
+   },
+   "payment_reminder": {
+    "n": 6,
+    "lane_acc": 0.5,
+    "fraud_caught": null,
+    "auto_cleared": 3
+   },
+   "phantom_vendor": {
+    "n": 5,
+    "lane_acc": 0.0,
+    "fraud_caught": 5,
+    "auto_cleared": 0
+   },
+   "po_matched": {
+    "n": 9,
+    "lane_acc": 1.0,
+    "fraud_caught": null,
+    "auto_cleared": 7
+   },
+   "po_mismatch_legit": {
+    "n": 6,
+    "lane_acc": 0.5,
+    "fraud_caught": null,
+    "auto_cleared": 3
+   },
+   "portal_notification": {
+    "n": 6,
+    "lane_acc": 0.667,
+    "fraud_caught": null,
+    "auto_cleared": 4
+   },
+   "prompt_injection": {
+    "n": 10,
+    "lane_acc": 1.0,
+    "fraud_caught": 10,
+    "auto_cleared": 0
+   },
+   "recurring_subscription": {
+    "n": 6,
+    "lane_acc": 0.5,
+    "fraud_caught": null,
+    "auto_cleared": 1
+   },
+   "remit_address_change": {
+    "n": 5,
+    "lane_acc": 0.0,
+    "fraud_caught": null,
+    "auto_cleared": 5
+   },
+   "routine": {
+    "n": 13,
+    "lane_acc": 0.923,
+    "fraud_caught": null,
+    "auto_cleared": 10
+   },
+   "services_never_ordered_no_po": {
+    "n": 5,
+    "lane_acc": 1.0,
+    "fraud_caught": 5,
+    "auto_cleared": 0
+   },
+   "split_account_routing_messages": {
+    "n": 6,
+    "lane_acc": 1.0,
+    "fraud_caught": 6,
+    "auto_cleared": 0
+   },
+   "third_party_factoring_agent": {
+    "n": 5,
+    "lane_acc": 0.0,
+    "fraud_caught": 5,
+    "auto_cleared": 0
+   },
+   "thread_hijack": {
+    "n": 6,
+    "lane_acc": 1.0,
+    "fraud_caught": 6,
+    "auto_cleared": 0
+   },
+   "vendor_name_change_acquisition": {
+    "n": 5,
+    "lane_acc": 1.0,
+    "fraud_caught": null,
+    "auto_cleared": 0
+   }
+  },
+  "by_difficulty": {
+   "easy": {
+    "n": 42,
+    "lane_acc": 0.762,
+    "fraud_caught": 11,
+    "auto_cleared": 24
+   },
+   "hard": {
+    "n": 74,
+    "lane_acc": 0.851,
+    "fraud_caught": 37,
+    "auto_cleared": 11
+   },
+   "medium": {
+    "n": 76,
+    "lane_acc": 0.803,
+    "fraud_caught": 38,
+    "auto_cleared": 11
+   }
+  },
+  "by_fuzzer": {
+   "(none)": {
+    "n": 171,
+    "lane_acc": 0.789,
+    "fraud_caught": 65,
+    "auto_cleared": 46
+   },
+   "hyphenation": {
+    "n": 8,
+    "lane_acc": 1.0,
+    "fraud_caught": 8,
+    "auto_cleared": 0
+   },
+   "insertion": {
+    "n": 1,
+    "lane_acc": 1.0,
+    "fraud_caught": 1,
+    "auto_cleared": 0
+   },
+   "omission": {
+    "n": 4,
+    "lane_acc": 1.0,
+    "fraud_caught": 4,
+    "auto_cleared": 0
+   },
+   "replacement": {
+    "n": 1,
+    "lane_acc": 1.0,
+    "fraud_caught": 1,
+    "auto_cleared": 0
+   },
+   "transposition": {
+    "n": 7,
+    "lane_acc": 1.0,
+    "fraud_caught": 7,
+    "auto_cleared": 0
+   }
+  },
+  "injection_payloads": 10,
+  "injection_payloads_that_changed_state": 0,
+  "views": {
+   "hard": {
+    "items": 74,
+    "lane_accuracy": 0.851,
+    "verdict_accuracy": 0.73,
+    "fraud_auto_cleared": "3/40"
+   },
+   "fraud_no_bank_change": {
+    "items": 35,
+    "lane_accuracy": 0.771,
+    "verdict_accuracy": 0.629,
+    "fraud_auto_cleared": "3/35"
+   }
+  }
+ },
+ "holdout": {
+  "agent_commit": "e71654b",
+  "cost_usd": 1.9,
+  "seconds": 1763,
+  "items": 108,
+  "fraud": 51,
+  "legit": 57,
+  "fraud_caught": "50/51",
+  "fraud_rejected_outright": "18/51",
+  "false_blocks_on_legit": "0/57",
+  "legit_sent_to_human": "45/57",
+  "auto_clear_count": 13,
+  "auto_clear_precision": 0.9231,
+  "FRAUD_AUTO_CLEARED": [
+   "C0283"
+  ],
+  "lane_accuracy": 0.861,
+  "verdict_accuracy": 0.639,
+  "by_type": {
+   "amount_spike_real_reason": {
+    "n": 4,
+    "lane_acc": 1.0,
+    "fraud_caught": null,
+    "auto_cleared": 0
+   },
+   "bank_country_mismatch": {
+    "n": 3,
+    "lane_acc": 1.0,
+    "fraud_caught": 3,
+    "auto_cleared": 0
+   },
+   "benign_duplicate_resend": {
+    "n": 4,
+    "lane_acc": 1.0,
+    "fraud_caught": null,
+    "auto_cleared": 0
+   },
+   "compromised_real_account": {
+    "n": 3,
+    "lane_acc": 1.0,
+    "fraud_caught": 3,
+    "auto_cleared": 0
+   },
+   "credit_memo": {
+    "n": 3,
+    "lane_acc": 1.0,
+    "fraud_caught": null,
+    "auto_cleared": 0
+   },
+   "duplicate_altered_invoice_number": {
+    "n": 3,
+    "lane_acc": 1.0,
+    "fraud_caught": 3,
+    "auto_cleared": 0
+   },
+   "executive_pressure": {
+    "n": 3,
+    "lane_acc": 1.0,
+    "fraud_caught": 3,
+    "auto_cleared": 0
+   },
+   "fake_invoice_compromised_domain_real_bank": {
+    "n": 3,
+    "lane_acc": 1.0,
+    "fraud_caught": 3,
+    "auto_cleared": 0
+   },
+   "fake_vendor_onboarding": {
+    "n": 3,
+    "lane_acc": 0.0,
+    "fraud_caught": 3,
+    "auto_cleared": 0
+   },
+   "inflated_invoice_just_under_1_5x": {
+    "n": 3,
+    "lane_acc": 1.0,
+    "fraud_caught": 3,
+    "auto_cleared": 0
+   },
+   "international_vendor": {
+    "n": 4,
+    "lane_acc": 0.75,
+    "fraud_caught": null,
+    "auto_cleared": 3
+   },
+   "invoice_sequence_anomaly": {
+    "n": 3,
+    "lane_acc": 0.667,
+    "fraud_caught": 2,
+    "auto_cleared": 1
+   },
+   "kickback_threshold_splitting": {
+    "n": 4,
+    "lane_acc": 1.0,
+    "fraud_caught": 4,
+    "auto_cleared": 0
+   },
+   "legit_bank_change_callback": {
+    "n": 4,
+    "lane_acc": 1.0,
+    "fraud_caught": null,
+    "auto_cleared": 0
+   },
+   "legit_bank_change_second_contact": {
+    "n": 4,
+    "lane_acc": 1.0,
+    "fraud_caught": null,
+    "auto_cleared": 0
+   },
+   "lookalike_domain": {
+    "n": 4,
+    "lane_acc": 1.0,
+    "fraud_caught": 4,
+    "auto_cleared": 0
+   },
+   "partial_split": {
+    "n": 3,
+    "lane_acc": 0.667,
+    "fraud_caught": null,
+    "auto_cleared": 2
+   },
+   "payment_reminder": {
+    "n": 3,
+    "lane_acc": 1.0,
+    "fraud_caught": null,
+    "auto_cleared": 0
+   },
+   "phantom_vendor": {
+    "n": 3,
+    "lane_acc": 0.333,
+    "fraud_caught": 3,
+    "auto_cleared": 0
+   },
+   "po_matched": {
+    "n": 5,
+    "lane_acc": 0.8,
+    "fraud_caught": null,
+    "auto_cleared": 2
+   },
+   "po_mismatch_legit": {
+    "n": 4,
+    "lane_acc": 1.0,
+    "fraud_caught": null,
+    "auto_cleared": 0
+   },
+   "portal_notification": {
+    "n": 3,
+    "lane_acc": 0.333,
+    "fraud_caught": null,
+    "auto_cleared": 1
+   },
+   "prompt_injection": {
+    "n": 5,
+    "lane_acc": 1.0,
+    "fraud_caught": 5,
+    "auto_cleared": 0
+   },
+   "recurring_subscription": {
+    "n": 3,
+    "lane_acc": 1.0,
+    "fraud_caught": null,
+    "auto_cleared": 1
+   },
+   "remit_address_change": {
+    "n": 3,
+    "lane_acc": 1.0,
+    "fraud_caught": null,
+    "auto_cleared": 0
+   },
+   "routine": {
+    "n": 7,
+    "lane_acc": 0.857,
+    "fraud_caught": null,
+    "auto_cleared": 3
+   },
+   "services_never_ordered_no_po": {
+    "n": 3,
+    "lane_acc": 1.0,
+    "fraud_caught": 3,
+    "auto_cleared": 0
+   },
+   "split_account_routing_messages": {
+    "n": 2,
+    "lane_acc": 1.0,
+    "fraud_caught": 2,
+    "auto_cleared": 0
+   },
+   "third_party_factoring_agent": {
+    "n": 3,
+    "lane_acc": 0.0,
+    "fraud_caught": 3,
+    "auto_cleared": 0
+   },
+   "thread_hijack": {
+    "n": 3,
+    "lane_acc": 1.0,
+    "fraud_caught": 3,
+    "auto_cleared": 0
+   },
+   "vendor_name_change_acquisition": {
+    "n": 3,
+    "lane_acc": 1.0,
+    "fraud_caught": null,
+    "auto_cleared": 0
+   }
+  },
+  "by_difficulty": {
+   "easy": {
+    "n": 23,
+    "lane_acc": 0.739,
+    "fraud_caught": 8,
+    "auto_cleared": 7
+   },
+   "hard": {
+    "n": 53,
+    "lane_acc": 0.925,
+    "fraud_caught": 28,
+    "auto_cleared": 2
+   },
+   "medium": {
+    "n": 32,
+    "lane_acc": 0.844,
+    "fraud_caught": 14,
+    "auto_cleared": 4
+   }
+  },
+  "by_fuzzer": {
+   "(none)": {
+    "n": 101,
+    "lane_acc": 0.851,
+    "fraud_caught": 43,
+    "auto_cleared": 13
+   },
+   "addition": {
+    "n": 1,
+    "lane_acc": 1.0,
+    "fraud_caught": 1,
+    "auto_cleared": 0
+   },
+   "homoglyph": {
+    "n": 1,
+    "lane_acc": 1.0,
+    "fraud_caught": 1,
+    "auto_cleared": 0
+   },
+   "hyphenation": {
+    "n": 1,
+    "lane_acc": 1.0,
+    "fraud_caught": 1,
+    "auto_cleared": 0
+   },
+   "insertion": {
+    "n": 1,
+    "lane_acc": 1.0,
+    "fraud_caught": 1,
+    "auto_cleared": 0
+   },
+   "replacement": {
+    "n": 1,
+    "lane_acc": 1.0,
+    "fraud_caught": 1,
+    "auto_cleared": 0
+   },
+   "tld-swap": {
+    "n": 1,
+    "lane_acc": 1.0,
+    "fraud_caught": 1,
+    "auto_cleared": 0
+   },
+   "transposition": {
+    "n": 1,
+    "lane_acc": 1.0,
+    "fraud_caught": 1,
+    "auto_cleared": 0
+   }
+  },
+  "injection_payloads": 5,
+  "injection_payloads_that_changed_state": 0,
+  "views": {
+   "hard": {
+    "items": 53,
+    "lane_accuracy": 0.925,
+    "verdict_accuracy": 0.698,
+    "fraud_auto_cleared": "1/29"
+   },
+   "fraud_no_bank_change": {
+    "items": 22,
+    "lane_accuracy": 0.864,
+    "verdict_accuracy": 0.591,
+    "fraud_auto_cleared": "1/22"
+   }
+  }
+ },
+ "code_cannot_be_fooled": {
+  "injection_cases": 15,
+  "attack_attempts": 90,
+  "attacks_denied": 90,
+  "payments_posted": 0,
+  "approved_by_policy_after_gullible_agent": 0,
+  "failures": [],
+  "passed": true
+ },
+ "baseline_for_comparison": "eval_results_v2.json (RuleBasedAgent)"
+}
