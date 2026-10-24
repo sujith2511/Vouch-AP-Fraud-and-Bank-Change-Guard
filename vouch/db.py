@@ -100,10 +100,19 @@ BEGIN SELECT RAISE(ABORT, 'payments are append-only'); END;
 
 def connect(path):
     """New connection per unit of work. Autocommit mode: core.transition manages BEGIN/COMMIT itself."""
-    conn = sqlite3.connect(path, timeout=30, isolation_level=None)
+    # On an Azure Files (SMB) mount, SQLite's byte-range locks fail ("database is locked") and WAL needs shared memory.
+    # There set VOUCH_SQLITE_VFS=unix-dotfile (a lock file instead of fcntl locks) and VOUCH_SQLITE_JOURNAL=DELETE.
+    # Local disk keeps the defaults.
+    vfs = os.environ.get("VOUCH_SQLITE_VFS")
+    if vfs:
+        if vfs != "unix-dotfile":
+            raise ValueError("VOUCH_SQLITE_VFS must be unix-dotfile (or unset)")
+        if path == ":memory:":
+            raise ValueError("VOUCH_SQLITE_VFS needs a file path")
+        conn = sqlite3.connect(f"file:{path}?vfs={vfs}", uri=True, timeout=30, isolation_level=None)
+    else:
+        conn = sqlite3.connect(path, timeout=30, isolation_level=None)
     conn.row_factory = sqlite3.Row
-    # WAL needs shared memory and does not work reliably on network file systems; on an Azure Files (SMB) mount set
-    # VOUCH_SQLITE_JOURNAL=DELETE. Local disk keeps the WAL default.
     mode = os.environ.get("VOUCH_SQLITE_JOURNAL", "WAL").upper()
     if mode not in ("WAL", "DELETE", "TRUNCATE"):
         raise ValueError("VOUCH_SQLITE_JOURNAL must be WAL, DELETE or TRUNCATE")
