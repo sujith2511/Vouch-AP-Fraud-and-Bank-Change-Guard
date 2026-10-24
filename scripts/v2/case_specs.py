@@ -840,6 +840,8 @@ def finalize(cases):
                 B["sent_local"] = A["sent_local"] + timedelta(days=rr.randint(1, 3), hours=rr.randint(-2, 2)); B["attrs"]["sent_local_weekday"] = B["sent_local"].strftime("%a"); B["attrs"]["sent_hour_local"] = B["sent_local"].hour
                 B["invoice"] = {**B["invoice"], "po": A["invoice"]["po"]}
                 amt = round(THRESHOLD_USD * rr.uniform(0.955, 0.995), 2); B["invoice"]["amount"] = amt; B["invoice"]["line_items"] = line_items(vv, amt, rr, 2)
+                idate = min(date.fromisoformat(A["invoice"]["date"]) + timedelta(days=rr.randint(1, 3)), B["sent_local"].date())    # second invoice of the same week, same vendor numbering
+                B["invoice"]["number"] = next_invoice(vv, rr); B["invoice"]["date"] = iso(idate); B["invoice"]["due_date"] = iso(idate + timedelta(days=vv.get("payment_terms_days", 30)))
             A["pair_with"] = B["_tmp_id"] = None
         # leftover odd index (none expected)
     # --- ids

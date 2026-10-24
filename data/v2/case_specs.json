@@ -58770,12 +58770,12 @@
   "lookalike_fuzzer": null,
   "attachments": [],
   "invoice": {
-   "number": "INV-03723",
+   "number": "INV-02650",
    "po": "000046991501",
    "amount": 9883.86,
    "currency": "USD",
-   "date": "2026-09-29",
-   "due_date": "2026-10-14",
+   "date": "2026-10-22",
+   "due_date": "2026-11-21",
    "line_items": [
     {
      "description": "Controller replacement",
@@ -58791,7 +58791,7 @@
   "change_type": null,
   "claim_changes_bank": false,
   "narrative": [
-   "A normal invoice for 9883.86 (invoice INV-03723). This is the second invoice of the week for the same service at the other site; mention the earlier invoice number INV-02649."
+   "A normal invoice for 9883.86 (invoice INV-02650). This is the second invoice of the week for the same service at the other site; mention the earlier invoice number INV-02649."
   ],
   "snapshot_extra": {},
   "notes": {
@@ -58825,7 +58825,7 @@
   "cc": [],
   "sent_at": "2026-10-23T16:52:19-07:00",
   "received_at": "2026-10-23T23:53:21Z",
-  "thread_id": "T-8984589d18",
+  "thread_id": "T-7fa90e2dc7",
   "in_reply_to": null,
   "message_id": "<4ad48785ff4c4a102b12@willow-controls-group.example>",
   "received_hops": [
@@ -59162,12 +59162,12 @@
   "lookalike_fuzzer": null,
   "attachments": [],
   "invoice": {
-   "number": "A02911",
+   "number": "SI003237",
    "po": "000073135002",
    "amount": 9661.16,
    "currency": "USD",
-   "date": "2026-09-14",
-   "due_date": "2026-10-29",
+   "date": "2026-09-26",
+   "due_date": "2026-10-11",
    "line_items": [
     {
      "description": "Freight, route 8",
@@ -59183,7 +59183,7 @@
   "change_type": null,
   "claim_changes_bank": false,
   "narrative": [
-   "A normal invoice for 9661.16 (invoice A02911). This is the second invoice of the week for the same service at the other site; mention the earlier invoice number SI003236."
+   "A normal invoice for 9661.16 (invoice SI003237). This is the second invoice of the week for the same service at the other site; mention the earlier invoice number SI003236."
   ],
   "snapshot_extra": {},
   "notes": {
@@ -59217,7 +59217,7 @@
   "cc": [],
   "sent_at": "2026-09-27T14:55:13-07:00",
   "received_at": "2026-09-27T21:56:11Z",
-  "thread_id": "T-9ba87b1c30",
+  "thread_id": "T-ed6f25624b",
   "in_reply_to": null,
   "message_id": "<5ca1dc6b06ae5f3b9f7b@beacon-haulage-inc.example>",
   "received_hops": [
@@ -59556,12 +59556,12 @@
   "lookalike_fuzzer": null,
   "attachments": [],
   "invoice": {
-   "number": "3465",
+   "number": "INV-04138",
    "po": "000091941201",
    "amount": 9656.3,
    "currency": "USD",
-   "date": "2026-10-07",
-   "due_date": "2026-11-06",
+   "date": "2026-10-09",
+   "due_date": "2026-11-08",
    "line_items": [
     {
      "description": "Freight, route 22",
@@ -59577,7 +59577,7 @@
   "change_type": null,
   "claim_changes_bank": false,
   "narrative": [
-   "A normal invoice for 9656.30 (invoice 3465). This is the second invoice of the week for the same service at the other site; mention the earlier invoice number INV-04135."
+   "A normal invoice for 9656.30 (invoice INV-04138). This is the second invoice of the week for the same service at the other site; mention the earlier invoice number INV-04135."
   ],
   "snapshot_extra": {},
   "notes": {
@@ -59611,7 +59611,7 @@
   "cc": [],
   "sent_at": "2026-10-12T15:34:49-07:00",
   "received_at": "2026-10-12T22:35:46Z",
-  "thread_id": "T-b2ccbdb946",
+  "thread_id": "T-51b1c89fb9",
   "in_reply_to": null,
   "message_id": "<e013e4bfee9acc59faa7@ember-haulage-corp.example>",
   "received_hops": [
@@ -59943,12 +59943,12 @@
   "lookalike_fuzzer": null,
   "attachments": [],
   "invoice": {
-   "number": "26-3492",
+   "number": "INV262320",
    "po": "000068205901",
    "amount": 9553.88,
    "currency": "USD",
-   "date": "2026-09-12",
-   "due_date": "2026-10-27",
+   "date": "2026-10-06",
+   "due_date": "2026-11-05",
    "line_items": [
     {
      "description": "Software subscription, July",
@@ -59964,7 +59964,7 @@
   "change_type": null,
   "claim_changes_bank": false,
   "narrative": [
-   "A normal invoice for 9553.88 (invoice 26-3492). This is the second invoice of the week for the same service at the other site; mention the earlier invoice number INV262318."
+   "A normal invoice for 9553.88 (invoice INV262320). This is the second invoice of the week for the same service at the other site; mention the earlier invoice number INV262318."
   ],
   "snapshot_extra": {},
   "notes": {
@@ -59998,7 +59998,7 @@
   "cc": [],
   "sent_at": "2026-10-11T09:14:43-07:00",
   "received_at": "2026-10-11T16:15:40Z",
-  "thread_id": "T-443bdc9783",
+  "thread_id": "T-3c845ead55",
   "in_reply_to": null,
   "message_id": "<25cffb2ccaefd24ec7d0@quarry-dataworks-group.example>",
   "received_hops": [
