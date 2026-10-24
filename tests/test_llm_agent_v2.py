@@ -131,6 +131,27 @@ def test_vendor_queue_is_offered_as_a_tool(v2):
     assert any(x["tool"] == "read_vendor_queue" for x in d.evidence)
 
 
+def test_computed_checks_on_v2():
+    """Invoice-number jumps and split invoices are flagged; normal gaps and a lone invoice under the limit are not."""
+    from vouch.llm_agent import computed_checks
+    def item(i):
+        r = RAW[i]
+        return {"email": {"vendor_context": r["vendor_snapshot"]}, "claim": {"invoice_number": r["invoice"]["number"],
+                                                                            "amount": r["invoice"]["amount"]}}
+    jumps = [k for k, v in RAW.items() if v["truth"]["scenario"] == "invoice_sequence_anomaly"]
+    legit = [k for k, v in RAW.items() if v["truth"]["label"] == "legit"]
+    assert all(computed_checks(item(k)).get("invoice_number_jump") for k in jumps)
+    assert not any(computed_checks(item(k)).get("invoice_number_jump") for k in legit)
+    lone = computed_checks({"claim": {"amount": 9726.0}}, {"items": []})
+    pair = computed_checks({"claim": {"amount": 9726.0}}, {"items": [{"amount": 9650.0}]})
+    assert lone["just_under_approval_limit"] and not lone["split_to_avoid_approval"] and pair["split_to_avoid_approval"]
+
+
+def test_split_invoice_cannot_be_legit(v2):
+    d, _, _ = decide(v2, SPLIT_PAIR, [submit(verdict="legit")])
+    assert d.verdict == "uncertain" and any("approval limit" in r for r in d.reasons)
+
+
 def test_email_history_tool_is_slim(v2):
     d, llm, _ = decide(v2, GENUINE_BANK_CHANGE, [tool_use("read_email_history")], [submit(verdict="legit")])
     result = json.loads(llm.requests[1]["messages"][2]["content"][0]["content"])

@@ -9,3 +9,6 @@ run.db*
 vouch.db*
 .env
 data/local/
+
+# deploy secrets (generated locally, never committed)
+deploy/*.local.json
