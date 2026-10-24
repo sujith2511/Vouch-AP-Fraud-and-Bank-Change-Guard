@@ -46,6 +46,8 @@ class LocalClient:
     def compare_amounts(self, vendor_id, amount): return tools_data.compare_amounts(self.conn, vendor_id, amount)
     def check_domain(self, vendor_id, sender): return tools_data.check_domain(self.conn, vendor_id, sender)
 
+    def read_email_history(self, vendor_id, limit=25): return tools_data.read_email_history(self.conn, vendor_id, limit)
+
     def propose(self, item_id, verdict, confidence=None, reasons=(), evidence=None):
         return core.propose(self.conn, item_id, verdict, confidence, reasons, evidence, self.actor_id)
 
@@ -63,7 +65,10 @@ class HttpClient:
 
     def get_item(self, item_id): return self._ok(self.h.get(f"/items/{item_id}"))
     def list_items(self, state=None): return self._ok(self.h.get("/items", params={"state": state} if state else {}))
-    def read_vendor_history(self, vendor_id, limit=50): return self._ok(self.h.get(f"/vendors/{vendor_id}"))
+    def read_vendor_history(self, vendor_id, limit=50): return self._ok(self.h.get(f"/vendors/{vendor_id}", params={"limit": limit}))
+    def compare_amounts(self, vendor_id, amount): return self._ok(self.h.get(f"/vendors/{vendor_id}/compare_amounts", params={"amount": amount}))
+    def check_domain(self, vendor_id, sender): return self._ok(self.h.get(f"/vendors/{vendor_id}/check_domain", params={"sender": sender}))
+    def read_email_history(self, vendor_id, limit=25): return self._ok(self.h.get(f"/vendors/{vendor_id}/email_history", params={"limit": limit}))
 
     def propose(self, item_id, verdict, confidence=None, reasons=(), evidence=None):
         return self._ok(self.h.post(f"/items/{item_id}/propose", json={"verdict": verdict, "confidence": confidence, "reasons": list(reasons), "evidence": evidence}))

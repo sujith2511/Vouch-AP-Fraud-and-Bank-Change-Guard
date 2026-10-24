@@ -1,6 +1,6 @@
 """Read-only data access for the agent's tools (Sujith defines the tool signatures; these are the implementations).
 None of these can change state."""
-import re
+import json, re
 from . import core
 
 def _lev(a, b):
@@ -16,8 +16,27 @@ def read_vendor_history(conn, vendor_id, limit=50):
     rows = conn.execute("SELECT voucher,po,fiscal_year,po_date,amount,name_as_paid,department FROM payment_history WHERE vendor_id=? "
                         "ORDER BY fiscal_year DESC, id DESC LIMIT ?", (vendor_id, limit)).fetchall()
     v = core._vendor(conn, vendor_id)
-    return {"vendor": {k: v[k] for k in ("vendor_id", "name", "domain", "typical_amount", "phone")} if v else None,
-            "bank_on_file": core._mask(v["bank"]) if v else None, "payments": [dict(r) for r in rows]}
+    out = {"vendor": {k: v[k] for k in ("vendor_id", "name", "domain", "typical_amount", "phone")} if v else None,
+           "bank_on_file": core._mask(v["bank"]) if v else None, "payments": [dict(r) for r in rows]}
+    prof = conn.execute("SELECT profile FROM vendor_profile WHERE vendor_id=?", (vendor_id,)).fetchone()
+    if prof:
+        out["profile"] = _mask_profile(json.loads(prof["profile"]))
+    return out
+
+
+def _mask_profile(p):
+    """Vendor profile as the agent may see it: account numbers masked to the last 4 digits."""
+    def m(b): return {**b, "account": "*" * max(0, len(str(b.get("account") or "")) - 4) + str(b.get("account") or "")[-4:], "routing_or_iban": b.get("routing_or_iban")} if b else b
+    p = dict(p)
+    p["bank_on_file"] = m(p.get("bank_on_file"))
+    p["bank_change_history"] = [{**h, "from": m(h.get("from")), "to": m(h.get("to"))} for h in p.get("bank_change_history", [])]
+    return p
+
+
+def read_email_history(conn, vendor_id, limit=25):
+    """Past legitimate emails from this vendor (baseline for tone, signature, mailer, timing)."""
+    rows = conn.execute("SELECT data FROM email_history WHERE vendor_id=? ORDER BY sent_at DESC LIMIT ?", (vendor_id, limit)).fetchall()
+    return {"vendor_id": vendor_id, "emails": [json.loads(r["data"]) for r in rows]}
 
 def compare_amounts(conn, vendor_id, amount):
     v = core._vendor(conn, vendor_id)

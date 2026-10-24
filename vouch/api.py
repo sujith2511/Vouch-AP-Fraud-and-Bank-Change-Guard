@@ -4,6 +4,7 @@ import hmac, json, logging, os, time, uuid
 from typing import Any, Optional
 
 from fastapi import Depends, FastAPI, Header, HTTPException, Request
+from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel, ConfigDict, Field
 
@@ -79,6 +80,9 @@ def create_app(db_path=None, keys=None):
     app = FastAPI(title="Vouch core API", version="1.0")
     app.state.db_path, app.state.keys = db_path, keys
 
+    origins = [o.strip() for o in os.environ.get("CORS_ORIGINS", "http://localhost:3000,http://localhost:5173").split(",") if o.strip()]
+    app.add_middleware(CORSMiddleware, allow_origins=origins, allow_credentials=False, allow_methods=["*"], allow_headers=["*"])
+
     @app.middleware("http")
     async def mw(request: Request, call_next):
         rid = request.headers.get("x-request-id") or uuid.uuid4().hex[:12]
@@ -122,6 +126,10 @@ def create_app(db_path=None, keys=None):
     def healthz():
         return {"ok": True}
 
+    @app.get("/health")
+    def health():
+        return {"ok": True}
+
     @app.get("/items")
     def list_items(state: Optional[str] = None, vendor_id: Optional[str] = None, limit: int = 100, offset: int = 0,
                    who=Depends(auth), c=Depends(conn_dep)):
@@ -149,13 +157,47 @@ def create_app(db_path=None, keys=None):
         ok, bad = core.verify_audit_chain(c)
         return {"ok": ok, "first_bad_id": bad}
 
+    @app.get("/vendors")
+    def vendors(who=Depends(auth), c=Depends(conn_dep)):
+        """UI list: basic fields only (masked bank, no ground truth, no eval split)."""
+        rows = c.execute("SELECT v.vendor_id, v.name, v.domain, v.typical_amount, v.phone, v.bank_name, v.bank_routing, v.bank_account, "
+                         "(SELECT COUNT(*) FROM items i WHERE i.vendor_id=v.vendor_id) AS items, "
+                         "(SELECT profile FROM vendor_profile p WHERE p.vendor_id=v.vendor_id) AS profile FROM vendors v ORDER BY v.vendor_id").fetchall()
+        out = []
+        for r in rows:
+            prof = json.loads(r["profile"]) if r["profile"] else {}
+            out.append({"vendor_id": r["vendor_id"], "name": r["name"], "domain": r["domain"], "typical_amount": r["typical_amount"], "phone": r["phone"],
+                        "registered": r["vendor_id"] != "UNKNOWN", "country": prof.get("country"), "currency": prof.get("currency"), "industry": prof.get("industry"),
+                        "bank": core._mask({"bank_name": r["bank_name"], "routing": r["bank_routing"], "account": r["bank_account"]}), "items": r["items"]})
+        return out
+
     @app.get("/vendors/{vendor_id}")
-    def vendor(vendor_id: str, who=Depends(auth), c=Depends(conn_dep)):
+    def vendor(vendor_id: str, limit: int = 50, who=Depends(auth), c=Depends(conn_dep)):
         from .tools_data import read_vendor_history
-        v = read_vendor_history(c, vendor_id)
+        v = read_vendor_history(c, vendor_id, min(limit, 500))
         if not v["vendor"]:
             raise HTTPException(404, "not found")
         return v
+
+    # ---- agent tools (read-only, same auth as every GET)
+    def _need_vendor(c, vendor_id):
+        if not core._vendor(c, vendor_id):
+            raise HTTPException(404, "not found")
+
+    @app.get("/vendors/{vendor_id}/check_domain")
+    def check_domain(vendor_id: str, sender: str, who=Depends(auth), c=Depends(conn_dep)):
+        from .tools_data import check_domain as f
+        _need_vendor(c, vendor_id); return f(c, vendor_id, sender)
+
+    @app.get("/vendors/{vendor_id}/compare_amounts")
+    def compare_amounts(vendor_id: str, amount: float, who=Depends(auth), c=Depends(conn_dep)):
+        from .tools_data import compare_amounts as f
+        _need_vendor(c, vendor_id); return f(c, vendor_id, amount)
+
+    @app.get("/vendors/{vendor_id}/email_history")
+    def email_history(vendor_id: str, limit: int = 25, who=Depends(auth), c=Depends(conn_dep)):
+        from .tools_data import read_email_history
+        _need_vendor(c, vendor_id); return read_email_history(c, vendor_id, min(limit, 100))
 
     @app.get("/vendors/{vendor_id}/why")
     def why(vendor_id: str, who=Depends(auth), c=Depends(conn_dep)):
@@ -207,6 +249,23 @@ def create_app(db_path=None, keys=None):
     @app.post("/items/{item_id}/post")
     def post(item_id: str, b: Body, who=Depends(auth), c=Depends(conn_dep)):
         return run(lambda: public_item(gateway.post_item(c, item_id, who["role"], b.reason, requested_by_id=who["user"])))
+
+    @app.post("/demo/inject", status_code=201)
+    def demo_inject(vendor_id: Optional[str] = None, who=Depends(auth), c=Depends(conn_dep)):
+        """Live-demo attack: lookalike-domain bank change with a hidden prompt injection, through the normal pipeline.
+        Enabled when VOUCH_ENV != prod or DEMO_ENDPOINTS=1. Only sync/accountant keys may trigger it."""
+        if os.environ.get("VOUCH_ENV", "dev") == "prod" and os.environ.get("DEMO_ENDPOINTS") != "1":
+            raise HTTPException(404, "not found")
+        if who["role"] not in ("sync", "accountant"):
+            aid = core.record_denied(c, actor=who["role"], action="ingest", item_id=None, reason="demo inject", code="ACTOR_NOT_ALLOWED",
+                                     detail="only sync/accountant keys may trigger the demo attack", actor_id=who["user"])
+            raise HTTPException(403, {"code": "ACTOR_NOT_ALLOWED", "message": "only sync/accountant keys may trigger the demo attack", "audit_id": aid})
+        from . import demo
+        try:
+            item_id, lane = demo.inject(c, app.state.db_path, vendor_id)
+        except LookupError as e:
+            raise HTTPException(409, str(e))
+        return {"lane": lane, "item": public_item(core.load_item(c, item_id))}
 
     return app
 
