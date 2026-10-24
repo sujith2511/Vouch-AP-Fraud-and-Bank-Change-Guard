@@ -16,6 +16,8 @@ def _vendor_fields(v):
 
 def load_vendors(conn, path, with_history=True):
     vendors = json.load(open(path))
+    if isinstance(vendors, dict) or any(v.get("demo_only") for v in vendors):
+        raise ValueError("refusing to load demo-only real-company data (data/v2/demo_real_vendors.json) into the eval/seed DB")
     conn.execute("BEGIN IMMEDIATE")
     try:
         for v in vendors:

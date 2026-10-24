@@ -88,3 +88,14 @@ ANTHROPIC_API_KEY=... python scripts/generate_emails.py
 python scripts/fictionalize.py data/local/vendors.real.json data/vendors.json
 ```
 Generated emails stay local and are generated from the fictionalized vendors.
+
+## data/v2/demo_real_vendors.json (DEMO ONLY: real public companies)
+4 large SEC-registered companies (Motorola Solutions, Microsoft, Salesforce, Oracle) for the live web-verification demo; no individuals or sole proprietors.
+Built by `scripts/build_demo_real_vendors.py`. Per company: SEC EDGAR submissions record (legal name, phone; descriptive User-Agent with a contact email sent per SEC
+rules, address set via `VOUCH_SEC_CONTACT`), website, the phone(s) on the company's own contact page(s), whether they match the SEC phone, and the real SF payments by
+**exact** payee spelling (related spellings are listed but not included). Bank details are fake `TEST` values. Missing data is `null` with a reason, never guessed.
+Results: Motorola matches (HQ line on its investor contact page); Oracle does NOT match, but low confidence, because oracle.com returned HTTP 403 and the number comes from
+the error page's text (website marked `verified: false`); Microsoft and Salesforce contact pages show no phone in server-rendered HTML, so `matches_sec_phone` is `null`.
+Oracle payments are under `ORACLE CORP` only (FY2007-2013); its later spend is under `ORACLE AMERICA INC`, which is not the SEC registrant, so it is not included.
+**Safety:** `exclude_from_eval`, no `domain` field, `seed.load_vendors` refuses the file, and `tests/test_demo_real_vendors.py` fails if any email, fixture, injection or vendor
+file mentions these companies. The live attack email uses a fictional vendor.
