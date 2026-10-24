@@ -46,6 +46,18 @@ def test_parses_both_shapes(serp):
     assert r["email_phones_not_listed_online"] == []
 
 
+@pytest.mark.parametrize("text, expected", [
+    ("PO 000053180001 attached", []),                                   # 12-digit PO number (the reported false flag)
+    ("PO: 000090618801, invoice 2026-0418-3301", []),                  # PO + dashed invoice id
+    ("Ref 4158311080123", []),                                          # phone-length run inside a longer number
+    ("call (415) 555-0199 or 1-800-463-3768", ["4155550199", "8004633768"]),
+    ("+1 416 555 0132, fax 415.555.0101", ["4155550101", "4165550132"]),
+    ("London office: (020) 7946 0958", []),                             # not a US/Canada number
+])
+def test_phone_parser_ignores_po_and_invoice_numbers(text, expected):
+    assert wv.phones_in(text) == expected
+
+
 def test_flags_callback_number_not_listed_online():
     r = wv.verify_vendor_web(REAL, "New bank details. To confirm call (415) 555-0199.", post=fake(LIVE_SHAPE))
     assert r["email_phones_not_listed_online"] == ["4155550199"]

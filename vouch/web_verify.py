@@ -16,7 +16,9 @@ import os, re, urllib.parse
 
 ENDPOINT = "https://api.brightdata.com/request"
 FICTIONAL_TLDS = (".example", ".test", ".invalid", ".localhost")
-PHONE_RE = re.compile(r"(?:\+?1[\s.-]?)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}")
+# US/Canada numbers only. (?<!\d) / (?!\d) stop a 10-12 digit PO or invoice number (000053180001) from being read as a
+# phone; area and exchange codes start with 2-9 under the NANP, which also keeps e.g. UK "(020) 7946 ..." out.
+PHONE_RE = re.compile(r"(?<!\d)(?:\+?1[\s.-]?)?\(?[2-9]\d{2}\)?[\s.-]?[2-9]\d{2}[\s.-]?\d{4}(?!\d)")
 _cache = {}
 
 
