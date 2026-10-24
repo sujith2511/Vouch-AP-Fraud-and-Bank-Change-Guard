@@ -1,7 +1,7 @@
 """Code checks applied to every written email (history and cases). Facts are verified with code, never with a second LLM call."""
 import re
 
-LEAK = re.compile(r"\b(fraud\w*|scam\w*|suspicio\w*|fake|test|phish\w*|spoof\w*|malicious|attacker|hijack\w*|compromis\w*)\b", re.I)
+LEAK = re.compile(r"\b(fraud\w*|scam\w*|suspicio\w*|fake|test|phish\w*|spoof\w*|malicious|attacker|hijack\w*|compromis\w*|fraude\w*|estafa\w*|sospechos\w*|falso\w*|arnaque\w*|suspect\w*|faux|betrug\w*|betr[uü]ger\w*|verd[aä]chtig\w*|gef[aä]lscht\w*|f[aä]lschung\w*)\b", re.I)
 REAL_COS = re.compile(r"\b(motorola|microsoft|salesforce|oracle|google|amazon|paypal|fedex|ups|apple|wells fargo|chase|bank of america|citibank|hsbc|barclays|deutsche|xerox|verizon|at&t|comcast|dell|ibm|cisco)\b", re.I)
 EMAIL = re.compile(r"[A-Za-z0-9._%+\-]+@[A-Za-z0-9.\-]+\.[A-Za-z]{2,}")
 URL = re.compile(r"https?://[^\s<>\")]+|www\.[^\s<>\")]+", re.I)

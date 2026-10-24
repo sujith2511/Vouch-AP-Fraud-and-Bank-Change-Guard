@@ -16,7 +16,7 @@ def main():
         v = VEND[s["vendor_id"]]; e = prose[sid]
         rows.append({"id": sid, "vendor_id": s["vendor_id"], "split": v["split"], "sent_at": s["sent_at"], "sent_at_note": "sender-local time, simulated",
                      "from_name": s["from_name"], "from_addr": s["from_addr"], "from_role": s["from_role"], "to": "ap@northgate.example", "channel": s["channel"],
-                     "tone": s["register"], "signature_style": v["voice"]["signature_style"], "device_footer": s["device_footer"], "kind": s["kind"],
+                     "mailer": v["mailer"], "tone": s["register"], "signature_style": v["voice"]["signature_style"], "device_footer": s["device_footer"], "kind": s["kind"],
                      "subject": e["subject"], "body_text": e["body_text"],
                      "invoice": {"number": s["invoice_number"], "amount": s["amount"], "currency": s["currency"], "po": s["po"]} if s["invoice_number"] else None,
                      "claimed_bank": s["claimed_bank"], "label": "legit",

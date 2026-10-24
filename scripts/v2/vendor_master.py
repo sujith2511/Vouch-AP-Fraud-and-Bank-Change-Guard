@@ -154,6 +154,10 @@ def main():
                            "derived": ["industry", "size_band", "typical_amount", "amount_spread", "invoice_cadence", "po_policy", "active_years", "payment_count"],
                            "simulated": ["payment_terms_days", "payment_method_on_file", "bank_change_history", "preferred_contact_channel", "voice", "invoice_number_style", "payment dates", "fx_rate_simulated", "country/currency assignment"],
                            "fabricated": ["legal_name", "domain", "phone_on_file", "contacts", "bank_on_file", "tax_id"]}}
+        rr = rng_for("infra", v["vendor_id"])
+        vm["mailer"] = rr.choice(["Microsoft Outlook 16.0", "Apple Mail (2.3774)", "Gmail", "Zoho Mail", "Mozilla Thunderbird 115", "Microsoft Outlook for iOS", "Roundcube Webmail", "Outlook Web App"])
+        vm["domain_registered"] = iso(date(2004, 1, 1) + timedelta(days=rr.randint(0, 6200)))   # simulated
+        vm["provenance"]["simulated"] += ["mailer", "domain_registered"]
         out.append(vm)
         # ---- simulated payment dates + invoice numbers (default timing model; ERP-fitted model unavailable)
         rows = []

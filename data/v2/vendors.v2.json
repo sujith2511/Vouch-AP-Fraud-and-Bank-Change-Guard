@@ -149,7 +149,9 @@
     "invoice_number_style",
     "payment dates",
     "fx_rate_simulated",
-    "country/currency assignment"
+    "country/currency assignment",
+    "mailer",
+    "domain_registered"
    ],
    "fabricated": [
     "legal_name",
@@ -160,6 +162,8 @@
     "tax_id"
    ]
   },
+  "mailer": "Microsoft Outlook for iOS",
+  "domain_registered": "2015-02-13",
   "last_invoice_number": "A01791"
  },
  {
@@ -314,7 +318,9 @@
     "invoice_number_style",
     "payment dates",
     "fx_rate_simulated",
-    "country/currency assignment"
+    "country/currency assignment",
+    "mailer",
+    "domain_registered"
    ],
    "fabricated": [
     "legal_name",
@@ -325,6 +331,8 @@
     "tax_id"
    ]
   },
+  "mailer": "Outlook Web App",
+  "domain_registered": "2011-12-01",
   "last_invoice_number": "1701"
  },
  {
@@ -476,7 +484,9 @@
     "invoice_number_style",
     "payment dates",
     "fx_rate_simulated",
-    "country/currency assignment"
+    "country/currency assignment",
+    "mailer",
+    "domain_registered"
    ],
    "fabricated": [
     "legal_name",
@@ -487,6 +497,8 @@
     "tax_id"
    ]
   },
+  "mailer": "Outlook Web App",
+  "domain_registered": "2016-12-05",
   "last_invoice_number": "24-0251"
  },
  {
@@ -638,7 +650,9 @@
     "invoice_number_style",
     "payment dates",
     "fx_rate_simulated",
-    "country/currency assignment"
+    "country/currency assignment",
+    "mailer",
+    "domain_registered"
    ],
    "fabricated": [
     "legal_name",
@@ -649,6 +663,8 @@
     "tax_id"
    ]
   },
+  "mailer": "Roundcube Webmail",
+  "domain_registered": "2017-09-12",
   "last_invoice_number": "25-3018"
  },
  {
@@ -802,7 +818,9 @@
     "invoice_number_style",
     "payment dates",
     "fx_rate_simulated",
-    "country/currency assignment"
+    "country/currency assignment",
+    "mailer",
+    "domain_registered"
    ],
    "fabricated": [
     "legal_name",
@@ -813,6 +831,8 @@
     "tax_id"
    ]
   },
+  "mailer": "Gmail",
+  "domain_registered": "2020-07-22",
   "last_invoice_number": "A01838"
  },
  {
@@ -967,7 +987,9 @@
     "invoice_number_style",
     "payment dates",
     "fx_rate_simulated",
-    "country/currency assignment"
+    "country/currency assignment",
+    "mailer",
+    "domain_registered"
    ],
    "fabricated": [
     "legal_name",
@@ -978,6 +1000,8 @@
     "tax_id"
    ]
   },
+  "mailer": "Microsoft Outlook for iOS",
+  "domain_registered": "2009-04-27",
   "last_invoice_number": "MAR-3525"
  },
  {
@@ -1131,7 +1155,9 @@
     "invoice_number_style",
     "payment dates",
     "fx_rate_simulated",
-    "country/currency assignment"
+    "country/currency assignment",
+    "mailer",
+    "domain_registered"
    ],
    "fabricated": [
     "legal_name",
@@ -1142,6 +1168,8 @@
     "tax_id"
    ]
   },
+  "mailer": "Gmail",
+  "domain_registered": "2014-09-02",
   "last_invoice_number": "INV-00314"
  },
  {
@@ -1294,7 +1322,9 @@
     "invoice_number_style",
     "payment dates",
     "fx_rate_simulated",
-    "country/currency assignment"
+    "country/currency assignment",
+    "mailer",
+    "domain_registered"
    ],
    "fabricated": [
     "legal_name",
@@ -1305,6 +1335,8 @@
     "tax_id"
    ]
   },
+  "mailer": "Roundcube Webmail",
+  "domain_registered": "2013-01-28",
   "last_invoice_number": "3462"
  },
  {
@@ -1478,7 +1510,9 @@
     "invoice_number_style",
     "payment dates",
     "fx_rate_simulated",
-    "country/currency assignment"
+    "country/currency assignment",
+    "mailer",
+    "domain_registered"
    ],
    "fabricated": [
     "legal_name",
@@ -1489,6 +1523,8 @@
     "tax_id"
    ]
   },
+  "mailer": "Gmail",
+  "domain_registered": "2018-03-22",
   "last_invoice_number": "INV-04126"
  },
  {
@@ -1642,7 +1678,9 @@
     "invoice_number_style",
     "payment dates",
     "fx_rate_simulated",
-    "country/currency assignment"
+    "country/currency assignment",
+    "mailer",
+    "domain_registered"
    ],
    "fabricated": [
     "legal_name",
@@ -1653,6 +1691,8 @@
     "tax_id"
    ]
   },
+  "mailer": "Mozilla Thunderbird 115",
+  "domain_registered": "2013-03-02",
   "last_invoice_number": "A01019"
  },
  {
@@ -1826,7 +1866,9 @@
     "invoice_number_style",
     "payment dates",
     "fx_rate_simulated",
-    "country/currency assignment"
+    "country/currency assignment",
+    "mailer",
+    "domain_registered"
    ],
    "fabricated": [
     "legal_name",
@@ -1837,6 +1879,8 @@
     "tax_id"
    ]
   },
+  "mailer": "Microsoft Outlook for iOS",
+  "domain_registered": "2012-01-11",
   "last_invoice_number": "FUL-2131"
  },
  {
@@ -2011,7 +2055,9 @@
     "invoice_number_style",
     "payment dates",
     "fx_rate_simulated",
-    "country/currency assignment"
+    "country/currency assignment",
+    "mailer",
+    "domain_registered"
    ],
    "fabricated": [
     "legal_name",
@@ -2022,6 +2068,8 @@
     "tax_id"
    ]
   },
+  "mailer": "Outlook Web App",
+  "domain_registered": "2016-06-08",
   "last_invoice_number": "WIL-1385"
  },
  {
@@ -2176,7 +2224,9 @@
     "invoice_number_style",
     "payment dates",
     "fx_rate_simulated",
-    "country/currency assignment"
+    "country/currency assignment",
+    "mailer",
+    "domain_registered"
    ],
    "fabricated": [
     "legal_name",
@@ -2187,6 +2237,8 @@
     "tax_id"
    ]
   },
+  "mailer": "Microsoft Outlook for iOS",
+  "domain_registered": "2019-08-12",
   "last_invoice_number": "SI000611"
  },
  {
@@ -2339,7 +2391,9 @@
     "invoice_number_style",
     "payment dates",
     "fx_rate_simulated",
-    "country/currency assignment"
+    "country/currency assignment",
+    "mailer",
+    "domain_registered"
    ],
    "fabricated": [
     "legal_name",
@@ -2350,6 +2404,8 @@
     "tax_id"
    ]
   },
+  "mailer": "Roundcube Webmail",
+  "domain_registered": "2008-05-28",
   "last_invoice_number": "INV-02123"
  },
  {
@@ -2501,7 +2557,9 @@
     "invoice_number_style",
     "payment dates",
     "fx_rate_simulated",
-    "country/currency assignment"
+    "country/currency assignment",
+    "mailer",
+    "domain_registered"
    ],
    "fabricated": [
     "legal_name",
@@ -2512,6 +2570,8 @@
     "tax_id"
    ]
   },
+  "mailer": "Outlook Web App",
+  "domain_registered": "2005-10-24",
   "last_invoice_number": "SI002940"
  },
  {
@@ -2664,7 +2724,9 @@
     "invoice_number_style",
     "payment dates",
     "fx_rate_simulated",
-    "country/currency assignment"
+    "country/currency assignment",
+    "mailer",
+    "domain_registered"
    ],
    "fabricated": [
     "legal_name",
@@ -2675,6 +2737,8 @@
     "tax_id"
    ]
   },
+  "mailer": "Outlook Web App",
+  "domain_registered": "2007-05-17",
   "last_invoice_number": "INV-02029"
  },
  {
@@ -2829,7 +2893,9 @@
     "invoice_number_style",
     "payment dates",
     "fx_rate_simulated",
-    "country/currency assignment"
+    "country/currency assignment",
+    "mailer",
+    "domain_registered"
    ],
    "fabricated": [
     "legal_name",
@@ -2840,6 +2906,8 @@
     "tax_id"
    ]
   },
+  "mailer": "Mozilla Thunderbird 115",
+  "domain_registered": "2015-12-05",
   "last_invoice_number": "21-2005"
  },
  {
@@ -3012,7 +3080,9 @@
     "invoice_number_style",
     "payment dates",
     "fx_rate_simulated",
-    "country/currency assignment"
+    "country/currency assignment",
+    "mailer",
+    "domain_registered"
    ],
    "fabricated": [
     "legal_name",
@@ -3023,6 +3093,8 @@
     "tax_id"
    ]
   },
+  "mailer": "Outlook Web App",
+  "domain_registered": "2013-03-24",
   "last_invoice_number": "INV262091"
  },
  {
@@ -3196,7 +3268,9 @@
     "invoice_number_style",
     "payment dates",
     "fx_rate_simulated",
-    "country/currency assignment"
+    "country/currency assignment",
+    "mailer",
+    "domain_registered"
    ],
    "fabricated": [
     "legal_name",
@@ -3207,6 +3281,8 @@
     "tax_id"
    ]
   },
+  "mailer": "Roundcube Webmail",
+  "domain_registered": "2007-03-18",
   "last_invoice_number": "SI002700"
  },
  {
@@ -3359,7 +3435,9 @@
     "invoice_number_style",
     "payment dates",
     "fx_rate_simulated",
-    "country/currency assignment"
+    "country/currency assignment",
+    "mailer",
+    "domain_registered"
    ],
    "fabricated": [
     "legal_name",
@@ -3370,6 +3448,8 @@
     "tax_id"
    ]
   },
+  "mailer": "Outlook Web App",
+  "domain_registered": "2007-04-25",
   "last_invoice_number": "A02911"
  },
  {
@@ -3521,7 +3601,9 @@
     "invoice_number_style",
     "payment dates",
     "fx_rate_simulated",
-    "country/currency assignment"
+    "country/currency assignment",
+    "mailer",
+    "domain_registered"
    ],
    "fabricated": [
     "legal_name",
@@ -3532,6 +3614,8 @@
     "tax_id"
    ]
   },
+  "mailer": "Microsoft Outlook 16.0",
+  "domain_registered": "2013-10-10",
   "last_invoice_number": "26-3481"
  },
  {
@@ -3683,7 +3767,9 @@
     "invoice_number_style",
     "payment dates",
     "fx_rate_simulated",
-    "country/currency assignment"
+    "country/currency assignment",
+    "mailer",
+    "domain_registered"
    ],
    "fabricated": [
     "legal_name",
@@ -3694,6 +3780,8 @@
     "tax_id"
    ]
   },
+  "mailer": "Outlook Web App",
+  "domain_registered": "2020-05-19",
   "last_invoice_number": "MAR-1284"
  },
  {
@@ -3847,7 +3935,9 @@
     "invoice_number_style",
     "payment dates",
     "fx_rate_simulated",
-    "country/currency assignment"
+    "country/currency assignment",
+    "mailer",
+    "domain_registered"
    ],
    "fabricated": [
     "legal_name",
@@ -3858,6 +3948,8 @@
     "tax_id"
    ]
   },
+  "mailer": "Microsoft Outlook 16.0",
+  "domain_registered": "2016-11-12",
   "last_invoice_number": "BRA-1769"
  },
  {
@@ -4011,7 +4103,9 @@
     "invoice_number_style",
     "payment dates",
     "fx_rate_simulated",
-    "country/currency assignment"
+    "country/currency assignment",
+    "mailer",
+    "domain_registered"
    ],
    "fabricated": [
     "legal_name",
@@ -4022,6 +4116,8 @@
     "tax_id"
    ]
   },
+  "mailer": "Zoho Mail",
+  "domain_registered": "2019-04-10",
   "last_invoice_number": "INV260359"
  },
  {
@@ -4173,7 +4269,9 @@
     "invoice_number_style",
     "payment dates",
     "fx_rate_simulated",
-    "country/currency assignment"
+    "country/currency assignment",
+    "mailer",
+    "domain_registered"
    ],
    "fabricated": [
     "legal_name",
@@ -4184,6 +4282,8 @@
     "tax_id"
    ]
   },
+  "mailer": "Roundcube Webmail",
+  "domain_registered": "2016-05-07",
   "last_invoice_number": "TID-1399"
  },
  {
@@ -4335,7 +4435,9 @@
     "invoice_number_style",
     "payment dates",
     "fx_rate_simulated",
-    "country/currency assignment"
+    "country/currency assignment",
+    "mailer",
+    "domain_registered"
    ],
    "fabricated": [
     "legal_name",
@@ -4346,6 +4448,8 @@
     "tax_id"
    ]
   },
+  "mailer": "Roundcube Webmail",
+  "domain_registered": "2004-08-08",
   "last_invoice_number": "INV-00583"
  },
  {
@@ -4503,7 +4607,9 @@
     "invoice_number_style",
     "payment dates",
     "fx_rate_simulated",
-    "country/currency assignment"
+    "country/currency assignment",
+    "mailer",
+    "domain_registered"
    ],
    "fabricated": [
     "legal_name",
@@ -4514,6 +4620,8 @@
     "tax_id"
    ]
   },
+  "mailer": "Microsoft Outlook for iOS",
+  "domain_registered": "2018-04-15",
   "last_invoice_number": "INV262821"
  },
  {
@@ -4665,7 +4773,9 @@
     "invoice_number_style",
     "payment dates",
     "fx_rate_simulated",
-    "country/currency assignment"
+    "country/currency assignment",
+    "mailer",
+    "domain_registered"
    ],
    "fabricated": [
     "legal_name",
@@ -4676,6 +4786,8 @@
     "tax_id"
    ]
   },
+  "mailer": "Microsoft Outlook 16.0",
+  "domain_registered": "2005-12-01",
   "last_invoice_number": "WIL-0248"
  },
  {
@@ -4850,7 +4962,9 @@
     "invoice_number_style",
     "payment dates",
     "fx_rate_simulated",
-    "country/currency assignment"
+    "country/currency assignment",
+    "mailer",
+    "domain_registered"
    ],
    "fabricated": [
     "legal_name",
@@ -4861,6 +4975,8 @@
     "tax_id"
    ]
   },
+  "mailer": "Microsoft Outlook 16.0",
+  "domain_registered": "2017-05-23",
   "last_invoice_number": "A02435"
  },
  {
@@ -5033,7 +5149,9 @@
     "invoice_number_style",
     "payment dates",
     "fx_rate_simulated",
-    "country/currency assignment"
+    "country/currency assignment",
+    "mailer",
+    "domain_registered"
    ],
    "fabricated": [
     "legal_name",
@@ -5044,6 +5162,8 @@
     "tax_id"
    ]
   },
+  "mailer": "Roundcube Webmail",
+  "domain_registered": "2012-06-11",
   "last_invoice_number": "26-2810"
  },
  {
@@ -5196,7 +5316,9 @@
     "invoice_number_style",
     "payment dates",
     "fx_rate_simulated",
-    "country/currency assignment"
+    "country/currency assignment",
+    "mailer",
+    "domain_registered"
    ],
    "fabricated": [
     "legal_name",
@@ -5207,6 +5329,8 @@
     "tax_id"
    ]
   },
+  "mailer": "Gmail",
+  "domain_registered": "2015-02-16",
   "last_invoice_number": "INV261182"
  },
  {
@@ -5360,7 +5484,9 @@
     "invoice_number_style",
     "payment dates",
     "fx_rate_simulated",
-    "country/currency assignment"
+    "country/currency assignment",
+    "mailer",
+    "domain_registered"
    ],
    "fabricated": [
     "legal_name",
@@ -5371,6 +5497,8 @@
     "tax_id"
    ]
   },
+  "mailer": "Zoho Mail",
+  "domain_registered": "2015-09-23",
   "last_invoice_number": "26-1497"
  },
  {
@@ -5543,7 +5671,9 @@
     "invoice_number_style",
     "payment dates",
     "fx_rate_simulated",
-    "country/currency assignment"
+    "country/currency assignment",
+    "mailer",
+    "domain_registered"
    ],
    "fabricated": [
     "legal_name",
@@ -5554,6 +5684,8 @@
     "tax_id"
    ]
   },
+  "mailer": "Apple Mail (2.3774)",
+  "domain_registered": "2019-07-24",
   "last_invoice_number": "26-2808"
  },
  {
@@ -5706,7 +5838,9 @@
     "invoice_number_style",
     "payment dates",
     "fx_rate_simulated",
-    "country/currency assignment"
+    "country/currency assignment",
+    "mailer",
+    "domain_registered"
    ],
    "fabricated": [
     "legal_name",
@@ -5717,6 +5851,8 @@
     "tax_id"
    ]
   },
+  "mailer": "Gmail",
+  "domain_registered": "2014-11-23",
   "last_invoice_number": "1823"
  },
  {
@@ -5869,7 +6005,9 @@
     "invoice_number_style",
     "payment dates",
     "fx_rate_simulated",
-    "country/currency assignment"
+    "country/currency assignment",
+    "mailer",
+    "domain_registered"
    ],
    "fabricated": [
     "legal_name",
@@ -5880,6 +6018,8 @@
     "tax_id"
    ]
   },
+  "mailer": "Roundcube Webmail",
+  "domain_registered": "2009-09-06",
   "last_invoice_number": "A02672"
  },
  {
@@ -6057,7 +6197,9 @@
     "invoice_number_style",
     "payment dates",
     "fx_rate_simulated",
-    "country/currency assignment"
+    "country/currency assignment",
+    "mailer",
+    "domain_registered"
    ],
    "fabricated": [
     "legal_name",
@@ -6068,6 +6210,8 @@
     "tax_id"
    ]
   },
+  "mailer": "Microsoft Outlook for iOS",
+  "domain_registered": "2010-04-16",
   "last_invoice_number": "SI002309"
  },
  {
@@ -6219,7 +6363,9 @@
     "invoice_number_style",
     "payment dates",
     "fx_rate_simulated",
-    "country/currency assignment"
+    "country/currency assignment",
+    "mailer",
+    "domain_registered"
    ],
    "fabricated": [
     "legal_name",
@@ -6230,6 +6376,8 @@
     "tax_id"
    ]
   },
+  "mailer": "Outlook Web App",
+  "domain_registered": "2011-11-29",
   "last_invoice_number": "A02900"
  },
  {
@@ -6403,7 +6551,9 @@
     "invoice_number_style",
     "payment dates",
     "fx_rate_simulated",
-    "country/currency assignment"
+    "country/currency assignment",
+    "mailer",
+    "domain_registered"
    ],
    "fabricated": [
     "legal_name",
@@ -6414,6 +6564,8 @@
     "tax_id"
    ]
   },
+  "mailer": "Zoho Mail",
+  "domain_registered": "2019-01-08",
   "last_invoice_number": "INV263520"
  },
  {
@@ -6568,7 +6720,9 @@
     "invoice_number_style",
     "payment dates",
     "fx_rate_simulated",
-    "country/currency assignment"
+    "country/currency assignment",
+    "mailer",
+    "domain_registered"
    ],
    "fabricated": [
     "legal_name",
@@ -6579,6 +6733,8 @@
     "tax_id"
    ]
   },
+  "mailer": "Mozilla Thunderbird 115",
+  "domain_registered": "2011-12-03",
   "last_invoice_number": "1854"
  },
  {
@@ -6731,7 +6887,9 @@
     "invoice_number_style",
     "payment dates",
     "fx_rate_simulated",
-    "country/currency assignment"
+    "country/currency assignment",
+    "mailer",
+    "domain_registered"
    ],
    "fabricated": [
     "legal_name",
@@ -6742,6 +6900,8 @@
     "tax_id"
    ]
   },
+  "mailer": "Roundcube Webmail",
+  "domain_registered": "2008-08-17",
   "last_invoice_number": "A03294"
  },
  {
@@ -6894,7 +7054,9 @@
     "invoice_number_style",
     "payment dates",
     "fx_rate_simulated",
-    "country/currency assignment"
+    "country/currency assignment",
+    "mailer",
+    "domain_registered"
    ],
    "fabricated": [
     "legal_name",
@@ -6905,6 +7067,8 @@
     "tax_id"
    ]
   },
+  "mailer": "Mozilla Thunderbird 115",
+  "domain_registered": "2018-07-22",
   "last_invoice_number": "INV-03792"
  },
  {
@@ -7057,7 +7221,9 @@
     "invoice_number_style",
     "payment dates",
     "fx_rate_simulated",
-    "country/currency assignment"
+    "country/currency assignment",
+    "mailer",
+    "domain_registered"
    ],
    "fabricated": [
     "legal_name",
@@ -7068,6 +7234,8 @@
     "tax_id"
    ]
   },
+  "mailer": "Apple Mail (2.3774)",
+  "domain_registered": "2017-10-11",
   "last_invoice_number": "24-0842"
  },
  {
@@ -7220,7 +7388,9 @@
     "invoice_number_style",
     "payment dates",
     "fx_rate_simulated",
-    "country/currency assignment"
+    "country/currency assignment",
+    "mailer",
+    "domain_registered"
    ],
    "fabricated": [
     "legal_name",
@@ -7231,6 +7401,8 @@
     "tax_id"
    ]
   },
+  "mailer": "Mozilla Thunderbird 115",
+  "domain_registered": "2007-01-12",
   "last_invoice_number": "25-0728"
  },
  {
@@ -7404,7 +7576,9 @@
     "invoice_number_style",
     "payment dates",
     "fx_rate_simulated",
-    "country/currency assignment"
+    "country/currency assignment",
+    "mailer",
+    "domain_registered"
    ],
    "fabricated": [
     "legal_name",
@@ -7415,6 +7589,8 @@
     "tax_id"
    ]
   },
+  "mailer": "Microsoft Outlook 16.0",
+  "domain_registered": "2006-08-12",
   "last_invoice_number": "INV263468"
  },
  {
@@ -7568,7 +7744,9 @@
     "invoice_number_style",
     "payment dates",
     "fx_rate_simulated",
-    "country/currency assignment"
+    "country/currency assignment",
+    "mailer",
+    "domain_registered"
    ],
    "fabricated": [
     "legal_name",
@@ -7579,6 +7757,8 @@
     "tax_id"
    ]
   },
+  "mailer": "Microsoft Outlook 16.0",
+  "domain_registered": "2008-12-23",
   "last_invoice_number": "SI001137"
  },
  {
@@ -7751,7 +7931,9 @@
     "invoice_number_style",
     "payment dates",
     "fx_rate_simulated",
-    "country/currency assignment"
+    "country/currency assignment",
+    "mailer",
+    "domain_registered"
    ],
    "fabricated": [
     "legal_name",
@@ -7762,6 +7944,8 @@
     "tax_id"
    ]
   },
+  "mailer": "Mozilla Thunderbird 115",
+  "domain_registered": "2011-03-06",
   "last_invoice_number": "INV-01084"
  },
  {
@@ -7913,7 +8097,9 @@
     "invoice_number_style",
     "payment dates",
     "fx_rate_simulated",
-    "country/currency assignment"
+    "country/currency assignment",
+    "mailer",
+    "domain_registered"
    ],
    "fabricated": [
     "legal_name",
@@ -7924,6 +8110,8 @@
     "tax_id"
    ]
   },
+  "mailer": "Gmail",
+  "domain_registered": "2017-09-03",
   "last_invoice_number": "INV-00702"
  },
  {
@@ -8096,7 +8284,9 @@
     "invoice_number_style",
     "payment dates",
     "fx_rate_simulated",
-    "country/currency assignment"
+    "country/currency assignment",
+    "mailer",
+    "domain_registered"
    ],
    "fabricated": [
     "legal_name",
@@ -8107,6 +8297,8 @@
     "tax_id"
    ]
   },
+  "mailer": "Microsoft Outlook 16.0",
+  "domain_registered": "2017-04-17",
   "last_invoice_number": "25-3189"
  },
  {
@@ -8261,7 +8453,9 @@
     "invoice_number_style",
     "payment dates",
     "fx_rate_simulated",
-    "country/currency assignment"
+    "country/currency assignment",
+    "mailer",
+    "domain_registered"
    ],
    "fabricated": [
     "legal_name",
@@ -8272,6 +8466,8 @@
     "tax_id"
    ]
   },
+  "mailer": "Roundcube Webmail",
+  "domain_registered": "2005-07-07",
   "last_invoice_number": "SI003223"
  },
  {
@@ -8423,7 +8619,9 @@
     "invoice_number_style",
     "payment dates",
     "fx_rate_simulated",
-    "country/currency assignment"
+    "country/currency assignment",
+    "mailer",
+    "domain_registered"
    ],
    "fabricated": [
     "legal_name",
@@ -8434,6 +8632,8 @@
     "tax_id"
    ]
   },
+  "mailer": "Outlook Web App",
+  "domain_registered": "2004-10-06",
   "last_invoice_number": "A01122"
  },
  {
@@ -8585,7 +8785,9 @@
     "invoice_number_style",
     "payment dates",
     "fx_rate_simulated",
-    "country/currency assignment"
+    "country/currency assignment",
+    "mailer",
+    "domain_registered"
    ],
    "fabricated": [
     "legal_name",
@@ -8596,6 +8798,8 @@
     "tax_id"
    ]
   },
+  "mailer": "Gmail",
+  "domain_registered": "2009-04-14",
   "last_invoice_number": "INV-02212"
  },
  {
@@ -8748,7 +8952,9 @@
     "invoice_number_style",
     "payment dates",
     "fx_rate_simulated",
-    "country/currency assignment"
+    "country/currency assignment",
+    "mailer",
+    "domain_registered"
    ],
    "fabricated": [
     "legal_name",
@@ -8759,6 +8965,8 @@
     "tax_id"
    ]
   },
+  "mailer": "Microsoft Outlook 16.0",
+  "domain_registered": "2018-10-31",
   "last_invoice_number": "SI001949"
  },
  {
@@ -8911,7 +9119,9 @@
     "invoice_number_style",
     "payment dates",
     "fx_rate_simulated",
-    "country/currency assignment"
+    "country/currency assignment",
+    "mailer",
+    "domain_registered"
    ],
    "fabricated": [
     "legal_name",
@@ -8922,6 +9132,8 @@
     "tax_id"
    ]
   },
+  "mailer": "Outlook Web App",
+  "domain_registered": "2007-11-10",
   "last_invoice_number": "INV261117"
  },
  {
@@ -9096,7 +9308,9 @@
     "invoice_number_style",
     "payment dates",
     "fx_rate_simulated",
-    "country/currency assignment"
+    "country/currency assignment",
+    "mailer",
+    "domain_registered"
    ],
    "fabricated": [
     "legal_name",
@@ -9107,6 +9321,8 @@
     "tax_id"
    ]
   },
+  "mailer": "Mozilla Thunderbird 115",
+  "domain_registered": "2018-12-22",
   "last_invoice_number": "INV-03107"
  },
  {
@@ -9279,7 +9495,9 @@
     "invoice_number_style",
     "payment dates",
     "fx_rate_simulated",
-    "country/currency assignment"
+    "country/currency assignment",
+    "mailer",
+    "domain_registered"
    ],
    "fabricated": [
     "legal_name",
@@ -9290,6 +9508,8 @@
     "tax_id"
    ]
   },
+  "mailer": "Microsoft Outlook 16.0",
+  "domain_registered": "2010-01-30",
   "last_invoice_number": "INV-03474"
  },
  {
@@ -9465,7 +9685,9 @@
     "invoice_number_style",
     "payment dates",
     "fx_rate_simulated",
-    "country/currency assignment"
+    "country/currency assignment",
+    "mailer",
+    "domain_registered"
    ],
    "fabricated": [
     "legal_name",
@@ -9476,6 +9698,8 @@
     "tax_id"
    ]
   },
+  "mailer": "Microsoft Outlook for iOS",
+  "domain_registered": "2005-09-26",
   "last_invoice_number": "INV-03244"
  },
  {
@@ -9630,7 +9854,9 @@
     "invoice_number_style",
     "payment dates",
     "fx_rate_simulated",
-    "country/currency assignment"
+    "country/currency assignment",
+    "mailer",
+    "domain_registered"
    ],
    "fabricated": [
     "legal_name",
@@ -9641,6 +9867,8 @@
     "tax_id"
    ]
   },
+  "mailer": "Microsoft Outlook 16.0",
+  "domain_registered": "2008-04-12",
   "last_invoice_number": "INV-02646"
  },
  {
@@ -9793,7 +10021,9 @@
     "invoice_number_style",
     "payment dates",
     "fx_rate_simulated",
-    "country/currency assignment"
+    "country/currency assignment",
+    "mailer",
+    "domain_registered"
    ],
    "fabricated": [
     "legal_name",
@@ -9804,6 +10034,8 @@
     "tax_id"
    ]
   },
+  "mailer": "Microsoft Outlook 16.0",
+  "domain_registered": "2013-11-21",
   "last_invoice_number": "INV232313"
  },
  {
@@ -9956,7 +10188,9 @@
     "invoice_number_style",
     "payment dates",
     "fx_rate_simulated",
-    "country/currency assignment"
+    "country/currency assignment",
+    "mailer",
+    "domain_registered"
    ],
    "fabricated": [
     "legal_name",
@@ -9967,6 +10201,8 @@
     "tax_id"
    ]
   },
+  "mailer": "Zoho Mail",
+  "domain_registered": "2011-09-30",
   "last_invoice_number": "INV260566"
  },
  {
@@ -10118,7 +10354,9 @@
     "invoice_number_style",
     "payment dates",
     "fx_rate_simulated",
-    "country/currency assignment"
+    "country/currency assignment",
+    "mailer",
+    "domain_registered"
    ],
    "fabricated": [
     "legal_name",
@@ -10129,6 +10367,8 @@
     "tax_id"
    ]
   },
+  "mailer": "Apple Mail (2.3774)",
+  "domain_registered": "2011-08-08",
   "last_invoice_number": "INV-03719"
  },
  {
