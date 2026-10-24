@@ -496,7 +496,7 @@ def b_portal(v, r, sc, k, i, n):
     diff = weighted(r, list(zip(("easy", "medium", "hard"), sc["diff"])))
     c = new_case(v, r, sc, k, i, n, diff, "vendor", "new", "legit", "business")
     set_sender(c, v, "vendor", r)
-    c["from_name"] = f"{v['legal_name']} Billing"; c["from_addr"] = c["reply_to"] = "noreply@" + v["domain"]; c["attrs"]["register"] = "portal_notification"; c["mailer"] = "Billing portal mailer"
+    c["from_name"] = f"{v['legal_name']} Billing"; c["from_addr"] = c["reply_to"] = "noreply@" + v["domain"]; c["attrs"]["register"] = "portal_notification"; c["mailer"] = "Billing portal mailer"; c["attrs"]["device_footer"] = "none"; c["attrs"]["urgency"] = "none"
     invoice_block(c, v, r, base_amount(v, r, 0.55, 1.2), choose_po(v, r))
     c["attachments"] = [{"type": "invoice_pdf"}] if r.random() < 0.5 else []
     c["sub_variant"] = "automated_portal_notice"; c["attrs"]["length"] = "short"

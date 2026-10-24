@@ -31158,8 +31158,8 @@
    "sent_hour_local": 16,
    "length": "short",
    "register": "portal_notification",
-   "device_footer": "outlook_mobile",
-   "urgency": "low",
+   "device_footer": "none",
+   "urgency": "none",
    "noise": []
   },
   "tz": "-07:00",
@@ -31353,7 +31353,7 @@
    "length": "short",
    "register": "portal_notification",
    "device_footer": "none",
-   "urgency": "low",
+   "urgency": "none",
    "noise": [
     "typos"
    ]
@@ -31545,7 +31545,7 @@
    "length": "short",
    "register": "portal_notification",
    "device_footer": "none",
-   "urgency": "low",
+   "urgency": "none",
    "noise": [
     "typos"
    ]
@@ -31736,7 +31736,7 @@
    "length": "short",
    "register": "portal_notification",
    "device_footer": "none",
-   "urgency": "low",
+   "urgency": "none",
    "noise": []
   },
   "tz": "+02:00",
@@ -32299,7 +32299,7 @@
    "sent_hour_local": 16,
    "length": "short",
    "register": "portal_notification",
-   "device_footer": "iphone",
+   "device_footer": "none",
    "urgency": "none",
    "noise": [
     "typos",
@@ -32501,7 +32501,7 @@
    "sent_hour_local": 16,
    "length": "short",
    "register": "portal_notification",
-   "device_footer": "android",
+   "device_footer": "none",
    "urgency": "none",
    "noise": [
     "mixed_formatting"
