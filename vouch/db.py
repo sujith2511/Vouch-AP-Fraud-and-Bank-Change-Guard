@@ -6,7 +6,7 @@
 * a payment row can only exist for an item with an applied 'post' audit row; one payment per item
 * payments / bank history are append-only too
 """
-import sqlite3
+import os, sqlite3
 
 SCHEMA = """
 CREATE TABLE IF NOT EXISTS vendors (
@@ -102,7 +102,12 @@ def connect(path):
     """New connection per unit of work. Autocommit mode: core.transition manages BEGIN/COMMIT itself."""
     conn = sqlite3.connect(path, timeout=30, isolation_level=None)
     conn.row_factory = sqlite3.Row
-    conn.execute("PRAGMA journal_mode=WAL")
+    # WAL needs shared memory and does not work reliably on network file systems; on an Azure Files (SMB) mount set
+    # VOUCH_SQLITE_JOURNAL=DELETE. Local disk keeps the WAL default.
+    mode = os.environ.get("VOUCH_SQLITE_JOURNAL", "WAL").upper()
+    if mode not in ("WAL", "DELETE", "TRUNCATE"):
+        raise ValueError("VOUCH_SQLITE_JOURNAL must be WAL, DELETE or TRUNCATE")
+    conn.execute(f"PRAGMA journal_mode={mode}")
     conn.execute("PRAGMA foreign_keys=ON")
     conn.execute("PRAGMA busy_timeout=30000")
     return conn
