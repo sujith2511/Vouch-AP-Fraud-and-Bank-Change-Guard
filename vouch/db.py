@@ -23,6 +23,10 @@ CREATE TABLE IF NOT EXISTS payment_history (
   amount REAL, name_as_paid TEXT, department TEXT
 );
 CREATE INDEX IF NOT EXISTS ix_hist_vendor ON payment_history(vendor_id);
+-- agent-readable context loaded from dataset v2 (never contains truth or provenance)
+CREATE TABLE IF NOT EXISTS vendor_profile (vendor_id TEXT PRIMARY KEY, profile TEXT NOT NULL);
+CREATE TABLE IF NOT EXISTS email_history (id TEXT PRIMARY KEY, vendor_id TEXT NOT NULL, sent_at TEXT, data TEXT NOT NULL);
+CREATE INDEX IF NOT EXISTS ix_emailhist_vendor ON email_history(vendor_id);
 CREATE TABLE IF NOT EXISTS items (
   id TEXT PRIMARY KEY,
   state TEXT NOT NULL CHECK (state IN ('NEW','PROPOSED','NEEDS_INFO','APPROVED','REJECTED','POSTED')),
