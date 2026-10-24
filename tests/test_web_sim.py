@@ -88,3 +88,23 @@ def test_stub_agent_runs_the_real_guard_on_a_simulated_lookup(tmp_path):
             ev = json.loads(r["evidence"]) if isinstance(r["evidence"], str) else r["evidence"]
             seen += [x["result"] for x in ev if x.get("tool") == "verify_vendor_web"]
     assert seen and all(s["simulated"] is True for s in seen)
+
+
+def test_web_sim_flag_is_off_by_default_and_rejects_rule_based_agent(tmp_path):
+    from vouch import run_pipeline
+    from vouch.agent_interface import RuleBasedAgent
+    assert isinstance(run_pipeline.load_agent(None), RuleBasedAgent)
+    with pytest.raises(SystemExit): run_pipeline.load_agent(None, "sim")
+    a = run_pipeline.load_agent("vouch.web_sim:StubLLMAgent", "sim")
+    assert isinstance(a, web_sim.SimWebMixin) and not isinstance(run_pipeline.load_agent("vouch.web_sim:StubLLMAgent"), web_sim.SimWebMixin)
+
+
+def test_eval_web_report_counts_only_eval_items_and_marks_simulated(tmp_path):
+    from vouch import run_pipeline, eval as ev
+    db = str(tmp_path / "w.db")
+    c, _ = run_pipeline.run(db, dataset="v2", agent=run_pipeline.load_agent("vouch.web_sim:StubLLMAgent", "sim"))
+    off, _ = run_pipeline.run(str(tmp_path / "o.db"), dataset="v2", agent=run_pipeline.load_agent("vouch.web_sim:StubLLMAgent"))
+    r, o = ev.web_report(c), ev.web_report(off)
+    assert r["items"] == 300 and r["items_with_web_check"] == 284 and r["web_results_marked_simulated"] == r["items_with_web_check"]
+    assert o["items_with_web_check"] == 0 and o["items_flagged_for_unlisted_number"] == 0   # default off: no web evidence at all
+    assert r["items_flagged_for_unlisted_number"] >= sum(v["flagged_phone_like"] for v in r["by_label"].values())

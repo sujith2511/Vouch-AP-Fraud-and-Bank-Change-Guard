@@ -8,11 +8,21 @@ from .agent_interface import LocalClient, RuleBasedAgent, run_agent
 from .db import connect, init_db
 
 
-def load_agent(spec):
+def load_agent(spec, web=None):
+    """web='sim': the agent's web check looks fictional vendors up in the SIMULATED directory (vouch/web_sim.py). Default off."""
     if spec in (None, "stub"):
+        if web == "sim":
+            raise SystemExit("--web sim needs an LLM-based agent (e.g. --agent vouch.llm_agent:LLMAgent); the rule-based agent has no web check")
         return RuleBasedAgent()
     mod, _, cls = spec.partition(":")
-    return getattr(importlib.import_module(mod), cls)()
+    klass = getattr(importlib.import_module(mod), cls)
+    if web == "sim":
+        from .llm_agent import LLMAgent
+        from .web_sim import with_simulated_web
+        if not issubclass(klass, LLMAgent):
+            raise SystemExit("--web sim needs an LLMAgent subclass")
+        klass = with_simulated_web(klass)
+    return klass()
 
 
 def run(db_path, emails_path=None, vendors_path="data/vendors.json", agent=None, limit=None, fresh=True, dataset=None, which="emails"):
@@ -44,12 +54,13 @@ def run(db_path, emails_path=None, vendors_path="data/vendors.json", agent=None,
 
 def main():
     ap = argparse.ArgumentParser(); ap.add_argument("--emails", default=None); ap.add_argument("--dataset", default=None, help="v1 (default) or v2; env VOUCH_DATASET")
-    ap.add_argument("--which", default="emails", choices=["emails", "dev", "holdout"], help="v2 only"); ap.add_argument("--db", default="run.db")
+    ap.add_argument("--which", default="emails", choices=["emails", "dev", "holdout"], help="v2 only")
+    ap.add_argument("--web", default=None, choices=["sim"], help="sim: simulated web lookups for fictional vendors (LLM agents only; default off)"); ap.add_argument("--db", default="run.db")
     ap.add_argument("--vendors", default="data/vendors.json"); ap.add_argument("--agent", default="stub"); ap.add_argument("--limit", type=int)
     a = ap.parse_args()
     if a.emails and not os.path.exists(a.emails):
         raise SystemExit(f"{a.emails} not found (v1: data/fixtures/emails_fixture.jsonl; v2: data/v2/emails.jsonl)")
-    t = time.time(); c, stats = run(a.db, a.emails, a.vendors, load_agent(a.agent), a.limit, dataset=a.dataset, which=a.which)
+    t = time.time(); c, stats = run(a.db, a.emails, a.vendors, load_agent(a.agent, a.web), a.limit, dataset=a.dataset, which=a.which)
     print(stats, f"{time.time() - t:.1f}s -> {a.db}")
 
 

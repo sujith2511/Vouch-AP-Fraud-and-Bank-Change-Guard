@@ -179,10 +179,75 @@ def injection_resistance(dataset="v2", agent=None, emails_path=None):
             "approved_by_policy_after_gullible_agent": approved, "failures": fails, "passed": not fails and len(items) > 0}
 
 
+# ---------------------------------------------------------------- web-verification report (phone numbers in emails vs official listings)
+WEBSIM_FILE = "eval_results_v2_llm_websim.json"
+BASELINE_FILE = "eval_results_v2_llm.json"
+
+
+def _web_results(item):
+    """verify_vendor_web results inside item['evidence'] (stored as [{action, by, data: [{tool, result}]}], older runs flat)."""
+    out = []
+    for x in item.get("evidence") or []:
+        for y in (x.get("data") if isinstance(x, dict) and "data" in x else [x]) or []:
+            if isinstance(y, dict) and y.get("tool") == "verify_vendor_web": out.append(y["result"])
+    return out
+
+
+def _phone_like(p):
+    """NANP-looking (area code starts 2-9). web_verify.PHONE_RE also matches 10-12 digit PO/invoice numbers such as 000053180001."""
+    return bool(p) and p[0] in "23456789"
+
+
+def web_report(c):
+    """Over eval items only (ground-truth rows; demo items have none): how often the web check ran, and how many emails with phone numbers
+    got a callback-number mismatch flag. `simulated` counts results marked simulated. 'phone_like' separates real-looking phone numbers
+    from long digit runs (PO/invoice numbers) that web_verify's phone regex also picks up."""
+    from . import web_verify
+    z = lambda: {"emails_with_phone_like_number": 0, "flagged_phone_like": 0, "flagged_only_non_phone_digit_runs": 0}
+    by = {"fraud": z(), "legit": z()}
+    n_items = with_digits = with_phone = checked = simulated = flagged = 0
+    ids = {"fraud": [], "legit": []}
+    for r in load_truth(c):
+        t = json.loads(r["truth"]); item = core.load_item(c, r["item_id"]); e = item["email"] or {}
+        n_items += 1
+        nums = web_verify.phones_in(f"{e.get('subject', '')}\n{e.get('body', '')}")
+        with_digits += bool(nums); with_phone += any(map(_phone_like, nums)); by[t["label"]]["emails_with_phone_like_number"] += any(map(_phone_like, nums))
+        res = next(iter(_web_results(item)), None)
+        if res is None: continue
+        checked += 1; simulated += bool(res.get("simulated"))
+        bad = res.get("email_phones_not_listed_online") or []
+        if bad:
+            flagged += 1
+            if any(map(_phone_like, bad)): by[t["label"]]["flagged_phone_like"] += 1; ids[t["label"]].append(item["id"])
+            else: by[t["label"]]["flagged_only_non_phone_digit_runs"] += 1
+    return {"items": n_items, "emails_with_a_number_web_verify_reads_as_phone": with_digits, "emails_with_phone_like_number": with_phone,
+            "items_with_web_check": checked, "web_results_marked_simulated": simulated, "items_flagged_for_unlisted_number": flagged,
+            "by_label": by, "phone_like_flagged_ids": ids}
+
+
+def compare_with_baseline(rep, path=BASELINE_FILE):
+    if not os.path.exists(path): return {"baseline_file": path, "found": False}
+    base = json.load(open(path)); out = {"baseline_file": path, "found": True}
+    for sp in ("dev", "holdout"):
+        out[sp] = {k: {"baseline": base[sp].get(k), "now": rep[sp].get(k), **({"delta": round(rep[sp][k] - base[sp][k], 3)} if isinstance(base[sp].get(k), (int, float)) else {})}
+                   for k in ("lane_accuracy", "verdict_accuracy", "fraud_caught", "legit_sent_to_human", "auto_clear_count")}
+        out[sp]["fraud_auto_cleared"] = {"baseline": len(base[sp].get("FRAUD_AUTO_CLEARED", [])), "now": len(rep[sp]["FRAUD_AUTO_CLEARED"])}
+    return out
+
+
 def main():
     ap = argparse.ArgumentParser(); ap.add_argument("--db", default="run.db"); ap.add_argument("--json"); ap.add_argument("--skip-injection-check", action="store_true")
+    ap.add_argument("--web", default=None, choices=["sim"], help="label the run as using the SIMULATED web layer; default json path becomes " + WEBSIM_FILE)
+    ap.add_argument("--agent-note", default="", help="free text recorded in the results file (which agent produced the DB)")
     a = ap.parse_args()
     rep = evaluate(connect(a.db)); print(render(rep)); print("\n" + table(rep))
+    rep["web_check"] = web_report(connect(a.db)); print("\nweb check:", json.dumps({k: v for k, v in rep["web_check"].items() if k != "phone_like_flagged_ids"}))
+    if a.web == "sim":
+        rep["simulated_web"] = True
+        rep["note"] = ("SIMULATED web layer (vouch/web_sim.py): the fictional vendors' official phones/sites come from a directory derived from the vendor "
+                       "records, replayed through the real web_verify.verify_vendor_web(). Not a live lookup. " + a.agent_note).strip()
+        rep["comparison_vs_eval_results_v2_llm"] = compare_with_baseline(rep)
+        a.json = a.json or WEBSIM_FILE
     v2 = os.path.exists(a.db + ".evalkey")
     if v2 and not a.skip_injection_check:
         rep["code_cannot_be_fooled"] = r = injection_resistance()
