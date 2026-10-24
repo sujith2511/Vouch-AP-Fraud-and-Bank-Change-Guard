@@ -4,7 +4,7 @@ import argparse, json, os, sqlite3, tempfile
 from collections import defaultdict
 
 from . import core
-from .db import connect
+from .db import connect, open_sqlite
 
 
 def final_lane(c, item):
@@ -32,7 +32,7 @@ def load_truth(c):
     """v2: answer key from the separate <db>.evalkey file (the only place it lives). v1: legacy truth table inside the DB."""
     kp = _db_path(c) + ".evalkey"
     if os.path.exists(kp):
-        k = sqlite3.connect(kp); k.row_factory = sqlite3.Row
+        k = open_sqlite(kp); k.row_factory = sqlite3.Row
         try: return k.execute("SELECT item_id, split, truth FROM truth").fetchall()
         finally: k.close()
     return c.execute("SELECT item_id, split, truth FROM truth").fetchall()

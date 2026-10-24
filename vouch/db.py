@@ -98,6 +98,16 @@ BEGIN SELECT RAISE(ABORT, 'payments are append-only'); END;
 """
 
 
+def open_sqlite(path):
+    """Plain sqlite3 connection that honours VOUCH_SQLITE_VFS (for side files such as <db>.evalkey on the same mount)."""
+    vfs = os.environ.get("VOUCH_SQLITE_VFS")
+    if vfs and path != ":memory:":
+        if vfs != "unix-dotfile":
+            raise ValueError("VOUCH_SQLITE_VFS must be unix-dotfile (or unset)")
+        return sqlite3.connect(f"file:{path}?vfs={vfs}", uri=True, timeout=30)
+    return sqlite3.connect(path, timeout=30)
+
+
 def connect(path):
     """New connection per unit of work. Autocommit mode: core.transition manages BEGIN/COMMIT itself."""
     # On an Azure Files (SMB) mount, SQLite's byte-range locks fail ("database is locked") and WAL needs shared memory.

@@ -44,6 +44,19 @@ def test_dotfile_locking_for_azure_files(tmp_path, monkeypatch):
     assert core.verify_audit_chain(c) == (True, None)
 
 
+def test_v2_seed_and_evalkey_work_with_dotfile_locking(tmp_path, monkeypatch):
+    """The Azure start command seeds v2; the evalkey side file must use the same VFS (it did not: 0-byte file, no items)."""
+    from vouch import seed
+    from vouch.db import open_sqlite
+    monkeypatch.setenv("VOUCH_SQLITE_VFS", "unix-dotfile")
+    monkeypatch.setenv("VOUCH_SQLITE_JOURNAL", "DELETE")
+    p = str(tmp_path / "vouch.db"); init_db(p).close(); c = connect(p)
+    seed.load_vendors_v2(c)
+    assert seed.ingest_emails_v2(c, p, "emails", 5) == 5
+    assert c.execute("SELECT COUNT(*) FROM items").fetchone()[0] == 5
+    assert open_sqlite(seed.evalkey_path(p)).execute("SELECT COUNT(*) FROM truth").fetchone()[0] == 5
+
+
 def test_unknown_vfs_is_refused(tmp_path, monkeypatch):
     monkeypatch.setenv("VOUCH_SQLITE_VFS", "unix-none")
     with pytest.raises(ValueError):

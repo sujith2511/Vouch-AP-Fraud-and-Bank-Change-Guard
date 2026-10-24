@@ -3,6 +3,7 @@ variants, so Xanath's seed format only needs a small tweak here (see _vendor_fie
 import json, os, statistics
 
 from . import core
+from .db import open_sqlite
 
 
 def _vendor_fields(v):
@@ -152,7 +153,7 @@ def ingest_emails_v2(conn, db_path, which="emails", limit=None, emails_path=None
     """Ingest v2 emails as items (actor sync). Ground truth goes to the separate evalkey file, never into the DB."""
     path = emails_path or V2[which]
     registered = {r["vendor_id"] for r in conn.execute("SELECT vendor_id FROM vendors")} - {UNKNOWN_VENDOR}
-    key = sqlite3.connect(evalkey_path(db_path))
+    key = open_sqlite(evalkey_path(db_path))   # honours VOUCH_SQLITE_VFS on the Azure Files mount
     key.execute("CREATE TABLE IF NOT EXISTS truth (item_id TEXT PRIMARY KEY, split TEXT, truth TEXT NOT NULL)")
     n = 0
     for line in open(path):
