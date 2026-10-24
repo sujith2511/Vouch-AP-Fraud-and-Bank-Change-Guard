@@ -1,0 +1,44 @@
+{
+ "demo_vendor_id": "DEMO-R4",
+ "placeholder": true,
+ "recorded_at": null,
+ "query": "ORACLE CORP oracle.com phone number",
+ "note": "PLACEHOLDER with a plausible shape, built from data/v2/demo_real_vendors.json. Not a recorded response. Run scripts/record_web_verify.py (needs BRIGHT_DATA_API_KEY and BRIGHT_DATA_SERP_ZONE) to replace it.",
+ "serp": {
+  "general": {
+   "search_engine": "google"
+  },
+  "knowledge": {
+   "title": "ORACLE CORP",
+   "link": "https://www.oracle.com/",
+   "facts": [
+    {
+     "predicate": "Phone",
+     "title": "Phone",
+     "value": [
+      {
+       "text": "(737) 867-1000"
+      }
+     ]
+    }
+   ]
+  },
+  "organic": [
+   {
+    "link": "https://www.oracle.com/",
+    "title": "ORACLE CORP - official site",
+    "description": "Official website of ORACLE CORP."
+   },
+   {
+    "link": "https://www.oracle.com/corporate/contact/",
+    "title": "Corporate Contact Page | ORACLE CORP",
+    "description": "Call (650) 506-7000 or (800) 633-0738"
+   },
+   {
+    "link": "https://www.bizlistings.example/oracle.com",
+    "title": "ORACLE CORP - business listing",
+    "description": "Phone: (415) 555-0199"
+   }
+  ]
+ }
+}

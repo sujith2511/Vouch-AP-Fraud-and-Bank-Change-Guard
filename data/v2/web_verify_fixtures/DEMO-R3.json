@@ -1,0 +1,39 @@
+{
+ "demo_vendor_id": "DEMO-R3",
+ "placeholder": true,
+ "recorded_at": null,
+ "query": "Salesforce, Inc. salesforce.com phone number",
+ "note": "PLACEHOLDER with a plausible shape, built from data/v2/demo_real_vendors.json. Not a recorded response. Run scripts/record_web_verify.py (needs BRIGHT_DATA_API_KEY and BRIGHT_DATA_SERP_ZONE) to replace it.",
+ "serp": {
+  "general": {
+   "search_engine": "google"
+  },
+  "knowledge": {
+   "title": "Salesforce, Inc.",
+   "link": "https://www.salesforce.com/",
+   "facts": [
+    {
+     "predicate": "Phone",
+     "title": "Phone",
+     "value": [
+      {
+       "text": "(415) 901-7000"
+      }
+     ]
+    }
+   ]
+  },
+  "organic": [
+   {
+    "link": "https://www.salesforce.com/",
+    "title": "Salesforce, Inc. - official site",
+    "description": "Official website of Salesforce, Inc.."
+   },
+   {
+    "link": "https://www.bizlistings.example/salesforce.com",
+    "title": "Salesforce, Inc. - business listing",
+    "description": "Phone: (415) 555-0199"
+   }
+  ]
+ }
+}

@@ -1,0 +1,44 @@
+{
+ "demo_vendor_id": "DEMO-R1",
+ "placeholder": true,
+ "recorded_at": null,
+ "query": "Motorola Solutions, Inc. motorolasolutions.com phone number",
+ "note": "PLACEHOLDER with a plausible shape, built from data/v2/demo_real_vendors.json. Not a recorded response. Run scripts/record_web_verify.py (needs BRIGHT_DATA_API_KEY and BRIGHT_DATA_SERP_ZONE) to replace it.",
+ "serp": {
+  "general": {
+   "search_engine": "google"
+  },
+  "knowledge": {
+   "title": "Motorola Solutions, Inc.",
+   "link": "https://www.motorolasolutions.com/",
+   "facts": [
+    {
+     "predicate": "Phone",
+     "title": "Phone",
+     "value": [
+      {
+       "text": "(847) 576-5000"
+      }
+     ]
+    }
+   ]
+  },
+  "organic": [
+   {
+    "link": "https://www.motorolasolutions.com/",
+    "title": "Motorola Solutions, Inc. - official site",
+    "description": "Official website of Motorola Solutions, Inc.."
+   },
+   {
+    "link": "https://www.motorolasolutions.com/en_us/contact-us.html",
+    "title": "General Contact Page | Motorola Solutions, Inc.",
+    "description": "Call (888) 325-9336"
+   },
+   {
+    "link": "https://www.bizlistings.example/motorolasolutions.com",
+    "title": "Motorola Solutions, Inc. - business listing",
+    "description": "Phone: (415) 555-0199"
+   }
+  ]
+ }
+}

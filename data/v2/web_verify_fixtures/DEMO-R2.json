@@ -1,0 +1,39 @@
+{
+ "demo_vendor_id": "DEMO-R2",
+ "placeholder": true,
+ "recorded_at": null,
+ "query": "MICROSOFT CORP microsoft.com phone number",
+ "note": "PLACEHOLDER with a plausible shape, built from data/v2/demo_real_vendors.json. Not a recorded response. Run scripts/record_web_verify.py (needs BRIGHT_DATA_API_KEY and BRIGHT_DATA_SERP_ZONE) to replace it.",
+ "serp": {
+  "general": {
+   "search_engine": "google"
+  },
+  "knowledge": {
+   "title": "MICROSOFT CORP",
+   "link": "https://www.microsoft.com/",
+   "facts": [
+    {
+     "predicate": "Phone",
+     "title": "Phone",
+     "value": [
+      {
+       "text": "(425) 882-8080"
+      }
+     ]
+    }
+   ]
+  },
+  "organic": [
+   {
+    "link": "https://www.microsoft.com/",
+    "title": "MICROSOFT CORP - official site",
+    "description": "Official website of MICROSOFT CORP."
+   },
+   {
+    "link": "https://www.bizlistings.example/microsoft.com",
+    "title": "MICROSOFT CORP - business listing",
+    "description": "Phone: (415) 555-0199"
+   }
+  ]
+ }
+}

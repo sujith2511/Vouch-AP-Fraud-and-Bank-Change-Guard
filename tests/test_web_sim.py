@@ -108,3 +108,67 @@ def test_eval_web_report_counts_only_eval_items_and_marks_simulated(tmp_path):
     assert r["items"] == 300 and r["items_with_web_check"] == 284 and r["web_results_marked_simulated"] == r["items_with_web_check"]
     assert o["items_with_web_check"] == 0 and o["items_flagged_for_unlisted_number"] == 0   # default off: no web evidence at all
     assert r["items_flagged_for_unlisted_number"] >= sum(v["flagged_phone_like"] for v in r["by_label"].values())
+
+
+# ---------------------------------------------------------------- /demo/verify
+from fastapi.testclient import TestClient
+from vouch.api import create_app
+
+KEYS = {"k-sync": {"role": "sync", "user": "s"}, "k-agent": {"role": "agent", "user": "a1"}, "k-ann": {"role": "accountant", "user": "ann"}}
+H = lambda k: {"X-API-Key": k}
+
+
+@pytest.fixture
+def api(tmp_path, monkeypatch):
+    monkeypatch.delenv("VOUCH_ENV", raising=False)
+    for k in ("BRIGHT_DATA_API_KEY", "BRIGHT_DATA_SERP_ZONE", "DEMO_ENDPOINTS"): monkeypatch.delenv(k, raising=False)
+    return TestClient(create_app(str(tmp_path / "a.db"), KEYS))
+
+
+def test_demo_verify_returns_recorded_fixture_when_key_missing(api):
+    for i in ("DEMO-R1", "DEMO-R2", "DEMO-R3", "DEMO-R4"):
+        r = api.get(f"/demo/verify/{i}", headers=H("k-agent")); assert r.status_code == 200, r.text
+        j = r.json()
+        assert j["source"] == "recorded" and j["status"] == "ok" and j["placeholder"] is True and j["live_attempt"] == "not_configured"
+        assert j["official_phones"] and j["official_site"].startswith("https://") and j["phone_on_file_listed_online"] is True
+    assert api.get("/demo/verify/DEMO-R9", headers=H("k-agent")).status_code == 404
+    assert api.get("/demo/verify/DEMO-R1").status_code == 401 and api.get("/demo/verify/DEMO-R1", headers=H("nope")).status_code == 401
+
+
+def test_demo_verify_domain_comes_from_final_url_host(api):
+    from vouch import demo
+    assert demo.company_domain(demo.get_company("DEMO-R1")) == "motorolasolutions.com"
+    assert api.get("/demo/verify/DEMO-R1", headers=H("k-sync")).json()["site_domain_matches_vendor"] is True
+
+
+def test_demo_verify_falls_back_to_recorded_when_live_is_blocked(api, monkeypatch):
+    monkeypatch.setenv("BRIGHT_DATA_API_KEY", "k"); monkeypatch.setenv("BRIGHT_DATA_SERP_ZONE", "z")
+    api.app.state.web_post = lambda url, timeout=60.0: (429, None)
+    j = api.get("/demo/verify/DEMO-R1", headers=H("k-agent")).json()
+    assert j["source"] == "recorded" and j["live_attempt"] == "blocked"
+    api.app.state.web_post = lambda url, timeout=60.0: (200, {"knowledge": {"link": "https://www.motorolasolutions.com/", "facts": [{"predicate": "Phone", "value": [{"text": "(847) 576-5000"}]}]}})
+    j = api.get("/demo/verify/DEMO-R1", headers=H("k-agent")).json()
+    assert j["source"] == "live" and j["official_phones"] == ["8475765000"] and j["simulated"] is False
+
+
+def test_recorded_replay_never_poisons_the_live_cache(api):
+    api.get("/demo/verify/DEMO-R1", headers=H("k-agent"))
+    assert not any("motorola" in str(k).lower() for k in web_verify._cache)
+
+
+def test_demo_verify_disabled_in_prod_unless_flag(tmp_path, monkeypatch):
+    monkeypatch.setenv("VOUCH_ENV", "prod"); monkeypatch.delenv("DEMO_ENDPOINTS", raising=False)
+    a = TestClient(create_app(str(tmp_path / "p.db"), KEYS))
+    assert a.get("/demo/verify/DEMO-R1", headers=H("k-agent")).status_code == 404
+    monkeypatch.setenv("DEMO_ENDPOINTS", "1")
+    assert a.get("/demo/verify/DEMO-R1", headers=H("k-agent")).status_code == 200
+
+
+def test_fixtures_are_marked_placeholder_or_recorded_and_hold_no_emails():
+    for i in ("DEMO-R1", "DEMO-R2", "DEMO-R3", "DEMO-R4"):
+        fx = json.load(open(f"data/v2/web_verify_fixtures/{i}.json"))
+        assert fx["placeholder"] is True and fx["recorded_at"] is None or fx["placeholder"] is False and fx["recorded_at"]
+        def keys(o):
+            for k, v in (o.items() if isinstance(o, dict) else enumerate(o) if isinstance(o, list) else []):
+                yield k; yield from keys(v)
+        assert not {"body_text", "from_addr", "subject", "body", "email"} & set(keys(fx)), "a fixture must not hold an email"

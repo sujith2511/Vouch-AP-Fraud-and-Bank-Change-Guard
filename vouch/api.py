@@ -250,12 +250,29 @@ def create_app(db_path=None, keys=None):
     def post(item_id: str, b: Body, who=Depends(auth), c=Depends(conn_dep)):
         return run(lambda: public_item(gateway.post_item(c, item_id, who["role"], b.reason, requested_by_id=who["user"])))
 
+    def _demo_enabled():
+        """Same rule as /demo/inject: on unless VOUCH_ENV=prod, or DEMO_ENDPOINTS=1."""
+        if os.environ.get("VOUCH_ENV", "dev") == "prod" and os.environ.get("DEMO_ENDPOINTS") != "1":
+            raise HTTPException(404, "not found")
+
+    @app.get("/demo/verify/{demo_vendor_id}")
+    def demo_verify(demo_vendor_id: str, who=Depends(auth)):
+        """Web verification of one of the real demo companies (see vouch/demo.py). Live Bright Data when configured,
+        otherwise the saved fixture, labelled source='recorded' (placeholder=true until real data is recorded)."""
+        _demo_enabled()
+        from . import demo
+        try:
+            return demo.verify_demo_vendor(demo_vendor_id, post=getattr(app.state, "web_post", None))
+        except LookupError:
+            raise HTTPException(404, "unknown demo vendor")
+        except FileNotFoundError:
+            raise HTTPException(404, "no fixture for this demo vendor")
+
     @app.post("/demo/inject", status_code=201)
     def demo_inject(vendor_id: Optional[str] = None, who=Depends(auth), c=Depends(conn_dep)):
         """Live-demo attack: lookalike-domain bank change with a hidden prompt injection, through the normal pipeline.
         Enabled when VOUCH_ENV != prod or DEMO_ENDPOINTS=1. Only sync/accountant keys may trigger it."""
-        if os.environ.get("VOUCH_ENV", "dev") == "prod" and os.environ.get("DEMO_ENDPOINTS") != "1":
-            raise HTTPException(404, "not found")
+        _demo_enabled()
         if who["role"] not in ("sync", "accountant"):
             aid = core.record_denied(c, actor=who["role"], action="ingest", item_id=None, reason="demo inject", code="ACTOR_NOT_ALLOWED",
                                      detail="only sync/accountant keys may trigger the demo attack", actor_id=who["user"])

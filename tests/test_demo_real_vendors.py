@@ -55,4 +55,5 @@ def test_demo_file_cannot_be_loaded_into_the_eval_db(tmp_path):
 
 def test_eval_and_pipeline_never_reference_the_demo_file():
     for f in Path("vouch").glob("*.py"):
-        assert "demo_real_vendors" not in f.read_text() or f.name == "seed.py" and "demo_real_vendors" in f.read_text()
+        # seed.py names the file only to refuse it; demo.py (live demo code, never the seed/eval path) is the only module that reads it
+        assert "demo_real_vendors" not in f.read_text() or f.name in ("seed.py", "demo.py")

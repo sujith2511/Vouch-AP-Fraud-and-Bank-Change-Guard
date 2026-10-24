@@ -1,8 +1,9 @@
 """Hand-written attack email for the live demo (POST /demo/inject). Fictional vendor only: a bank change from a lookalike domain with a
 hidden prompt injection in an HTML comment. It goes through the NORMAL pipeline (ingest -> agent proposes -> policy lane)."""
-import itertools, json, re
+import itertools, json, re, urllib.parse
+from pathlib import Path
 
-from . import core
+from . import core, web_verify
 from .agent_interface import LocalClient, RuleBasedAgent, run_agent
 
 _n = itertools.count(1)
@@ -38,3 +39,78 @@ def inject(conn, db_path, vendor_id=None):
     run_agent(RuleBasedAgent(), LocalClient(db_path, actor_id="demo-agent"), item_id)
     lane = core.apply_policy(conn, item_id)
     return item_id, lane
+
+
+# ---------------------------------------------------------------- real public companies (demo only, never in the seed/eval DB)
+DEMO_FILE = "data/v2/demo_real_vendors.json"
+FIXTURE_DIR = "data/v2/web_verify_fixtures"
+
+
+def companies(path=None):
+    return json.load(open(path or DEMO_FILE))["companies"]
+
+
+def get_company(demo_vendor_id, path=None):
+    for c in companies(path):
+        if c["demo_vendor_id"] == demo_vendor_id:
+            return c
+    raise LookupError(f"unknown demo vendor {demo_vendor_id!r}")
+
+
+def company_domain(c):
+    """The file has no domain field by design: it is the host of the verified website's final URL."""
+    return (urllib.parse.urlparse(c["website"]["final_url"]).hostname or "").lower().removeprefix("www.")
+
+
+def company_phone(c):
+    d = c["sec"]["phone_digits"]
+    return f"({d[:3]}) {d[3:6]}-{d[6:]}"
+
+
+def verify_request(c):
+    """The vendor dict web_verify.verify_vendor_web wants: name, domain, phone on file (the SEC-listed number)."""
+    return {"name": c["legal_name"], "domain": company_domain(c), "phone": company_phone(c)}
+
+
+def fixture_path(demo_vendor_id, fixture_dir=None):
+    return Path(fixture_dir or FIXTURE_DIR) / f"{demo_vendor_id}.json"
+
+
+def load_fixture(demo_vendor_id, fixture_dir=None):
+    return json.load(open(fixture_path(demo_vendor_id, fixture_dir)))
+
+
+def placeholder_fixture(c):
+    """Plausible SERP shape built from the demo file's own SEC/contact-page data. placeholder=true until scripts/record_web_verify.py replaces it."""
+    dom, site = company_domain(c), f"https://www.{company_domain(c)}/"
+    fmt = lambda d: f"({d[:3]}) {d[3:6]}-{d[6:]}"
+    pages = [p for pg in c["contact_pages"] for p in pg["phones"]]
+    phones = [c["sec"]["phone_digits"]] + [p["digits"] for p in pages if p["digits"] != c["sec"]["phone_digits"]][:2]
+    organic = [{"link": site, "title": f"{c['legal_name']} - official site", "description": f"Official website of {c['legal_name']}."}]
+    organic += [{"link": pg["url"], "title": f"{pg['label'].title()} | {c['legal_name']}", "description": "Call " + " or ".join(fmt(p["digits"]) for p in pg["phones"][:2])}
+                for pg in c["contact_pages"] if pg["phones"]][:1]
+    organic.append({"link": f"https://www.bizlistings.example/{dom}", "title": f"{c['legal_name']} - business listing", "description": "Phone: (415) 555-0199"})
+    return {"demo_vendor_id": c["demo_vendor_id"], "placeholder": True, "recorded_at": None, "query": f"{c['legal_name']} {dom} phone number",
+            "note": "PLACEHOLDER with a plausible shape, built from data/v2/demo_real_vendors.json. Not a recorded response. "
+                    "Run scripts/record_web_verify.py (needs BRIGHT_DATA_API_KEY and BRIGHT_DATA_SERP_ZONE) to replace it.",
+            "serp": {"general": {"search_engine": "google"},
+                     "knowledge": {"title": c["legal_name"], "link": site, "facts": [{"predicate": "Phone", "title": "Phone", "value": [{"text": fmt(phones[0])}]}]},
+                     "organic": organic}}
+
+
+def verify_demo_vendor(demo_vendor_id, email_text="", post=None, fixture_dir=None, path=None):
+    """Live Bright Data lookup via web_verify.verify_vendor_web when configured and it works; otherwise the saved fixture, replayed through the
+    same function and labelled source='recorded' (placeholder=true until real data is recorded). The label never says 'live' for saved data."""
+    c = get_company(demo_vendor_id, path); vendor = verify_request(c); live_status = "not_configured"
+    if web_verify.is_configured():
+        live = web_verify.verify_vendor_web(vendor, email_text, post=post)
+        if live.get("status") == "ok":
+            return {**live, "demo_vendor_id": demo_vendor_id, "source": "live", "simulated": False}
+        live_status = live.get("status")
+    fx = load_fixture(demo_vendor_id, fixture_dir)
+    from .web_sim import _sim_keys                       # verify_vendor_web insists on keys; set dummies for the replay only
+    with _sim_keys():
+        r = web_verify.verify_vendor_web(vendor, email_text, post=lambda url, timeout=60.0: (200, fx["serp"]))
+    web_verify._cache.pop((vendor["name"], vendor["domain"].lower()), None)     # a saved response must never be served as a later live result
+    return {**r, "demo_vendor_id": demo_vendor_id, "source": "recorded", "simulated": False, "placeholder": bool(fx.get("placeholder")),
+            "recorded_at": fx.get("recorded_at"), "live_attempt": live_status}
