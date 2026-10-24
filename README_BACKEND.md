@@ -42,6 +42,28 @@ Implement `Agent.investigate(item, client) -> AgentDecision` (`vouch/agent_inter
 ## For Xanath
 Seed adapters are `_vendor_fields` / `_email_fields` in `vouch/seed.py`; adjust there if your format differs. Items may carry a `truth` object (`label, type, difficulty, expected_lane, ...`) and `split` for `vouch.eval`.
 
+## Results (rule-based baseline)
+**This is the rule-based baseline (`RuleBasedAgent`: no LLM, no API key), not the LLM agent.** It is the floor the real agent has to beat. Run on the v2 dataset (300 emails; 16 from suppliers not in the vendor master), whole file loaded, scored per split:
+
+```
+python -m vouch.run_pipeline --dataset v2 --db run.db
+python -m vouch.eval --db run.db --json eval_results_v2.json
+```
+
+| set | n | lane acc | verdict acc | fraud not auto-cleared | fraud auto-cleared |
+|---|---|---|---|---|---|
+| dev | 192 | 0.708 | 0.646 | 68/89 | 21 |
+| holdout | 108 | 0.704 | 0.639 | 40/51 | 11 |
+| hard | 127 | 0.551 | 0.520 | 37/69 | 32 |
+| fraud, no bank change | 57 | 0.298 | 0.193 | 25/57 | 32 |
+
+- Legit mail blocked outright: 0/160. Legit mail sent to a human: 70/160 (dev 43/103, holdout 27/57).
+- Auto-clear precision: 0.741 dev, 0.732 holdout. **The baseline auto-clears 32 fraud emails**, all of them fraud with no code-visible tell (no bank change, right domain, passing auth): inflated invoices just under 1.5x, invoice-sequence anomalies, kickback/threshold splitting (dev), services never ordered, fake invoices from a compromised real domain, and altered duplicate invoice numbers. Rules over structured fields cannot see these; they are the job of the LLM agent, and `fraud_no_bank_change` is the number to watch.
+- **Code cannot be fooled** (separate from agent accuracy): all 15 injection emails were run with an agent that obeys every payload (says "legit", confidence 1.0). Then 90 direct attacks (agent approve/post/reject, sync approve, policy post, agent via the gateway) were tried. 90/90 denied, 0 payments posted, no bank moved, nothing approved, audit chain intact.
+- Verdict accuracy uses the dataset's `correct_agent_verdict` (legit / fraud / uncertain). The baseline never says "uncertain" for items that need it, so its verdict accuracy is below its lane accuracy.
+- Ground truth is read only by `vouch.eval`, from `<db>.evalkey`. It is not in the DB, the API or any tool output (`tests/test_v2_backend.py` checks this).
+- Full numbers (per scenario, per difficulty, per fuzzer): `eval_results_v2.json`.
+
 ## Not done / known limits
 Azure deploy files exist but were not run (no credentials). Coinbase testnet rail not built (interface in `vouch/rails.py`). In-process the `gateway` actor guard is a seatbelt, not a sandbox: the real boundaries are API-key roles and the DB triggers. SQLite means a single replica.
 
