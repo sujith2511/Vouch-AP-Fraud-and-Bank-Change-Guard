@@ -4,7 +4,7 @@ Built at CalHacks 13 by Ayushi, Sujith and Xanath.
 
 Vouch is an accounts-payable agent that investigates vendor emails, including "we changed our bank account" requests, inflated invoices, fake vendors and hidden prompt injections. It can never move money itself. Only a code-enforced gateway can, and only after a human approves.
 
-**Live:** https://vouch-core.livelygrass-b9211f5e.northcentralus.azurecontainerapps.io. It opens the web console; the API docs are at `/docs`. You need an API key to sign in, so ask the team for one.
+**Live:** https://vouch-core.livelygrass-b9211f5e.northcentralus.azurecontainerapps.io. It opens the web console; the API docs are at `/docs`. Judges sign in with the shared demo login (username `calhacks`; ask the team for the password), which acts as an accountant. Other roles, such as the controller, sign in with an API key from the team.
 
 ## The problem
 
@@ -127,11 +127,11 @@ The dataset (`data/v2/`, see `data/v2/DATASET_CARD.md`) has 300 emails: 140 frau
 
 The demo runs in the web console, in the **Live demo** tab and the **Work queue** tab:
 
-1. **A normal invoice resolves end to end.** Open a routine invoice in the queue: the evidence is all green, and the policy lane auto-cleared it.
-2. **Fire a spoofed bank-change email live** ("Send attack email"). It comes from a lookalike domain, with a hidden HTML-comment injection.
-3. **The agent flags it within seconds,** with reasons. Prompt Shields flags the injection, and the policy lane rejects it.
-4. **The agent's attempt to approve or pay is denied by the code.** It shows in the audit trail as `DENIED ACTOR_NOT_ALLOWED`.
-5. **"An outsider says Motorola changed its bank."** Bright Data shows that the callback number isn't one Motorola lists online. "Verify a real company" shows the live web check on its own.
+1. **Pick Attack 1 in Live demo:** a lookalike domain asks for a bank change, with a hidden HTML-comment injection. "Show what the AI receives" reveals the hidden text.
+2. **Watch the pipeline:** each step lights up from the evidence the server actually recorded: Prompt Shields, email auth, domain check, web check, Claude's tool calls, the code guard, the policy lane and the gateway. The result is stamped **Blocked**, with $0 moved.
+3. **Try to break it:** "Approve it anyway" and "Force the payment" send real requests. The server denies both, and the denials appear in red in the hash-chained audit trail.
+4. **Pick Attack 2:** "An outsider says Motorola changed its bank". The email passes SPF, DKIM and DMARC, but Bright Data shows the callback number isn't one Motorola lists online.
+5. **A normal invoice in the Work queue:** the evidence is all green, and the policy lane auto-cleared it.
 6. **A human correction becomes a proposed policy.** Approve an item the agent called fraud, with a reason, then go to **Learned policies**, click "Draft from corrections", and approve it as the controller.
 7. **"Why?"**: each item's audit trail, and "Why was this vendor's bank changed?".
 

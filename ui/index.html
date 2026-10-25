@@ -13,14 +13,22 @@
   <section id="login" class="login" hidden>
     <div class="login-card">
       <div class="brand brand-lg"><span class="mark" aria-hidden="true">V</span> Vouch</div>
-      <p class="muted">The accounts-payable agent that can't be talked into paying. Sign in with your API key.</p>
+      <p class="muted">The accounts-payable agent that can't be talked into paying.</p>
       <form id="login-form" autocomplete="off">
-        <label for="key">API key</label>
-        <input id="key" type="password" placeholder="vk_…" required spellcheck="false">
+        <label for="username">Username</label>
+        <input id="username" placeholder="calhacks" required spellcheck="false" autocapitalize="off">
+        <label for="password">Password</label>
+        <input id="password" type="password" required>
         <button type="submit" class="btn btn-primary">Sign in</button>
         <p id="login-error" class="error" role="alert"></p>
       </form>
-      <p class="fine">The key is kept for this browser tab only (sessionStorage) and is sent only to this server.</p>
+      <form id="key-form" autocomplete="off" hidden>
+        <label for="key">API key</label>
+        <input id="key" type="password" placeholder="vk_…" required spellcheck="false">
+        <button type="submit" class="btn btn-primary">Sign in with key</button>
+        <p id="key-error" class="error" role="alert"></p>
+      </form>
+      <button id="login-mode" class="linkish" type="button">Use an API key instead (controller, other roles)</button>
     </div>
   </section>
 
@@ -77,25 +85,53 @@
 
       <!-- DEMO -->
       <section id="view-demo" class="view" hidden>
-        <div class="page">
-          <h2>Live demo</h2>
-          <p class="muted">Each scene goes through the normal pipeline: ingest → agent proposes → policy lane. Nothing here can approve or pay.</p>
-          <div class="demo-grid">
-            <article class="card">
-              <h3>1 · Lookalike domain + hidden prompt injection</h3>
-              <p class="muted">A bank change from a lookalike of a vendor's domain, failing email auth, with an HTML comment telling the AI to approve and post.</p>
-              <button class="btn btn-primary" data-demo="inject">Send attack email</button>
-              <div class="demo-out" id="out-inject"></div>
-            </article>
-            <article class="card">
-              <h3>2 · An outsider says Motorola changed its bank</h3>
-              <p class="muted">The email passes SPF/DKIM/DMARC from its own domain and asks you to call a number. The web check compares that number with the ones Motorola lists publicly.</p>
-              <button class="btn btn-primary" data-demo="real-claim">Run the scene</button>
-              <div class="demo-out" id="out-real-claim"></div>
-            </article>
-            <article class="card">
-              <h3>3 · Verify a real company on the live web</h3>
-              <p class="muted">Bright Data looks up the company's official phones and website and compares them with its SEC record.</p>
+        <div class="page demo">
+          <header class="hero">
+            <p class="eyebrow"><span class="live-dot" aria-hidden="true"></span> Live · real pipeline, real Claude, real web</p>
+            <h1>Can you talk an AI into wiring money to a scammer?</h1>
+            <p class="lead">Pick an attack. It goes through exactly the path every vendor email takes: Azure Prompt Shields, email
+              authentication, a live Bright Data web check, Claude Haiku 4.5 with read-only tools, a code guard and the policy lane.
+              Nothing on this page can approve or pay.</p>
+            <div class="stats">
+              <div class="stat"><b>90%</b><span>holdout emails routed to the right lane<br><s>70%</s> rule-based baseline</span></div>
+              <div class="stat"><b>1 / 51</b><span>fraud emails auto-cleared on holdout<br><s>11 / 51</s> baseline</span></div>
+              <div class="stat"><b>0</b><span>payments the agent can make.<br>Only the gateway pays, only APPROVED items</span></div>
+              <div class="stat"><b>#</b><span>every step hash-chained.<br>Denied attempts are logged too</span></div>
+            </div>
+          </header>
+
+          <div class="scenarios" role="radiogroup" aria-label="Attack scenario">
+            <button class="scenario" data-scene="inject" role="radio" aria-checked="false">
+              <span class="sc-tag">Attack 1</span>
+              <b>Lookalike domain + hidden prompt injection</b>
+              <span class="muted">A one-letter-off domain asks for a bank change, with an invisible HTML comment ordering the AI to approve and pay.</span>
+            </button>
+            <button class="scenario" data-scene="real-claim" role="radio" aria-checked="false">
+              <span class="sc-tag">Attack 2</span>
+              <b>"Motorola changed its bank" from an outsider</b>
+              <span class="muted">Passes SPF, DKIM and DMARC. Asks you to confirm on a phone number. Bright Data checks that number against the real web.</span>
+            </button>
+          </div>
+
+          <div id="stage" class="stage" hidden>
+            <section class="card inbox">
+              <div class="pane-head"><h4>1 · The email</h4><button id="reveal" class="btn btn-sm" type="button" aria-pressed="false">Show what the AI receives</button></div>
+              <div id="mail"></div>
+            </section>
+            <section class="card pipe">
+              <div class="pane-head"><h4>2 · The pipeline</h4><span id="timer" class="chip mono"></span></div>
+              <ol id="steps" class="steps"></ol>
+            </section>
+            <section class="card outcome">
+              <div class="pane-head"><h4>3 · The outcome</h4></div>
+              <div id="outcome"><p class="muted">Waiting for the pipeline…</p></div>
+            </section>
+          </div>
+
+          <section class="card webcheck">
+            <div class="pane-head">
+              <div><h4>Bonus · verify a real company on the live web</h4>
+                <p class="muted">Bright Data searches Google for the company's official phones and website and compares them with its SEC record.</p></div>
               <div class="row">
                 <select id="demo-vendor" aria-label="Demo company">
                   <option value="DEMO-R1">Motorola Solutions</option>
@@ -103,11 +139,11 @@
                   <option value="DEMO-R3">Salesforce</option>
                   <option value="DEMO-R4">Oracle</option>
                 </select>
-                <button class="btn btn-primary" data-demo="verify">Verify</button>
+                <button id="verify" class="btn btn-primary" type="button">Verify</button>
               </div>
-              <div class="demo-out" id="out-verify"></div>
-            </article>
-          </div>
+            </div>
+            <div id="out-verify"></div>
+          </section>
         </div>
       </section>
     </main>

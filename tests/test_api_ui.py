@@ -80,3 +80,23 @@ def test_console_is_served_and_root_redirects(db_path):
     page = c.get("/ui/")
     assert page.status_code == 200 and "Vouch" in page.text
     assert c.get("/ui/app.js").status_code == 200 and c.get("/ui/styles.css").status_code == 200
+
+
+def test_password_sign_in_returns_the_accountant_key(db_path, monkeypatch):
+    c = client_for(db_path)
+    assert c.post("/login", json={"username": "calhacks", "password": "pw"}).status_code == 404      # off unless configured
+    monkeypatch.setenv("VOUCH_LOGIN_USER", "calhacks"); monkeypatch.setenv("VOUCH_LOGIN_PASSWORD", "s3cret-pass")
+    monkeypatch.setenv("VOUCH_LOGIN_AS", "ann")
+    r = c.post("/login", json={"username": "CalHacks", "password": "s3cret-pass"})
+    assert r.status_code == 200 and r.json() == {"api_key": "k-ann", "role": "accountant", "user": "ann"}
+    assert c.get("/me", headers=H(r.json()["api_key"])).json()["role"] == "accountant"
+    assert c.post("/login", json={"username": "calhacks", "password": "wrong"}).status_code == 401
+    assert c.post("/login", json={"username": "calhacks", "role": "controller", "password": "s3cret-pass"}).json()["role"] == "accountant"
+
+
+def test_password_sign_in_is_throttled(db_path, monkeypatch):
+    monkeypatch.setenv("VOUCH_LOGIN_USER", "calhacks"); monkeypatch.setenv("VOUCH_LOGIN_PASSWORD", "s3cret-pass")
+    c = client_for(db_path)
+    codes = [c.post("/login", json={"username": "calhacks", "password": f"guess{i}"}).status_code for i in range(11)]
+    assert codes[:10] == [401] * 10 and codes[10] == 429
+    assert c.post("/login", json={"username": "calhacks", "password": "s3cret-pass"}).status_code == 429
