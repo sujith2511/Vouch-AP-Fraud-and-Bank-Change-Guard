@@ -67,3 +67,13 @@ def test_unknown_mode_is_refused(tmp_path, monkeypatch):
     monkeypatch.setenv("VOUCH_SQLITE_JOURNAL", "OFF")       # OFF would disable rollback: never allowed
     with pytest.raises(ValueError):
         connect(str(tmp_path / "c.db"))
+
+
+def test_connection_can_be_used_from_another_thread(tmp_path):
+    """FastAPI runs the sync conn dependency and the endpoint on different threads (seen as 500s on /items)."""
+    import threading
+    p = str(tmp_path / "t.db"); init_db(p).close()
+    c, out = connect(p), []
+    t = threading.Thread(target=lambda: out.append(c.execute("SELECT COUNT(*) FROM items").fetchone()[0]))
+    t.start(); t.join()
+    assert out == [0]

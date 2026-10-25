@@ -104,12 +104,14 @@ def open_sqlite(path):
     if vfs and path != ":memory:":
         if vfs != "unix-dotfile":
             raise ValueError("VOUCH_SQLITE_VFS must be unix-dotfile (or unset)")
-        return sqlite3.connect(f"file:{path}?vfs={vfs}", uri=True, timeout=30)
-    return sqlite3.connect(path, timeout=30)
+        return sqlite3.connect(f"file:{path}?vfs={vfs}", uri=True, timeout=30, check_same_thread=False)
+    return sqlite3.connect(path, timeout=30, check_same_thread=False)
 
 
 def connect(path):
-    """New connection per unit of work. Autocommit mode: core.transition manages BEGIN/COMMIT itself."""
+    """New connection per unit of work. Autocommit mode: core.transition manages BEGIN/COMMIT itself.
+    check_same_thread=False: FastAPI may open the per-request connection (a sync dependency) on one worker thread and run
+    the endpoint on another. Each connection still belongs to one request and is used by one thread at a time."""
     # On an Azure Files (SMB) mount, SQLite's byte-range locks fail ("database is locked") and WAL needs shared memory.
     # There set VOUCH_SQLITE_VFS=unix-dotfile (a lock file instead of fcntl locks) and VOUCH_SQLITE_JOURNAL=DELETE.
     # Local disk keeps the defaults.
@@ -119,9 +121,9 @@ def connect(path):
             raise ValueError("VOUCH_SQLITE_VFS must be unix-dotfile (or unset)")
         if path == ":memory:":
             raise ValueError("VOUCH_SQLITE_VFS needs a file path")
-        conn = sqlite3.connect(f"file:{path}?vfs={vfs}", uri=True, timeout=30, isolation_level=None)
+        conn = sqlite3.connect(f"file:{path}?vfs={vfs}", uri=True, timeout=30, isolation_level=None, check_same_thread=False)
     else:
-        conn = sqlite3.connect(path, timeout=30, isolation_level=None)
+        conn = sqlite3.connect(path, timeout=30, isolation_level=None, check_same_thread=False)
     conn.row_factory = sqlite3.Row
     mode = os.environ.get("VOUCH_SQLITE_JOURNAL", "WAL").upper()
     if mode not in ("WAL", "DELETE", "TRUNCATE"):
