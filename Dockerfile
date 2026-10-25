@@ -3,9 +3,15 @@ WORKDIR /app
 COPY requirements-api.txt .
 RUN pip install --no-cache-dir -r requirements-api.txt
 COPY vouch ./vouch
+# the web console (served by the API at /ui/)
+COPY ui ./ui
 COPY data/vendors.json data/injections.json ./data/
-# v2 seed inputs (so `python -m vouch.seed --dataset v2` works inside the container); demo_real_vendors.json is deliberately NOT copied
+# v2 seed inputs (so `python -m vouch.seed --dataset v2` works inside the container)
 COPY data/v2/vendors.v2.json data/v2/payments.v2.jsonl data/v2/vendor_email_history.jsonl data/v2/emails.jsonl data/v2/emails.dev.jsonl data/v2/emails.holdout.jsonl ./data/v2/
+# demo-only real companies + recorded Bright Data responses, for /demo/verify and /demo/real-claim. The seed loaders still
+# refuse this file, so it can never reach the eval/seed data.
+COPY data/v2/demo_real_vendors.json ./data/v2/
+COPY data/v2/web_verify_fixtures ./data/v2/web_verify_fixtures
 ENV VOUCH_DB=/data/vouch.db VOUCH_ENV=prod PYTHONUNBUFFERED=1
 VOLUME /data
 EXPOSE 8000
