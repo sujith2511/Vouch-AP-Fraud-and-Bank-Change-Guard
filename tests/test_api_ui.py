@@ -100,3 +100,9 @@ def test_password_sign_in_is_throttled(db_path, monkeypatch):
     codes = [c.post("/login", json={"username": "calhacks", "password": f"guess{i}"}).status_code for i in range(11)]
     assert codes[:10] == [401] * 10 and codes[10] == 429
     assert c.post("/login", json={"username": "calhacks", "password": "s3cret-pass"}).status_code == 429
+
+
+def test_demo_attack_ids_come_from_the_db(db, db_path):
+    from vouch import demo
+    ids = [demo.inject(db, db_path)[0] for _ in range(2)]     # was a per-process counter: after a restart it reused DEMO-0001
+    assert ids == ["DEMO-0001", "DEMO-0002"]
