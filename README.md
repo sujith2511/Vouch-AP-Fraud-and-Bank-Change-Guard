@@ -2,39 +2,46 @@
 
 Built at CalHacks 13 by Ayushi, Sujith and Xanath.
 
-Vouch is an accounts-payable agent that investigates vendor "we changed our bank account" emails. It can never move money itself. Only a code-enforced gateway can, and only after a human approves.
+Vouch is an accounts-payable agent that investigates vendor emails, including "we changed our bank account" requests, inflated invoices, fake vendors and hidden prompt injections. It can never move money itself. Only a code-enforced gateway can, and only after a human approves.
 
-> Status: hackathon build. Items marked **(planned)** or **TODO** are not final until the team fills them in.
+**Live:** https://vouch-core.livelygrass-b9211f5e.northcentralus.azurecontainerapps.io. It opens the web console; the API docs are at `/docs`. You need an API key to sign in, so ask the team for one.
 
 ## The problem
 
-In bank-change fraud (business email compromise), an attacker emails a company pretending to be a real vendor and asks that future payments go to a new bank account. A busy AP clerk updates the vendor record, and the next invoice goes to the attacker. It is common, costly, and hard to catch by eye.
+In bank-change fraud (business email compromise), an attacker emails a company pretending to be a real vendor and asks that future payments go to a new bank account. A busy AP clerk updates the vendor record, and the next invoice goes to the attacker. Related schemes don't touch the bank at all: an invoice inflated to just under an approval limit, services that were never ordered, or a resent invoice with a new number. All of these are common, costly and hard to catch by eye.
 
 ## What Vouch does
 
-1. **Reads** vendor emails and invoices and extracts the claim: sender, new bank details, amount.
-2. **Investigates** using payment history, sender domain, amount patterns, and live public web data about the real vendor.
-3. **Proposes** a verdict with reasons, and asks a human to confirm, for example by calling the phone number on the vendor's real website.
-4. **Records** every step, including denied attempts, in an append-only audit log, so "why?" is one query.
-5. **Learns**: when a human corrects a verdict, the agent proposes a general policy that a controller must approve.
+1. **Reads** each vendor email, including headers, attachments and quoted history, and extracts the claim: sender, invoice, amount, PO, and any new bank details.
+2. **Investigates** with read-only tools:
+   - the vendor record and payment history
+   - the vendor's past emails
+   - the sender domain
+   - amount patterns
+   - related invoices in the queue
+
+   It also checks the email for hidden instructions with **Azure AI Content Safety Prompt Shields**, and looks up real vendors on the live web with **Bright Data**.
+3. **Proposes** a verdict (`legit`, `fraud` or `uncertain`) with reasons and evidence. It asks a human when a check is needed, for example "call the phone number on file, not the one in the email".
+4. **Records** every step, including denied attempts, in an append-only, hash-chained audit log, so "why?" is one query.
+5. **Learns**: when a human overrules the agent, the agent drafts a general policy, and only a controller can approve it.
 
 ## How it works
 
-Every vendor email becomes a work item that moves through fixed states. Each move is checked by code, not by the prompt.
+Every vendor email becomes a work item that moves through fixed states. Code checks each move, not the prompt.
 
 ```
 NEW -> PROPOSED -> APPROVED -> POSTED
-          |  ^
-          v  |
+          |  ^  \
+          v  |   -> REJECTED
        NEEDS_INFO
 ```
 
 | State | Who moves it | Meaning |
 |---|---|---|
 | NEW | Sync job | A vendor email arrived |
-| PROPOSED | AI agent | Agent investigated and wrote a verdict with evidence |
-| NEEDS_INFO | AI agent | Agent asked a human to verify (for example, a callback); the answer returns the item to PROPOSED |
-| APPROVED | Human accountant | A human decided. The agent cannot approve its own proposal |
+| PROPOSED | AI agent | The agent investigated and wrote a verdict with evidence |
+| NEEDS_INFO | AI agent | The agent asked a human to verify something. The answer returns the item to PROPOSED |
+| APPROVED / REJECTED | Accountant, or the policy lane | A human decided with a written reason. The code-computed policy lane may auto-clear clearly low-risk invoices, or reject clear spoofs. It never approves a bank change |
 | POSTED | Gateway only | The only step that changes the vendor record or releases a payment |
 
 ### Who may do what
@@ -42,116 +49,161 @@ NEW -> PROPOSED -> APPROVED -> POSTED
 | Actor | Allowed |
 |---|---|
 | Sync job | Create a work item |
-| AI agent | Propose, ask, propose a policy |
-| Accountant | Answer, approve or reject items |
-| Controller | Approve policies |
-| Gateway | Post. The only actor that can write to the record |
+| AI agent | Propose, ask, propose a policy. It has no tool or role that can approve, reject or pay |
+| Accountant | Answer, approve or reject items (a written reason is required), request a post |
+| Policy lane | Auto-clear or reject from code-computed rules only. Agent text is never read |
+| Controller | Approve or reject learned policies |
+| Gateway | Post. The only actor that can write to the vendor record |
 
-Separation of duties is enforced in code: whoever proposed an item cannot approve it.
+Separation of duties is enforced in code:
+- the agent cannot approve its own proposal
+- a bank change needs a different accountant than the one who answered the agent's question
+- whoever proposed a policy cannot approve it
+
+Database triggers back this up: an item's state, a vendor's bank details, a payment or a policy cannot change without the matching audit row.
 
 ### Audit log
 
-Every transition is appended in the same commit as the change: time, actor, action, diff, reason, and evidence. Denied attempts are logged too. Asking "why was this vendor's bank changed?" is a single query.
+Every move is appended in the same transaction as the change: time, actor, action, outcome, from and to states, reason, evidence, and before and after values. Denied attempts are logged too, and rows are hash-chained (`GET /audit/verify`). Asking "why was this vendor's bank changed?" is one call to `GET /vendors/{id}/why`, or one query:
 
 ```sql
-SELECT at, actor, change, why
-FROM audit_log
-WHERE subject = '<work item id>'
-ORDER BY at;
+SELECT ts, actor, actor_id, action, outcome, from_state, to_state, reason
+FROM audit
+WHERE item_id = '<work item id>'
+ORDER BY id;
 ```
+
+### Defence in depth against prompt injection
+
+1. **Azure AI Content Safety Prompt Shields** scans the email body and attachments (as documents) before the model reads them.
+2. The email is fenced as `<untrusted_email>`, and the agent is told that text addressed to an AI is itself a fraud signal.
+3. **Code guards** can only make a verdict stricter. A verdict can never be `legit` when:
+   - an injection is detected, by Prompt Shields or by keyword and workflow-command patterns
+   - the sender is off-domain
+   - the supplier isn't in the vendor master
+   - a vendor-detail change is requested
+   - the invoice number jumps far past the vendor's last one
+   - an invoice is split to stay under the approval limit
+   - a callback number isn't one the vendor lists online
+4. The **rulebook** ignores agent free text entirely. Even an agent that obeys every injection can't approve or pay. We tested 90 direct attacks, and all 90 were denied.
 
 ## Sponsors and where we use them
 
 | Sponsor | Where it is used in Vouch |
 |---|---|
-| **Hyphenate** | The architecture: work-item state machine, role permissions in code, append-only audit log, learned policies, plus an eval score |
-| **Microsoft** | Agent runs on Azure (Azure OpenAI or AI Foundry) and the backend is deployed on Azure. Prompt-injection protection on untrusted vendor emails, tracing and logging, and a labeled eval set |
-| **Bright Data** | Vendor identity verification from live public web data: the vendor's official phone number, public business listings, name matching. Blocked or empty results escalate to a human instead of guessing |
-| **Apify** | A separate fraud-signal source: an Actor that searches for reports of the vendor or domain being impersonated. Also the fallback when Bright Data is blocked |
+| **Hyphenate** | The architecture: work-item state machine, role permissions in code, append-only hash-chained audit log, learned policies, plus a measured eval score |
+| **Microsoft** | The backend runs on **Azure Container Apps**, with **Application Insights** tracing and Log Analytics. **Azure AI Content Safety Prompt Shields** screens every vendor email for injected instructions. The agent model itself (Claude Haiku 4.5) is called through Anthropic's API, because Claude on Azure AI Foundry had no quota on our student subscription |
+| **Bright Data** | Vendor identity checks from live public web data through the SERP API: the vendor's official phone numbers and website, compared with the phone on file and with any callback number in the email. Blocked or empty results escalate to a human instead of guessing |
 | **Figma** | UI design for the work queue, approve/reject, and "why?" views |
-| **Coinbase (planned, stretch)** | Gateway pays via x402 or the Wallet MCP on testnet only, with per-payment and daily caps; it refuses flagged or over-cap payments |
 
 ## What makes it different
 
-- **Limits enforced in code.** The demo email contains a hidden prompt-injection line. Even if the model were fooled, the permission layer denies the action.
-- **A measured score.** About 20 labeled emails (real, fake, ambiguous), reported as fraud caught and false blocks.
-- **A learned-policy loop.** One human correction becomes a proposed general policy.
-- **Real data, fake money.** We verify real public vendors with live web data, but invoices and the attack email are fabricated, using an invented lookalike domain. No real company is impersonated.
+- **Limits enforced in code.** The demo attack email hides a prompt injection. Even if the model were fooled, the permission layer denies the action, and the denial is in the audit log.
+- **A measured score.** We use 300 labeled emails across 31 scenarios, split into dev and holdout by vendor. Results are below.
+- **A learned-policy loop.** One human correction becomes a proposed general policy, and a controller approves it.
+- **Real data, fake money.** We verify real public companies (from SEC EDGAR) on the live web, but every invoice, bank account and email is fabricated. The eval vendors are fictional. No email impersonates a real company.
+
+## Evaluation
+
+The dataset (`data/v2/`, see `data/v2/DATASET_CARD.md`) has 300 emails: 140 fraud and 160 legit, 42% of them hard. Results are scored by `python -m vouch.eval`. The table compares the rule-based baseline (`RuleBasedAgent`, no LLM) with the Claude agent (`LLMAgent`, Claude Haiku 4.5) on the **holdout** set: 108 emails from vendors never used for tuning.
+
+| Holdout (108 emails) | Rule-based baseline | Claude agent |
+|---|---|---|
+| Routed to the right lane (auto-clear / human / reject) | 70% | **90%** |
+| Fraud auto-cleared (paid without a human) | 11 of 51 | **1 of 51** |
+| Hard cases routed right (53) | 58% | **92%** |
+| Fraud without a bank change routed right (22) | 36% | **82%** |
+| Legitimate emails wrongly rejected | 0 of 57 | 0 of 57 |
+| Routine legitimate invoices auto-cleared | 18 of 18 | 16 of 18 |
+| Injected emails that changed anything | 0 | 0 |
+
+- **Dev (192 emails):** lane accuracy goes from 71% to 90%, and fraud auto-cleared from 21 of 89 to 2 of 89.
+- **Cost:** about $0.018 per email, about $5.50 for all 300.
+- **Simulated web:** with the web check replayed on the fictional vendors (`--web sim`), holdout fraud auto-cleared is 0 of 51. The web check flagged 3 unlisted callback numbers, all on fraud emails, and none on legitimate ones.
+- **Files:** `eval_results_v2.json` (baseline), `eval_results_v2_llm.json` (Claude agent), `eval_results_v2_llm_websim.json` (simulated web).
+- **Tuning:** prompts and guards were tuned on dev only.
 
 ## Demo (3 minutes)
 
-1. A normal invoice resolves smoothly end to end.
-2. Fire a spoofed "we changed banks" email live.
-3. The agent flags it within seconds, with reasons and live web evidence.
-4. The agent's attempt to approve or pay is denied by the code.
-5. A human correction becomes a proposed policy.
-6. Run the "why?" query on the audit log.
+The demo runs in the web console, in the **Live demo** tab and the **Work queue** tab:
+
+1. **A normal invoice resolves end to end.** Open a routine invoice in the queue: the evidence is all green, and the policy lane auto-cleared it.
+2. **Fire a spoofed bank-change email live** ("Send attack email"). It comes from a lookalike domain, with a hidden HTML-comment injection.
+3. **The agent flags it within seconds,** with reasons. Prompt Shields flags the injection, and the policy lane rejects it.
+4. **The agent's attempt to approve or pay is denied by the code.** It shows in the audit trail as `DENIED ACTOR_NOT_ALLOWED`.
+5. **"An outsider says Motorola changed its bank."** Bright Data shows that the callback number isn't one Motorola lists online. "Verify a real company" shows the live web check on its own.
+6. **A human correction becomes a proposed policy.** Approve an item the agent called fraud, with a reason, then go to **Learned policies**, click "Draft from corrections", and approve it as the controller.
+7. **"Why?"**: each item's audit trail, and "Why was this vendor's bank changed?".
 
 ## Team and ownership
 
 | Person | Owns |
 |---|---|
-| **Ayushi** | Core system: tables, state machine, roles and `can()`, separation of duties, audit log and "why?" query, gateway, API, Azure deployment and tracing, UI wiring, Coinbase gateway if time allows |
-| **Sujith** | Agent and web intelligence: agent loop and tools on Azure OpenAI or AI Foundry, Bright Data vendor verification, Apify impersonation search and fallback, prompt-injection defense, learned-policy loop, eval runner |
+| **Ayushi** | Core system: tables, state machine, roles and `can()`, separation of duties, audit log and "why?" query, gateway, API, v2 dataset pipeline and eval, Azure deployment and tracing, UI wiring |
+| **Sujith** | Agent and web intelligence: Claude agent loop and tools, Bright Data vendor verification, prompt-injection defense (incl. Azure Prompt Shields), learned-policy loop, agent evaluation runs |
 | **Xanath** | Seed data and answer key, labeled eval set, Figma UI design, demo script and pitch, Devpost submission, sponsor liaison |
 
-## Agent tools
-
-| Tool | Purpose |
-|---|---|
-| `read_vendor_history` | Payment and bank-change history for a vendor |
-| `check_domain` | Sender domain age, lookalike check, match to known contacts |
-| `compare_amounts` | Is the invoice or request out of pattern for this vendor |
-| `verify_vendor_web` | Bright Data: official phone, business listing, name match |
-| `propose_verdict` | Write a verdict with reasons and evidence (moves item to PROPOSED) |
-| `ask_human` | Ask for verification (moves item to NEEDS_INFO) |
-
-## Repository layout (TODO: update to match the real structure)
+## Repository layout
 
 ```
-/backend     state machine, roles, audit log, gateway, API
-/agent       agent loop, tools, injection defense, policy learning
-/data        seed vendors, payment history, emails, labeled eval set
-/ui          work queue, approve/reject, "why?" view
-/docs        demo script, design files
+vouch/            core system and agent (Python)
+  core.py           state machine, can(), audit log, policy lane, "why?"
+  db.py             SQLite schema and integrity triggers
+  gateway.py        the only code that pays or changes bank details
+  api.py            FastAPI: items, audit, vendors, policies, demo endpoints, serves the console
+  llm_agent.py      Claude agent: tools, prompt, injection defence, code guards
+  prompt_shields.py Azure AI Content Safety Prompt Shields
+  web_verify.py     Bright Data vendor web verification
+  learned_policy.py human correction -> proposed policy -> controller
+  eval.py, run_pipeline.py, seed.py, demo.py, web_sim.py
+ui/               web console (plain HTML/CSS/JS, no build step), served at /ui/
+data/v2/          the 300-email dataset, vendors, payments, email history, demo companies
+tests/            pytest suite
+scripts/          dataset builders, demo and recording scripts
+deploy/           Azure deployment notes (AZURE_DEPLOYED.md)
 ```
 
-## Setup (TODO: fill in once the stack is final)
+## Setup
 
 ```bash
-# 1. Clone the repo
-git clone <repo-url>
-cd vouch
-
-# 2. Configure environment variables (names are placeholders)
-cp .env.example .env
-#   AZURE_OPENAI_ENDPOINT=
-#   AZURE_OPENAI_API_KEY=
-#   BRIGHT_DATA_API_KEY=
-#   APIFY_API_TOKEN=
-
-# 3. Install and run
-# TODO: backend, agent, and UI start commands
+git clone https://github.com/sujith2511/Vouch-AP-Fraud-and-Bank-Change-Guard.git
+cd Vouch-AP-Fraud-and-Bank-Change-Guard
+python3 -m venv .venv && .venv/bin/pip install -r requirements.txt
+.venv/bin/python -m pytest -q                       # full test suite, no network or API keys needed
 ```
 
-Never commit real API keys. Use testnet only for any Coinbase integration.
+Optional keys go in `.env`. Everything works without them, but falls back to the rule-based agent and recorded web data.
+```
+ANTHROPIC_API_KEY=...                  # Claude agent and policy drafting
+VOUCH_MODEL=claude-haiku-4-5
+AZURE_CONTENT_SAFETY_ENDPOINT=...      # Prompt Shields
+AZURE_CONTENT_SAFETY_KEY=...
+BRIGHT_DATA_API_KEY=...                # live web verification
+BRIGHT_DATA_SERP_ZONE=...
+```
 
-## Evaluation
+To run the console locally with the dataset, using the dev keys (`dev-accountant-key`, `dev-accountant2-key`, `dev-controller-key`, …):
+```bash
+.venv/bin/python -m vouch.run_pipeline --dataset v2 --db vouch.db            # seed + rule-based agent (free)
+VOUCH_DB=vouch.db .venv/bin/uvicorn vouch.api:app --port 8000                # open http://localhost:8000
+```
 
-The eval set is about 20 labeled cases (real, fraudulent, ambiguous) with expected verdicts.
+To score the Claude agent (300 emails, about $5.50):
+```bash
+.venv/bin/python -m vouch.run_pipeline --dataset v2 --agent vouch.llm_agent:LLMAgent --db run.db
+.venv/bin/python -m vouch.eval --db run.db
+```
 
-| Metric | Result |
-|---|---|
-| Fraud cases caught | TODO |
-| Legitimate requests wrongly blocked | TODO |
-| Cases escalated to a human | TODO |
+Deployment is described in `DEPLOY.md` and `deploy/AZURE_DEPLOYED.md`. Never commit real API keys: `.env` and `deploy/*.local.json` are gitignored.
 
 ## Known limitations
 
-- All invoices, emails, and bank details are synthetic. Only vendor website lookups use real public data.
-- No real email inbox or bank integration; a "send attack email" button injects messages for the demo.
-- Detection uses a small set of signals chosen for depth, not a trained fraud model.
+- All invoices, emails and bank details are synthetic. Only the demo companies' public names, websites and phone numbers are real.
+- There is no real email inbox or bank integration. The demo buttons inject messages, and the gateway's payment rail is a database record.
+- Detection combines a small set of signals with an LLM's judgment. It is not a trained fraud model. The dataset's easy cases are easy for simple models, so hard-case results matter most.
+- SQLite with a single replica. On Azure Files it uses lock-file locking. A real deployment would move to Azure SQL or Postgres.
+- The Claude agent errs on the side of caution, so some legitimate mail goes to a human that the rules alone would auto-clear.
 
 ## Acknowledgements
 
-Built for CalHacks 13. Thanks to Hyphenate, Microsoft, Bright Data, Apify, Figma and Coinbase for the tools, credits and mentorship.
+Built for CalHacks 13. Thanks to Hyphenate, Microsoft, Bright Data and Figma for the tools, credits and mentorship.

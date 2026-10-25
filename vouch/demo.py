@@ -33,10 +33,11 @@ def make_attack(conn, vendor_id=None):
     return v, f"{inv}", email, claim
 
 
-def inject(conn, db_path, vendor_id=None):
+def inject(conn, db_path, vendor_id=None, agent=None):
+    """agent: whatever investigates (the API passes the Claude agent when configured); default the rule-based one."""
     v, item_id, email, claim = make_attack(conn, vendor_id)
     core.ingest_item(conn, item_id=item_id, vendor_id=v["vendor_id"], email=email, claim=claim, actor="sync", actor_id="demo")
-    run_agent(RuleBasedAgent(), LocalClient(db_path, actor_id="demo-agent"), item_id)
+    run_agent(agent or RuleBasedAgent(), LocalClient(db_path, actor_id="demo-agent"), item_id)
     lane = core.apply_policy(conn, item_id)
     return item_id, lane
 

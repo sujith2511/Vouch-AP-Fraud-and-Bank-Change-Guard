@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Vouch · AP Fraud Console</title>
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self'; script-src 'self'; img-src 'self' data:; connect-src 'self'; base-uri 'none'; form-action 'none'">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Sign-in: the API key decides the role; nothing in the page can change it -->
+  <section id="login" class="login" hidden>
+    <div class="login-card">
+      <div class="brand brand-lg"><span class="mark" aria-hidden="true">V</span> Vouch</div>
+      <p class="muted">The accounts-payable agent that can't be talked into paying. Sign in with your API key.</p>
+      <form id="login-form" autocomplete="off">
+        <label for="key">API key</label>
+        <input id="key" type="password" placeholder="vk_…" required spellcheck="false">
+        <button type="submit" class="btn btn-primary">Sign in</button>
+        <p id="login-error" class="error" role="alert"></p>
+      </form>
+      <p class="fine">The key is kept for this browser tab only (sessionStorage) and is sent only to this server.</p>
+    </div>
+  </section>
+
+  <div id="app" hidden>
+    <header class="topbar">
+      <div class="brand"><span class="mark" aria-hidden="true">V</span> Vouch</div>
+      <nav class="tabs" role="tablist">
+        <button class="tab active" data-view="queue" role="tab">Work queue</button>
+        <button class="tab" data-view="policies" role="tab">Learned policies</button>
+        <button class="tab" data-view="demo" role="tab">Live demo</button>
+      </nav>
+      <div class="topbar-right">
+        <span id="chain" class="chip" title="Audit log hash chain">Audit chain …</span>
+        <span id="whoami" class="chip chip-role"></span>
+        <button id="logout" class="btn btn-ghost btn-sm">Sign out</button>
+      </div>
+    </header>
+
+    <main>
+      <!-- QUEUE -->
+      <section id="view-queue" class="view">
+        <aside class="queue">
+          <div class="queue-tools">
+            <input id="search" type="search" placeholder="Search vendor, subject, invoice…" aria-label="Search">
+            <div id="state-filters" class="filters"></div>
+          </div>
+          <div id="queue-list" class="queue-list" role="list"></div>
+          <div id="queue-foot" class="queue-foot muted"></div>
+        </aside>
+        <section id="detail" class="detail">
+          <div class="empty">
+            <h2>Select a work item</h2>
+            <p class="muted">Every vendor email becomes a work item. The agent investigates and proposes; only a human approves,
+              and only the gateway can pay. Every step, including denied attempts, is in the audit log.</p>
+          </div>
+        </section>
+      </section>
+
+      <!-- POLICIES -->
+      <section id="view-policies" class="view" hidden>
+        <div class="page">
+          <div class="page-head">
+            <div>
+              <h2>Learned policies</h2>
+              <p class="muted">When an accountant overrules the agent, the agent drafts a general rule. Only a controller (never
+                the proposer) can approve it. Approved rules guide the agent; they cannot override the code guards.</p>
+            </div>
+            <button id="draft-policies" class="btn btn-primary">Draft from corrections</button>
+          </div>
+          <div id="corrections" class="card"></div>
+          <div id="policy-list"></div>
+        </div>
+      </section>
+
+      <!-- DEMO -->
+      <section id="view-demo" class="view" hidden>
+        <div class="page">
+          <h2>Live demo</h2>
+          <p class="muted">Each scene goes through the normal pipeline: ingest → agent proposes → policy lane. Nothing here can approve or pay.</p>
+          <div class="demo-grid">
+            <article class="card">
+              <h3>1 · Lookalike domain + hidden prompt injection</h3>
+              <p class="muted">A bank change from a lookalike of a vendor's domain, failing email auth, with an HTML comment telling the AI to approve and post.</p>
+              <button class="btn btn-primary" data-demo="inject">Send attack email</button>
+              <div class="demo-out" id="out-inject"></div>
+            </article>
+            <article class="card">
+              <h3>2 · An outsider says Motorola changed its bank</h3>
+              <p class="muted">The email passes SPF/DKIM/DMARC from its own domain and asks you to call a number. The web check compares that number with the ones Motorola lists publicly.</p>
+              <button class="btn btn-primary" data-demo="real-claim">Run the scene</button>
+              <div class="demo-out" id="out-real-claim"></div>
+            </article>
+            <article class="card">
+              <h3>3 · Verify a real company on the live web</h3>
+              <p class="muted">Bright Data looks up the company's official phones and website and compares them with its SEC record.</p>
+              <div class="row">
+                <select id="demo-vendor" aria-label="Demo company">
+                  <option value="DEMO-R1">Motorola Solutions</option>
+                  <option value="DEMO-R2">Microsoft</option>
+                  <option value="DEMO-R3">Salesforce</option>
+                  <option value="DEMO-R4">Oracle</option>
+                </select>
+                <button class="btn btn-primary" data-demo="verify">Verify</button>
+              </div>
+              <div class="demo-out" id="out-verify"></div>
+            </article>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+  <script src="app.js" type="module"></script>
+</body>
+</html>

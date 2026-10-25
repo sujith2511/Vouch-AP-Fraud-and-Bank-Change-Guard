@@ -1,38 +1,310 @@
 {
  "demo_vendor_id": "DEMO-R3",
- "placeholder": true,
- "recorded_at": null,
+ "placeholder": false,
+ "recorded_at": "2026-10-24T23:55:59+00:00",
  "query": "Salesforce, Inc. salesforce.com phone number",
- "note": "PLACEHOLDER with a plausible shape, built from data/v2/demo_real_vendors.json. Not a recorded response. Run scripts/record_web_verify.py (needs BRIGHT_DATA_API_KEY and BRIGHT_DATA_SERP_ZONE) to replace it.",
+ "http_status": 200,
  "serp": {
   "general": {
-   "search_engine": "google"
+   "search_engine": "google",
+   "query": "Salesforce, Inc. salesforce.com phone number",
+   "detected_query": "Salesforce, Inc. salesforce.com phone number",
+   "results_cnt": 74,
+   "search_time": 0.26,
+   "language": "en",
+   "country_code": "US",
+   "location": "United States",
+   "gl": "US",
+   "mobile": false,
+   "basic_view": false,
+   "search_type": "text",
+   "page_title": "Salesforce, Inc. salesforce.com phone number - Google Search",
+   "timestamp": "2026-10-24T23:55:55.191Z"
   },
-  "knowledge": {
-   "title": "Salesforce, Inc.",
-   "link": "https://www.salesforce.com/",
-   "facts": [
-    {
-     "predicate": "Phone",
-     "title": "Phone",
-     "value": [
-      {
-       "text": "(415) 901-7000"
-      }
-     ]
-    }
-   ]
+  "input": {
+   "original_url": "https://www.google.com/search?q=Salesforce%2C+Inc.+salesforce.com+phone+number&hl=en&gl=us&brd_json=1",
+   "request_id": "hl_7c5242f1_81d1mw2tg8"
   },
-  "organic": [
+  "navigation": [
    {
-    "link": "https://www.salesforce.com/",
-    "title": "Salesforce, Inc. - official site",
-    "description": "Official website of Salesforce, Inc.."
+    "title": "AI Mode",
+    "href": "https://www.google.com/search?q=Salesforce,+Inc.+salesforce.com+phone+number&sca_esv=61c21e9397a8b6ea&hl=en&gl=us&sxsrf=APpeQnsi33fwdSAQ9XB8lqrpTEzwbLnpEA:1792886152669&udm=50&fbs=ABfTbFVyMZGZf1hfvX9uKjN_-G8cn05EoNqnRUpRtqDK_L3JtcaVe4agnDpGKPxtn7rLKbiyFsdh3awf0ePiRBY-bWCtk1Wn2HA15hIzTagJ_SRpUsYdB6gQd3XiG-cZTrC-jsmV2I8nv0I74cJlf5FkfNoNgf8c3HdcIRj3LLC202n3GWzn1F8XEcNwvIgOhmL5QxAqiMvJWuXOe4mps4KBeL9VaHPo9A&vsint=&aep=1&ntc=1&cs=0&sa=X&ved=2ahUKEwibkYKy7dOXAxUAi-EIHQ6aBEMQ2J8OegQIFRAD"
    },
    {
-    "link": "https://www.bizlistings.example/salesforce.com",
-    "title": "Salesforce, Inc. - business listing",
-    "description": "Phone: (415) 555-0199"
+    "title": "Forums",
+    "href": "https://www.google.com/search?sca_esv=61c21e9397a8b6ea&hl=en&gl=us&sxsrf=APpeQnsi33fwdSAQ9XB8lqrpTEzwbLnpEA:1792886152669&udm=forums&fbs=ABfTbFVyMZGZf1hfvX9uKjN_-G8cn05EoNqnRUpRtqDK_L3JtcaVe4agnDpGKPxtn7rLKbiyFsdh3awf0ePiRBY-bWCtk1Wn2HA15hIzTagJ_SRpUsYdB6gQd3XiG-cZTrC-jsmV2I8nv0I74cJlf5FkfNoNgf8c3HdcIRj3LLC202n3GWzn1F8XEcNwvIgOhmL5QxAqiMvJWuXOe4mps4KBeL9VaHPo9A&q=Salesforce,+Inc.+salesforce.com+phone+number&sa=X&ved=2ahUKEwibkYKy7dOXAxUAi-EIHQ6aBEMQs6gLegQIHBAB"
+   },
+   {
+    "title": "Images",
+    "href": "https://www.google.com/search?sca_esv=61c21e9397a8b6ea&hl=en&gl=us&sxsrf=APpeQnsi33fwdSAQ9XB8lqrpTEzwbLnpEA:1792886152669&udm=2&fbs=ABfTbFVyMZGZf1hfvX9uKjN_-G8cn05EoNqnRUpRtqDK_L3JtcaVe4agnDpGKPxtn7rLKbiyFsdh3awf0ePiRBY-bWCtk1Wn2HA15hIzTagJ_SRpUsYdB6gQd3XiG-cZTrC-jsmV2I8nv0I74cJlf5FkfNoNgf8c3HdcIRj3LLC202n3GWzn1F8XEcNwvIgOhmL5QxAqiMvJWuXOe4mps4KBeL9VaHPo9A&q=Salesforce,+Inc.+salesforce.com+phone+number&sa=X&ved=2ahUKEwibkYKy7dOXAxUAi-EIHQ6aBEMQtKgLegQIGBAB"
+   },
+   {
+    "title": "Shopping",
+    "href": "https://www.google.com/search?sca_esv=61c21e9397a8b6ea&hl=en&gl=us&sxsrf=APpeQnsi33fwdSAQ9XB8lqrpTEzwbLnpEA:1792886152669&udm=28&fbs=ABfTbFVyMZGZf1hfvX9uKjN_-G8cn05EoNqnRUpRtqDK_L3JtcaVe4agnDpGKPxtn7rLKbiyFsdh3awf0ePiRBY-bWCtk1Wn2HA15hIzTagJ_SRpUsYdB6gQd3XiG-cZTrC-jsmV2I8nv0I74cJlf5FkfNoNgf8c3HdcIRj3LLC202n3GWzn1F8XEcNwvIgOhmL5QxAqiMvJWuXOe4mps4KBeL9VaHPo9A&q=Salesforce,+Inc.+salesforce.com+phone+number&ved=1t:220175&ictx=111"
+   },
+   {
+    "title": "News",
+    "href": "https://www.google.com/search?sca_esv=61c21e9397a8b6ea&hl=en&gl=us&sxsrf=APpeQnsi33fwdSAQ9XB8lqrpTEzwbLnpEA:1792886152669&q=Salesforce,+Inc.+salesforce.com+phone+number&tbm=nws&source=lnms&fbs=ABfTbFVyMZGZf1hfvX9uKjN_-G8cn05EoNqnRUpRtqDK_L3JtcaVe4agnDpGKPxtn7rLKbiyFsdh3awf0ePiRBY-bWCtk1Wn2HA15hIzTagJ_SRpUsYdB6gQd3XiG-cZTrC-jsmV2I8nv0I74cJlf5FkfNoNgf8c3HdcIRj3LLC202n3GWzn1F8XEcNwvIgOhmL5QxAqiMvJWuXOe4mps4KBeL9VaHPo9A&sa=X&ved=2ahUKEwibkYKy7dOXAxUAi-EIHQ6aBEMQ0pQJegQIGhAB"
+   },
+   {
+    "title": "Videos",
+    "href": "https://www.google.com/search?sca_esv=61c21e9397a8b6ea&hl=en&gl=us&sxsrf=APpeQnsi33fwdSAQ9XB8lqrpTEzwbLnpEA:1792886152669&udm=vids&fbs=ABfTbFVyMZGZf1hfvX9uKjN_-G8cn05EoNqnRUpRtqDK_L3JtcaVe4agnDpGKPxtn7rLKbiyFsdh3awf0ePiRBY-bWCtk1Wn2HA15hIzTagJ_SRpUsYdB6gQd3XiG-cZTrC-jsmV2I8nv0I74cJlf5FkfNoNgf8c3HdcIRj3LLC202n3GWzn1F8XEcNwvIgOhmL5QxAqiMvJWuXOe4mps4KBeL9VaHPo9A&q=Salesforce,+Inc.+salesforce.com+phone+number&sa=X&ved=2ahUKEwibkYKy7dOXAxUAi-EIHQ6aBEMQtKgLegQIGxAB"
+   },
+   {
+    "title": "Books",
+    "href": "https://www.google.com/search?sca_esv=61c21e9397a8b6ea&hl=en&gl=us&sxsrf=APpeQnsi33fwdSAQ9XB8lqrpTEzwbLnpEA:1792886152669&q=Salesforce,+Inc.+salesforce.com+phone+number&udm=36&source=lnms&fbs=ABfTbFVyMZGZf1hfvX9uKjN_-G8cn05EoNqnRUpRtqDK_L3JtcaVe4agnDpGKPxtn7rLKbiyFsdh3awf0ePiRBY-bWCtk1Wn2HA15hIzTagJ_SRpUsYdB6gQd3XiG-cZTrC-jsmV2I8nv0I74cJlf5FkfNoNgf8c3HdcIRj3LLC202n3GWzn1F8XEcNwvIgOhmL5QxAqiMvJWuXOe4mps4KBeL9VaHPo9A&sa=X&ved=2ahUKEwibkYKy7dOXAxUAi-EIHQ6aBEMQ0pQJegQITBAB"
+   },
+   {
+    "title": "Web",
+    "href": "https://www.google.com/search?sca_esv=61c21e9397a8b6ea&hl=en&gl=us&sxsrf=APpeQnsi33fwdSAQ9XB8lqrpTEzwbLnpEA:1792886152669&udm=web&fbs=ABfTbFVyMZGZf1hfvX9uKjN_-G8cn05EoNqnRUpRtqDK_L3JtcaVe4agnDpGKPxtn7rLKbiyFsdh3awf0ePiRBY-bWCtk1Wn2HA15hIzTagJ_SRpUsYdB6gQd3XiG-cZTrC-jsmV2I8nv0I74cJlf5FkfNoNgf8c3HdcIRj3LLC202n3GWzn1F8XEcNwvIgOhmL5QxAqiMvJWuXOe4mps4KBeL9VaHPo9A&q=Salesforce,+Inc.+salesforce.com+phone+number&sa=X&ved=2ahUKEwibkYKy7dOXAxUAi-EIHQ6aBEMQs6gLegQITxAB"
+   },
+   {
+    "title": "Maps",
+    "href": "https://maps.google.com/maps?sca_esv=61c21e9397a8b6ea&hl=en&gl=us&output=search&q=Salesforce,+Inc.+salesforce.com+phone+number&source=lnms&fbs=ABfTbFVyMZGZf1hfvX9uKjN_-G8cn05EoNqnRUpRtqDK_L3JtcaVe4agnDpGKPxtn7rLKbiyFsdh3awf0ePiRBY-bWCtk1Wn2HA15hIzTagJ_SRpUsYdB6gQd3XiG-cZTrC-jsmV2I8nv0I74cJlf5FkfNoNgf8c3HdcIRj3LLC202n3GWzn1F8XEcNwvIgOhmL5QxAqiMvJWuXOe4mps4KBeL9VaHPo9A&entry=mc&ved=1t:200715&ictx=111"
+   },
+   {
+    "title": "Short videos",
+    "href": "https://www.google.com/search?sca_esv=61c21e9397a8b6ea&hl=en&gl=us&sxsrf=APpeQnsi33fwdSAQ9XB8lqrpTEzwbLnpEA:1792886152669&udm=short_vids&fbs=ABfTbFVyMZGZf1hfvX9uKjN_-G8cn05EoNqnRUpRtqDK_L3JtcaVe4agnDpGKPxtn7rLKbiyFsdh3awf0ePiRBY-bWCtk1Wn2HA15hIzTagJ_SRpUsYdB6gQd3XiG-cZTrC-jsmV2I8nv0I74cJlf5FkfNoNgf8c3HdcIRj3LLC202n3GWzn1F8XEcNwvIgOhmL5QxAqiMvJWuXOe4mps4KBeL9VaHPo9A&q=Salesforce,+Inc.+salesforce.com+phone+number&sa=X&ved=2ahUKEwibkYKy7dOXAxUAi-EIHQ6aBEMQs6gLegQIThAB"
+   }
+  ],
+  "organic": [
+   {
+    "link": "https://www.google.com/goto?url=CAESaQHrOzAVzxoQOC4D5c5o58YGDVuDRjLfPiXqtBWkZcHZ-6MTJUatjmhE3n_eCrpyDLHEXTln0OKBsKEtApJ34rlLZP-ZzpJGv1pmlJ9-hDJrDMLcB1Zboz0pkiZmiC8Au4y1OOUT99oLPA",
+    "source": "Salesforce",
+    "display_link": "https://www.salesforce.com \u203a company \u203a contact-us",
+    "title": "Salesforce Customer Service \u2013 Phone Numbers & Live Chat",
+    "description": "Request a call. \u00b7 Need help now? Call 1-800-664-9073 \u00b7 For billing and tech support, visit Salesforce Help \u00b7 Try Salesforce for free. No credit card required.Read more",
+    "snippet_highlighted_words": [
+     "1-800-664-9073"
+    ],
+    "icon": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcBAMAAACAI8KnAAAALVBMVEXk8vtHcEwBndwAndwAndwCndwUn90AndwAndwAndwAndwAndwAndwAndwAndyhaTatAAAAD3RSTlMBABQ/VyEKoeHOhG//8b0hdbjgAAAAwUlEQVR4AWMgCBhReIIMDAKMggIwOSYT00SBtAQoX8y8o3OpSvnmREFBkCTznDNn7r09c2IbW4IgkBt3BgK6tlebCTAw+p6Bg9mKDIx7ENwTDgyMPmcQYBKDgC8S9zCDaA0S9zQD1xkkcIpB9wyKYh1kbhMK9+wGBg0kblcgA/cdGKfzuSsDg9AKmJOcTROAXlDeNQfIuTmjJJER5GVBARsgd2moItT/jNlz77YHwkOHQcx6lRFKSKYxooSsIANRAACLvZfS5tWMfQAAAABJRU5ErkJggg==",
+    "rank": 1,
+    "global_rank": 1
+   },
+   {
+    "link": "https://help.salesforce.com/s/articleView?id=000989536&language=en_US&type=1",
+    "source": "Salesforce",
+    "display_link": "https://help.salesforce.com \u203a articleView",
+    "title": "Salesforce Customer Support Phone Numbers",
+    "description": "24 hours a day, States: +1-800-667-6389 (Toll Free, English) Canada: +1-877-282-1987. Support - Monday-Friday, 8AM - 231-032. Columbia: 800-093 ...",
+    "snippet_highlighted_words": [
+     "1-800-667-6389"
+    ],
+    "extensions": [
+     {
+      "inline": true,
+      "type": "text",
+      "text": "Sep 10, 2026",
+      "rank": 1
+     }
+    ],
+    "icon": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAMAAABF0y+mAAAAJFBMVEVHcEwiouIio+QiouMio+UiouMhoeIio+Qio+QioeIipegioODJWEBTAAAAC3RSTlMA8WrPEbYxjyPlS9gQKLgAAAB7SURBVCiRxZJLDsAgCERBxB/3v2+LDY0acess1OSFAQGAS4q5IgV9pRYX1qQLIehFEy4yC1+DZJBlpXrwZ7AyU9FqPCinSNH6yYMEkN1IsU/uoWuqtofAAOiyuumPCd8WJQfl3r2wSzZMk9ljXVYWD9NaZ0rOqvybclkPeuUQqAftPesAAAAASUVORK5CYII=",
+    "rank": 2,
+    "global_rank": 2
+   },
+   {
+    "link": "https://www.salesforce.com/company/locations/",
+    "source": "Salesforce",
+    "display_link": "https://www.salesforce.com \u203a company \u203a locations",
+    "title": "Global Offices",
+    "description": "Main: 1-800-664-9073 Fax: 415-901-7040 Sales: 1-800-664-9073. Phone: 404-492-6845. Phone: 425-436-3017. Phone: 617-345-2009",
+    "snippet_highlighted_words": [
+     "1-800-664-9073"
+    ],
+    "icon": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcBAMAAACAI8KnAAAALVBMVEXk8vtHcEwBndwAndwAndwCndwUn90AndwAndwAndwAndwAndwAndwAndwAndyhaTatAAAAD3RSTlMBABQ/VyEKoeHOhG//8b0hdbjgAAAAwUlEQVR4AWMgCBhReIIMDAKMggIwOSYT00SBtAQoX8y8o3OpSvnmREFBkCTznDNn7r09c2IbW4IgkBt3BgK6tlebCTAw+p6Bg9mKDIx7ENwTDgyMPmcQYBKDgC8S9zCDaA0S9zQD1xkkcIpB9wyKYh1kbhMK9+wGBg0kblcgA/cdGKfzuSsDg9AKmJOcTROAXlDeNQfIuTmjJJER5GVBARsgd2moItT/jNlz77YHwkOHQcx6lRFKSKYxooSsIANRAACLvZfS5tWMfQAAAABJRU5ErkJggg==",
+    "rank": 3,
+    "global_rank": 3
+   },
+   {
+    "link": "https://www.google.com/goto?url=CAEShwEB6zswFQNm0GyzIopflJ1_M6K68LzN0FOvogRrr-xb5vwekWh_yIqUjULNpuykM9wd0eSgElHd4LH_zU1K4NaQ7_z8vGZYTxjkMvvfLp7LzOUzIDYxgb4S5PMxpHLKcBG0jMkyjIqknvkJ4OLK9t6PyE9sW8h7Udw19CEMu5v0lXTGFLeYBVM",
+    "source": "Salesforce",
+    "display_link": "https://help.salesforce.com \u203a articleView",
+    "title": "Contact Salesforce Billing Department",
+    "description": "Contact: billing@apac.salesforce.com. Number: 48-281-6449, Salesforce find the correct bank and contact details. #: 48-281-6449. Francisco, CA ...",
+    "snippet_highlighted_words": [
+     "48-281-6449"
+    ],
+    "extensions": [
+     {
+      "inline": true,
+      "type": "text",
+      "text": "Jun 19, 2026",
+      "rank": 1
+     }
+    ],
+    "icon": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAMAAABF0y+mAAAAJFBMVEVHcEwiouIio+QiouMio+UiouMhoeIio+Qio+QioeIipegioODJWEBTAAAAC3RSTlMA8WrPEbYxjyPlS9gQKLgAAAB7SURBVCiRxZJLDsAgCERBxB/3v2+LDY0acess1OSFAQGAS4q5IgV9pRYX1qQLIehFEy4yC1+DZJBlpXrwZ7AyU9FqPCinSNH6yYMEkN1IsU/uoWuqtofAAOiyuumPCd8WJQfl3r2wSzZMk9ljXVYWD9NaZ0rOqvybclkPeuUQqAftPesAAAAASUVORK5CYII=",
+    "rank": 4,
+    "global_rank": 4
+   },
+   {
+    "link": "https://www.google.com/goto?url=CAESdgHrOzAVR6ArAhF6VYhxWZ9OdK6f-tnhIF151erc4bMz4N2N-hiDwW7W9MihorP0a472j5OGcew7K42T9y9Iezqkc6m1eDz48B7IgzNvhXJ-MQFlR9G9gxSOGgSi-Z5_fCfa79MBbHfP_F4ETf4N0j9i1V6-A4s",
+    "source": "PissedConsumer",
+    "display_link": "https://salesforce.pissedconsumer.com \u203a customer-service",
+    "title": "Salesforce Customer Service Phone Number 1-800-667-6389 ...",
+    "description": "The company provides a dedicated Salesforce Support Number accessible at (800) 667-6389.",
+    "snippet_highlighted_words": [
+     "667-6389"
+    ],
+    "extensions": [
+     {
+      "inline": true,
+      "type": "text",
+      "text": "Oct 11, 2026",
+      "rank": 1
+     }
+    ],
+    "icon": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAMAAABF0y+mAAAAYFBMVEXXJy3WICbXJCvfZmneXmHYLDLUAADWExzVABD////77e3qn6HWGiL++fnhb3HnkpTVCxbidHfWFx/XIinxwsP99PTtr7DZOT7329zUAATcTVHVAAzeXF/55ubrqKrmi43ogViZAAAA/0lEQVR4AXXRQQJEMAxA0QRSAAoA7n/LmSYA/A080IBLiGjBR2jbjkvq3T3/XxCq6B25OPHeUUrvihmRv5XrMxVkl5XvV04tev5q3bS+qaIMea9Whzm+VHVQeJXZ6zbD3j8QotzsObjiELC0ISMM/MFaTKfmKB6JVpz+h7MSJH5Jo8ET7IIDi54fo2BFS5vjRTPqxRxE1oaK39IXjGo24+5gRd3IguHAaRAkGuPnxwrGoUwqGEBCh0cdGdzqEdY6folXHDhq2FI1zwczEmqbCPYs9LnaMU8obSrglM73wVOXIVzz0h2vIJrEgh28FKnQjDt+RbAUuY4tv/jVEa/2AyGzEx2UNWS1AAAAAElFTkSuQmCC",
+    "rank": 5,
+    "global_rank": 5
+   },
+   {
+    "link": "https://www.google.com/goto?url=CAESdAHrOzAVcYLNNmE-1kRizZttKi3jv9iZx8Q7TmFKkZz8F6w6uNhGLAZWZ5kykgKr47uptqgGW7MOjomTpVR09_iNyqH2NzN_zshgNsHlxJppY9Nw52Lr6RzLs3DaiZP-77boQi2igsPfGasZAlqA-WGS5kyO",
+    "source": "Salesforce",
+    "display_link": "https://www.salesforce.com \u203a industries \u203a contact-us",
+    "title": "Contact a salesforce.com Support or Sales Representative",
+    "description": "Questions? Call us at 1-800-664-9073. Just fill out the form to the right or call us at 1-800-664-9073. Phone United States (+1)",
+    "snippet_highlighted_words": [
+     "1-800-664-9073"
+    ],
+    "icon": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcBAMAAACAI8KnAAAALVBMVEXk8vtHcEwBndwAndwAndwCndwUn90AndwAndwAndwAndwAndwAndwAndwAndyhaTatAAAAD3RSTlMBABQ/VyEKoeHOhG//8b0hdbjgAAAAwUlEQVR4AWMgCBhReIIMDAKMggIwOSYT00SBtAQoX8y8o3OpSvnmREFBkCTznDNn7r09c2IbW4IgkBt3BgK6tlebCTAw+p6Bg9mKDIx7ENwTDgyMPmcQYBKDgC8S9zCDaA0S9zQD1xkkcIpB9wyKYh1kbhMK9+wGBg0kblcgA/cdGKfzuSsDg9AKmJOcTROAXlDeNQfIuTmjJJER5GVBARsgd2moItT/jNlz77YHwkOHQcx6lRFKSKYxooSsIANRAACLvZfS5tWMfQAAAABJRU5ErkJggg==",
+    "rank": 6,
+    "global_rank": 6
+   },
+   {
+    "link": "https://www.salesforce.com/platform/contact/contact-us/",
+    "source": "Salesforce",
+    "display_link": "https://www.salesforce.com \u203a platform \u203a contact-us",
+    "title": "Contact a salesforce.com Support or Sales Representative",
+    "description": "Talk to one of our advisors. Just fill out the form on the right or call 1-800-667-6389. Fill out your contact info. We'll get in touch ASAP. Phone United ...",
+    "snippet_highlighted_words": [
+     "call",
+     "contact",
+     "Phone"
+    ],
+    "icon": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcBAMAAACAI8KnAAAALVBMVEXk8vtHcEwBndwAndwAndwCndwUn90AndwAndwAndwAndwAndwAndwAndwAndyhaTatAAAAD3RSTlMBABQ/VyEKoeHOhG//8b0hdbjgAAAAwUlEQVR4AWMgCBhReIIMDAKMggIwOSYT00SBtAQoX8y8o3OpSvnmREFBkCTznDNn7r09c2IbW4IgkBt3BgK6tlebCTAw+p6Bg9mKDIx7ENwTDgyMPmcQYBKDgC8S9zCDaA0S9zQD1xkkcIpB9wyKYh1kbhMK9+wGBg0kblcgA/cdGKfzuSsDg9AKmJOcTROAXlDeNQfIuTmjJJER5GVBARsgd2moItT/jNlz77YHwkOHQcx6lRFKSKYxooSsIANRAACLvZfS5tWMfQAAAABJRU5ErkJggg==",
+    "rank": 7,
+    "global_rank": 7
+   },
+   {
+    "link": "https://help.salesforce.com/s/articleView?id=005167035&language=en_US&type=1",
+    "source": "Salesforce",
+    "display_link": "https://help.salesforce.com \u203a articleView",
+    "title": "How to Get Support from Salesforce Help",
+    "description": "This article will show you how to contact Salesforce Support, navigate the new experience based on your Success Plan, and manage your support ...Read more",
+    "snippet_highlighted_words": [
+     "contact Salesforce Support"
+    ],
+    "extensions": [
+     {
+      "inline": true,
+      "type": "text",
+      "text": "Sep 4, 2026",
+      "rank": 1
+     }
+    ],
+    "icon": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAMAAABF0y+mAAAAJFBMVEVHcEwiouIio+QiouMio+UiouMhoeIio+Qio+QioeIipegioODJWEBTAAAAC3RSTlMA8WrPEbYxjyPlS9gQKLgAAAB7SURBVCiRxZJLDsAgCERBxB/3v2+LDY0acess1OSFAQGAS4q5IgV9pRYX1qQLIehFEy4yC1+DZJBlpXrwZ7AyU9FqPCinSNH6yYMEkN1IsU/uoWuqtofAAOiyuumPCd8WJQfl3r2wSzZMk9ljXVYWD9NaZ0rOqvybclkPeuUQqAftPesAAAAASUVORK5CYII=",
+    "rank": 8,
+    "global_rank": 8
+   },
+   {
+    "link": "https://www.salesforce.com/sales/contact/slack-sales-elevate/",
+    "source": "Salesforce",
+    "display_link": "https://www.salesforce.com \u203a contact \u203a slack-sales-elevate",
+    "title": "Contact Sales",
+    "description": "Contact Sales to accelerate selling with Slack and Sales Cloud \u00b7 First name \u00b7 Last name \u00b7 Job title \u00b7 Company \u00b7 Email \u00b7 Questions/Comments (Optional).Read more",
+    "snippet_highlighted_words": [
+     "Contact Sales"
+    ],
+    "icon": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcBAMAAACAI8KnAAAALVBMVEXk8vtHcEwBndwAndwAndwCndwUn90AndwAndwAndwAndwAndwAndwAndwAndyhaTatAAAAD3RSTlMBABQ/VyEKoeHOhG//8b0hdbjgAAAAwUlEQVR4AWMgCBhReIIMDAKMggIwOSYT00SBtAQoX8y8o3OpSvnmREFBkCTznDNn7r09c2IbW4IgkBt3BgK6tlebCTAw+p6Bg9mKDIx7ENwTDgyMPmcQYBKDgC8S9zCDaA0S9zQD1xkkcIpB9wyKYh1kbhMK9+wGBg0kblcgA/cdGKfzuSsDg9AKmJOcTROAXlDeNQfIuTmjJJER5GVBARsgd2moItT/jNlz77YHwkOHQcx6lRFKSKYxooSsIANRAACLvZfS5tWMfQAAAABJRU5ErkJggg==",
+    "rank": 9,
+    "global_rank": 9
+   },
+   {
+    "link": "https://help.salesforce.com/s/articleView?id=000372706&language=en_US&type=3",
+    "source": "Salesforce",
+    "display_link": "https://help.salesforce.com \u203a articleView",
+    "title": "Salesforce Help | Article",
+    "description": "We looked high and low but couldn't find that page. Go Home. Salesforce logo. 1-800-667-6389. facebook; twitter; linkedin; youtube. SALESFORCE.Read more",
+    "snippet_highlighted_words": [
+     "Salesforce",
+     "SALESFORCE"
+    ],
+    "icon": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAMAAABF0y+mAAAAJFBMVEVHcEwiouIio+QiouMio+UiouMhoeIio+Qio+QioeIipegioODJWEBTAAAAC3RSTlMA8WrPEbYxjyPlS9gQKLgAAAB7SURBVCiRxZJLDsAgCERBxB/3v2+LDY0acess1OSFAQGAS4q5IgV9pRYX1qQLIehFEy4yC1+DZJBlpXrwZ7AyU9FqPCinSNH6yYMEkN1IsU/uoWuqtofAAOiyuumPCd8WJQfl3r2wSzZMk9ljXVYWD9NaZ0rOqvybclkPeuUQqAftPesAAAAASUVORK5CYII=",
+    "rank": 10,
+    "global_rank": 10
+   }
+  ],
+  "pagination": {
+   "pages": [
+    {
+     "page": 2,
+     "start": 10,
+     "link": "https://www.google.com/search?q=Salesforce,+Inc.+salesforce.com+phone+number&sca_esv=61c21e9397a8b6ea&hl=en&gl=us&sxsrf=APpeQnsi33fwdSAQ9XB8lqrpTEzwbLnpEA:1792886152669&ei=iEXdaputKICWhvcPjrSSmAQ&start=10&sa=N&sstk=AS6-VmL1KmnG_1Uvid0KFBAAgxI2OyAAMtCZMK2LFbXkI_4gaqdCJepHW98Ze9FGkO0FGqL-PvWXjQBw1R7MW8pEhoNeWxsAxzuLJQ&ved=2ahUKEwibkYKy7dOXAxUAi-EIHQ6aBEMQ8tMDegQIKRAE"
+    },
+    {
+     "page": 3,
+     "start": 20,
+     "link": "https://www.google.com/search?q=Salesforce,+Inc.+salesforce.com+phone+number&sca_esv=61c21e9397a8b6ea&hl=en&gl=us&sxsrf=APpeQnsi33fwdSAQ9XB8lqrpTEzwbLnpEA:1792886152669&ei=iEXdaputKICWhvcPjrSSmAQ&start=20&sa=N&sstk=AS6-VmL1KmnG_1Uvid0KFBAAgxI2OyAAMtCZMK2LFbXkI_4gaqdCJepHW98Ze9FGkO0FGqL-PvWXjQBw1R7MW8pEhoNeWxsAxzuLJQ&ved=2ahUKEwibkYKy7dOXAxUAi-EIHQ6aBEMQ8tMDegQIKRAG"
+    },
+    {
+     "page": 4,
+     "start": 30,
+     "link": "https://www.google.com/search?q=Salesforce,+Inc.+salesforce.com+phone+number&sca_esv=61c21e9397a8b6ea&hl=en&gl=us&sxsrf=APpeQnsi33fwdSAQ9XB8lqrpTEzwbLnpEA:1792886152669&ei=iEXdaputKICWhvcPjrSSmAQ&start=30&sa=N&sstk=AS6-VmL1KmnG_1Uvid0KFBAAgxI2OyAAMtCZMK2LFbXkI_4gaqdCJepHW98Ze9FGkO0FGqL-PvWXjQBw1R7MW8pEhoNeWxsAxzuLJQ&ved=2ahUKEwibkYKy7dOXAxUAi-EIHQ6aBEMQ8tMDegQIKRAI"
+    }
+   ],
+   "current_page": 1,
+   "next_page": 2,
+   "next_page_start": 10,
+   "next_page_link": "https://www.google.com/search?q=Salesforce,+Inc.+salesforce.com+phone+number&sca_esv=61c21e9397a8b6ea&hl=en&gl=us&sxsrf=APpeQnsi33fwdSAQ9XB8lqrpTEzwbLnpEA:1792886152669&ei=iEXdaputKICWhvcPjrSSmAQ&start=10&sa=N&sstk=AS6-VmL1KmnG_1Uvid0KFBAAgxI2OyAAMtCZMK2LFbXkI_4gaqdCJepHW98Ze9FGkO0FGqL-PvWXjQBw1R7MW8pEhoNeWxsAxzuLJQ&ved=2ahUKEwibkYKy7dOXAxUAi-EIHQ6aBEMQ8tMDegQIKRAE"
+  },
+  "related": [
+   {
+    "text": "Salesforce inc salesforce com phone number usa",
+    "link": "https://www.google.com/search?sca_esv=61c21e9397a8b6ea&hl=en&gl=us&sxsrf=APpeQnsi33fwdSAQ9XB8lqrpTEzwbLnpEA:1792886152669&q=Salesforce+inc+salesforce+com+phone+number+usa&sa=X&ved=2ahUKEwibkYKy7dOXAxUAi-EIHQ6aBEMQ1QJ6BAgvEAE",
+    "rank": 1,
+    "global_rank": 11
+   },
+   {
+    "text": "Salesforce inc salesforce com phone number for employees",
+    "link": "https://www.google.com/search?sca_esv=61c21e9397a8b6ea&hl=en&gl=us&sxsrf=APpeQnsi33fwdSAQ9XB8lqrpTEzwbLnpEA:1792886152669&q=Salesforce+inc+salesforce+com+phone+number+for+employees&sa=X&ved=2ahUKEwibkYKy7dOXAxUAi-EIHQ6aBEMQ1QJ6BAhGEAE",
+    "rank": 2,
+    "global_rank": 12
+   },
+   {
+    "text": "Salesforce phone number",
+    "link": "https://www.google.com/search?sca_esv=61c21e9397a8b6ea&hl=en&gl=us&sxsrf=APpeQnsi33fwdSAQ9XB8lqrpTEzwbLnpEA:1792886152669&q=Salesforce+phone+number&sa=X&ved=2ahUKEwibkYKy7dOXAxUAi-EIHQ6aBEMQ1QJ6BAg9EAE",
+    "rank": 3,
+    "global_rank": 13
+   },
+   {
+    "text": "Salesforce hq phone number",
+    "link": "https://www.google.com/search?sca_esv=61c21e9397a8b6ea&hl=en&gl=us&sxsrf=APpeQnsi33fwdSAQ9XB8lqrpTEzwbLnpEA:1792886152669&q=Salesforce+hq+phone+number&sa=X&ved=2ahUKEwibkYKy7dOXAxUAi-EIHQ6aBEMQ1QJ6BAg5EAE",
+    "rank": 4,
+    "global_rank": 14
+   },
+   {
+    "text": "Salesforce billing phone number",
+    "link": "https://www.google.com/search?sca_esv=61c21e9397a8b6ea&hl=en&gl=us&sxsrf=APpeQnsi33fwdSAQ9XB8lqrpTEzwbLnpEA:1792886152669&q=Salesforce+billing+phone+number&sa=X&ved=2ahUKEwibkYKy7dOXAxUAi-EIHQ6aBEMQ1QJ6BAgzEAE",
+    "rank": 5,
+    "global_rank": 15
+   },
+   {
+    "text": "Salesforce san francisco phone number",
+    "link": "https://www.google.com/search?sca_esv=61c21e9397a8b6ea&hl=en&gl=us&sxsrf=APpeQnsi33fwdSAQ9XB8lqrpTEzwbLnpEA:1792886152669&q=Salesforce+san+francisco+phone+number&sa=X&ved=2ahUKEwibkYKy7dOXAxUAi-EIHQ6aBEMQ1QJ6BAg4EAE",
+    "rank": 6,
+    "global_rank": 16
+   },
+   {
+    "text": "Salesforce contact Email",
+    "link": "https://www.google.com/search?sca_esv=61c21e9397a8b6ea&hl=en&gl=us&sxsrf=APpeQnsi33fwdSAQ9XB8lqrpTEzwbLnpEA:1792886152669&q=Salesforce+contact+Email&sa=X&ved=2ahUKEwibkYKy7dOXAxUAi-EIHQ6aBEMQ1QJ6BAgyEAE",
+    "rank": 7,
+    "global_rank": 17
+   },
+   {
+    "text": "Salesforce HR phone number",
+    "link": "https://www.google.com/search?sca_esv=61c21e9397a8b6ea&hl=en&gl=us&sxsrf=APpeQnsi33fwdSAQ9XB8lqrpTEzwbLnpEA:1792886152669&q=Salesforce+HR+phone+number&sa=X&ved=2ahUKEwibkYKy7dOXAxUAi-EIHQ6aBEMQ1QJ6BAgwEAE",
+    "rank": 8,
+    "global_rank": 18
    }
   ]
  }

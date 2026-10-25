@@ -41,4 +41,5 @@ Run it once on an empty volume. Do not seed a real deployment with the demo data
 
 - Run exactly **one replica** and one uvicorn worker. SQLite has one writer.
 - Back up `/data` (the audit log is the record of every decision; it is hash-chained and `GET /audit/verify` checks it).
-- `data/v2/demo_real_vendors.json` is not copied into the image and the loader refuses it.
+- `data/v2/demo_real_vendors.json` and its recorded web fixtures are copied into the image for the demo endpoints only; the seed loaders refuse the file, so it never reaches seed/eval data.
+- The web console is served at `/ui/` (`/` redirects there). `ANTHROPIC_API_KEY` (optional) makes `/items/{id}/investigate`, the demo scenes and `/policies/draft` use the Claude agent; without it they fall back to the rule-based agent (drafting returns 503).

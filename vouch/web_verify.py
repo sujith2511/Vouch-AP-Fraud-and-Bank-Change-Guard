@@ -44,6 +44,17 @@ def _domain_of(url):
     return host.lower().removeprefix("www.")
 
 
+def _result_url(o):
+    """The page a search result points to. Google sometimes returns opaque redirects (https://www.google.com/goto?url=<encrypted>);
+    then the real host is only in display_link ("https://www.vendor.example › en_us › contact-us")."""
+    link = o.get("link") or ""
+    host = urllib.parse.urlparse(link).hostname or ""
+    if host.endswith("google.com") and urllib.parse.urlparse(link).path in ("/goto", "/url"):
+        shown = (o.get("display_link") or "").split("›")[0].strip()
+        return shown if shown.startswith("http") else None
+    return link or None
+
+
 def _on_domain(url, domain):
     d = _domain_of(url)
     return bool(d) and (d == domain or d.endswith("." + domain))
@@ -77,11 +88,12 @@ def parse(serp, vendor_domain=""):
                     phones.add(norm_phone(t))
                     sources.append("google knowledge panel")
     for o in serp.get("organic") or []:
-        if vendor_domain and _on_domain(o.get("link"), vendor_domain):
+        url = _result_url(o)
+        if vendor_domain and _on_domain(url, vendor_domain):
             for p in phones_in(f"{o.get('title', '')} {o.get('description', '')}"):
                 phones.add(p)
-                sources.append(o["link"])
-    organic = [o.get("link") for o in serp.get("organic") or [] if o.get("link")]
+                sources.append(url)
+    organic = [u for u in (_result_url(o) for o in serp.get("organic") or []) if u]
     # official site: the knowledge panel's, else the first result on the vendor's own domain; a directory page
     # (MapQuest, Yelp) ranking first must not make a real vendor look mismatched
     on_domain = [u for u in organic if vendor_domain and _on_domain(u, vendor_domain)]
