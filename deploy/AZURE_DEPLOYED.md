@@ -18,7 +18,9 @@ It was deployed on 2026-10-24 from commit `ae654b4`, on the *Azure for Students*
 - `DEMO_ENDPOINTS=1`
 - `CORS_ORIGINS=http://localhost:3000,http://localhost:5173`. Add the UI's origin when it exists.
 - `VOUCH_SQLITE_VFS=unix-dotfile` and `VOUCH_SQLITE_JOURNAL=DELETE`. The Azure Files share is SMB, where SQLite's normal locks fail with "database is locked".
-- `VOUCH_API_KEYS` is a secret. It holds new random keys for sync, agent, accountant (ann), accountant (bob), policy and gateway. The keys are kept outside the repo; ask Sujith for yours. The built-in dev keys are refused in prod.
+- Secrets for the agent: `ANTHROPIC_API_KEY`, `BRIGHT_DATA_API_KEY` (with `BRIGHT_DATA_SERP_ZONE`), and `AZURE_CONTENT_SAFETY_KEY` (with its endpoint).
+- Console sign-in: `VOUCH_LOGIN_USER=calhacks`, `VOUCH_LOGIN_AS=ann`, and the secret `VOUCH_LOGIN_PASSWORD`. That login returns ann's accountant key. Wrong passwords are throttled to 10 per IP per 5 minutes.
+- `VOUCH_API_KEYS` is a secret. It holds new random keys for sync, agent, accountant (ann), accountant (bob), policy, gateway and controller (carol). The keys are kept outside the repo; ask Sujith for yours. The built-in dev keys are refused in prod.
 
 **Start command:** removes a stale `/data/vouch.db.lock`. It seeds v2 only when `/data/vouch.db` is missing or empty, then runs uvicorn with 1 worker.
 

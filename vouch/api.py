@@ -106,6 +106,34 @@ def create_app(db_path=None, keys=None):
         request.state.role = found["role"]
         return {"role": found["role"], "user": found.get("user")}
 
+    # ---- username/password sign-in for the console: one shared login maps to ONE existing API key (an accountant by
+    # default). Configured only through env (VOUCH_LOGIN_USER / VOUCH_LOGIN_PASSWORD / VOUCH_LOGIN_AS); off when unset.
+    fails = {}
+
+    class LoginBody(BaseModel):
+        username: str = ""
+        password: str = ""
+
+    @app.post("/login")
+    def login(b: LoginBody, request: Request):
+        user, pw = os.environ.get("VOUCH_LOGIN_USER"), os.environ.get("VOUCH_LOGIN_PASSWORD")
+        if not user or not pw:
+            raise HTTPException(404, "password sign-in is not enabled")
+        ip, now = (request.client.host if request.client else "?"), time.time()
+        recent = [t for t in fails.get(ip, []) if now - t < 300]
+        if len(recent) >= 10:
+            raise HTTPException(429, "too many failed sign-ins; try again in a few minutes")
+        ok = hmac.compare_digest(b.username.strip().lower().encode(), user.lower().encode()) & hmac.compare_digest(b.password.encode(), pw.encode())
+        if not ok:
+            fails[ip] = recent + [now]
+            log.warning("bad password sign-in")
+            raise HTTPException(401, "wrong username or password")
+        as_user = os.environ.get("VOUCH_LOGIN_AS", "ann")
+        key = next((k for k, v in app.state.keys.items() if v.get("user") == as_user and v.get("role") == "accountant"), None)
+        if not key:
+            raise HTTPException(500, "VOUCH_LOGIN_AS does not name an accountant key")
+        return {"api_key": key, "role": "accountant", "user": as_user}
+
     def conn_dep():
         c = connect(app.state.db_path)
         try:

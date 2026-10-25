@@ -63,7 +63,9 @@ function signOut(msg) {
   Object.assign(S, { items: [], filter: "ALL", q: "", selected: null }); $("#search").value = "";
   clear($("#queue-list")); clear($("#detail")).append(h("div", { class: "empty" }, h("h2", {}, "Select a work item")));
   show("queue");
-  $("#app").hidden = true; $("#login").hidden = false; $("#login-error").textContent = msg || ""; $("#key").value = "";
+  $("#app").hidden = true; $("#login").hidden = false; $("#login-error").textContent = msg || ""; $("#key").value = ""; $("#password").value = "";
+  Object.assign(D, { scene: null, item: null, reveal: false }); $("#stage").hidden = true; clear($("#out-verify"));
+  document.querySelectorAll(".scenario").forEach((b) => b.setAttribute("aria-checked", "false"));
 }
 async function checkChain() {
   const c = $("#chain");
@@ -272,29 +274,141 @@ async function loadPolicies() {
   }
 }
 
-// ---------------------------------------------------------------- demo
+// ---------------------------------------------------------------- demo: one attack, walked through the real pipeline
+const HIDDEN = /<!--[\s\S]*?-->/g;
+const D = { scene: null, item: null, running: false, reveal: false };
+
 function webBlock(w) {
   if (!w) return null;
   const src = w.source === "live" ? "live Bright Data lookup" : w.placeholder ? "recorded placeholder (not a real response)" : w.source === "recorded" ? `recorded Bright Data response${w.recorded_at ? ` (${when(w.recorded_at)})` : ""}` : w.source || "";
   return h("dl", { class: "kv" }, h("dt", {}, "Web check"), h("dd", {}, `${w.status} · ${src}`),
     h("dt", {}, "Official site"), h("dd", {}, w.official_site || "—"),
     h("dt", {}, "Phones online"), h("dd", { class: "mono" }, (w.official_phones || []).map(phone).join(", ") || "none found"),
-    w.phone_on_file_listed_online != null ? [h("dt", {}, "Registered phone listed"), h("dd", {}, w.phone_on_file_listed_online ? "yes" : "no")] : null);
+    w.phone_on_file_listed_online != null ? [h("dt", {}, "SEC-registered phone listed online"), h("dd", {}, w.phone_on_file_listed_online ? "yes" : "no")] : null);
 }
-async function runDemo(kind) {
-  const out = clear($(`#out-${kind}`)); out.append(h("p", { class: "muted" }, "Running…"));
-  let r;
-  if (kind === "inject") r = await act(() => api("/demo/inject", { method: "POST" }), "Attack email processed");
-  if (kind === "real-claim") r = await act(() => api("/demo/real-claim", { method: "POST", body: {} }), "Scene processed");
-  if (kind === "verify") r = await act(() => api(`/demo/verify/${$("#demo-vendor").value}`));
-  clear(out); if (!r) return;
-  if (kind === "verify") { out.append(webBlock(r)); return; }
-  const it = r.item;
-  out.append(h("div", { class: "row" }, h("b", {}, `Lane: ${r.lane}`), stateChip(it.state), verdictChip(it.verdict)),
-    h("ul", { class: "reasons" }, (it.verdict?.reasons || []).slice(0, 5).map((x) => h("li", { class: x.startsWith("guard:") ? "guard" : "" }, x))));
-  if (r.phone_check) out.append(h("p", {}, `Number in the email: ${r.phone_check.phone_in_email} · listed by the company online: ${(r.phone_check.not_listed_online || []).length ? "NO" : "yes"}`));
-  if (r.web_verification) out.append(webBlock(r.web_verification));
-  out.append(h("button", { class: "btn btn-sm", onclick: async () => { show("queue"); await loadQueue(); select(it.id); } }, `Open ${it.id} in the work queue`));
+
+// The email as a person sees it (hidden HTML comments removed), or as the model receives it (comments shown and marked).
+function renderMail(it) {
+  const m = clear($("#mail")), e = it.email || {}, body = e.body || "";
+  const hasHidden = HIDDEN.test(body); HIDDEN.lastIndex = 0;
+  $("#reveal").hidden = !hasHidden; $("#reveal").setAttribute("aria-pressed", String(D.reveal));
+  $("#reveal").textContent = D.reveal ? "Show what a person sees" : "Show what the AI receives";
+  const pre = h("pre", { class: "email-body mail-body" });
+  if (D.reveal) {
+    let last = 0;
+    for (const mt of body.matchAll(HIDDEN)) { pre.append(body.slice(last, mt.index), h("mark", { class: "hidden-text" }, mt[0])); last = mt.index + mt[0].length; }
+    pre.append(body.slice(last));
+  } else pre.append(body.replace(HIDDEN, "").trimEnd());
+  const auth = e.auth || {};
+  m.append(h("div", { class: "mail-head" },
+    h("div", { class: "mail-subj" }, e.subject || ""),
+    h("div", { class: "mono" }, e.from || ""),
+    h("div", { class: "row wrap" }, ["spf", "dkim", "dmarc"].map((k) => h("span", { class: "chip " + (auth[k] === "pass" ? "chip-ok" : "chip-bad") }, `${k.toUpperCase()} ${auth[k] || "—"}`)),
+      h("span", { class: "chip" }, money(it.claim?.amount, it.claim?.currency)))),
+    pre);
+  if (D.reveal && hasHidden) m.append(h("p", { class: "fine" }, "Highlighted: an HTML comment. Invisible in a mail client, but it is in the text an AI reads."));
+}
+
+// Pipeline steps, each computed from the item's recorded evidence (nothing here is scripted).
+function steps(it) {
+  const t = toolResults(it), e = it.email || {}, v = it.verdict || {}, out = [];
+  const step = (title, tag, kind, detail) => out.push({ title, tag, kind, detail });
+  step("Email becomes a work item", "state machine", "good", `${it.id} · NEW · written to the audit log`);
+  const ps = t.azure_prompt_shields;
+  step("Azure Prompt Shields scan", "Microsoft", !ps || ps.status !== "ok" ? "skip" : ps.attack_detected ? "bad" : "good",
+    !ps ? "not run" : ps.status !== "ok" ? `scan ${ps.status}` : ps.attack_detected ? "hidden instructions detected in the email" : "no injection found");
+  const auth = e.auth || {}, fails = ["spf", "dkim", "dmarc"].filter((k) => auth[k] && auth[k] !== "pass");
+  step("Email authentication", "SPF · DKIM · DMARC", fails.length ? "bad" : "good", fails.length ? `failed: ${fails.join(", ").toUpperCase()}` : "all pass (so this alone proves nothing)");
+  const d = t.check_domain;
+  step("Sender vs vendor of record", "domain check", !d ? "skip" : d.exact_match ? "good" : "bad",
+    !d ? "not checked" : d.exact_match ? `${d.sender_domain} is the vendor's domain` : `${d.sender_domain} ≠ ${d.vendor_domain}${d.lookalike_suspect ? ` · lookalike, ${d.edit_distance} letter off` : ""}`);
+  const w = t.verify_vendor_web;
+  const notListed = (w?.email_phones_not_listed_online || []);
+  step("Live web check", "Bright Data", !w || w.status === "not_applicable" ? "skip" : w.status !== "ok" ? "warn" : notListed.length ? "bad" : "good",
+    !w || w.status === "not_applicable" ? "fictional vendor: no lookup" : w.status !== "ok" ? `could not verify (${w.status})`
+      : notListed.length ? `callback ${notListed.map(phone).join(", ")} is not a number the company lists online (${w.source || "live"})` : `official site ${w.official_site || "found"} (${w.source || "live"})`);
+  const tools = Object.keys(t).filter((k) => !["policy_rules", "azure_prompt_shields", "verify_vendor_web", "computed_checks"].includes(k));
+  step("Claude Haiku 4.5 investigates", "Anthropic", v.verdict === "fraud" ? "bad" : v.verdict === "legit" ? "good" : "warn",
+    v.verdict ? `${tools.length} read-only tool calls → proposes "${v.verdict}"${v.confidence != null ? ` at ${Math.round(v.confidence * 100)}%` : ""}` : "no proposal");
+  const guard = (v.reasons || []).filter((r) => r.startsWith("guard:"));
+  step("Code guard", "can only make it stricter", guard.length ? "bad" : "good", guard.length ? `${guard.length} rule(s) overrode the model` : "agreed with the model; nothing to override");
+  const pr = t.policy_rules;
+  const failed = pr ? Object.entries(pr.rules).filter(([, x]) => !x).length : 0;
+  step("Policy lane", "rules in code", it.state === "REJECTED" ? "bad" : it.state === "APPROVED" ? "good" : "warn",
+    it.state === "REJECTED" ? `rejected · ${failed} low-risk rule(s) failed` : it.state === "APPROVED" ? "auto-cleared: every low-risk rule passed" : "sent to a human");
+  step("Payment gateway", "the only thing that pays", it.state === "POSTED" ? "warn" : "good", it.state === "POSTED" ? "paid" : "$0 moved · it refuses anything not APPROVED by a human");
+  return out;
+}
+
+function pendingSteps() {
+  const names = [["Email becomes a work item", "state machine"], ["Azure Prompt Shields scan", "Microsoft"], ["Email authentication", "SPF · DKIM · DMARC"],
+    ["Sender vs vendor of record", "domain check"], ["Live web check", "Bright Data"], ["Claude Haiku 4.5 investigates", "Anthropic"],
+    ["Code guard", "can only make it stricter"], ["Policy lane", "rules in code"], ["Payment gateway", "the only thing that pays"]];
+  const ol = clear($("#steps"));
+  names.forEach(([title, tag], i) => ol.append(h("li", { class: "step " + (i === 0 ? "running" : "queued") }, h("span", { class: "step-dot" }),
+    h("div", {}, h("div", { class: "step-title" }, title, h("span", { class: "step-tag" }, tag)), h("div", { class: "step-detail muted" }, i === 0 ? "running…" : "")))));
+}
+
+async function revealSteps(list) {
+  const ol = clear($("#steps"));
+  for (const s of list) {
+    ol.append(h("li", { class: `step ${s.kind} pop` }, h("span", { class: "step-dot" }),
+      h("div", {}, h("div", { class: "step-title" }, s.title, h("span", { class: "step-tag" }, s.tag)), h("div", { class: "step-detail" }, s.detail))));
+    await new Promise((r) => setTimeout(r, 260));
+  }
+}
+
+const STAMP = { REJECTED: ["Blocked", "bad"], PROPOSED: ["Held for a human", "warn"], NEEDS_INFO: ["Held: callback required", "warn"], APPROVED: ["Auto-cleared", "ok"], POSTED: ["Paid", "warn"] };
+
+async function renderOutcome(it) {
+  const o = clear($("#outcome")), [label, kind] = STAMP[it.state] || [it.state, "warn"], v = it.verdict || {};
+  o.append(h("div", { class: `stamp stamp-${kind}` }, label),
+    h("div", { class: "money-line" }, h("s", {}, money(it.claim?.amount, it.claim?.currency)), h("b", {}, " → $0.00 moved")),
+    h("ul", { class: "reasons" }, (v.reasons || []).slice(0, 5).map((r) => h("li", { class: r.startsWith("guard:") ? "guard" : "" }, r.replace(/^,\s*/, "")))));
+  if (it.question) o.append(h("div", { class: "question" }, h("b", {}, "Agent asks a human: "), it.question));
+  const res = h("div", { class: "attempts" });
+  const attempt = (label, fn) => h("button", { class: "btn btn-danger btn-sm", type: "button", onclick: async (ev) => {
+    ev.target.disabled = true;
+    try { await fn(); res.append(h("div", { class: "attempt ok" }, `${label}: allowed`)); }
+    catch (e) { if (e.message !== "unauthorized") res.append(h("div", { class: "attempt" }, h("b", {}, "✗ Denied "), `${label} · ${e.message}`)); }
+    ev.target.disabled = false; await renderTrail(it.id); checkChain();
+  } }, label);
+  o.append(h("h4", { class: "mt14" }, "Now try to break it"),
+    h("p", { class: "muted" }, `You are signed in as ${S.me?.user} (${S.me?.role}). These are real requests to the server.`),
+    h("div", { class: "row wrap" },
+      it.state === "REJECTED" ? attempt("Approve it anyway", () => api(`/items/${it.id}/approve`, { method: "POST", body: { reason: "demo: override the rejection" } })) : null,
+      attempt("Force the payment", () => api(`/items/${it.id}/post`, { method: "POST", body: { reason: "demo: pay it now" } }))),
+    res, h("div", { id: "trail" }),
+    h("button", { class: "btn btn-sm mt10", type: "button", onclick: async () => { show("queue"); await loadQueue(); select(it.id); } }, `Open ${it.id} in the work queue`));
+  await renderTrail(it.id);
+}
+
+async function renderTrail(id) {
+  const box = $("#trail"); if (!box) return;
+  const rows = await act(() => api(`/items/${encodeURIComponent(id)}/audit`)); if (!rows) return;
+  const chain = await act(() => api("/audit/verify"));
+  clear(box).append(h("h4", { class: "mt14" }, "Audit trail ", chain ? h("span", { class: "chip " + (chain.ok ? "chip-ok" : "chip-bad") }, chain.ok ? "✓ hash chain verified" : "✗ chain broken") : null),
+    h("ul", { class: "trail" }, rows.map((r) => h("li", { class: r.outcome === "denied" ? "denied" : "" },
+      h("span", { class: "mono hash" }, (r.row_hash || "").slice(0, 8)),
+      h("span", {}, h("b", {}, r.actor_id || r.actor), ` ${r.action}`, r.outcome === "denied" ? h("span", { class: "chip chip-bad ml8" }, `DENIED ${r.deny_code || ""}`) : r.to_state ? h("span", { class: "muted" }, ` → ${r.to_state}`) : null)))));
+}
+
+async function runScene(scene) {
+  if (D.running) return;
+  D.running = true; D.scene = scene; D.reveal = false;
+  document.querySelectorAll(".scenario").forEach((b) => { b.setAttribute("aria-checked", String(b.dataset.scene === scene)); b.disabled = true; });
+  $("#stage").hidden = false; pendingSteps(); clear($("#mail")).append(h("p", { class: "muted" }, "Sending the email…")); $("#reveal").hidden = true;
+  clear($("#outcome")).append(h("p", { class: "muted" }, "Waiting for the pipeline…"));
+  const t0 = performance.now(), tick = setInterval(() => ($("#timer").textContent = `${((performance.now() - t0) / 1000).toFixed(1)} s`), 100);
+  $("#stage").scrollIntoView({ behavior: "smooth", block: "start" });
+  const r = await act(() => api(scene === "inject" ? "/demo/inject" : "/demo/real-claim", { method: "POST", body: scene === "inject" ? undefined : {} }));
+  clearInterval(tick);
+  if (r) {
+    $("#timer").textContent = `done in ${((performance.now() - t0) / 1000).toFixed(1)} s`;
+    D.item = r.item; renderMail(r.item); await revealSteps(steps(r.item)); await renderOutcome(r.item); checkChain();
+  } else { clear($("#steps")); $("#timer").textContent = "failed"; }
+  document.querySelectorAll(".scenario").forEach((b) => (b.disabled = false));
+  D.running = false;
 }
 
 // ---------------------------------------------------------------- wiring
@@ -304,13 +418,29 @@ function show(view) {
   if (view === "policies") act(loadPolicies);
 }
 document.querySelectorAll(".tab").forEach((t) => t.addEventListener("click", () => show(t.dataset.view)));
-document.querySelectorAll("[data-demo]").forEach((b) => b.addEventListener("click", async () => { b.disabled = true; await runDemo(b.dataset.demo); b.disabled = false; }));
+document.querySelectorAll(".scenario").forEach((b) => b.addEventListener("click", () => runScene(b.dataset.scene)));
+$("#reveal").addEventListener("click", () => { D.reveal = !D.reveal; if (D.item) renderMail(D.item); });
+$("#verify").addEventListener("click", async (ev) => {
+  ev.target.disabled = true; const out = clear($("#out-verify")).appendChild(h("p", { class: "muted" }, "Searching the live web…")).parentNode;
+  const r = await act(() => api(`/demo/verify/${$("#demo-vendor").value}`)); clear(out); if (r) out.append(webBlock(r)); ev.target.disabled = false;
+});
 $("#search").addEventListener("input", (e) => { S.q = e.target.value; renderQueue(); });
 $("#logout").addEventListener("click", () => signOut());
 $("#draft-policies").addEventListener("click", async () => { const r = await act(() => api("/policies/draft", { method: "POST" })); if (r) { toast(`${r.length} polic${r.length === 1 ? "y" : "ies"} drafted`); loadPolicies(); } });
 $("#login-form").addEventListener("submit", async (e) => {
+  e.preventDefault(); $("#login-error").textContent = "";
+  const r = await fetch("/login", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ username: $("#username").value, password: $("#password").value }) });
+  const data = await r.json().catch(() => ({}));
+  if (!r.ok) { $("#login-error").textContent = typeof data.detail === "string" ? data.detail : `Sign-in failed (HTTP ${r.status})`; return; }
+  try { await signIn(data.api_key); } catch (err) { if (err.message !== "unauthorized") $("#login-error").textContent = err.message; }
+});
+$("#key-form").addEventListener("submit", async (e) => {
   e.preventDefault();
-  try { await signIn($("#key").value.trim()); } catch (err) { if (err.message !== "unauthorized") $("#login-error").textContent = err.message; }
+  try { await signIn($("#key").value.trim()); } catch (err) { if (err.message !== "unauthorized") $("#key-error").textContent = err.message; }
+});
+$("#login-mode").addEventListener("click", () => {
+  const useKey = $("#key-form").hidden; $("#key-form").hidden = !useKey; $("#login-form").hidden = useKey;
+  $("#login-mode").textContent = useKey ? "Use username and password instead" : "Use an API key instead (controller, other roles)";
 });
 
 (async () => {
