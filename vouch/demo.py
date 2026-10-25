@@ -17,7 +17,9 @@ def lookalike(domain):
 
 
 def make_attack(conn, vendor_id=None):
-    q = "SELECT * FROM vendors WHERE vendor_id!='UNKNOWN' " + ("AND vendor_id=? " if vendor_id else "") + "ORDER BY vendor_id LIMIT 1"
+    # never a real demo company (vendor_profile demo=true): the attack email must not imitate a real business
+    q = ("SELECT * FROM vendors WHERE vendor_id!='UNKNOWN' AND vendor_id NOT IN "
+         "(SELECT vendor_id FROM vendor_profile WHERE json_extract(profile, '$.demo')) " + ("AND vendor_id=? " if vendor_id else "") + "ORDER BY vendor_id LIMIT 1")
     v = conn.execute(q, (vendor_id,) if vendor_id else ()).fetchone()
     if not v:
         raise LookupError("no vendors loaded; seed the database first")

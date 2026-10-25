@@ -106,3 +106,10 @@ def test_demo_attack_ids_come_from_the_db(db, db_path):
     from vouch import demo
     ids = [demo.inject(db, db_path)[0] for _ in range(2)]     # was a per-process counter: after a restart it reused DEMO-0001
     assert ids == ["DEMO-0001", "DEMO-0002"]
+
+
+def test_demo_attack_never_targets_a_real_demo_company(db, db_path):
+    from vouch import demo
+    demo.ensure_demo_vendor(db, "DEMO-R1")                    # sorts before the fictional vendors
+    v = demo.make_attack(db)[0]
+    assert v["vendor_id"] != "DEMO-R1" and v["domain"].endswith(".example")

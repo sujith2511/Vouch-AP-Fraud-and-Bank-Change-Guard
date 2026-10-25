@@ -305,7 +305,8 @@ function renderMail(it) {
     h("div", { class: "mono" }, e.from || ""),
     h("div", { class: "row wrap" }, ["spf", "dkim", "dmarc"].map((k) => h("span", { class: "chip " + (auth[k] === "pass" ? "chip-ok" : "chip-bad") }, `${k.toUpperCase()} ${auth[k] || "—"}`)),
       h("span", { class: "chip" }, money(it.claim?.amount, it.claim?.currency)))),
-    pre, D.reveal && hasHidden ? h("p", { class: "fine" }, "Highlighted: an HTML comment. Invisible in a mail client, but it is in the text an AI reads.") : null);
+    pre);
+  if (D.reveal && hasHidden) m.append(h("p", { class: "fine" }, "Highlighted: an HTML comment. Invisible in a mail client, but it is in the text an AI reads."));
 }
 
 // Pipeline steps, each computed from the item's recorded evidence (nothing here is scripted).
