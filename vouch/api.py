@@ -5,7 +5,8 @@ from typing import Any, Optional
 
 from fastapi import Depends, FastAPI, Header, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import JSONResponse
+from fastapi.responses import JSONResponse, RedirectResponse
+from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, ConfigDict, Field
 
 from . import core, gateway
@@ -13,10 +14,11 @@ from .db import connect, init_db
 from .logging_setup import request_id_var, setup as setup_logging
 
 log = logging.getLogger("vouch.api")
-ROLES = ("sync", "agent", "accountant", "policy", "gateway")
+ROLES = ("sync", "agent", "accountant", "policy", "gateway", "controller")   # controller: approves learned policies only
 DEV_KEYS = {"dev-sync-key": {"role": "sync", "user": "sync-1"}, "dev-agent-key": {"role": "agent", "user": "agent-1"},
             "dev-accountant-key": {"role": "accountant", "user": "ann"}, "dev-accountant2-key": {"role": "accountant", "user": "bob"},
-            "dev-policy-key": {"role": "policy", "user": "policy-1"}, "dev-gateway-key": {"role": "gateway", "user": "gateway-1"}}
+            "dev-policy-key": {"role": "policy", "user": "policy-1"}, "dev-gateway-key": {"role": "gateway", "user": "gateway-1"},
+            "dev-controller-key": {"role": "controller", "user": "carol"}}
 
 
 def load_keys():
@@ -279,7 +281,7 @@ def create_app(db_path=None, keys=None):
             raise HTTPException(403, {"code": "ACTOR_NOT_ALLOWED", "message": "only sync/accountant keys may trigger the demo attack", "audit_id": aid})
         from . import demo
         try:
-            item_id, lane = demo.inject(c, app.state.db_path, vendor_id)
+            item_id, lane = demo.inject(c, app.state.db_path, vendor_id, agent=_agent())
         except LookupError as e:
             raise HTTPException(409, str(e))
         return {"lane": lane, "item": public_item(core.load_item(c, item_id))}
@@ -303,6 +305,97 @@ def create_app(db_path=None, keys=None):
         return {"lane": lane, "item": item, "web_verification": web,
                 "phone_check": {"phone_in_email": demo.CLAIM_PHONE, "official_phones_on_web": web.get("official_phones"),
                                 "not_listed_online": web.get("email_phones_not_listed_online"), "source": web.get("source")}}
+
+    # ---- UI support: who am I, run the agent on one item, learned policies
+    @app.get("/me")
+    def me(who=Depends(auth)):
+        return who
+
+    def _deny_role(c, who, action, item_id, allowed, what):
+        aid = core.record_denied(c, actor=who["role"], action=action, item_id=item_id, reason=what, code="ACTOR_NOT_ALLOWED",
+                                 detail=f"only {'/'.join(allowed)} keys may {what}", actor_id=who["user"])
+        raise HTTPException(403, {"code": "ACTOR_NOT_ALLOWED", "message": f"only {'/'.join(allowed)} keys may {what}", "audit_id": aid})
+
+    def _agent():
+        """The investigating agent: an injected one (tests), the Claude agent when ANTHROPIC_API_KEY is set, else the rule-based one."""
+        if getattr(app.state, "agent", None) is not None:
+            return app.state.agent
+        from .agent_interface import RuleBasedAgent
+        if not os.environ.get("ANTHROPIC_API_KEY"):
+            return RuleBasedAgent()
+        from .llm_agent import LLMAgent
+        try:
+            from .demo import demo_web
+            return LLMAgent(web=demo_web())          # real demo companies: live Bright Data, else recorded; others: normal check
+        except FileNotFoundError:
+            return LLMAgent()
+
+    @app.post("/items/{item_id}/investigate")
+    def investigate(item_id: str, who=Depends(auth), c=Depends(conn_dep)):
+        """Run the agent on one NEW item, then the policy lane (what run_pipeline does per item). The agent only proposes; it acts
+        with its own role, never the caller's. Only sync/accountant keys may trigger it."""
+        if who["role"] not in ("sync", "accountant"):
+            _deny_role(c, who, "propose", item_id, ("sync", "accountant"), "start an investigation")
+        it = core.load_item(c, item_id)
+        if not it:
+            raise HTTPException(404, "not found")
+        if it["state"] != "NEW":
+            raise HTTPException(409, f"item is {it['state']}; only NEW items are investigated")
+        from .agent_interface import LocalClient, run_agent
+        agent = _agent()
+        try:
+            run_agent(agent, LocalClient(app.state.db_path, actor_id="agent-1"), item_id)
+        except Exception as ex:       # a failing agent leaves the item NEW and is audited; it never bypasses the rulebook
+            core.record_denied(c, actor="agent", action="propose", item_id=item_id, reason=repr(ex)[:300], code="AGENT_ERROR",
+                               state="NEW", vendor_id=it["vendor_id"])
+            raise HTTPException(502, {"code": "AGENT_ERROR", "message": "the agent could not finish; the item stays NEW"})
+        lane = core.apply_policy(c, item_id)
+        return {"lane": lane, "agent": type(agent).__name__, "item": public_item(core.load_item(c, item_id))}
+
+    @app.get("/policies")
+    def policies(state: Optional[str] = None, who=Depends(auth), c=Depends(conn_dep)):
+        from . import learned_policy as lp
+        return lp.list_policies(c, state)
+
+    @app.get("/policies/corrections")
+    def policy_corrections(who=Depends(auth), c=Depends(conn_dep)):
+        from . import learned_policy as lp
+        return lp.corrections(c)
+
+    @app.post("/policies/draft", status_code=201)
+    def policy_draft(who=Depends(auth), c=Depends(conn_dep)):
+        """Draft one PROPOSED policy per new human correction (Claude writes it; the agent role proposes it)."""
+        from . import learned_policy as lp
+        if who["role"] not in ("accountant", "controller"):
+            _deny_role(c, who, "propose_policy", None, ("accountant", "controller"), "draft policies")
+        llm = getattr(app.state, "policy_llm", None)
+        if llm is None and not os.environ.get("ANTHROPIC_API_KEY"):
+            raise HTTPException(503, "drafting policies needs ANTHROPIC_API_KEY on the server")
+        return lp.propose_from_corrections(c, llm=llm, model="test" if llm is not None else None)
+
+    def _decide_policy(policy_id, approve, b, who, c):
+        from . import learned_policy as lp
+        try:
+            return lp.decide(c, policy_id, approve, who["role"], who["user"], b.reason)
+        except lp.Denied as e:
+            raise HTTPException(403, {"code": str(e), "message": "policy decision denied"})
+
+    @app.post("/policies/{policy_id}/approve")
+    def policy_approve(policy_id: str, b: Body, who=Depends(auth), c=Depends(conn_dep)):
+        return _decide_policy(policy_id, True, b, who, c)
+
+    @app.post("/policies/{policy_id}/reject")
+    def policy_reject(policy_id: str, b: Body, who=Depends(auth), c=Depends(conn_dep)):
+        return _decide_policy(policy_id, False, b, who, c)
+
+    # ---- the web console (ui/), served by the same app so there is one URL and no CORS setup
+    ui_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "ui")
+    if os.path.isdir(ui_dir):
+        app.mount("/ui", StaticFiles(directory=ui_dir, html=True), name="ui")
+
+        @app.get("/", include_in_schema=False)
+        def root():
+            return RedirectResponse("/ui/")
 
     return app
 
