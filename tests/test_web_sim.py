@@ -129,8 +129,11 @@ def test_demo_verify_returns_recorded_fixture_when_key_missing(api):
     for i in ("DEMO-R1", "DEMO-R2", "DEMO-R3", "DEMO-R4"):
         r = api.get(f"/demo/verify/{i}", headers=H("k-agent")); assert r.status_code == 200, r.text
         j = r.json()
-        assert j["source"] == "recorded" and j["status"] == "ok" and j["placeholder"] is True and j["live_attempt"] == "not_configured"
-        assert j["official_phones"] and j["official_site"].startswith("https://") and j["phone_on_file_listed_online"] is True
+        assert j["source"] == "recorded" and j["status"] == "ok" and j["live_attempt"] == "not_configured"
+        assert j["placeholder"] is (j["recorded_at"] is None)          # a real recording carries its time; a placeholder says so
+        assert j["official_phones"] and j["official_site"].startswith("https://") and j["site_domain_matches_vendor"] is True
+        if j["placeholder"]:                                            # placeholders are built from the SEC phone; real pages often omit it
+            assert j["phone_on_file_listed_online"] is True
     assert api.get("/demo/verify/DEMO-R9", headers=H("k-agent")).status_code == 404
     assert api.get("/demo/verify/DEMO-R1").status_code == 401 and api.get("/demo/verify/DEMO-R1", headers=H("nope")).status_code == 401
 
@@ -253,7 +256,7 @@ def test_default_agent_without_a_key_still_records_web_evidence(tmp_path, monkey
     for k in ("BRIGHT_DATA_API_KEY", "BRIGHT_DATA_SERP_ZONE"): monkeypatch.delenv(k, raising=False)
     a = TestClient(create_app(str(tmp_path / "n.db"), KEYS))
     j = a.post("/demo/real-claim", json={}, headers=H("k-sync")).json()
-    assert j["web_verification"]["source"] == "recorded" and j["web_verification"]["placeholder"] is True
+    assert j["web_verification"]["source"] == "recorded" and j["web_verification"]["placeholder"] is (j["web_verification"]["recorded_at"] is None)
     assert "4155550142" in j["web_verification"]["email_phones_not_listed_online"]
     assert j["lane"] in ("human_review", "reject") and j["item"]["state"] in ("PROPOSED", "REJECTED")
 

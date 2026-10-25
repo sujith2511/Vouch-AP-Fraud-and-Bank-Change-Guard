@@ -161,3 +161,15 @@ def test_fictional_vendors_skip_web_check_in_agent(db_path, mk):
                      web=lambda v, t: seen.append(v) or {"status": "ok"})
     d = agent.investigate(client.get_item(mk()["id"]), client)
     assert seen == [] and not any(x["tool"] == "verify_vendor_web" for x in d.evidence)
+
+
+def test_google_redirect_links_use_the_display_link():
+    """Recorded Motorola response: every organic link was an opaque google.com/goto redirect; the host is only in display_link."""
+    serp = {"organic": [
+        {"link": "https://www.google.com/goto?url=CAESabc", "display_link": "https://www.realvendor.com › en_us › contact-us",
+         "description": "Call us at 1.888.325.9336 from 8am - 5pm."},
+        {"link": "https://www.google.com/goto?url=CAESdef", "display_link": "https://scam-directory.example.net › realvendor",
+         "description": "Real Vendor: (415) 555-0199"}]}
+    r = wv.verify_vendor_web(REAL, "call (415) 555-0199", post=fake(serp))
+    assert r["official_site"] == "https://www.realvendor.com" and r["site_domain_matches_vendor"] is True
+    assert r["official_phones"] == ["8883259336"] and r["email_phones_not_listed_online"] == ["4155550199"]

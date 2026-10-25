@@ -1,43 +1,322 @@
 {
  "demo_vendor_id": "DEMO-R4",
- "placeholder": true,
- "recorded_at": null,
+ "placeholder": false,
+ "recorded_at": "2026-10-24T23:56:23+00:00",
  "query": "ORACLE CORP oracle.com phone number",
- "note": "PLACEHOLDER with a plausible shape, built from data/v2/demo_real_vendors.json. Not a recorded response. Run scripts/record_web_verify.py (needs BRIGHT_DATA_API_KEY and BRIGHT_DATA_SERP_ZONE) to replace it.",
+ "http_status": 200,
  "serp": {
   "general": {
-   "search_engine": "google"
+   "search_engine": "google",
+   "query": "ORACLE CORP oracle.com phone number",
+   "detected_query": "ORACLE CORP oracle.com phone number",
+   "results_cnt": 126,
+   "search_time": 0.26,
+   "language": "en",
+   "country_code": "US",
+   "location": "United States",
+   "gl": "US",
+   "mobile": false,
+   "basic_view": false,
+   "search_type": "text",
+   "page_title": "ORACLE CORP oracle.com phone number - Google Search",
+   "timestamp": "2026-10-24T23:56:19.527Z"
   },
-  "knowledge": {
-   "title": "ORACLE CORP",
-   "link": "https://www.oracle.com/",
-   "facts": [
-    {
-     "predicate": "Phone",
-     "title": "Phone",
-     "value": [
-      {
-       "text": "(737) 867-1000"
-      }
-     ]
-    }
-   ]
+  "input": {
+   "original_url": "https://www.google.com/search?q=ORACLE+CORP+oracle.com+phone+number&hl=en&gl=us&brd_json=1",
+   "request_id": "hl_7c5242f1_7gfmt2fs36g"
   },
+  "navigation": [
+   {
+    "title": "AI Mode",
+    "href": "https://www.google.com/search?q=ORACLE+CORP+oracle.com+phone+number&sca_esv=61c21e9397a8b6ea&hl=en&gl=us&sxsrf=APpeQnscHChdodyUEunbajvGQE1lX4Lf-Q:1792886174900&udm=50&fbs=ABfTbFVyMZGZf1hfvX9uKjN_-G8cn05EoNqnRUpRtqDK_L3JtT0h7PdEdL8le1RT1QApqDnOuaWK0zgRg3NvNzqFWifZ5Vnje3VqRlnmFS0LyC9x0-ZUoc6guRAvSBmc3DDb-kgxyxuiT2NqR7NoSThTIifZx1H4blTWk_sksF4tM9jeceW_qqnmwu8p-Us7PV4_s9S2sR767D6xUfoOGyPZvg8p66i2bw&vsint=&aep=1&ntc=1&cs=0&sa=X&ved=2ahUKEwiyg8-87dOXAxWbzjgGHT9uHbQQ2J8OegQIFBAD"
+   },
+   {
+    "title": "Forums",
+    "href": "https://www.google.com/search?sca_esv=61c21e9397a8b6ea&hl=en&gl=us&sxsrf=APpeQnscHChdodyUEunbajvGQE1lX4Lf-Q:1792886174900&udm=forums&fbs=ABfTbFVyMZGZf1hfvX9uKjN_-G8cn05EoNqnRUpRtqDK_L3JtT0h7PdEdL8le1RT1QApqDnOuaWK0zgRg3NvNzqFWifZ5Vnje3VqRlnmFS0LyC9x0-ZUoc6guRAvSBmc3DDb-kgxyxuiT2NqR7NoSThTIifZx1H4blTWk_sksF4tM9jeceW_qqnmwu8p-Us7PV4_s9S2sR767D6xUfoOGyPZvg8p66i2bw&q=ORACLE+CORP+oracle.com+phone+number&sa=X&ved=2ahUKEwiyg8-87dOXAxWbzjgGHT9uHbQQs6gLegQIJBAB"
+   },
+   {
+    "title": "Shopping",
+    "href": "https://www.google.com/search?sca_esv=61c21e9397a8b6ea&hl=en&gl=us&sxsrf=APpeQnscHChdodyUEunbajvGQE1lX4Lf-Q:1792886174900&udm=28&fbs=ABfTbFVyMZGZf1hfvX9uKjN_-G8cn05EoNqnRUpRtqDK_L3JtT0h7PdEdL8le1RT1QApqDnOuaWK0zgRg3NvNzqFWifZ5Vnje3VqRlnmFS0LyC9x0-ZUoc6guRAvSBmc3DDb-kgxyxuiT2NqR7NoSThTIifZx1H4blTWk_sksF4tM9jeceW_qqnmwu8p-Us7PV4_s9S2sR767D6xUfoOGyPZvg8p66i2bw&q=ORACLE+CORP+oracle.com+phone+number&ved=1t:220175&ictx=111"
+   },
+   {
+    "title": "Images",
+    "href": "https://www.google.com/search?sca_esv=61c21e9397a8b6ea&hl=en&gl=us&sxsrf=APpeQnscHChdodyUEunbajvGQE1lX4Lf-Q:1792886174900&udm=2&fbs=ABfTbFVyMZGZf1hfvX9uKjN_-G8cn05EoNqnRUpRtqDK_L3JtT0h7PdEdL8le1RT1QApqDnOuaWK0zgRg3NvNzqFWifZ5Vnje3VqRlnmFS0LyC9x0-ZUoc6guRAvSBmc3DDb-kgxyxuiT2NqR7NoSThTIifZx1H4blTWk_sksF4tM9jeceW_qqnmwu8p-Us7PV4_s9S2sR767D6xUfoOGyPZvg8p66i2bw&q=ORACLE+CORP+oracle.com+phone+number&sa=X&ved=2ahUKEwiyg8-87dOXAxWbzjgGHT9uHbQQtKgLegQIGxAB"
+   },
+   {
+    "title": "Videos",
+    "href": "https://www.google.com/search?sca_esv=61c21e9397a8b6ea&hl=en&gl=us&sxsrf=APpeQnscHChdodyUEunbajvGQE1lX4Lf-Q:1792886174900&udm=vids&fbs=ABfTbFVyMZGZf1hfvX9uKjN_-G8cn05EoNqnRUpRtqDK_L3JtT0h7PdEdL8le1RT1QApqDnOuaWK0zgRg3NvNzqFWifZ5Vnje3VqRlnmFS0LyC9x0-ZUoc6guRAvSBmc3DDb-kgxyxuiT2NqR7NoSThTIifZx1H4blTWk_sksF4tM9jeceW_qqnmwu8p-Us7PV4_s9S2sR767D6xUfoOGyPZvg8p66i2bw&q=ORACLE+CORP+oracle.com+phone+number&sa=X&ved=2ahUKEwiyg8-87dOXAxWbzjgGHT9uHbQQtKgLegQIGhAB"
+   },
+   {
+    "title": "News",
+    "href": "https://www.google.com/search?sca_esv=61c21e9397a8b6ea&hl=en&gl=us&sxsrf=APpeQnscHChdodyUEunbajvGQE1lX4Lf-Q:1792886174900&q=ORACLE+CORP+oracle.com+phone+number&tbm=nws&source=lnms&fbs=ABfTbFVyMZGZf1hfvX9uKjN_-G8cn05EoNqnRUpRtqDK_L3JtT0h7PdEdL8le1RT1QApqDnOuaWK0zgRg3NvNzqFWifZ5Vnje3VqRlnmFS0LyC9x0-ZUoc6guRAvSBmc3DDb-kgxyxuiT2NqR7NoSThTIifZx1H4blTWk_sksF4tM9jeceW_qqnmwu8p-Us7PV4_s9S2sR767D6xUfoOGyPZvg8p66i2bw&sa=X&ved=2ahUKEwiyg8-87dOXAxWbzjgGHT9uHbQQ0pQJegQIHBAB"
+   },
+   {
+    "title": "Web",
+    "href": "https://www.google.com/search?sca_esv=61c21e9397a8b6ea&hl=en&gl=us&sxsrf=APpeQnscHChdodyUEunbajvGQE1lX4Lf-Q:1792886174900&udm=web&fbs=ABfTbFVyMZGZf1hfvX9uKjN_-G8cn05EoNqnRUpRtqDK_L3JtT0h7PdEdL8le1RT1QApqDnOuaWK0zgRg3NvNzqFWifZ5Vnje3VqRlnmFS0LyC9x0-ZUoc6guRAvSBmc3DDb-kgxyxuiT2NqR7NoSThTIifZx1H4blTWk_sksF4tM9jeceW_qqnmwu8p-Us7PV4_s9S2sR767D6xUfoOGyPZvg8p66i2bw&q=ORACLE+CORP+oracle.com+phone+number&sa=X&ved=2ahUKEwiyg8-87dOXAxWbzjgGHT9uHbQQs6gLegQIWxAB"
+   },
+   {
+    "title": "Books",
+    "href": "https://www.google.com/search?sca_esv=61c21e9397a8b6ea&hl=en&gl=us&sxsrf=APpeQnscHChdodyUEunbajvGQE1lX4Lf-Q:1792886174900&q=ORACLE+CORP+oracle.com+phone+number&udm=36&source=lnms&fbs=ABfTbFVyMZGZf1hfvX9uKjN_-G8cn05EoNqnRUpRtqDK_L3JtT0h7PdEdL8le1RT1QApqDnOuaWK0zgRg3NvNzqFWifZ5Vnje3VqRlnmFS0LyC9x0-ZUoc6guRAvSBmc3DDb-kgxyxuiT2NqR7NoSThTIifZx1H4blTWk_sksF4tM9jeceW_qqnmwu8p-Us7PV4_s9S2sR767D6xUfoOGyPZvg8p66i2bw&sa=X&ved=2ahUKEwiyg8-87dOXAxWbzjgGHT9uHbQQ0pQJegQIXRAB"
+   },
+   {
+    "title": "Maps",
+    "href": "https://maps.google.com/maps?sca_esv=61c21e9397a8b6ea&hl=en&gl=us&output=search&q=ORACLE+CORP+oracle.com+phone+number&source=lnms&fbs=ABfTbFVyMZGZf1hfvX9uKjN_-G8cn05EoNqnRUpRtqDK_L3JtT0h7PdEdL8le1RT1QApqDnOuaWK0zgRg3NvNzqFWifZ5Vnje3VqRlnmFS0LyC9x0-ZUoc6guRAvSBmc3DDb-kgxyxuiT2NqR7NoSThTIifZx1H4blTWk_sksF4tM9jeceW_qqnmwu8p-Us7PV4_s9S2sR767D6xUfoOGyPZvg8p66i2bw&entry=mc&ved=1t:200715&ictx=111"
+   },
+   {
+    "title": "Short videos",
+    "href": "https://www.google.com/search?sca_esv=61c21e9397a8b6ea&hl=en&gl=us&sxsrf=APpeQnscHChdodyUEunbajvGQE1lX4Lf-Q:1792886174900&udm=short_vids&fbs=ABfTbFVyMZGZf1hfvX9uKjN_-G8cn05EoNqnRUpRtqDK_L3JtT0h7PdEdL8le1RT1QApqDnOuaWK0zgRg3NvNzqFWifZ5Vnje3VqRlnmFS0LyC9x0-ZUoc6guRAvSBmc3DDb-kgxyxuiT2NqR7NoSThTIifZx1H4blTWk_sksF4tM9jeceW_qqnmwu8p-Us7PV4_s9S2sR767D6xUfoOGyPZvg8p66i2bw&q=ORACLE+CORP+oracle.com+phone+number&sa=X&ved=2ahUKEwiyg8-87dOXAxWbzjgGHT9uHbQQs6gLegQIXhAB"
+   }
+  ],
   "organic": [
    {
-    "link": "https://www.oracle.com/",
-    "title": "ORACLE CORP - official site",
-    "description": "Official website of ORACLE CORP."
-   },
-   {
     "link": "https://www.oracle.com/corporate/contact/",
-    "title": "Corporate Contact Page | ORACLE CORP",
-    "description": "Call (650) 506-7000 or (800) 633-0738"
+    "source": "Oracle",
+    "display_link": "https://www.oracle.com \u203a corporate \u203a contact",
+    "title": "Contact Us",
+    "description": "Contact us \u00b7 Oracle Sales. Send a message to Oracle Sales. Send us a message here and we'll get back to you. For a faster response, please provide your contact ...",
+    "snippet_highlighted_words": [
+     "Contact",
+     "Oracle",
+     "Oracle",
+     "contact"
+    ],
+    "extensions": [
+     {
+      "type": "site_link",
+      "extended": true,
+      "text": "United States Field Offices",
+      "link": "https://www.google.com/goto?url=CAEScgHrOzAVp2PYr9UHcz_Lrc0jggFkN7uXw9L4ZbKKMNr4IS_bYdFGcH5tEojr3S70DHf41lcVBb6zq29I29dDc_Z7RfNUNrrJXsii6yICiYFn6MqeEbYj67naQ4uWCFzqpl6SbgbEcKHX43VXdi8kND0VaQ",
+      "description": "Denver \u00b7 7604 Technology Way \u00b7 Denver, CO 80237 \u00b7 Phone: +1 ...",
+      "rank": 1
+     },
+     {
+      "type": "site_link",
+      "extended": true,
+      "text": "Oracle global contacts",
+      "link": "https://www.google.com/goto?url=CAESbwHrOzAVx2CRpwFo4g--AJagTWltsQ8mIqKKsjAi2V_bTsV0OU0KUFRmiYnXIfeZQ2m-FC7jV6HcFen1d4KzYUPx0cnrna0zVZnAjuRinzS6bDU_i637xQbvehryXPQDJIv47mj29_UUyeD-19ZG7Q",
+      "description": "North America. United States \u00b7 +1.800.633.0738 \u00b7 Canada \u00b7 1-800 ...",
+      "rank": 2
+     },
+     {
+      "type": "site_link",
+      "extended": true,
+      "text": "Global Contacts",
+      "link": "https://www.google.com/goto?url=CAEScgHrOzAVLn0WzzavBrSpUJqOOuu6EvPy_YbSqPI44_PvgSx4HZVs1EfP45540TmxCP5WTUVetaIWloLUqJ6amycxXhAgfHRsNKV_wmJBdzg5006wWAo-0GGSg1FqzkSYNPtzoDRXM7WEMxg_pWilEcoLrA",
+      "description": "North America. United States \u00b7 +1.800.633.0738 \u00b7 Canada \u00b7 1-800 ...",
+      "rank": 3
+     },
+     {
+      "type": "site_link",
+      "extended": true,
+      "text": "Help with Your Oracle Account",
+      "link": "https://www.google.com/goto?url=CAESbQHrOzAVfje2MRyTYb6PjAnblOJpoKJ692jqjNfgssVVarsqhgs-z2pYupfk_elCaYC8hkGd60W_Z9INRE7sKgwqj2-S7HeEP_a0E-IBL7R_U9XM_q8GRuXTvbWWlmXdsMDcmlGi0XPZD7OCEJA",
+      "description": "... * According to Oracle Privacy Policies, accounts will be ...",
+      "rank": 4
+     },
+     {
+      "type": "site_link",
+      "extended": true,
+      "text": "My Oracle Billing Support",
+      "link": "https://www.google.com/goto?url=CAESbwHrOzAVzLv9b3hvj7p_Lj_Ts_gi2zEOgHOVE-sDSiazg1HjTu804-b3AH69QegUOvNYMtYjmvXPmtg8JD8FX6wY8DoYneeTWBKyXziTt7KbxW9qDwkfaGCzaGJF1tJK_pJLGw0dEkrYPVDnYwlGwA",
+      "description": "Locate phone numbers and emails for Oracle's global billing contacts.",
+      "rank": 5
+     },
+     {
+      "type": "site_link",
+      "extended": true,
+      "text": "More results from oracle.com \u00bb",
+      "link": "https://www.google.com/search?q=ORACLE+CORP+oracle.com+phone+number+site:oracle.com&sca_esv=61c21e9397a8b6ea&hl=en&gl=us&sxsrf=APpeQnscHChdodyUEunbajvGQE1lX4Lf-Q:1792886174900&sa=X&ved=2ahUKEwiyg8-87dOXAxWbzjgGHT9uHbQQrAN6BAhKEAE",
+      "rank": 6
+     }
+    ],
+    "icon": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcBAMAAACAI8KnAAAAJ1BMVEVHcEzkVkPmV0PlV0PlWEPlV0PlWETlWETlWETlV0TlWETlVkPmV0OApskJAAAADXRSTlMAD3Kluonn//Q01idPskEUtAAAAKhJREFUeAFjoCpgVHYBAyMBMC+sHAIqUkH8WeVwsJKBgXt5eUqQEhCoupWXbGBgLi+eADGD07zcgGF6uSHMTOHySobwKqAkVHp5KQMQwQBQiqG9CMFVr2AoR+Wmoyo2B1oGBdzuxQzHKxRgXKb2Ggap8iQYV618IQNPe4XP7N1AsPNIe8UBoHHl5R1gUF5eA3YLzEMQ9wl5rQKDJYrQ4Ni9ezYQClAYqgDZNkIA8rmNJQAAAABJRU5ErkJggg==",
+    "rank": 1,
+    "global_rank": 5
    },
    {
-    "link": "https://www.bizlistings.example/oracle.com",
-    "title": "ORACLE CORP - business listing",
-    "description": "Phone: (415) 555-0199"
+    "link": "https://www.google.com/goto?url=CAESZgHrOzAVa1bg2BaMZ2GL-qv_mbhN3ejF85czDJGIdmI2JxVETKSDdqaRUOTXtSx9JX3zVtdufzqhGURdxEGI05ehbZzOdV2xvqWrCPhVdzEQU5z_T0Fi02BlV33GjTiBqJwSo0VYCA",
+    "source": "Oracle",
+    "display_link": "https://www.oracle.com \u203a support \u203a contact",
+    "title": "Oracle Support Contacts Global Directory",
+    "description": "Call 1.800.668.8921 or 1.905.890.6690 for technical questions regarding your supported Oracle products. Hearing impaired customers in the U.S. who need to speak ...Read more",
+    "snippet_highlighted_words": [
+     "1.800.668.8921 or 1.905.890.6690"
+    ],
+    "icon": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcBAMAAACAI8KnAAAAJ1BMVEVHcEzkVkPmV0PlV0PlWEPlV0PlWETlWETlWETlV0TlWETlVkPmV0OApskJAAAADXRSTlMAD3Kluonn//Q01idPskEUtAAAAKhJREFUeAFjoCpgVHYBAyMBMC+sHAIqUkH8WeVwsJKBgXt5eUqQEhCoupWXbGBgLi+eADGD07zcgGF6uSHMTOHySobwKqAkVHp5KQMQwQBQiqG9CMFVr2AoR+Wmoyo2B1oGBdzuxQzHKxRgXKb2Ggap8iQYV618IQNPe4XP7N1AsPNIe8UBoHHl5R1gUF5eA3YLzEMQ9wl5rQKDJYrQ4Ni9ezYQClAYqgDZNkIA8rmNJQAAAABJRU5ErkJggg==",
+    "rank": 2,
+    "global_rank": 6
+   },
+   {
+    "link": "https://www.google.com/goto?url=CAESsgEB6zswFQToJ_pa9q6EYs3dwqo2U6C-vjebn0cyqflQktpD3ykzUnFaui-kjM7bhr_w3O9S6rkYxubv8-x5tq3L8KOkRzC6f_NHWD7L9apl67M5KFovHiOVgG6PISlhm8lnv0FSgW_dexb8Tnj1dLcQLiRtCcnAwbWPXyJZEdlon-kfAYhBz3sgirt9ErT2HRccE06uIgi_XQLnsekqakZjZ1xWUERnowydprTTi6f-1HlD",
+    "source": "Oracle Help Center",
+    "display_link": "https://docs.oracle.com \u203a communications \u203a userguide",
+    "title": "My Oracle Support",
+    "description": "Call the CAS main number at 1-800-223-1711 (toll-free in the US), or call the Oracle Support hotline for your local country from the list at http://www.oracle.Read more",
+    "snippet_highlighted_words": [
+     "1-800-223-1711"
+    ],
+    "icon": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAMAAABF0y+mAAAAaVBMVEXtHCTtFh/tGSHsABLsAADvMTnxPkbxPUTuISvtExzzcnf+9/f////83t/wSk/5wcP//P30f4PuKTH4s7X6x8j3q6z1kpX1lZf719j+8fL0i47sAArwRUvwR037z9D5uLr3oaT+6uvzZ224uz7yAAAAzklEQVR4AcyR0RJDMBBFY5OSyC0IUAr9/4+sySzSmfa95/Vkb2424m+JLujTkFS3OGFirUw4pVOLgHt2TZskB1BYBjulYEuVA2zdtJ2ndT1gS06W5QD7oFEy49QA/TPyg9oBnQoqGtnvp6VvM9UYkkgEyBRw5GU2Y9EUyigBlopY1tUvOc3fYhtzFlpVYI0+CwmTbii6mzpeMk4LMHMWibVAMTtewpr3gE3lcX/VYCdYny2JznbitSGgjr1jyCh9fdn4Hsx1CHlEZA/eFAkATqAOMW0JOYMAAAAASUVORK5CYII=",
+    "rank": 3,
+    "global_rank": 7
+   },
+   {
+    "link": "https://www.google.com/goto?url=CAESXAHrOzAVlZl1_N_4hBvF6Ukuw2ULKtUfRbnPBDCbrIfniPEGFY6KnDiXsCDNwBkQxXAE5SFnuiGs-4OKnIyAUqz2nenEjchDBQHUfD-KJ7X5FpkqG8bN-K9IFXvz",
+    "source": "Oracle",
+    "display_link": "https://www.oracle.com \u203a corporate",
+    "title": "About Oracle | Company Information",
+    "description": "Oracle is pleased to provide information about our company, customers, partners, events, communities, press, analysts, investors, and careers.",
+    "snippet_highlighted_words": [
+     "Oracle"
+    ],
+    "icon": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcBAMAAACAI8KnAAAAJ1BMVEVHcEzkVkPmV0PlV0PlWEPlV0PlWETlWETlWETlV0TlWETlVkPmV0OApskJAAAADXRSTlMAD3Kluonn//Q01idPskEUtAAAAKhJREFUeAFjoCpgVHYBAyMBMC+sHAIqUkH8WeVwsJKBgXt5eUqQEhCoupWXbGBgLi+eADGD07zcgGF6uSHMTOHySobwKqAkVHp5KQMQwQBQiqG9CMFVr2AoR+Wmoyo2B1oGBdzuxQzHKxRgXKb2Ggap8iQYV618IQNPe4XP7N1AsPNIe8UBoHHl5R1gUF5eA3YLzEMQ9wl5rQKDJYrQ4Ni9ezYQClAYqgDZNkIA8rmNJQAAAABJRU5ErkJggg==",
+    "rank": 4,
+    "global_rank": 8
+   },
+   {
+    "link": "https://oracle.pissedconsumer.com/customer-service.html",
+    "source": "PissedConsumer",
+    "display_link": "https://oracle.pissedconsumer.com \u203a customer-service",
+    "title": "Oracle Customer Service Phone Number 1-800-633-0738 ...",
+    "description": "The Oracle support number is (800) 633-0738. This toll-free number is designed to provide clients with access to Oracle's customer support ...Read more",
+    "snippet_highlighted_words": [
+     "800) 633-0738"
+    ],
+    "extensions": [
+     {
+      "inline": true,
+      "type": "text",
+      "text": "Oct 12, 2026",
+      "rank": 1
+     }
+    ],
+    "icon": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAMAAABF0y+mAAAAYFBMVEXXJy3WICbXJCvfZmneXmHYLDLUAADWExzVABD////77e3qn6HWGiL++fnhb3HnkpTVCxbidHfWFx/XIinxwsP99PTtr7DZOT7329zUAATcTVHVAAzeXF/55ubrqKrmi43ogViZAAAA/0lEQVR4AXXRQQJEMAxA0QRSAAoA7n/LmSYA/A080IBLiGjBR2jbjkvq3T3/XxCq6B25OPHeUUrvihmRv5XrMxVkl5XvV04tev5q3bS+qaIMea9Whzm+VHVQeJXZ6zbD3j8QotzsObjiELC0ISMM/MFaTKfmKB6JVpz+h7MSJH5Jo8ET7IIDi54fo2BFS5vjRTPqxRxE1oaK39IXjGo24+5gRd3IguHAaRAkGuPnxwrGoUwqGEBCh0cdGdzqEdY6folXHDhq2FI1zwczEmqbCPYs9LnaMU8obSrglM73wVOXIVzz0h2vIJrEgh28FKnQjDt+RbAUuY4tv/jVEa/2AyGzEx2UNWS1AAAAAElFTkSuQmCC",
+    "rank": 5,
+    "global_rank": 9
+   },
+   {
+    "link": "https://www.google.com/goto?url=CAESegHrOzAVJxOwTbwC2ymZFKtCVyq4vgIvzYtBL31YMlC7UlQ3qHScZBX14Ks_yOjxvPgJuZ6YP2v6w3YDP_7Zor_gQ_jufbQKxzQUUMYVn8OJwHzlrHZ-etFL6HrTAWNR7QmRiT6YwhmR4nnmKflM8AQkYm1zpNNQPZvf",
+    "source": "ZoomInfo",
+    "display_link": "https://www.zoominfo.com \u203a oracle-corp-office-address",
+    "title": "Where is Oracle Headquarters? Main Office Address and ...",
+    "description": "You can reach the headquarters by phone at (737) 867-1000, if available. Does Oracle Corp have global office locations? Yes, Oracle Corp has global ...Read more",
+    "snippet_highlighted_words": [
+     "737) 867-1000"
+    ],
+    "icon": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAA90lEQVR4AWMAgfcKEgqvpEX3v5YRfQ+k/9Mav5QSWw+yE245zGI64/dgR7yWEVkPF6Q/3s+AKkD/UBhoB/wf/A4YdQARAJ/a4eMAooLzrYXx/z+PH9HbAZiW/338kF4OwLT895VLQL4RBQ7AxCRZ/lpTmX7Z8J2bE9zyn8eOwiyntQMQlv/9+BFs+feVyyksByi3nH4O+FSYC09g32bPoFdRjGn5l94u+tYFn+trSLGcutnwa28XuuU0dABhy+nrAByAkPxQcsBoi2jUAcBu2UCHwP6BsvyFlNgGhucSEgoDEQqgDjHIbgYQADFAnVR6WQz08H6Y5QAohh4QgciXDwAAAABJRU5ErkJggg==",
+    "rank": 6,
+    "global_rank": 10
+   },
+   {
+    "link": "https://cop.evidon.com/companies/oracle-corporation",
+    "source": "Rezolve Ai",
+    "display_link": "https://cop.evidon.com \u203a companies \u203a oracle-corporation",
+    "title": "Oracle Corporation",
+    "description": "Oracle Corporation. Website: http://www.oracle.com. About Us: http://www ... PII : Address, Email Address, Name , Phone Number. Data Sharing. Data is ...Read more",
+    "snippet_highlighted_words": [
+     "Oracle Corporation"
+    ],
+    "icon": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAMAAABF0y+mAAAA6lBMVEVHcEz////////////////////////////////////////////9/Pr94eP/8vD////////////7vMLzYXHxR1n1h5H////////////91K/7xZL////uJjz////////948j4kij////////y7PDm5efDv8SampiMjIqioqDQ0dD////////z9vazs7JXVlMlJB0uLSdnZmM5ODMqKSNKSUT////a2tl5d3Tq9Ny93ZXg78z///+gzmKr1HbX7/q54vVWuecyreJnv+jQ5rKYylV8x+uzlMWSYayke7rj2Oq7oMt8RJuhebaETqGS2XXJAAAAPHRSTlMAFXDM4LpTHl4wBbD9////0nz/////6D2m///a/4Xx//+dSv////////8Qw////////////wn//////40pve3DAAABuklEQVR4AXXS1YKjMABAUVzTpu6OVUIJWtfxYfr/v7OBtbByXw/EmT9iOV4QJaaYLHGKqjGsDkqlMuSKJgIAKxJTBbV6o1lqtSnTOqDb65b7Kl9qDAaDJhxSqI7Gk8mkC6pCbUCqwymFM9Aj2AOdyv//hADAWmNQN0ZthmoKx72xadnOfGGUIVQYuuUKInftkbBvgT7LFNKRHYRhiMPQi1w4jWmToEVs7cydCIdRMpKKP/pe6C8QMNwIew7saNQBCWYQBi4kIZv8CisyvZUFGTTJMBs/QIJaQPL9Ike3iMvZFBhRiG1EzNyEng95+acNRwABx8PBPDEXToBD9/fZSq3tbrdP1h7Gaz/C2NsYUJzFucUHsDseT1srP6DQCzfJ+XIWuFyXU0TwuIeJvQ5w4Lvm5Xq7X4RZhloVPh2fdyDbo5mYCJ6vt9vtBQ3zX9UV3O4BNF7f3j9gS2xdbqTrebpkstq60ALoM03TNyDKHfpP0rLdFo2v9PFITV7mRpf79eXcmjG/OqDX9JE+DDGWp6PzGbWqy9/YHn18Pd6s7MXKnL7qKJSRNY+MDxPkq9BYmSZSLIkCT3ZO9w3GIkXRwlhxnAAAAABJRU5ErkJggg==",
+    "rank": 7,
+    "global_rank": 11
+   }
+  ],
+  "pagination": {
+   "pages": [
+    {
+     "page": 2,
+     "start": 10,
+     "link": "https://www.google.com/search?q=ORACLE+CORP+oracle.com+phone+number&sca_esv=61c21e9397a8b6ea&hl=en&gl=us&sxsrf=APpeQnscHChdodyUEunbajvGQE1lX4Lf-Q:1792886174900&ei=nkXdarK8Npud4-EPv9z1oAs&start=10&sa=N&sstk=AS6-VmIZzzFSiJtQUXV0aFJVSs5pPkKlCwdOQvGPsjL8eD5hojYXKntQqJBM-rT4wuGgZMOsosm_6qYsS3LoQJQITR1EA8f76tNgHQ&ved=2ahUKEwiyg8-87dOXAxWbzjgGHT9uHbQQ8tMDegQIJRAE"
+    },
+    {
+     "page": 3,
+     "start": 20,
+     "link": "https://www.google.com/search?q=ORACLE+CORP+oracle.com+phone+number&sca_esv=61c21e9397a8b6ea&hl=en&gl=us&sxsrf=APpeQnscHChdodyUEunbajvGQE1lX4Lf-Q:1792886174900&ei=nkXdarK8Npud4-EPv9z1oAs&start=20&sa=N&sstk=AS6-VmIZzzFSiJtQUXV0aFJVSs5pPkKlCwdOQvGPsjL8eD5hojYXKntQqJBM-rT4wuGgZMOsosm_6qYsS3LoQJQITR1EA8f76tNgHQ&ved=2ahUKEwiyg8-87dOXAxWbzjgGHT9uHbQQ8tMDegQIJRAG"
+    },
+    {
+     "page": 4,
+     "start": 30,
+     "link": "https://www.google.com/search?q=ORACLE+CORP+oracle.com+phone+number&sca_esv=61c21e9397a8b6ea&hl=en&gl=us&sxsrf=APpeQnscHChdodyUEunbajvGQE1lX4Lf-Q:1792886174900&ei=nkXdarK8Npud4-EPv9z1oAs&start=30&sa=N&sstk=AS6-VmIZzzFSiJtQUXV0aFJVSs5pPkKlCwdOQvGPsjL8eD5hojYXKntQqJBM-rT4wuGgZMOsosm_6qYsS3LoQJQITR1EA8f76tNgHQ&ved=2ahUKEwiyg8-87dOXAxWbzjgGHT9uHbQQ8tMDegQIJRAI"
+    }
+   ],
+   "current_page": 1,
+   "next_page": 2,
+   "next_page_start": 10,
+   "next_page_link": "https://www.google.com/search?q=ORACLE+CORP+oracle.com+phone+number&sca_esv=61c21e9397a8b6ea&hl=en&gl=us&sxsrf=APpeQnscHChdodyUEunbajvGQE1lX4Lf-Q:1792886174900&ei=nkXdarK8Npud4-EPv9z1oAs&start=10&sa=N&sstk=AS6-VmIZzzFSiJtQUXV0aFJVSs5pPkKlCwdOQvGPsjL8eD5hojYXKntQqJBM-rT4wuGgZMOsosm_6qYsS3LoQJQITR1EA8f76tNgHQ&ved=2ahUKEwiyg8-87dOXAxWbzjgGHT9uHbQQ8tMDegQIJRAE"
+  },
+  "related": [
+   {
+    "text": "Oracle corp oracle com phone number usa",
+    "link": "https://www.google.com/search?sca_esv=61c21e9397a8b6ea&hl=en&gl=us&sxsrf=APpeQnscHChdodyUEunbajvGQE1lX4Lf-Q:1792886174900&q=Oracle+corp+oracle+com+phone+number+usa&sa=X&ved=2ahUKEwiyg8-87dOXAxWbzjgGHT9uHbQQ1QJ6BAgnEAE",
+    "rank": 1,
+    "global_rank": 12
+   },
+   {
+    "text": "Oracle corp oracle com phone number for employees",
+    "link": "https://www.google.com/search?sca_esv=61c21e9397a8b6ea&hl=en&gl=us&sxsrf=APpeQnscHChdodyUEunbajvGQE1lX4Lf-Q:1792886174900&q=Oracle+corp+oracle+com+phone+number+for+employees&sa=X&ved=2ahUKEwiyg8-87dOXAxWbzjgGHT9uHbQQ1QJ6BAguEAE",
+    "rank": 2,
+    "global_rank": 13
+   },
+   {
+    "text": "Oracle corp oracle com phone number 24 7",
+    "link": "https://www.google.com/search?sca_esv=61c21e9397a8b6ea&hl=en&gl=us&sxsrf=APpeQnscHChdodyUEunbajvGQE1lX4Lf-Q:1792886174900&q=Oracle+corp+oracle+com+phone+number+24+7&sa=X&ved=2ahUKEwiyg8-87dOXAxWbzjgGHT9uHbQQ1QJ6BAgtEAE",
+    "rank": 3,
+    "global_rank": 14
+   },
+   {
+    "text": "Oracle Support 24/7 contact number",
+    "link": "https://www.google.com/search?sca_esv=61c21e9397a8b6ea&hl=en&gl=us&sxsrf=APpeQnscHChdodyUEunbajvGQE1lX4Lf-Q:1792886174900&q=Oracle+Support+24/7+contact+number&sa=X&ved=2ahUKEwiyg8-87dOXAxWbzjgGHT9uHbQQ1QJ6BAgsEAE",
+    "rank": 4,
+    "global_rank": 15
+   },
+   {
+    "text": "Oracle Headquarters address and phone number",
+    "link": "https://www.google.com/search?sca_esv=61c21e9397a8b6ea&hl=en&gl=us&sxsrf=APpeQnscHChdodyUEunbajvGQE1lX4Lf-Q:1792886174900&q=Oracle+Headquarters+address+and+phone+number&sa=X&ved=2ahUKEwiyg8-87dOXAxWbzjgGHT9uHbQQ1QJ6BAgrEAE",
+    "rank": 5,
+    "global_rank": 16
+   },
+   {
+    "text": "Oracle Headquarters phone number",
+    "link": "https://www.google.com/search?sca_esv=61c21e9397a8b6ea&hl=en&gl=us&sxsrf=APpeQnscHChdodyUEunbajvGQE1lX4Lf-Q:1792886174900&q=Oracle+Headquarters+phone+number&sa=X&ved=2ahUKEwiyg8-87dOXAxWbzjgGHT9uHbQQ1QJ6BAgqEAE",
+    "rank": 6,
+    "global_rank": 17
+   },
+   {
+    "text": "Oracle phone number",
+    "link": "https://www.google.com/search?sca_esv=61c21e9397a8b6ea&hl=en&gl=us&sxsrf=APpeQnscHChdodyUEunbajvGQE1lX4Lf-Q:1792886174900&q=Oracle+phone+number&sa=X&ved=2ahUKEwiyg8-87dOXAxWbzjgGHT9uHbQQ1QJ6BAgpEAE",
+    "rank": 7,
+    "global_rank": 18
+   },
+   {
+    "text": "Oracle HR phone number",
+    "link": "https://www.google.com/search?sca_esv=61c21e9397a8b6ea&hl=en&gl=us&sxsrf=APpeQnscHChdodyUEunbajvGQE1lX4Lf-Q:1792886174900&q=Oracle+HR+phone+number&sa=X&ved=2ahUKEwiyg8-87dOXAxWbzjgGHT9uHbQQ1QJ6BAgoEAE",
+    "rank": 8,
+    "global_rank": 19
+   }
+  ],
+  "people_also_ask": [
+   {
+    "question": "What is the phone number for Oracle?",
+    "question_type": "ai_overview",
+    "rank": 1,
+    "global_rank": 1
+   },
+   {
+    "question": "How can I contact Oracle customer support?",
+    "question_type": "ai_overview",
+    "rank": 2,
+    "global_rank": 2
+   },
+   {
+    "question": "What is an Oracle number?",
+    "question_type": "ai_overview",
+    "rank": 3,
+    "global_rank": 3
+   },
+   {
+    "question": "Where is Oracle's corporate office?",
+    "question_type": "ai_overview",
+    "rank": 4,
+    "global_rank": 4
    }
   ]
  }

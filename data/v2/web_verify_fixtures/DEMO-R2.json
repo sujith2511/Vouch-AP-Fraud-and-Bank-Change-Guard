@@ -1,38 +1,307 @@
 {
  "demo_vendor_id": "DEMO-R2",
- "placeholder": true,
- "recorded_at": null,
+ "placeholder": false,
+ "recorded_at": "2026-10-24T23:55:47+00:00",
  "query": "MICROSOFT CORP microsoft.com phone number",
- "note": "PLACEHOLDER with a plausible shape, built from data/v2/demo_real_vendors.json. Not a recorded response. Run scripts/record_web_verify.py (needs BRIGHT_DATA_API_KEY and BRIGHT_DATA_SERP_ZONE) to replace it.",
+ "http_status": 200,
  "serp": {
   "general": {
-   "search_engine": "google"
+   "search_engine": "google",
+   "query": "MICROSOFT CORP microsoft.com phone number",
+   "detected_query": "MICROSOFT CORP microsoft.com phone number",
+   "results_cnt": 106,
+   "search_time": 0.21,
+   "language": "en",
+   "country_code": "US",
+   "location": "United States",
+   "gl": "US",
+   "mobile": false,
+   "basic_view": false,
+   "search_type": "text",
+   "page_title": "MICROSOFT CORP microsoft.com phone number - Google Search",
+   "timestamp": "2026-10-24T23:55:45.660Z"
   },
-  "knowledge": {
-   "title": "MICROSOFT CORP",
-   "link": "https://www.microsoft.com/",
-   "facts": [
-    {
-     "predicate": "Phone",
-     "title": "Phone",
-     "value": [
-      {
-       "text": "(425) 882-8080"
-      }
-     ]
-    }
-   ]
+  "input": {
+   "original_url": "https://www.google.com/search?q=MICROSOFT+CORP+microsoft.com+phone+number&hl=en&gl=us&brd_json=1",
+   "request_id": "hl_7c5242f1_kwys2ettvvs"
   },
-  "organic": [
+  "navigation": [
    {
-    "link": "https://www.microsoft.com/",
-    "title": "MICROSOFT CORP - official site",
-    "description": "Official website of MICROSOFT CORP."
+    "title": "AI Mode",
+    "href": "https://www.google.com/search?q=MICROSOFT+CORP+microsoft.com+phone+number&sca_esv=61c21e9397a8b6ea&hl=en&gl=us&sxsrf=APpeQnunSZtRx3d7TeUy6YUJ-5XcD03_qg:1792886144088&udm=50&fbs=ABfTbFVyMZGZf1hfvX9uKjN_-G8cn05EoNqnRUpRtqDK_L3JtT0h7PdEdL8le1RT1QApqDnOuaWK0zgRg3NvNzqFWifZ5Vnje3VqRlnmFS0LyC9x04PoTAuO1wBDg_p6N_4TV3YqeqgDIAtI5MN4Cj36NAXkI4fgTrbz3gU1-LLYM7XSKSEXwDwBkD_Pc4zz6UxKoHpsnkQ5fZy1_hDciYdNz1sfTuXzRw&vsint=&aep=1&ntc=1&cs=0&sa=X&ved=2ahUKEwjQtPat7dOXAxUFTmwGHavTHtsQ2J8OegQIEhAD"
    },
    {
-    "link": "https://www.bizlistings.example/microsoft.com",
-    "title": "MICROSOFT CORP - business listing",
-    "description": "Phone: (415) 555-0199"
+    "title": "Forums",
+    "href": "https://www.google.com/search?sca_esv=61c21e9397a8b6ea&hl=en&gl=us&sxsrf=APpeQnunSZtRx3d7TeUy6YUJ-5XcD03_qg:1792886144088&udm=forums&fbs=ABfTbFVyMZGZf1hfvX9uKjN_-G8cn05EoNqnRUpRtqDK_L3JtT0h7PdEdL8le1RT1QApqDnOuaWK0zgRg3NvNzqFWifZ5Vnje3VqRlnmFS0LyC9x04PoTAuO1wBDg_p6N_4TV3YqeqgDIAtI5MN4Cj36NAXkI4fgTrbz3gU1-LLYM7XSKSEXwDwBkD_Pc4zz6UxKoHpsnkQ5fZy1_hDciYdNz1sfTuXzRw&q=MICROSOFT+CORP+microsoft.com+phone+number&sa=X&ved=2ahUKEwjQtPat7dOXAxUFTmwGHavTHtsQs6gLegQIGBAB"
+   },
+   {
+    "title": "Shopping",
+    "href": "https://www.google.com/search?sca_esv=61c21e9397a8b6ea&hl=en&gl=us&sxsrf=APpeQnunSZtRx3d7TeUy6YUJ-5XcD03_qg:1792886144088&udm=28&fbs=ABfTbFVyMZGZf1hfvX9uKjN_-G8cn05EoNqnRUpRtqDK_L3JtT0h7PdEdL8le1RT1QApqDnOuaWK0zgRg3NvNzqFWifZ5Vnje3VqRlnmFS0LyC9x04PoTAuO1wBDg_p6N_4TV3YqeqgDIAtI5MN4Cj36NAXkI4fgTrbz3gU1-LLYM7XSKSEXwDwBkD_Pc4zz6UxKoHpsnkQ5fZy1_hDciYdNz1sfTuXzRw&q=MICROSOFT+CORP+microsoft.com+phone+number&ved=1t:220175&ictx=111"
+   },
+   {
+    "title": "Images",
+    "href": "https://www.google.com/search?sca_esv=61c21e9397a8b6ea&hl=en&gl=us&sxsrf=APpeQnunSZtRx3d7TeUy6YUJ-5XcD03_qg:1792886144088&udm=2&fbs=ABfTbFVyMZGZf1hfvX9uKjN_-G8cn05EoNqnRUpRtqDK_L3JtT0h7PdEdL8le1RT1QApqDnOuaWK0zgRg3NvNzqFWifZ5Vnje3VqRlnmFS0LyC9x04PoTAuO1wBDg_p6N_4TV3YqeqgDIAtI5MN4Cj36NAXkI4fgTrbz3gU1-LLYM7XSKSEXwDwBkD_Pc4zz6UxKoHpsnkQ5fZy1_hDciYdNz1sfTuXzRw&q=MICROSOFT+CORP+microsoft.com+phone+number&sa=X&ved=2ahUKEwjQtPat7dOXAxUFTmwGHavTHtsQtKgLegQIFRAB"
+   },
+   {
+    "title": "Videos",
+    "href": "https://www.google.com/search?sca_esv=61c21e9397a8b6ea&hl=en&gl=us&sxsrf=APpeQnunSZtRx3d7TeUy6YUJ-5XcD03_qg:1792886144088&udm=vids&fbs=ABfTbFVyMZGZf1hfvX9uKjN_-G8cn05EoNqnRUpRtqDK_L3JtT0h7PdEdL8le1RT1QApqDnOuaWK0zgRg3NvNzqFWifZ5Vnje3VqRlnmFS0LyC9x04PoTAuO1wBDg_p6N_4TV3YqeqgDIAtI5MN4Cj36NAXkI4fgTrbz3gU1-LLYM7XSKSEXwDwBkD_Pc4zz6UxKoHpsnkQ5fZy1_hDciYdNz1sfTuXzRw&q=MICROSOFT+CORP+microsoft.com+phone+number&sa=X&ved=2ahUKEwjQtPat7dOXAxUFTmwGHavTHtsQtKgLegQIFxAB"
+   },
+   {
+    "title": "News",
+    "href": "https://www.google.com/search?sca_esv=61c21e9397a8b6ea&hl=en&gl=us&sxsrf=APpeQnunSZtRx3d7TeUy6YUJ-5XcD03_qg:1792886144088&q=MICROSOFT+CORP+microsoft.com+phone+number&tbm=nws&source=lnms&fbs=ABfTbFVyMZGZf1hfvX9uKjN_-G8cn05EoNqnRUpRtqDK_L3JtT0h7PdEdL8le1RT1QApqDnOuaWK0zgRg3NvNzqFWifZ5Vnje3VqRlnmFS0LyC9x04PoTAuO1wBDg_p6N_4TV3YqeqgDIAtI5MN4Cj36NAXkI4fgTrbz3gU1-LLYM7XSKSEXwDwBkD_Pc4zz6UxKoHpsnkQ5fZy1_hDciYdNz1sfTuXzRw&sa=X&ved=2ahUKEwjQtPat7dOXAxUFTmwGHavTHtsQ0pQJegQIFBAB"
+   },
+   {
+    "title": "Books",
+    "href": "https://www.google.com/search?sca_esv=61c21e9397a8b6ea&hl=en&gl=us&sxsrf=APpeQnunSZtRx3d7TeUy6YUJ-5XcD03_qg:1792886144088&q=MICROSOFT+CORP+microsoft.com+phone+number&udm=36&source=lnms&fbs=ABfTbFVyMZGZf1hfvX9uKjN_-G8cn05EoNqnRUpRtqDK_L3JtT0h7PdEdL8le1RT1QApqDnOuaWK0zgRg3NvNzqFWifZ5Vnje3VqRlnmFS0LyC9x04PoTAuO1wBDg_p6N_4TV3YqeqgDIAtI5MN4Cj36NAXkI4fgTrbz3gU1-LLYM7XSKSEXwDwBkD_Pc4zz6UxKoHpsnkQ5fZy1_hDciYdNz1sfTuXzRw&sa=X&ved=2ahUKEwjQtPat7dOXAxUFTmwGHavTHtsQ0pQJegQIUhAB"
+   },
+   {
+    "title": "Web",
+    "href": "https://www.google.com/search?sca_esv=61c21e9397a8b6ea&hl=en&gl=us&sxsrf=APpeQnunSZtRx3d7TeUy6YUJ-5XcD03_qg:1792886144088&udm=web&fbs=ABfTbFVyMZGZf1hfvX9uKjN_-G8cn05EoNqnRUpRtqDK_L3JtT0h7PdEdL8le1RT1QApqDnOuaWK0zgRg3NvNzqFWifZ5Vnje3VqRlnmFS0LyC9x04PoTAuO1wBDg_p6N_4TV3YqeqgDIAtI5MN4Cj36NAXkI4fgTrbz3gU1-LLYM7XSKSEXwDwBkD_Pc4zz6UxKoHpsnkQ5fZy1_hDciYdNz1sfTuXzRw&q=MICROSOFT+CORP+microsoft.com+phone+number&sa=X&ved=2ahUKEwjQtPat7dOXAxUFTmwGHavTHtsQs6gLegQIURAB"
+   },
+   {
+    "title": "Maps",
+    "href": "https://maps.google.com/maps?sca_esv=61c21e9397a8b6ea&hl=en&gl=us&output=search&q=MICROSOFT+CORP+microsoft.com+phone+number&source=lnms&fbs=ABfTbFVyMZGZf1hfvX9uKjN_-G8cn05EoNqnRUpRtqDK_L3JtT0h7PdEdL8le1RT1QApqDnOuaWK0zgRg3NvNzqFWifZ5Vnje3VqRlnmFS0LyC9x04PoTAuO1wBDg_p6N_4TV3YqeqgDIAtI5MN4Cj36NAXkI4fgTrbz3gU1-LLYM7XSKSEXwDwBkD_Pc4zz6UxKoHpsnkQ5fZy1_hDciYdNz1sfTuXzRw&entry=mc&ved=1t:200715&ictx=111"
+   },
+   {
+    "title": "Short videos",
+    "href": "https://www.google.com/search?sca_esv=61c21e9397a8b6ea&hl=en&gl=us&sxsrf=APpeQnunSZtRx3d7TeUy6YUJ-5XcD03_qg:1792886144088&udm=short_vids&fbs=ABfTbFVyMZGZf1hfvX9uKjN_-G8cn05EoNqnRUpRtqDK_L3JtT0h7PdEdL8le1RT1QApqDnOuaWK0zgRg3NvNzqFWifZ5Vnje3VqRlnmFS0LyC9x04PoTAuO1wBDg_p6N_4TV3YqeqgDIAtI5MN4Cj36NAXkI4fgTrbz3gU1-LLYM7XSKSEXwDwBkD_Pc4zz6UxKoHpsnkQ5fZy1_hDciYdNz1sfTuXzRw&q=MICROSOFT+CORP+microsoft.com+phone+number&sa=X&ved=2ahUKEwjQtPat7dOXAxUFTmwGHavTHtsQs6gLegQIUBAB"
+   }
+  ],
+  "organic": [
+   {
+    "link": "https://support.microsoft.com/en-us/support/",
+    "source": "Microsoft Support",
+    "display_link": "https://support.microsoft.com \u203a en-us \u203a support",
+    "title": "Contact Microsoft customer support",
+    "description": "This page provides support phone numbers \u30fb +380 +380 800 504 194 800 503 405 +44 (0)800 026 0329 (0)344 \u30fb +1 +1 800 642 7676 305 418 9136 \u30fb +1 +1 800 865 ...",
+    "snippet_highlighted_words": [
+     "380 +380 800 504 194"
+    ],
+    "icon": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAYAAAByDd+UAAAAY0lEQVR4AWL4FKD0n1T810XEq3Afg1c9oL05NgEQiIIguk3Y1MVWZ6rYg1qUDQgrH8R8uQsnmHB4p5wGOAAEBAQErDltXeapKjRN2p8W9oO+1HxkSdvttEI/zGmAgICAgP3gC69IRT5tx/gHAAAAAElFTkSuQmCC",
+    "rank": 1,
+    "global_rank": 1
+   },
+   {
+    "link": "https://support.microsoft.com/en-us/contactus",
+    "source": "Microsoft Support",
+    "display_link": "https://support.microsoft.com \u203a en-us \u203a contactus",
+    "title": "Contact Us",
+    "description": "Contact Microsoft Support. Find solutions to common problems, or get help from a support agent. including live chat with a Microsoft specialist. a service ...",
+    "snippet_highlighted_words": [
+     "Contact Microsoft",
+     "Microsoft"
+    ],
+    "icon": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAYAAAByDd+UAAAAY0lEQVR4AWL4FKD0n1T810XEq3Afg1c9oL05NgEQiIIguk3Y1MVWZ6rYg1qUDQgrH8R8uQsnmHB4p5wGOAAEBAQErDltXeapKjRN2p8W9oO+1HxkSdvttEI/zGmAgICAgP3gC69IRT5tx/gHAAAAAElFTkSuQmCC",
+    "rank": 2,
+    "global_rank": 2
+   },
+   {
+    "link": "https://www.microsoft.com/en-us/worldwide",
+    "source": "Microsoft",
+    "display_link": "https://www.microsoft.com \u203a en-us \u203a worldwide",
+    "title": "Microsoft Worldwide Sites",
+    "description": "T\u00e9l\u00e9phone : +213 21 89 10 70. Phone: + +21671168700. Corporate Technical Support: 800 188 6009 General or Sales Inquiries: +65 6888 8899. Phone: + 94 11 4765. ...",
+    "snippet_highlighted_words": [
+     "213 21 89 10 70"
+    ],
+    "icon": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAIAAAD8GO2jAAAABnRSTlMAAAAAAABupgeRAAAAWklEQVR4AWP4FKBEJPrip8wABrV7GOp3EYtGhgWjFoxaMGrBqAXf/OSIRD995CEWVO9hqN1FLBoOYNlnotF3iI7/O4lHQOVL3hONPo9agB2NWjBqwagFoxYAAB2zMZ7bQW2tAAAAAElFTkSuQmCC",
+    "rank": 3,
+    "global_rank": 3
+   },
+   {
+    "link": "https://www.microsoft.com/en-us/store/b/business-sales-and-support",
+    "source": "Microsoft",
+    "display_link": "https://www.microsoft.com \u203a en-us \u203a store \u203a business-sal...",
+    "title": "Microsoft Business Sales & Support | Resources & Tools",
+    "description": "Give us a call at 1 800-642-7676, Call 1-800-642-7676 to speak with a Microsoft representative. The Microsoft Business Support phone number is 1-800-642-7676.",
+    "snippet_highlighted_words": [
+     "call",
+     "Call",
+     "Microsoft",
+     "Microsoft",
+     "phone number"
+    ],
+    "icon": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAIAAAD8GO2jAAAABnRSTlMAAAAAAABupgeRAAAAWklEQVR4AWP4FKBEJPrip8wABrV7GOp3EYtGhgWjFoxaMGrBqAXf/OSIRD995CEWVO9hqN1FLBoOYNlnotF3iI7/O4lHQOVL3hONPo9agB2NWjBqwagFoxYAAB2zMZ7bQW2tAAAAAElFTkSuQmCC",
+    "rank": 4,
+    "global_rank": 4
+   },
+   {
+    "link": "https://www.microsoft.com/en-us/about/office-locations",
+    "source": "Microsoft",
+    "display_link": "https://www.microsoft.com \u203a en-us \u203a office-locations",
+    "title": "Microsoft Office Locations | About Microsoft",
+    "description": "Contact Microsoft Support Find self-help solutions to common problems or get help from a support agent. Visit the support website",
+    "snippet_highlighted_words": [
+     "Contact Microsoft Support"
+    ],
+    "icon": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAIAAAD8GO2jAAAABnRSTlMAAAAAAABupgeRAAAAWklEQVR4AWP4FKBEJPrip8wABrV7GOp3EYtGhgWjFoxaMGrBqAXf/OSIRD995CEWVO9hqN1FLBoOYNlnotF3iI7/O4lHQOVL3hONPo9agB2NWjBqwagFoxYAAB2zMZ7bQW2tAAAAAElFTkSuQmCC",
+    "rank": 5,
+    "global_rank": 5
+   },
+   {
+    "link": "https://www.microsoft.com/en-us/microsoft-365/business/microsoft-365-for-business-support-options",
+    "source": "Microsoft",
+    "display_link": "https://www.microsoft.com \u203a en-us \u203a microsoft-365-for-...",
+    "title": "Microsoft 365 support plans for business and enterprise",
+    "description": "In the United States, call 1-800-865-9408. In Australia, call 1-800-197-503. In Canada, call 1-800-865-9408. In the United Kingdom, call 0800-032-6417.",
+    "snippet_highlighted_words": [
+     "call",
+     "call",
+     "call",
+     "call"
+    ],
+    "icon": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAIAAAD8GO2jAAAABnRSTlMAAAAAAABupgeRAAAAWklEQVR4AWP4FKBEJPrip8wABrV7GOp3EYtGhgWjFoxaMGrBqAXf/OSIRD995CEWVO9hqN1FLBoOYNlnotF3iI7/O4lHQOVL3hONPo9agB2NWjBqwagFoxYAAB2zMZ7bQW2tAAAAAElFTkSuQmCC",
+    "rank": 6,
+    "global_rank": 6
+   },
+   {
+    "link": "https://news.microsoft.com/microsoft-public-relations-contacts/",
+    "source": "Microsoft Source",
+    "display_link": "https://news.microsoft.com \u203a microsoft-public-relations-c...",
+    "title": "Microsoft Public Relations Contacts - Stories",
+    "description": "Microsoft Public Relations Contacts ; General media inquiries, Microsoft Media Relations We. Communications ; Xbox-related media inquiries. XBOXPress@XBOX.com.Read more",
+    "snippet_highlighted_words": [
+     "Microsoft Public Relations Contacts"
+    ],
+    "icon": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAeCAIAAADCaIt+AAABJElEQVR4Ae2UBU5EMRiEi8MBOALX2Dga5xq4QxQOAFGI4q4x3N3d3d0pLS7zcP+7+O6+5IvP5HvSDuMnp7K5nKfE8cz4j0HmcHZqcWusfCRWhd6FsmNxqgl4Qgx3c+JezgQGJrpbR1YbgkpYVDlNXm/go0Dre7sQuDndClCOrrL/GGSK+iN0gS7QBWYmMDD0CYzZImQet0iM9GBQVRCrS+t7i5hJFabXujXBqeRjm6J9VaqwuifE3vrxWq8Kcmvy4FYQULfPkvZYCgEyNXPydLn2qoypcNbteycIadhH3y6TAJlHQYUjQRk77Yv8G8HujwjQf8WuSX0i9H/zJ++a7inS7wEhIDB6i3pD7wQZQ/vYO2g+BhkMKmYSK4YyQbfv8VQGBNeq5q+In7dbvwAAAABJRU5ErkJggg==",
+    "rank": 7,
+    "global_rank": 7
+   },
+   {
+    "link": "https://learn.microsoft.com/en-us/answers/questions/5303029/whats-microsofts-number",
+    "source": "Microsoft Learn",
+    "display_link": "https://learn.microsoft.com \u203a en-us \u203a answers \u203a questions",
+    "title": "What's Microsofts number?",
+    "description": "I'm trying to reach out to the Microsoft Corporation in Boston so I can speak with who's in charge. Their number is not found on their website or anywhere ...",
+    "extensions": [
+     {
+      "inline": true,
+      "type": "text",
+      "text": "Feb 9, 2024",
+      "rank": 1
+     }
+    ],
+    "icon": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAIAAAD8GO2jAAAABnRSTlMAAAAAAABupgeRAAAAWklEQVR4AWP4FKBEJPrip8wABrV7GOp3EYtGhgWjFoxaMGrBqAXf/OSIRD995CEWVO9hqN1FLBoOYNlnotF3iI7/O4lHQOVL3hONPo9agB2NWjBqwagFoxYAAB2zMZ7bQW2tAAAAAElFTkSuQmCC",
+    "rank": 8,
+    "global_rank": 8
+   },
+   {
+    "link": "https://microsoft-office-online.pissedconsumer.com/customer-service.html",
+    "source": "PissedConsumer",
+    "display_link": "https://microsoft-office-online.pissedconsumer.com \u203a cus...",
+    "title": "Microsoft Office Online Customer Service Phone Number 1 ...",
+    "description": "Customer Service: \u00b7 1-425-882-8080. Call Now \u00b7 1-800-642-7676. Call Now \u00b7 +6 128 870 7510. Australia. Call Now.Read more",
+    "snippet_highlighted_words": [
+     "Customer Service",
+     "Call",
+     "Call",
+     "Call"
+    ],
+    "rank": 9,
+    "global_rank": 9
+   }
+  ],
+  "pagination": {
+   "pages": [
+    {
+     "page": 2,
+     "start": 10,
+     "link": "https://www.google.com/search?q=MICROSOFT+CORP+microsoft.com+phone+number&sca_esv=61c21e9397a8b6ea&hl=en&gl=us&sxsrf=APpeQnunSZtRx3d7TeUy6YUJ-5XcD03_qg:1792886144088&ei=gEXdatD0BIWcseMPq6f72A0&start=10&sa=N&sstk=AS6-VmI5u-o6m24WG06_LjTaIW66-cUtohIVfbA5iUSgvkRioc1M9u4kpFcKOKBqdQUNZcuodfg11M_2r1pRcefJp5By4emDnYn4Qw&ved=2ahUKEwjQtPat7dOXAxUFTmwGHavTHtsQ8tMDegQIIBAE"
+    },
+    {
+     "page": 3,
+     "start": 20,
+     "link": "https://www.google.com/search?q=MICROSOFT+CORP+microsoft.com+phone+number&sca_esv=61c21e9397a8b6ea&hl=en&gl=us&sxsrf=APpeQnunSZtRx3d7TeUy6YUJ-5XcD03_qg:1792886144088&ei=gEXdatD0BIWcseMPq6f72A0&start=20&sa=N&sstk=AS6-VmI5u-o6m24WG06_LjTaIW66-cUtohIVfbA5iUSgvkRioc1M9u4kpFcKOKBqdQUNZcuodfg11M_2r1pRcefJp5By4emDnYn4Qw&ved=2ahUKEwjQtPat7dOXAxUFTmwGHavTHtsQ8tMDegQIIBAG"
+    },
+    {
+     "page": 4,
+     "start": 30,
+     "link": "https://www.google.com/search?q=MICROSOFT+CORP+microsoft.com+phone+number&sca_esv=61c21e9397a8b6ea&hl=en&gl=us&sxsrf=APpeQnunSZtRx3d7TeUy6YUJ-5XcD03_qg:1792886144088&ei=gEXdatD0BIWcseMPq6f72A0&start=30&sa=N&sstk=AS6-VmI5u-o6m24WG06_LjTaIW66-cUtohIVfbA5iUSgvkRioc1M9u4kpFcKOKBqdQUNZcuodfg11M_2r1pRcefJp5By4emDnYn4Qw&ved=2ahUKEwjQtPat7dOXAxUFTmwGHavTHtsQ8tMDegQIIBAI"
+    },
+    {
+     "page": 5,
+     "start": 40,
+     "link": "https://www.google.com/search?q=MICROSOFT+CORP+microsoft.com+phone+number&sca_esv=61c21e9397a8b6ea&hl=en&gl=us&sxsrf=APpeQnunSZtRx3d7TeUy6YUJ-5XcD03_qg:1792886144088&ei=gEXdatD0BIWcseMPq6f72A0&start=40&sa=N&sstk=AS6-VmI5u-o6m24WG06_LjTaIW66-cUtohIVfbA5iUSgvkRioc1M9u4kpFcKOKBqdQUNZcuodfg11M_2r1pRcefJp5By4emDnYn4Qw&ved=2ahUKEwjQtPat7dOXAxUFTmwGHavTHtsQ8tMDegQIIBAK"
+    },
+    {
+     "page": 6,
+     "start": 50,
+     "link": "https://www.google.com/search?q=MICROSOFT+CORP+microsoft.com+phone+number&sca_esv=61c21e9397a8b6ea&hl=en&gl=us&sxsrf=APpeQnunSZtRx3d7TeUy6YUJ-5XcD03_qg:1792886144088&ei=gEXdatD0BIWcseMPq6f72A0&start=50&sa=N&sstk=AS6-VmI5u-o6m24WG06_LjTaIW66-cUtohIVfbA5iUSgvkRioc1M9u4kpFcKOKBqdQUNZcuodfg11M_2r1pRcefJp5By4emDnYn4Qw&ved=2ahUKEwjQtPat7dOXAxUFTmwGHavTHtsQ8tMDegQIIBAM"
+    },
+    {
+     "page": 7,
+     "start": 60,
+     "link": "https://www.google.com/search?q=MICROSOFT+CORP+microsoft.com+phone+number&sca_esv=61c21e9397a8b6ea&hl=en&gl=us&sxsrf=APpeQnunSZtRx3d7TeUy6YUJ-5XcD03_qg:1792886144088&ei=gEXdatD0BIWcseMPq6f72A0&start=60&sa=N&sstk=AS6-VmI5u-o6m24WG06_LjTaIW66-cUtohIVfbA5iUSgvkRioc1M9u4kpFcKOKBqdQUNZcuodfg11M_2r1pRcefJp5By4emDnYn4Qw&ved=2ahUKEwjQtPat7dOXAxUFTmwGHavTHtsQ8tMDegQIIBAO"
+    },
+    {
+     "page": 8,
+     "start": 70,
+     "link": "https://www.google.com/search?q=MICROSOFT+CORP+microsoft.com+phone+number&sca_esv=61c21e9397a8b6ea&hl=en&gl=us&sxsrf=APpeQnunSZtRx3d7TeUy6YUJ-5XcD03_qg:1792886144088&ei=gEXdatD0BIWcseMPq6f72A0&start=70&sa=N&sstk=AS6-VmI5u-o6m24WG06_LjTaIW66-cUtohIVfbA5iUSgvkRioc1M9u4kpFcKOKBqdQUNZcuodfg11M_2r1pRcefJp5By4emDnYn4Qw&ved=2ahUKEwjQtPat7dOXAxUFTmwGHavTHtsQ8tMDegQIIBAQ"
+    },
+    {
+     "page": 9,
+     "start": 80,
+     "link": "https://www.google.com/search?q=MICROSOFT+CORP+microsoft.com+phone+number&sca_esv=61c21e9397a8b6ea&hl=en&gl=us&sxsrf=APpeQnunSZtRx3d7TeUy6YUJ-5XcD03_qg:1792886144088&ei=gEXdatD0BIWcseMPq6f72A0&start=80&sa=N&sstk=AS6-VmI5u-o6m24WG06_LjTaIW66-cUtohIVfbA5iUSgvkRioc1M9u4kpFcKOKBqdQUNZcuodfg11M_2r1pRcefJp5By4emDnYn4Qw&ved=2ahUKEwjQtPat7dOXAxUFTmwGHavTHtsQ8tMDegQIIBAS"
+    },
+    {
+     "page": 10,
+     "start": 90,
+     "link": "https://www.google.com/search?q=MICROSOFT+CORP+microsoft.com+phone+number&sca_esv=61c21e9397a8b6ea&hl=en&gl=us&sxsrf=APpeQnunSZtRx3d7TeUy6YUJ-5XcD03_qg:1792886144088&ei=gEXdatD0BIWcseMPq6f72A0&start=90&sa=N&sstk=AS6-VmI5u-o6m24WG06_LjTaIW66-cUtohIVfbA5iUSgvkRioc1M9u4kpFcKOKBqdQUNZcuodfg11M_2r1pRcefJp5By4emDnYn4Qw&ved=2ahUKEwjQtPat7dOXAxUFTmwGHavTHtsQ8tMDegQIIBAU"
+    }
+   ],
+   "current_page": 1,
+   "next_page": 2,
+   "next_page_start": 10,
+   "next_page_link": "https://www.google.com/search?q=MICROSOFT+CORP+microsoft.com+phone+number&sca_esv=61c21e9397a8b6ea&hl=en&gl=us&sxsrf=APpeQnunSZtRx3d7TeUy6YUJ-5XcD03_qg:1792886144088&ei=gEXdatD0BIWcseMPq6f72A0&start=10&sa=N&sstk=AS6-VmI5u-o6m24WG06_LjTaIW66-cUtohIVfbA5iUSgvkRioc1M9u4kpFcKOKBqdQUNZcuodfg11M_2r1pRcefJp5By4emDnYn4Qw&ved=2ahUKEwjQtPat7dOXAxUFTmwGHavTHtsQ8tMDegQIIBAE"
+  },
+  "related": [
+   {
+    "text": "Microsoft corp microsoft com phone number usa",
+    "link": "https://www.google.com/search?sca_esv=61c21e9397a8b6ea&hl=en&gl=us&sxsrf=APpeQnunSZtRx3d7TeUy6YUJ-5XcD03_qg:1792886144088&q=Microsoft+corp+microsoft+com+phone+number+usa&sa=X&ved=2ahUKEwjQtPat7dOXAxUFTmwGHavTHtsQ1QJ6BAgiEAE",
+    "rank": 1,
+    "global_rank": 10
+   },
+   {
+    "text": "Microsoft support phone number real person",
+    "link": "https://www.google.com/search?sca_esv=61c21e9397a8b6ea&hl=en&gl=us&sxsrf=APpeQnunSZtRx3d7TeUy6YUJ-5XcD03_qg:1792886144088&q=Microsoft+support+phone+number+real+person&sa=X&ved=2ahUKEwjQtPat7dOXAxUFTmwGHavTHtsQ1QJ6BAgvEAE",
+    "rank": 2,
+    "global_rank": 11
+   },
+   {
+    "text": "Microsoft support phone number 24/7",
+    "link": "https://www.google.com/search?sca_esv=61c21e9397a8b6ea&hl=en&gl=us&sxsrf=APpeQnunSZtRx3d7TeUy6YUJ-5XcD03_qg:1792886144088&q=Microsoft+support+phone+number+24/7&sa=X&ved=2ahUKEwjQtPat7dOXAxUFTmwGHavTHtsQ1QJ6BAgwEAE",
+    "rank": 3,
+    "global_rank": 12
+   },
+   {
+    "text": "Microsoft corp microsoft com phone number for employees",
+    "link": "https://www.google.com/search?sca_esv=61c21e9397a8b6ea&hl=en&gl=us&sxsrf=APpeQnunSZtRx3d7TeUy6YUJ-5XcD03_qg:1792886144088&q=Microsoft+corp+microsoft+com+phone+number+for+employees&sa=X&ved=2ahUKEwjQtPat7dOXAxUFTmwGHavTHtsQ1QJ6BAgrEAE",
+    "rank": 4,
+    "global_rank": 13
+   },
+   {
+    "text": "Microsoft corp microsoft com phone number 24 7",
+    "link": "https://www.google.com/search?sca_esv=61c21e9397a8b6ea&hl=en&gl=us&sxsrf=APpeQnunSZtRx3d7TeUy6YUJ-5XcD03_qg:1792886144088&q=Microsoft+corp+microsoft+com+phone+number+24+7&sa=X&ved=2ahUKEwjQtPat7dOXAxUFTmwGHavTHtsQ1QJ6BAgqEAE",
+    "rank": 5,
+    "global_rank": 14
+   },
+   {
+    "text": "Help Microsoft com talk to a person",
+    "link": "https://www.google.com/search?sca_esv=61c21e9397a8b6ea&hl=en&gl=us&sxsrf=APpeQnunSZtRx3d7TeUy6YUJ-5XcD03_qg:1792886144088&q=Help+Microsoft+com+talk+to+a+person&sa=X&ved=2ahUKEwjQtPat7dOXAxUFTmwGHavTHtsQ1QJ6BAglEAE",
+    "rank": 6,
+    "global_rank": 15
+   },
+   {
+    "text": "Microsoft technical support phone number",
+    "link": "https://www.google.com/search?sca_esv=61c21e9397a8b6ea&hl=en&gl=us&sxsrf=APpeQnunSZtRx3d7TeUy6YUJ-5XcD03_qg:1792886144088&q=Microsoft+technical+support+phone+number&sa=X&ved=2ahUKEwjQtPat7dOXAxUFTmwGHavTHtsQ1QJ6BAgkEAE",
+    "rank": 7,
+    "global_rank": 16
+   },
+   {
+    "text": "Microsoft customer service phone number 24/7 Xbox",
+    "link": "https://www.google.com/search?sca_esv=61c21e9397a8b6ea&hl=en&gl=us&sxsrf=APpeQnunSZtRx3d7TeUy6YUJ-5XcD03_qg:1792886144088&q=Microsoft+customer+service+phone+number+24/7+Xbox&sa=X&ved=2ahUKEwjQtPat7dOXAxUFTmwGHavTHtsQ1QJ6BAgjEAE",
+    "rank": 8,
+    "global_rank": 17
    }
   ]
  }
